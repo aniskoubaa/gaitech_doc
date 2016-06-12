@@ -1,0 +1,312 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Turtlebot First Tests &mdash; Gaitech Doc 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Gaitech Doc 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
+        <link rel="next" title="Turtlebot Speech Recognition" href="speech-doc.html"/>
+        <link rel="prev" title="Keyboard Teleop" href="teleop-doc.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech Doc
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-background.html">ROS Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-programming-basics.html">Getting Started with ROS Programming</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="turtlebot-tutorials.html">Turtlebot Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="network-config-doc.html">Network Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turtlebot_simulators.html">Turtlebot Simulators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">First Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#starting-the-turtlebot">Starting The Turtlebot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-the-bumper-sensor">Testing the bumper sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-the-cliff-sensor">Testing the cliff sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-the-motors-of-the-kobuki-base">Testing the motors of the Kobuki base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Testing the motors of the Kobuki base</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Speech Recognition</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech Doc</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="turtlebot-tutorials.html">Turtlebot Quick Start Tutorials</a> &raquo;</li>
+      
+    <li>Turtlebot First Tests</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/turtlebot/turtlebot-first-tests.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="turtlebot-first-tests">
+<span id="id1"></span><h1>Turtlebot First Tests<a class="headerlink" href="#turtlebot-first-tests" title="Permalink to this headline">¶</a></h1>
+<p>When you purchase a new Turtlebot, you would like to make sure that its sensors and actuators work as expected and behave normally.
+In this tutorial, we provide you a few steps to follow to test the functionalities of your Turtlebot.</p>
+<img alt="../_images/turtlebot.png" class="align-center" src="../_images/turtlebot.png" />
+<div class="section" id="starting-the-turtlebot">
+<h2>Starting The Turtlebot<a class="headerlink" href="#starting-the-turtlebot" title="Permalink to this headline">¶</a></h2>
+<p>First, connect the Kobuki base and 3D sensor camera (Kinect or Asus) to the laptop and start ROS.
+The first thing you need to do, is to turn-on turtlebot functionalities and this is performed through the bringup operation that starts all the sensors and actuators of the Turtlebot, namely, the Kobuki base and the 3D sensor.
+Open a terminal and write:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">turtlebot_bringup</span> <span class="n">minimal</span><span class="o">.</span><span class="n">launch</span>
+</pre></div>
+</div>
+<p>This command will start the Kobuki base of the Turtlebot. You should hear a sound when it is turned on.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">For me details about Turtlebot bring up refer to <a class="reference external" href="http://wiki.ros.org/turtlebot_bringup/Tutorials/indigo/TurtleBot%20Bringup">Turtlebot Bringup in ROS Wiki</a>.</p>
+</div>
+</div>
+<div class="section" id="testing-the-bumper-sensor">
+<h2>Testing the bumper sensor<a class="headerlink" href="#testing-the-bumper-sensor" title="Permalink to this headline">¶</a></h2>
+<p>There are three bumper sensors in the Kobuki base: (1) one in the middle-front, (2) one in the left front, (2) one the right front.
+The bumper sensor helps the Turtlebot detecting collision with obstacles. To test the three bumper sensor, open a new terminal and run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rostopic</span> <span class="n">echo</span> <span class="o">/</span><span class="n">mobile_base</span><span class="o">/</span><span class="n">events</span><span class="o">/</span><span class="n">bumper</span>
+</pre></div>
+</div>
+<p>You should observe the following output:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">state</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">bumper</span><span class="p">:</span> <span class="mi">0</span>
+<span class="o">---------</span>
+<span class="n">state</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">bumper</span><span class="p">:</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>This means that all bumpers are released (not pressed).</p>
+<p>The variable <code class="docutils literal"><span class="pre">state</span></code> can take the values <code class="docutils literal"><span class="pre">0</span> <span class="pre">(RELEASED)</span></code> and <code class="docutils literal"><span class="pre">1</span> <span class="pre">(PRESSED)</span></code>. The variable <code class="docutils literal"><span class="pre">bumper</span></code> takes the values <code class="docutils literal"><span class="pre">0</span> <span class="pre">(LEFT)</span></code>, <code class="docutils literal"><span class="pre">1</span> <span class="pre">(CENTER)</span></code>, and <code class="docutils literal"><span class="pre">2</span> <span class="pre">(RIGHT)</span></code>.</p>
+<p>Now, you can check the central front bumper. Press on the central front bumper. You should observe that the turtlebot moved slightly to the back and you should observe the following output in the terminal:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">state</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">bumper</span><span class="p">:</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>When you release the center bumper, you will observe</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">state</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">bumper</span><span class="p">:</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Repeat the process for the left and right bumper sensor to make sure that their correct operation.</p>
+</div>
+<div class="section" id="testing-the-cliff-sensor">
+<h2>Testing the cliff sensor<a class="headerlink" href="#testing-the-cliff-sensor" title="Permalink to this headline">¶</a></h2>
+<p>Cliff sensors are responsible for detecting cliffs and alitude changes when the robot is moving to prevent crashes when reaching stairs.
+They are located in the bottom of the Kobuki base. The behavior is very similar to the bumper sensor.
+There are three cliff sensors, one in the center, one in the left, and one in right side.
+To test the three cliff sensors, open a new terminal and run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rostopic</span> <span class="n">echo</span> <span class="o">/</span><span class="n">mobile_base</span><span class="o">/</span><span class="n">events</span><span class="o">/</span><span class="n">cliff</span>
+</pre></div>
+</div>
+<p>You should observe the following output:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">state</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">sensor</span><span class="p">:</span> <span class="mi">0</span>
+<span class="o">---------</span>
+<span class="n">state</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">sensor</span><span class="p">:</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>This means that all cliff sensors detect a normal ground (no cliff).</p>
+<p>The variable <code class="docutils literal"><span class="pre">state</span></code> can take the values <code class="docutils literal"><span class="pre">0</span> <span class="pre">(FLOOR)</span></code> and <code class="docutils literal"><span class="pre">1</span> <span class="pre">(CLIFF)</span></code>. The variable <code class="docutils literal"><span class="pre">sensor</span></code> takes the values <code class="docutils literal"><span class="pre">0</span> <span class="pre">(LEFT)</span></code>, <code class="docutils literal"><span class="pre">1</span> <span class="pre">(CENTER)</span></code>, and <code class="docutils literal"><span class="pre">2</span> <span class="pre">(RIGHT)</span></code>.</p>
+<p>Now, lift the turtlebot to the up, and you will see a similar output</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">state</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">sensor</span><span class="p">:</span> <span class="mi">0</span>
+<span class="o">---------</span>
+<span class="n">state</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">sensor</span><span class="p">:</span> <span class="mi">1</span>
+<span class="o">---------</span>
+<span class="n">state</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">sensor</span><span class="p">:</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Which means that all sensor detected a cliff as the robot is away from the ground. Put the robot back on the ground and all states should come back to 0.</p>
+</div>
+<div class="section" id="testing-the-motors-of-the-kobuki-base">
+<h2>Testing the motors of the Kobuki base<a class="headerlink" href="#testing-the-motors-of-the-kobuki-base" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id2">
+<h2>Testing the motors of the Kobuki base<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="speech-doc.html" class="btn btn-neutral float-right" title="Turtlebot Speech Recognition" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="teleop-doc.html" class="btn btn-neutral" title="Keyboard Teleop" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

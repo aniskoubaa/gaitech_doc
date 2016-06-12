@@ -1,0 +1,19 @@
+.. _turtlebot-first-tests:
+
+=====================
+Turtlebot First Tests
+=====================
+When you purchase a new Turtlebot, you would like to make sure that its sensors and actuators work as expected and behave normally. 
+In this tutorial, we provide you a few steps to follow to test the functionalities of your Turtlebot.   
+
+.. image:: images/turtlebot.png
+    :align: center
+    
+
+Starting The Turtlebot
+======================
+First, connect the Kobuki base and 3D sensor camera (Kinect or Asus) to the laptop and start ROS. 
+The first thing you need to do, is to turn-on turtlebot functionalities and this is performed through the bringup operation that starts all the sensors and actuators of the Turtlebot, namely, the Kobuki based and the 3D sensor.
+Open a terminal and write:
+``roslaunch turtlebot_bringup minimal.launch``
+

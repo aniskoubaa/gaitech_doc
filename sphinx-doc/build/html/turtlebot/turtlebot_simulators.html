@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Turtlebot Simulators &mdash; Gaitech Doc 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Gaitech Doc 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
+        <link rel="next" title="Keyboard Teleop" href="teleop-doc.html"/>
+        <link rel="prev" title="Network Configuration" href="network-config-doc.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech Doc
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-background.html">ROS Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-programming-basics.html">Getting Started with ROS Programming</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="turtlebot-tutorials.html">Turtlebot Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="network-config-doc.html">Network Configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Turtlebot Simulators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#stage-simulator">Stage Simulator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gazebo-simulator">Gazebo Simulator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-teleop-package-with-gazebo-and-rviz">Using Teleop package with Gazebo and RViz</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-first-tests.html">First Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Speech Recognition</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech Doc</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="turtlebot-tutorials.html">Turtlebot Quick Start Tutorials</a> &raquo;</li>
+      
+    <li>Turtlebot Simulators</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/turtlebot/turtlebot_simulators.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="turtlebot-simulators">
+<h1>Turtlebot Simulators<a class="headerlink" href="#turtlebot-simulators" title="Permalink to this headline">¶</a></h1>
+<p>In this page, we will learn about two different simulators to test your Turtlebot robot programs.</p>
+<p>You need to install the software:</p>
+<p><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">ros-indigo-turtlebot-simulator</span></code></p>
+<p>There is a couple of simulators that you can help you with your robot such as Gazebo, Stage, RViz and Stdr. The most used simulators are the Gazebo and the stage.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Make sure that you completed installing all the required packets in the previous tutorials and your ROS environment is full working.</p>
+</div>
+<div class="section" id="stage-simulator">
+<h2>Stage Simulator<a class="headerlink" href="#stage-simulator" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>In this section you will learn about:</dt>
+<dd><ul class="first last simple">
+<li>Stage Simulator and how to launch it.</li>
+<li>Customizing your simulator.</li>
+</ul>
+</dd>
+</dl>
+<p>Stage is a 2D multi-robot simulator. It shows the user a world defined in a file with an extention <cite>.world</cite>. This world has everything the software needs to know from the obstacles, free space to robots and other objects.</p>
+<p>Run the following command to run the Stage simulator:</p>
+<p><code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">turtlebot_stage</span> <span class="pre">turtlebot_in_stage_no_rviz.launch</span></code></p>
+<p>Click on the <cite>2D Nav Goal</cite> option on the top bar and command the robot to go anywhere you want in the map.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can run the following command <code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">turtlebot_stage</span> <span class="pre">turtlebot_in_stage.launch</span></code> if your PC is powerful and can run both simulators at the same time.</p>
+</div>
+<p>Open the turtlebot_stage directory and type <code class="docutils literal"><span class="pre">tree</span></code> to be able to see all the files but we are intersted in the following files:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">launch</span><span class="o">/</span><span class="n">turtlebot_in_stage</span><span class="o">.</span><span class="n">launch</span>
+<span class="n">maps</span><span class="o">/</span><span class="n">maze</span><span class="o">.</span><span class="n">png</span>
+<span class="n">maps</span><span class="o">/</span><span class="n">maze</span><span class="o">.</span><span class="n">yaml</span>
+<span class="n">maps</span><span class="o">/</span><span class="n">stage</span><span class="o">/</span><span class="n">maze</span><span class="o">.</span><span class="n">world</span>
+<span class="n">maps</span><span class="o">/</span><span class="n">stage</span><span class="o">/</span><span class="n">turtlebot</span><span class="o">.</span><span class="n">inc</span>
+<span class="n">rviz</span><span class="o">/</span><span class="n">robot_navigation</span><span class="o">.</span><span class="n">rviz</span>
+</pre></div>
+</div>
+<p>The <cite>.rviz</cite> file has all the settings for the RViz simulator so you don&#8217;t need to worry about. The <code class="docutils literal"><span class="pre">turtlebot.inc</span></code> file defines the layout and the sensor for the turtlebot robot.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Make sure to keep a copy of the original files in case you did something wrong specially the <code class="docutils literal"><span class="pre">.png</span></code> <code class="docutils literal"><span class="pre">.yaml</span></code> <code class="docutils literal"><span class="pre">.world</span></code> files.</p>
+</div>
+<p>In order to edit the map you want to have, open the file <code class="docutils literal"><span class="pre">maze.png</span></code> with any editor and modify it.</p>
+<p>Now you can run the simulator:</p>
+<p><code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">turtlebot_stage</span> <span class="pre">turtlebot_in_stage_no_rviz.launch</span></code></p>
+<p>You can also choose the <code class="docutils literal"><span class="pre">.world</span></code> and <code class="docutils literal"><span class="pre">.yaml</span></code> files by using the following command:</p>
+<p><code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">turtlebot_stage</span> <span class="pre">turtlebot_in_stage_no_rviz.launch</span> <span class="pre">map_file:=&quot;~/path/to/new/file.yaml&quot;</span> <span class="pre">world_file:=&quot;~/path/to/new/file.world&quot;</span></code></p>
+<p>Or in case you want to use the same files everytime you can run the following commands:</p>
+<p><code class="docutils literal"><span class="pre">export</span> <span class="pre">TURTLEBOT_STAGE_MAP_FILE=~/path/to/new/file.yaml</span></code>
+<code class="docutils literal"><span class="pre">export</span> <span class="pre">TURTLEBOT_STAGE_WORLD_FILE=~/path/to/new/file.world</span></code></p>
+<p>or simply add them to your shell setup file:</p>
+<p><code class="docutils literal"><span class="pre">echo</span> <span class="pre">export</span> <span class="pre">TURTLEBOT_STAGE_MAP_FILE=~/path/to/new/file.yaml</span> <span class="pre">&gt;&gt;</span> <span class="pre">devel/setup.sh</span></code>
+<code class="docutils literal"><span class="pre">echo</span> <span class="pre">export</span> <span class="pre">TURTLEBOT_STAGE_WORLD_FILE=~/path/to/new/file.world</span> <span class="pre">&gt;&gt;</span> <span class="pre">devel/setup.sh</span></code></p>
+<p>After you modify the map you may find out that the position of your robot is very close to an obstacle for example. Instead of moving the robot from the obstacle you can simply change the default position of the robot in the <code class="docutils literal"><span class="pre">.world</span></code> file by changing the values of the <cite>pose [x y z theta]</cite></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><cite>theta</cite> is in degree.</p>
+</div>
+<p>or you can change tho position when you launch the simulator:</p>
+<p><code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">turtlebot_stage</span> <span class="pre">turtlebot_in_stage_no_rviz.launch</span> <span class="pre">initial_pose_y:=2.0</span> <span class="pre">initial_pose_x:=1.0</span></code></p>
+<p>You can also add an obstacle in any position in the map and with any size you like by creating a new <code class="docutils literal"><span class="pre">.inc</span></code> file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">define</span> <span class="n">block</span> <span class="n">model</span>
+<span class="p">(</span>
+ <span class="n">size</span> <span class="p">[</span><span class="mf">0.5</span> <span class="mf">0.5</span> <span class="mf">1.0</span><span class="p">]</span>
+ <span class="n">gui_nose</span> <span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The <cite>size</cite> parameters are in meters and the <cite>gui_nose</cite> parameter is to show the direction which the obstacle is facing. Make sure to include the <code class="docutils literal"><span class="pre">.inc</span></code> you just created for the block in the <code class="docutils literal"><span class="pre">.world</span></code> file on the top and then you can specify other details for the block:</p>
+<p>In the <code class="docutils literal"><span class="pre">.world</span></code> file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">include</span> <span class="s2">&quot;blockFile.inc&quot;</span>
+
+<span class="c1">#add blocks and customize them</span>
+<span class="n">block</span><span class="p">(</span> <span class="n">pose</span> <span class="p">[</span> <span class="mf">2.0</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">45.0</span> <span class="p">]</span> <span class="n">color</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">block</span><span class="p">(</span> <span class="n">pose</span> <span class="p">[</span> <span class="mf">1.0</span> <span class="mf">2.0</span> <span class="mf">2.0</span> <span class="mf">0.0</span> <span class="p">]</span> <span class="n">color</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can add default customization for the block inside the <code class="docutils literal"><span class="pre">.inc</span></code> file. You can refer to this <a class="reference external" href="http:playerstage.sourceforge.net/doc/stage-cvs/group__model.html">page</a> for more customization. Make sure if you changed anything in the <code class="docutils literal"><span class="pre">.yaml</span></code> file to adjust the <code class="docutils literal"><span class="pre">.world</span></code> file.</p>
+</div>
+</div>
+<div class="section" id="gazebo-simulator">
+<h2>Gazebo Simulator<a class="headerlink" href="#gazebo-simulator" title="Permalink to this headline">¶</a></h2>
+<p>In this section we will bring up the turtlebot robot in the <cite>Gazebo</cite> simulator.</p>
+<p>To run the <cite>Gazebo</cite> simulator run the following command:</p>
+<p><code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">turtlebot_gazebo</span> <span class="pre">turtlebot_world.launch</span></code></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Gazebo may need a couple of updates before running to update its database and it will take a few moments.</p>
+</div>
+</div>
+<div class="section" id="using-teleop-package-with-gazebo-and-rviz">
+<h2>Using Teleop package with Gazebo and RViz<a class="headerlink" href="#using-teleop-package-with-gazebo-and-rviz" title="Permalink to this headline">¶</a></h2>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">Try to make the teleop tutorial before you complete this tutorial to make sure you have all the necessary packages.</p>
+</div>
+<p>First, you need to bring up the <cite>Gazebo</cite> simulator as mentioned before. Second, open a new terminal and type the following:</p>
+<p><code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">turtlebot_teleop</span> <span class="pre">keyboard_teleop.launch</span></code></p>
+<p>Try to move the robot around.</p>
+<p>Now to be able to see what the robot is acually sees you can open a new terminal and launch the RViz simulator:</p>
+<p><code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">turtlebot_rviz_launchers</span> <span class="pre">view_robot.launch</span></code></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The RViz simulator may take a couple of minutes to be launched. Make sure you have a powerful PC with a good graphics card.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="teleop-doc.html" class="btn btn-neutral float-right" title="Keyboard Teleop" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="network-config-doc.html" class="btn btn-neutral" title="Network Configuration" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

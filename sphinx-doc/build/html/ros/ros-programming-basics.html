@@ -1,0 +1,257 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ROS Programming &mdash; Gaitech Doc 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Gaitech Doc 2.5 documentation" href="../index.html"/>
+        <link rel="next" title="Turtlebot Quick Start Tutorials" href="../turtlebot/turtlebot-tutorials.html"/>
+        <link rel="prev" title="ROS Background" href="ros-background.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech Doc
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ros-background.html">ROS Background</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started with ROS Programming</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#lecture-1-ros-publisher-and-subscribers-in-c-and-python">Lecture 1: ROS Publisher and Subscribers in C++ and Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#review-questions">Review Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lecture-2-ros-services-in-c-and-python">Lecture 2: ROS Services in C++ and Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../turtlebot/turtlebot-tutorials.html">Turtlebot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech Doc</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>ROS Programming</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/ros/ros-programming-basics.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>ROS Programming<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, you will learn how to start programming with ROS. It&#8217;s funny and amazing, yet quite simple.
+The first thing you need to understand in ROS is how to subscribe to a ROS topic, and how to publish a message to a ROS topic as most of ROS operations are based on publishing and subscribing to topics.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">It is assumed that you already know the main concepts on ROS including ROS topics, ROS nodes, ROS messages and ROS services.
+If not, you need to first take the first tutorial on <a class="reference internal" href="ros-background.html#ros-bakground"><span class="std std-ref">ROS Background</span></a>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The following tutorial is based on the ROS tutorial  <a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber(c%2B%2B)">Writing a Simple Publisher and Subscriber (C++)</a> and  <a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29">Python</a> but provides more practical programming and configuration hints. Although some videos are shown for ROS Hydro, they are also valid for all subsquent versions including Indigo and Jade, as they deal with the basics.</p>
+</div>
+<div class="section" id="lecture-1-ros-publisher-and-subscribers-in-c-and-python">
+<h2>Lecture 1: ROS Publisher and Subscribers in C++ and Python<a class="headerlink" href="#lecture-1-ros-publisher-and-subscribers-in-c-and-python" title="Permalink to this headline">¶</a></h2>
+<p>In this video, you will learn:</p>
+<blockquote>
+<div><ul class="simple">
+<li>How to develop the simplest program with ROS</li>
+<li>How to publish a message to a ROS topic using C++ and Python</li>
+<li>How to subscribe a message to a ROS topic using C++ and Python</li>
+<li>How to configure <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code> and <code class="docutils literal"><span class="pre">package.xml</span></code> to add new required packages for compilation and runtime</li>
+<li>How to run a program in ROS</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="review-questions">
+<h2>Review Questions<a class="headerlink" href="#review-questions" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Write the C++/Python instruction that creates a new topic called chatter of type String?</li>
+<li>Write the C++/Python instruction that effectively publishes a message on the chatter topic?</li>
+<li>How to add a new exectuable in <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code> and <code class="docutils literal"><span class="pre">package.xml</span></code> to be able to compile and run a C++ ROS program?</li>
+<li>How to declare a topic subscriber in C++/Python?</li>
+<li>What is the role of the subscriber callback function?</li>
+<li>in C++, what is the difference between <code class="docutils literal"><span class="pre">std_msgs::String::ConstPtr</span></code> and <code class="docutils literal"><span class="pre">std_msgs::String</span></code>?</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="lecture-2-ros-services-in-c-and-python">
+<h2>Lecture 2: ROS Services in C++ and Python<a class="headerlink" href="#lecture-2-ros-services-in-c-and-python" title="Permalink to this headline">¶</a></h2>
+<p>Coming soon ..</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../turtlebot/turtlebot-tutorials.html" class="btn btn-neutral float-right" title="Turtlebot Quick Start Tutorials" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ros-background.html" class="btn btn-neutral" title="ROS Background" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

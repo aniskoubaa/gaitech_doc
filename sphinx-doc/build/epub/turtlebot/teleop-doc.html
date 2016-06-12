@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Keyboard Teleop</title>
+    
+    <link rel="stylesheet" href="../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> 
+  </head>
+  <body role="document">
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="turtlebot-first-tests.html" title="Turtlebot First Tests"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="turtlebot_simulators.html" title="Turtlebot Simulators"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Gaitech Doc 2.5 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="turtlebot-tutorials.html" accesskey="U">Turtlebot Quick Start Tutorials</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="keyboard-teleop">
+<span id="teleop-doc"></span><h1>Keyboard Teleop</h1>
+<p>This tutorial will introduce to you how to control your turtlebot robot using ssh or across the wireless communication with your keyboard.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Make sure that you completed installing all the required packets in the previous tutorials and your network is working fine between the ROS Master node and the host node.</p>
+</div>
+<p>On the Master node run the following command:</p>
+<p><code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">turtlebot_bringup</span> <span class="pre">minimal.launch</span></code></p>
+<p>On your PC (the host node) run the following command:</p>
+<p><code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">turtlebot_teleop</span> <span class="pre">keyboard_teleop.launch</span></code></p>
+<p>You can move you turtlebot robot according to the instructions below:</p>
+<img alt="../_images/teleop_img.png" class="align-center" src="../_images/teleop_img.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Make sure that your turtlebot robot is on a flat surface and on a safe distance from an edge.</p>
+</div>
+<div class="section" id="code-explanation">
+<h2>Code Explanation</h2>
+<p>This is the script of the keyboard_teleop.launch file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span> &lt;launch&gt;
+  &lt;!-- turtlebot_teleop_key already has its own built in velocity smoother --&gt;
+   &lt;node pkg=&quot;turtlebot_teleop&quot; type=&quot;turtlebot_teleop_key&quot; name=&quot;turtlebot_teleop_keyboard&quot;  output=&quot;screen&quot;&gt;
+    &lt;param name=&quot;scale_linear&quot; value=&quot;0.5&quot; type=&quot;double&quot;/&gt;
+    &lt;param name=&quot;scale_angular&quot; value=&quot;1.5&quot; type=&quot;double&quot;/&gt;
+    &lt;remap from=&quot;turtlebot_teleop_keyboard/cmd_vel&quot; to=&quot;cmd_vel_mux/input/teleop&quot;/&gt;
+   &lt;/node&gt;
+&lt;/launch&gt;
+</pre></div>
+</div>
+<p>Notice that the keyboard teleop node takes two parameters(scale_linear and scale_angular) and they are used to determine the speed of the turtlebot speed. It is very important to keep the speed very small when you are testing. However, you can change the speed value as much as you like.</p>
+<p>You can do the same tutorial to control your turtlebot robot using a PlayStation3 <a class="reference external" href="http://wiki.ros.org/turtlebot_teleop/Tutorials/indigo/Joystick%20Teleop">Joystick</a><span class="link-target"> [http://wiki.ros.org/turtlebot_teleop/Tutorials/indigo/Joystick%20Teleop]</span> .</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016, Gaitech.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+  </body>
+</html>

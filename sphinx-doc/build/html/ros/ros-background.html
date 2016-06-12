@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ROS Background &mdash; Gaitech Doc 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Gaitech Doc 2.5 documentation" href="../index.html"/>
+        <link rel="next" title="ROS Programming" href="ros-programming-basics.html"/>
+        <link rel="prev" title="Welcome to Gaitech’s Documentation!" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech Doc
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ROS Background</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#lecture-1-start-a-ros-master-node">Lecture 1: Start a ROS Master Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lecture-2-understanding-ros-topics-nodes-and-messages">Lecture 2: Understanding ROS Topics, Nodes and Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#review-questions">Review Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#online-test">Online Test</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ros-programming-basics.html">Getting Started with ROS Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../turtlebot/turtlebot-tutorials.html">Turtlebot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech Doc</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>ROS Background</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/ros/ros-background.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ros-background">
+<h1>ROS Background<a class="headerlink" href="#ros-background" title="Permalink to this headline">¶</a></h1>
+<p>If you are new to ROS, it is recommended to start with taking these online tutorials that will introduce you to the basic concepts of ROS.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">These tutorials assume that you have already installed ROS on your computer and that you have configured your environment. You still haven&#8217;t done yet, follow in the <a class="reference external" href="http://wiki.ros.org/indigo/Installation/Ubuntu">installation instructions of ROS Indigo</a>, then you must <a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment">configure your ROS environment</a> and finally <a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/CreatingPackage">create a ROS package</a> to create and run your programs.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although some videos are shown for ROS Hydro, they are also valid for all subsquent versions including Indigo and Jade, as they deal with the basics.</p>
+</div>
+<div class="section" id="lecture-1-start-a-ros-master-node">
+<h2>Lecture 1: Start a ROS Master Node<a class="headerlink" href="#lecture-1-start-a-ros-master-node" title="Permalink to this headline">¶</a></h2>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>In this video, you will:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>Learn how to start the main node in ROS, called Master node</li>
+<li>Understand the default workspace</li>
+<li>Configure your ROS environment in the <em>.bashrc</em> script file</li>
+<li>Find the list of ROS nodes and ROS topics</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="lecture-2-understanding-ros-topics-nodes-and-messages">
+<h2>Lecture 2: Understanding ROS Topics, Nodes and Messages<a class="headerlink" href="#lecture-2-understanding-ros-topics-nodes-and-messages" title="Permalink to this headline">¶</a></h2>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>In this video, you will:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>Work with the Turtlesim simulator to understand ROS fundamental concepts</li>
+<li>Understand ROS topics and its related terminal commands</li>
+<li>Understand ROS nodes and its related terminal commands</li>
+<li>Undertsand ROS messages and its related terminal commands</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="review-questions">
+<h2>Review Questions<a class="headerlink" href="#review-questions" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>What is the command to find the list of all ros nodes?</li>
+<li>What is the command to find the list of all ros topics?</li>
+<li>What is the topic that tells about the position of the turtle?</li>
+<li>What is the topic that sends command to the turtle to make it move?</li>
+<li>What is the node used to send velocity commands to the turtle?</li>
+<li>What is the command that allows to see the type of message for a particular topic?</li>
+<li>Write is the command that allows to publish velocity command to the turtle with a linear velocity 1.0 and angular velocity 0.5.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="online-test">
+<h2>Online Test<a class="headerlink" href="#online-test" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.qzzr.com/c/quiz/224621/ros-background-quiz">Pass the online quiz for the above review questions</a></p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ros-programming-basics.html" class="btn btn-neutral float-right" title="ROS Programming" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="Welcome to Gaitech’s Documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,461 @@
+.. _speech-doc:
+
+============================
+Turtlebot Speech Recognition
+============================
+
+This tutorial will introduce how to control your turtlebot robot using speech recognition.
+
+.. NOTE::
+    Make sure that you completed installing all the required packets in the previous tutorials and your network is working fine between the ROS Master node and the host node.
+
+In this tutorial you will learn how to:
+
+   * Install and test the pocketsphinx package for speech recognition
+   * Create a catkin package for all the required files. 
+   * Learn how to create a custom vocabulary for speech recognition
+   * Teleoperate a real and simulated robot using voice commands
+
+
+Installing PocketSphinx for Speech Recognition
+==============================================
+
+In order to download the `pocketsphinx` package on Ubuntu you need to install the `gstreamer0.10-pocketsphinx` and the ROS sound drivers.
+
+.. code-block:: python
+
+    sudo apt-get install gstreamer0.10-pocketsphinx
+    sudo apt-get install ros-indigo-pocketsphinx
+    sudo apt-get install ros-indigo-audio-common
+    sudo apt-get install libasound2
+
+.. NOTE::
+    You may have already install these packages but just to make sure run all the command lines.
+
+You do not need to worry about connecting the audio input stream with your PC or publishing a topic because the node recognizer.py in the `pocketsphinx` package does all the work for you.
+
+
+Testing the PocketSphinx Recognizer
+===================================
+
+To get the best result it is better to have an external Mic connected to you PC either by USB, standard audio or Bluetooth.
+
+.. NOTE::
+    Make sure that the Mic you are using is the one that is selected in the sound settings in your PC. Try to test your Mic before hands to make sure that the quality is good and check the volume meter.
+
+Run the following command:
+
+``roslaunch pocketsphinx robocup.launch``
+
+A list of INFO messages will appear showing the loading of the recognition model.
+
+.. TIP::
+    The last few messages will look like this:
+
+.. code-block:: python
+
+    INFO: ngram_search_fwdtree.c(186): Creating search tree
+    INFO: ngram_search_fwdtree.c(191): before: 0 root, 0 non-root channels, 12 single-phone words
+    INFO: ngram_search_fwdtree.c(326): after: max nonroot chan increased to 328
+    INFO: ngram_search_fwdtree.c(338): after: 77 root, 200 non-root channels, 11 single-phone words
+
+Try to give the robot a couple of commands and see the results in the terminal. After finalizing this step will be able to talk to your robot successfully.
+The result will be in the published topic ``/recognizer/output``. Type ``rostopic echo /recognizer/output`` in another terminal to see the results as follows:
+
+.. code-block::
+
+    data: first word you said
+    --
+    data: second word you said
+    --
+
+To see all the predefined commands in the RoboCup demo, run the following commands:
+
+``roscd pocketsphinx/demo``
+
+``more robocup.corpus``
+
+Try saying a word that is not in the list such as "the sky is blue" you will find out that the result on the ``/recognizer/output`` topic is "this go is room". The recognizer will always publish the nearest topic to the word you say.
+
+.. NOTE::
+  Make sure that you mute the recognizer when not using it because this will send random data to the robot.
+
+
+Creating the catkin package
+===========================
+
+In this section you will learn how to create a ROS package to control the movement of your turtlebot robot.
+
+Go to your catkin workspace and then go to `src` then use the ``catkin_create_pkg`` script to create a package called `turtlebot_cont_movement` which depends on `pocketsphinx`, `roscpp`, `rospy`, `sound_play` and `std_msgs` 
+
+``catkin_create_pkg turtlebot_cont_movement roscpp rospy pocketsphinx sound_play std_msgs``
+
+type the following command to see all the files and folders created:
+
+``tree turtlebot_cont_movement``
+
+then return to your catkin workspace folder and run the following command:
+
+``~/catkin_ws$ catkin_make``
+
+Now open your package.xml file and you will see the following:
+
+.. code-block:: python
+
+    <!-- Remove the commented parts -->
+    <package>
+     <name>turtlebot_cont_movement</name>
+     <version>0.0.0</version>
+     <description>The turtlebot_cont_movement package</description>
+     <maintainer email="ros@todo.todo">ros</maintainer>
+     <license>TODO</license>
+     <buildtool_depend>catkin</buildtool_depend>
+     <build_depend>pocketsphinx</build_depend>
+     <build_depend>roscpp</build_depend>
+     <build_depend>rospy</build_depend>
+     <build_depend>sound_play</build_depend>
+     <build_depend>std_msgs</build_depend>
+     <run_depend>pocketsphinx</run_depend> 
+     <run_depend>roscpp</run_depend>
+     <run_depend>rospy</run_depend>
+     <run_depend>sound_play</run_depend>
+     <run_depend>std_msgs</run_depend>
+    </package>
+
+
+.. NOTE:: 
+  In case you want to make does each dependency depends on you can type this command:
+  ``rospack depends1 <dependency-name>``
+
+Creating a Vocabulary
+=====================
+
+In this section you will learn how to add vocabulary or corpus as it is referred in the `PocketSphinx`.
+Create a folder and call it `config` and inside this folder create a txt file called 
+You will see the following list of commands:
+
+.. code-block:: python
+
+    pause speech
+    continue speech
+    move forward
+    move backward
+    move back
+    move left
+    move right
+    go forward
+    go backward
+    go back
+    go left
+    go right
+    go straight
+    come forward
+    come backward
+    come left
+    come right
+    turn left
+    turn right
+    rotate left
+    rotate right
+    faster
+    speed up
+    slower
+    slow down
+    quarter speed
+    half speed
+    full speed
+    stop
+    stop now
+    halt
+    abort
+    kill
+    panic
+    help
+    help me
+    freeze
+    turn off
+    shut down
+    cancel
+
+Feel free to add/delete/change any command you want as long as you follow the conventions for the robot.
+
+.. TIP::
+    Do not use punctuation marks and pay attention to the Upper and lower case letters. If you want to add a number you will have to spell it so you can not write 1, 55, 87..etc instead write one, fifty five, eighty seven.
+
+After editing the nav_commands.txt file you have to compile it into special dictionary and pronunciation files so it matches the conventions for the `PocketSphinx`. The  online CMU language model (lm) toolis very useful in this case, visit their `website <http://www.speech.cs.cmu.edu/tools/lmtool-new.html>`_  and  upload your file. Click on the Compile Knowledge Base button, then download the file labeled `COMPRESSED TARBALL` that contains all the language model files that you need and the `PocketSphinx` can understand.
+Extract these files into the config subdirectory of the `rbx1_speech` package.
+
+Now let's take a look at the `voice_nav_commands.launch`` file found in the ``rbx1_speech/launch`` subdirectory, this is the content of the file:
+
+.. code-block::
+
+    <launch>
+      <node name="recognizer" pkg="pocketsphinx" type="recognizer.py" output="screen">
+	    <param name="lm" value="$(find rbx1_speech)/config/nav_commands.lm"/>
+	    <param name="dict" value="$(find rbx1_speech)/config/nav_commands.dic"/>
+      </node>
+    </launch>
+
+This file runs the ``recognizer.py`` node from the `pocketsphinx` package mentioned before in this tutorial. The `lm` and `dict` parameters are mentioned how are they created and what is their use in the files ``nav_commands.lm`` and ``nav_commands.dic`` created in the previous step.
+The last parameter which is `output="screen"` is used to let us see the real-time recognition results in the launch window.
+
+Launch the ``voice_nav_commands.launch`` file :
+
+``roslaunch rbx1_speech voice_nav_commands.launch``
+
+and in another terminal run the following command to see the published topics after giving the robot a couple of commands:
+
+``rostopic echo /recognizer/output``
+
+.. NOTE:: Make sure to close all the running launch files and all the demos running from previous examples before you run the previous commands.
+
+
+A Voice-Control Navigation Script
+=================================
+
+As mentioned before the ``recognizer.py`` node in the `pocketsphinx` package publishes a topic called ``/recognizer/output``. But there must be a file that subscribes to this topic and gives orders to the robot according to the commands given by the user.
+The ``voice_cmd_vel.py`` file in the `pocketsphinx` package maps the commands into `Twist` messages that can be used to control your turtlebot robot.
+You can find this file in the ``rbx1_speech/nodes`` subdirectory.
+
+This is the content of the ``voice_cmd_vel.py`` file:
+
+.. code-block::
+
+    #!/usr/bin/env python
+
+    """
+    voice_nav.py - Version 1.1 2013-12-20
+
+    Allows controlling a mobile base using simple speech commands.
+
+    Based on the voice_cmd_vel.py script by Michael Ferguson in
+    the pocketsphinx ROS package.
+
+    See http://www.ros.org/wiki/pocketsphinx
+    """
+    import rospy
+    from geometry_msgs.msg import Twist
+    from std_msgs.msg import String
+    from math import copysign
+
+    class VoiceNav:
+     def __init__(self):
+        rospy.init_node('voice_nav')
+
+        rospy.on_shutdown(self.cleanup)
+
+        # Set a number of parameters affecting the robot's speed
+        self.max_speed = rospy.get_param("~max_speed", 0.4)
+        self.max_angular_speed = rospy.get_param("~max_angular_speed", 1.5)
+        self.speed = rospy.get_param("~start_speed", 0.1)
+        self.angular_speed = rospy.get_param("~start_angular_speed", 0.5)
+        self.linear_increment = rospy.get_param("~linear_increment", 0.05)
+        self.angular_increment = rospy.get_param("~angular_increment", 0.4)
+
+        # We don't have to run the script very fast
+        self.rate = rospy.get_param("~rate", 5)
+        r = rospy.Rate(self.rate)
+
+        # A flag to determine whether or not voice control is paused
+        self.paused = False
+
+        # Initialize the Twist message we will publish.
+        self.cmd_vel = Twist()
+
+        # Publish the Twist message to the cmd_vel topic
+        self.cmd_vel_pub = rospy.Publisher('cmd_vel', Twist, queue_size=5)
+
+        # Subscribe to the /recognizer/output topic to receive voice commands.
+        rospy.Subscriber('/recognizer/output', String, self.speech_callback)
+
+        # A mapping from keywords or phrases to commands
+        self.keywords_to_command = {'stop': ['stop', 'halt', 'abort', 'kill', 'panic', 'off', 'freeze', 'shut down', 'turn off', 'help', 'help me'],
+                                    'slower': ['slow down', 'slower'],
+                                    'faster': ['speed up', 'faster'],
+                                    'forward': ['forward', 'ahead', 'straight'],
+                                    'backward': ['back', 'backward', 'back up'],
+                                    'rotate left': ['rotate left'],
+                                    'rotate right': ['rotate right'],
+                                    'turn left': ['turn left'],
+                                    'turn right': ['turn right'],
+                                    'quarter': ['quarter speed'],
+                                    'half': ['half speed'],
+                                    'full': ['full speed'],
+                                    'pause': ['pause speech'],
+                                    'continue': ['continue speech']}
+
+        rospy.loginfo("Ready to receive voice commands")
+
+        # We have to keep publishing the cmd_vel message if we want the robot to keep moving.
+        while not rospy.is_shutdown():
+            self.cmd_vel_pub.publish(self.cmd_vel)
+            r.sleep()
+
+    def get_command(self, data):
+        # Attempt to match the recognized word or phrase to the
+        # keywords_to_command dictionary and return the appropriate
+        # command
+        for (command, keywords) in self.keywords_to_command.iteritems():
+            for word in keywords:
+                if data.find(word) > -1:
+                    return command
+
+    def speech_callback(self, msg):
+        # Get the motion command from the recognized phrase
+        command = self.get_command(msg.data)
+
+        # Log the command to the screen
+        rospy.loginfo("Command: " + str(command))
+
+        # If the user has asked to pause/continue voice control,
+        # set the flag accordingly
+        if command == 'pause':
+            self.paused = True
+        elif command == 'continue':
+            self.paused = False
+
+        # If voice control is paused, simply return without
+        # performing any action
+        if self.paused:
+            return
+
+        # The list of if-then statements should be fairly
+        # self-explanatory
+        if command == 'forward':
+            self.cmd_vel.linear.x = self.speed
+            self.cmd_vel.angular.z = 0
+
+        elif command == 'rotate left':
+            self.cmd_vel.linear.x = 0
+            self.cmd_vel.angular.z = self.angular_speed
+
+        elif command == 'rotate right':
+            self.cmd_vel.linear.x = 0
+            self.cmd_vel.angular.z = -self.angular_speed
+
+        elif command == 'turn left':
+            if self.cmd_vel.linear.x != 0:
+                self.cmd_vel.angular.z += self.angular_increment
+            else:
+                self.cmd_vel.angular.z = self.angular_speed
+
+        elif command == 'turn right':
+            if self.cmd_vel.linear.x != 0:
+                self.cmd_vel.angular.z -= self.angular_increment
+            else:
+                self.cmd_vel.angular.z = -self.angular_speed
+
+        elif command == 'backward':
+            self.cmd_vel.linear.x = -self.speed
+            self.cmd_vel.angular.z = 0
+
+        elif command == 'stop':
+            # Stop the robot!  Publish a Twist message consisting of all zeros.
+            self.cmd_vel = Twist()
+
+        elif command == 'faster':
+            self.speed += self.linear_increment
+            self.angular_speed += self.angular_increment
+            if self.cmd_vel.linear.x != 0:
+                self.cmd_vel.linear.x += copysign(self.linear_increment, self.cmd_vel.linear.x)
+            if self.cmd_vel.angular.z != 0:
+                self.cmd_vel.angular.z += copysign(self.angular_increment, self.cmd_vel.angular.z)
+
+        elif command == 'slower':
+            self.speed -= self.linear_increment
+            self.angular_speed -= self.angular_increment
+            if self.cmd_vel.linear.x != 0:
+                self.cmd_vel.linear.x -= copysign(self.linear_increment, self.cmd_vel.linear.x)
+            if self.cmd_vel.angular.z != 0:
+                self.cmd_vel.angular.z -= copysign(self.angular_increment, self.cmd_vel.angular.z)
+
+        elif command in ['quarter', 'half', 'full']:
+            if command == 'quarter':
+                self.speed = copysign(self.max_speed / 4, self.speed)
+
+            elif command == 'half':
+                self.speed = copysign(self.max_speed / 2, self.speed)
+
+            elif command == 'full':
+                self.speed = copysign(self.max_speed, self.speed)
+
+            if self.cmd_vel.linear.x != 0:
+                self.cmd_vel.linear.x = copysign(self.speed, self.cmd_vel.linear.x)
+
+            if self.cmd_vel.angular.z != 0:
+                self.cmd_vel.angular.z = copysign(self.angular_speed, self.cmd_vel.angular.z)
+
+        else:
+            return
+
+        self.cmd_vel.linear.x = min(self.max_speed, max(-self.max_speed, self.cmd_vel.linear.x))
+        self.cmd_vel.angular.z = min(self.max_angular_speed, max(-self.max_angular_speed, self.cmd_vel.angular.z))
+
+    def cleanup(self):
+        # When shutting down be sure to stop the robot!
+        twist = Twist()
+        self.cmd_vel_pub.publish(twist)
+        rospy.sleep(1)
+
+    if __name__=="__main__":
+      try:
+          VoiceNav()
+          rospy.spin()
+     except rospy.ROSInterruptException:
+          rospy.loginfo("Voice navigation terminated.")
+
+The code is very well commented but maybe a few lines need more explanation:
+
+.. code-block::
+
+    # A mapping from keywords or phrases to commands
+			 self.keywords_to_command = {'stop': ['stop', 'halt', 'abort', 'kill', 'panic', 'off', 'freeze', 'shut down', 'turn off', 'help', 'help me'],
+																	 'slower': ['slow down', 'slower'],
+																	 'faster': ['speed up', 'faster'],
+																	 'forward': ['forward', 'ahead', 'straight'],
+																	 'backward': ['back', 'backward', 'back up'],
+																	 'rotate left': ['rotate left'],
+																	 'rotate right': ['rotate right'],
+																	 'turn left': ['turn left'],
+																	 'turn right': ['turn right'],
+																	 'quarter': ['quarter speed'],
+																	 'half': ['half speed'],
+																	 'full': ['full speed'],
+																	 'pause': ['pause speech'],
+																	 'continue': ['continue speech']}
+
+The `keywords_to_command` Python dictionary allows the mapping between the commands/phrases given to the robot and the actual movement of the robot. You will notice that there are a couple of alternatives for the word "stop" in case the robot is not responding the "stop" word such as (help, halt, abort..etc) and they are all recognized by the `PocketSphinx` vocabulary.
+So after the ``voice_nav.py`` node subscribes to the ``/recognizer/output`` topic it searched for any recognizable commands/phrases to convert them into `Twist` actions so the robot can understand.
+The ``voice_nav.py`` script has another great feature that allows the robot to stop or continue taking orders from user if the user says the command "pause speech" or "continue speech". This will be very useful in case the user is having a conversation with someone else.
+
+
+Testing the Voice-Control with a Turtlebot Robot
+================================================
+
+.. NOTE::
+    Before you test the robot make sure that your robot is in an open space with no obstacles or edges next to it.
+
+From the ROS Master node(the Turtlebot's laptop) run the following commands:
+
+``roslaunch rbx1_bringup turtlebot_minimal_create.launch``
+
+To make the monitoring process easier bring up `rqt_console` by running:
+
+``rqt_console &``
+
+.. NOTE::
+    Check your sound settings as mentioned before.
+
+On the host node(the user PC) run the ``voice_nav_commands.launch`` file:
+
+``roslaunch rbx1_speech voice_nav_commands.launch``
+
+and in another terminal run the following command:
+
+``roslaunch rbx1_speech turtlebot_voice_nav.launch``
+
+.. TIP::
+    Try a simple command at first like the rotate right to avoid any accidents. You can change the robot's speed by giving the command "go faster" or "slow down" and this will change the parameters for speed in the turtlebot_voice_nav.launch file.
+
+
+##import: speech-video in this location
