@@ -173,10 +173,10 @@
 <div class="section" id="install-pocketsphinx-for-speech-recognition">
 <h2>Install PocketSphinx for Speech Recognition<a class="headerlink" href="#install-pocketsphinx-for-speech-recognition" title="Permalink to this headline">¶</a></h2>
 <p>In order to download the <code class="docutils literal"><span class="pre">pocketsphinx</span></code> package on Ubuntu you need to install the <code class="docutils literal"><span class="pre">gstreamer0.10-pocketsphinx</span></code> and the ROS sound drivers.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">gstreamer0</span><span class="o">.</span><span class="mi">10</span><span class="o">-</span><span class="n">pocketsphinx</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ros</span><span class="o">-</span><span class="n">indigo</span><span class="o">-</span><span class="n">pocketsphinx</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ros</span><span class="o">-</span><span class="n">indigo</span><span class="o">-</span><span class="n">audio</span><span class="o">-</span><span class="n">common</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libasound2</span>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>sudo apt-get install gstreamer0.10-pocketsphinx
+sudo apt-get install ros-indigo-pocketsphinx
+sudo apt-get install ros-indigo-audio-common
+sudo apt-get install libasound2
 </pre></div>
 </div>
 <p>You do not need to worry about connecting the audio input stream with your PC or publishing a topic because the node recognizer.py in the <code class="docutils literal"><span class="pre">pocketsphinx</span></code> package does all the work for you.</p>
@@ -209,15 +209,14 @@ Then, run the following command:</p>
 </div>
 <p>This command will run the <code class="docutils literal"><span class="pre">recognizer.py</span></code> script with loading the dictionary <code class="docutils literal"><span class="pre">robocup.dic</span></code>.
 A list of INFO messages will appear showing the loading of the recognition model. The last few messages will look like this:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">INFO</span><span class="p">:</span> <span class="n">ngram_search_fwdtree</span><span class="o">.</span><span class="n">c</span><span class="p">(</span><span class="mi">186</span><span class="p">):</span> <span class="n">Creating</span> <span class="n">search</span> <span class="n">tree</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">ngram_search_fwdtree</span><span class="o">.</span><span class="n">c</span><span class="p">(</span><span class="mi">191</span><span class="p">):</span> <span class="n">before</span><span class="p">:</span> <span class="mi">0</span> <span class="n">root</span><span class="p">,</span> <span class="mi">0</span> <span class="n">non</span><span class="o">-</span><span class="n">root</span> <span class="n">channels</span><span class="p">,</span> <span class="mi">12</span> <span class="n">single</span><span class="o">-</span><span class="n">phone</span> <span class="n">words</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">ngram_search_fwdtree</span><span class="o">.</span><span class="n">c</span><span class="p">(</span><span class="mi">326</span><span class="p">):</span> <span class="n">after</span><span class="p">:</span> <span class="nb">max</span> <span class="n">nonroot</span> <span class="n">chan</span> <span class="n">increased</span> <span class="n">to</span> <span class="mi">328</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">ngram_search_fwdtree</span><span class="o">.</span><span class="n">c</span><span class="p">(</span><span class="mi">338</span><span class="p">):</span> <span class="n">after</span><span class="p">:</span> <span class="mi">77</span> <span class="n">root</span><span class="p">,</span> <span class="mi">200</span> <span class="n">non</span><span class="o">-</span><span class="n">root</span> <span class="n">channels</span><span class="p">,</span> <span class="mi">11</span> <span class="n">single</span><span class="o">-</span><span class="n">phone</span> <span class="n">words</span>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>INFO: ngram_search_fwdtree.c(186): Creating search tree
+INFO: ngram_search_fwdtree.c(191): before: 0 root, 0 non-root channels, 12 single-phone words
+INFO: ngram_search_fwdtree.c(326): after: max nonroot chan increased to 328
+INFO: ngram_search_fwdtree.c(338): after: 77 root, 200 non-root channels, 11 single-phone words
 </pre></div>
 </div>
-<p>Now, you can start saying some words to check if the recognizer will be able to understand what you are saying. For example, try to say the following words:
-.. code-block:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">hello</span>
+<p>Now, you can start saying some words to check if the recognizer will be able to understand what you are saying. For example, try to say the following words:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">hello</span>
 <span class="n">go</span> <span class="n">to</span> <span class="n">the</span> <span class="n">room</span>
 <span class="n">my</span> <span class="n">name</span> <span class="ow">is</span>
 <span class="n">door</span>
@@ -261,11 +260,24 @@ If you did not import the code from GITHUB, you can still create a new ROS packa
 <li>Go to your catkin workspace and then go to <code class="docutils literal"><span class="pre">~/catkin_ws/src/</span></code></li>
 <li>Create new a ROS package called <code class="docutils literal"><span class="pre">gaitech_doc</span></code> (or choose any other name) which depends on <code class="docutils literal"><span class="pre">pocketsphinx</span></code>, <code class="docutils literal"><span class="pre">roscpp</span></code>, <code class="docutils literal"><span class="pre">rospy</span></code>, <code class="docutils literal"><span class="pre">sound_play</span></code> and <code class="docutils literal"><span class="pre">std_msgs</span></code> as follow:</li>
 </ul>
-<div class="highlight-c"><div class="highlight"><pre><span></span><span class="n">catkin_create_pkg</span> <span class="n">gaitech_doc</span> <span class="n">roscpp</span> <span class="n">rospy</span> <span class="n">pocketsphinx</span> <span class="n">sound_play</span> <span class="n">std_msgs</span>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>catkin_create_pkg gaitech_doc roscpp rospy pocketsphinx sound_play std_msgs
 </pre></div>
 </div>
 <ul class="simple">
 <li>In the <code class="docutils literal"><span class="pre">~/catkin_ws/src/</span></code>, write the following command to see all the files and folders created:</li>
+</ul>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>tree gaitech_doc
+</pre></div>
+</div>
+<ul class="simple">
+<li>Now, compile your newly added package:</li>
+</ul>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>$ cd ~/catkin_ws
+~/catkin_ws$ catkin_make
+</pre></div>
+</div>
+<ul class="simple">
+<li>Finally, open your <code class="docutils literal"><span class="pre">package.xml</span></code> file and add all the required dependencies (otherwise, your project will not find required packages):</li>
 </ul>
 </div></blockquote>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Remove the commented parts --&gt;</span>
@@ -338,11 +350,11 @@ Make sure that you put the correct path for the <code class="docutils literal"><
 The <code class="docutils literal"><span class="pre">lm</span></code> and <code class="docutils literal"><span class="pre">dict</span></code> parameters are mentioned how are they created and what is their use in the files <code class="docutils literal"><span class="pre">motion_commands.lm</span></code> and <code class="docutils literal"><span class="pre">motion_commands.dic</span></code> created in the previous step.
 The last parameter which is <code class="docutils literal"><span class="pre">output=&quot;screen&quot;</span></code> is used to let us see in real-time the recognition results in the launch window.</p>
 <p>Launch the <code class="docutils literal"><span class="pre">voice_teleop.launch</span></code> file:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_doc voice_teleop.launch
+<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch gaitech_doc voice_teleop.launch
 </pre></div>
 </div>
 <p>and in another terminal run the following command to see the published topics after giving the robot a couple of commands:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rostopic <span class="nb">echo</span> /recognizer/output
+<div class="highlight-linux"><div class="highlight"><pre><span></span>rostopic echo /recognizer/output
 </pre></div>
 </div>
 <div class="admonition note">
@@ -442,16 +454,16 @@ You can find this file in the <code class="docutils literal"><span class="pre">t
 </div>
 <p>[<strong>***</strong> Anis: I STOPPED HERE  <strong>****</strong>]
 Now create another launch file called <code class="docutils literal"><span class="pre">turtlebot_voice_teleop.launch</span></code> and its content should be:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">launch</span><span class="o">&gt;</span>
- <span class="o">&lt;</span><span class="n">node</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;voice_nav&quot;</span> <span class="n">pkg</span><span class="o">=</span><span class="s2">&quot;turtlebot_cont_movement&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;voice_nav.py&quot;</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span><span class="o">&gt;</span>
- <span class="o">&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;scale_linear&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;double&quot;</span><span class="o">/&gt;</span>
- <span class="o">&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;scale_angular&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;1.5&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;double&quot;</span><span class="o">/&gt;</span>
- <span class="o">&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;max_speed&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;0.3&quot;</span><span class="o">/&gt;</span>
- <span class="o">&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;start_speed&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;0.1&quot;</span><span class="o">/&gt;</span>
- <span class="o">&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;linear_increment&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;0.05&quot;</span><span class="o">/&gt;</span>
- <span class="o">&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;angular_increment&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;0.4&quot;</span><span class="o">/&gt;</span>
- <span class="o">&lt;/</span><span class="n">node</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">launch</span><span class="o">&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span>
+ <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;voice_nav&quot;</span> <span class="na">pkg=</span><span class="s">&quot;turtlebot_cont_movement&quot;</span> <span class="na">type=</span><span class="s">&quot;voice_nav.py&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;scale_linear&quot;</span> <span class="na">value=</span><span class="s">&quot;0.5&quot;</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;scale_angular&quot;</span> <span class="na">value=</span><span class="s">&quot;1.5&quot;</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;max_speed&quot;</span> <span class="na">value=</span><span class="s">&quot;0.3&quot;</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;start_speed&quot;</span> <span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;linear_increment&quot;</span> <span class="na">value=</span><span class="s">&quot;0.05&quot;</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;angular_increment&quot;</span> <span class="na">value=</span><span class="s">&quot;0.4&quot;</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;/node&gt;</span>
+<span class="nt">&lt;/launch&gt;</span>
 </pre></div>
 </div>
 <p>This file controls the speed of the robot while moving.</p>
@@ -464,24 +476,34 @@ Now create another launch file called <code class="docutils literal"><span class
 <h2>Testing the Voice-Control in the Gazebo and Stage Simulators<a class="headerlink" href="#testing-the-voice-control-in-the-gazebo-and-stage-simulators" title="Permalink to this headline">¶</a></h2>
 <p>This section introduce how to test the voice recognition with the Gazebo and Stage simulators.</p>
 <p>Now let&#8217;s bring up <cite>Gazebo</cite>  with the simulation config file:</p>
-<p><code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">turtlebot_gazebo</span> <span class="pre">turtlebot_world.launch</span></code></p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_gazebo turtlebot_world.launch
+</pre></div>
+</div>
 <p>OR</p>
 <p>Bring up <cite>Stage</cite>  simulator using the following command:</p>
-<p><code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">turtlebot_stage</span> <span class="pre">turtlebot_in_stage_no_rviz.launch</span></code></p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">These simulators requires a powerful PC with a good graphics card that can launch them. They also may crash once you start them but don&#8217;t worry this is very normal, just rerun the script until it launches.</p>
 </div>
 <p>To able to view the commands that are recognizable by the robot we have to run the <code class="docutils literal"><span class="pre">rqt_console</span></code> using the following command:</p>
-<p><code class="docutils literal"><span class="pre">rqt_console</span> <span class="pre">&amp;</span></code></p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>rqt_console &amp;
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Make sure to check your Mic settings as discribed before.</p>
 </div>
-<p>Run the cont_movement.launch file which runs the <code class="docutils literal"><span class="pre">voice_nav.py</span></code> file:</p>
-<p><code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">turtlebot_cont_movement</span> <span class="pre">cont_movement.launch</span></code></p>
+<p>Run the <code class="docutils literal"><span class="pre">cont_movement.launch</span></code> file which runs the <code class="docutils literal"><span class="pre">voice_nav.py</span></code> file:</p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_cont_movement cont_movement.launch
+</pre></div>
+</div>
 <p>The following command is responsible for controlling the speed of the robot:</p>
-<p><code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">turtlebot_cont_movement</span> <span class="pre">turtlebot_voice_cont_movement.launch</span></code></p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_cont_movement turtlebot_voice_cont_movement.launch
+</pre></div>
+</div>
 <p>Now test your robot by giving it any command from the list mentiond previously.</p>
 </div>
 <div class="section" id="testing-the-voice-control-with-a-turtlebot-robot">
@@ -491,17 +513,25 @@ Now create another launch file called <code class="docutils literal"><span class
 <p class="last">Before you test the robot make sure that your robot is in an open space with no obstacles or edges next to it.</p>
 </div>
 <p>From the ROS Master node(the Turtlebot&#8217;s laptop) run the following commands:</p>
-<p><code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">rbx1_bringup</span> <span class="pre">turtlebot_minimal_create.launch</span></code></p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch rbx1_bringup turtlebot_minimal_create.launch
+</pre></div>
+</div>
 <p>To make the monitoring process easier bring up <cite>rqt_console</cite> by running:</p>
-<p><code class="docutils literal"><span class="pre">rqt_console</span> <span class="pre">&amp;</span></code></p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>rqt_console &amp;
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Check your sound settings as mentioned before.</p>
 </div>
 <p>On the host node(the user PC) run the <code class="docutils literal"><span class="pre">cont_movement.launch</span></code> file:</p>
-<p><code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">turtlebot_cont_movement</span> <span class="pre">cont_movement.launch</span></code></p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_cont_movement cont_movement.launch
+</pre></div>
+</div>
 <p>and in another terminal run the following command:</p>
-<p><code class="docutils literal"><span class="pre">roslaunch</span> <span class="pre">turtlebot_cont_movement</span> <span class="pre">turtlebot_voice_cont_movement.launch</span></code></p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_cont_movement turtlebot_voice_cont_movement.launch
+</pre></div>
+</div>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">Try a simple command at first like the rotate right to avoid any accidents. You can change the robot&#8217;s speed by giving the command &#8220;go faster&#8221; or &#8220;slow down&#8221; and this will change the parameters for speed in the turtlebot_voice_nav.launch file. However, you will have to add the commands as mentioned previously in the <cite>config/cont_movement.txt</cite> file and redo all he steps again.</p>

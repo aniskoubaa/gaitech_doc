@@ -11,11 +11,15 @@ This tutorial will introduce to you how to control your turtlebot robot using ss
 
 On the Master node run the following command:
 
-``roslaunch turtlebot_bringup minimal.launch``
+.. code-block:: linux
+
+    roslaunch turtlebot_bringup minimal.launch
 
 On your PC (the host node) run the following command:
 
-``roslaunch turtlebot_teleop keyboard_teleop.launch``
+.. code-block:: linux
+
+    roslaunch turtlebot_teleop keyboard_teleop.launch
 
 You can move you turtlebot robot according to the instructions below:
 
@@ -30,7 +34,7 @@ Code Explanation
 
 This is the script of the keyboard_teleop.launch file:
 
-.. code-block:: python
+.. code-block:: xml
 
     <launch>
      <!-- turtlebot_teleop_key already has its own built in velocity smoother -->

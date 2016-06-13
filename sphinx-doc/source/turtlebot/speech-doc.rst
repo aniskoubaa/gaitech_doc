@@ -21,7 +21,7 @@ Install PocketSphinx for Speech Recognition
 
 In order to download the ``pocketsphinx`` package on Ubuntu you need to install the ``gstreamer0.10-pocketsphinx`` and the ROS sound drivers.
 
-.. code-block:: python
+.. code-block:: linux
 
     sudo apt-get install gstreamer0.10-pocketsphinx
     sudo apt-get install ros-indigo-pocketsphinx
@@ -66,7 +66,7 @@ The ``robocup.dic`` contains the following code:
 This command will run the ``recognizer.py`` script with loading the dictionary ``robocup.dic``.
 A list of INFO messages will appear showing the loading of the recognition model. The last few messages will look like this:
 
-.. code-block:: python
+.. code-block:: linux
 
     INFO: ngram_search_fwdtree.c(186): Creating search tree
     INFO: ngram_search_fwdtree.c(191): before: 0 root, 0 non-root channels, 12 single-phone words
@@ -74,7 +74,8 @@ A list of INFO messages will appear showing the loading of the recognition model
     INFO: ngram_search_fwdtree.c(338): after: 77 root, 200 non-root channels, 11 single-phone words
 
 Now, you can start saying some words to check if the recognizer will be able to understand what you are saying. For example, try to say the following words:
-.. code-block::
+
+.. code-block:: python
 
    hello
    go to the room
@@ -124,7 +125,7 @@ If you did not import the code from GITHUB, you can still create a new ROS packa
    * Go to your catkin workspace and then go to ``~/catkin_ws/src/`` 
    * Create new a ROS package called ``gaitech_doc`` (or choose any other name) which depends on ``pocketsphinx``, ``roscpp``, ``rospy``, ``sound_play`` and ``std_msgs`` as follow:
 
-   .. code-block:: c
+   .. code-block:: linux
 
       catkin_create_pkg gaitech_doc roscpp rospy pocketsphinx sound_play std_msgs
 
@@ -132,16 +133,18 @@ If you did not import the code from GITHUB, you can still create a new ROS packa
  
    * In the ``~/catkin_ws/src/``, write the following command to see all the files and folders created:
 
-.. code-block:: c
-   tree gaitech_doc
+   .. code-block:: linux
 
-  *  Now, compile your newly added package:
+      tree gaitech_doc
 
-.. code-block:: c
-   $ cd ~/catkin_ws
-   ~/catkin_ws$ catkin_make
+   *  Now, compile your newly added package:
 
-  * Finally, open your ``package.xml`` file and add all the required dependencies (otherwise, your project will not find required packages):
+   .. code-block:: linux
+
+      $ cd ~/catkin_ws
+      ~/catkin_ws$ catkin_make
+
+   *  Finally, open your ``package.xml`` file and add all the required dependencies (otherwise, your project will not find required packages):
 
 .. code-block:: xml
 
@@ -219,13 +222,13 @@ The last parameter which is ``output="screen"`` is used to let us see in real-ti
 
 Launch the ``voice_teleop.launch`` file:
 
-.. code-block:: bash
+.. code-block:: linux
    
    roslaunch gaitech_doc voice_teleop.launch
 
 and in another terminal run the following command to see the published topics after giving the robot a couple of commands:
 
-.. code-block:: bash
+.. code-block:: linux
    
    rostopic echo /recognizer/output
 
@@ -326,11 +329,10 @@ This is the content of the ``voice_nav.py`` file:
          rospy.spin()
        except rospy.ROSInterruptException:
          rospy.loginfo("Voice navigation terminated.")
-   
-[******* Anis: I STOPPED HERE  ********]   
+     
 Now create another launch file called ``turtlebot_voice_teleop.launch`` and its content should be:
 
-.. code-block:: python
+.. code-block:: xml
     
     <launch>
      <node name="voice_nav" pkg="turtlebot_cont_movement" type="voice_nav.py" output="screen">
@@ -356,31 +358,41 @@ This section introduce how to test the voice recognition with the Gazebo and Sta
 
 Now let's bring up `Gazebo`  with the simulation config file:
 
-``roslaunch turtlebot_gazebo turtlebot_world.launch``
+.. code-block:: linux
+
+   roslaunch turtlebot_gazebo turtlebot_world.launch
 
 OR
 
 Bring up `Stage`  simulator using the following command:
 
-``roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch``
+.. code-block:: linux
+
+   roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch
 
 .. NOTE::
     These simulators requires a powerful PC with a good graphics card that can launch them. They also may crash once you start them but don't worry this is very normal, just rerun the script until it launches.
 
 To able to view the commands that are recognizable by the robot we have to run the ``rqt_console`` using the following command:
 
-``rqt_console &``
+.. code-block:: linux
+
+   rqt_console &
 
 .. NOTE:: 
     Make sure to check your Mic settings as discribed before. 
 
-Run the cont_movement.launch file which runs the ``voice_nav.py`` file:
+Run the ``cont_movement.launch`` file which runs the ``voice_nav.py`` file:
 
-``roslaunch turtlebot_cont_movement cont_movement.launch``
+.. code-block:: linux
+
+   roslaunch turtlebot_cont_movement cont_movement.launch
 
 The following command is responsible for controlling the speed of the robot:
 
-``roslaunch turtlebot_cont_movement turtlebot_voice_cont_movement.launch``
+.. code-block:: linux
+
+   roslaunch turtlebot_cont_movement turtlebot_voice_cont_movement.launch
 
 Now test your robot by giving it any command from the list mentiond previously.
 
@@ -392,22 +404,30 @@ Testing the Voice-Control with a Turtlebot Robot
 
 From the ROS Master node(the Turtlebot's laptop) run the following commands:
 
-``roslaunch rbx1_bringup turtlebot_minimal_create.launch``
+.. code-block:: linux
+
+   roslaunch rbx1_bringup turtlebot_minimal_create.launch
 
 To make the monitoring process easier bring up `rqt_console` by running:
 
-``rqt_console &``
+.. code-block:: linux
+
+   rqt_console &
 
 .. NOTE::
     Check your sound settings as mentioned before.
 
 On the host node(the user PC) run the ``cont_movement.launch`` file:
 
-``roslaunch turtlebot_cont_movement cont_movement.launch``
+.. code-block:: linux
+
+   roslaunch turtlebot_cont_movement cont_movement.launch
 
 and in another terminal run the following command:
 
-``roslaunch turtlebot_cont_movement turtlebot_voice_cont_movement.launch``
+.. code-block:: linux
+
+   roslaunch turtlebot_cont_movement turtlebot_voice_cont_movement.launch
 
 .. TIP::
     Try a simple command at first like the rotate right to avoid any accidents. You can change the robot's speed by giving the command "go faster" or "slow down" and this will change the parameters for speed in the turtlebot_voice_nav.launch file. However, you will have to add the commands as mentioned previously in the `config/cont_movement.txt` file and redo all he steps again.

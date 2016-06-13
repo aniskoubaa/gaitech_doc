@@ -12,7 +12,8 @@ This tutorial will introduce to you how to chat with your turtlebot robot.
 ROS offer the ability to have a two way communication network between different ROS nodes. All what you have to do is to know the IP address for the ROS master node and the IPs for other ROS nodes.
 
 .. tip :: For Ubuntu users: to know the IP address for your device in the network you are connected to, you can open a terminal and type "ifconfig" and you will find something similar to the following:
-.. code-block:: python
+
+.. code-block:: linux
 
    lo        Link encap:Local Loopback
           inet addr:127.0.0.1  Mask:255.0.0.0
@@ -39,7 +40,7 @@ All you have to do is to specify in the ``/.bashrc`` file the IP address for the
 
 Open the ``/.bashrc file`` in the PC that has the master node and connected to the turtlebot robot. Scroll to the bottom of the file and add these lines:
 
-.. code-block:: python
+.. code-block:: linux
 
    #The localhost IP address
    export ROS_MASTER_URI=http://localhost:11311
@@ -48,7 +49,7 @@ Open the ``/.bashrc file`` in the PC that has the master node and connected to t
 
 In the your PC (the host device) open the ``/.bashrc`` file and scroll to the bottom of the file and add these lines:
 
-.. code-block:: python
+.. code-block:: linux
 
    source /opt/ros/indigo/setup.bash
    #The IP address for the Master node
@@ -59,13 +60,17 @@ In the your PC (the host device) open the ``/.bashrc`` file and scroll to the bo
    export ROS_IP=192.168.8.101
 
 
-Try to run the following command in your Master node (the one connected to the turtlebot):
+Try to run the following command in your Master node (the one connected to the turtlebot): 
 
-``roscore``
+.. code-block:: linux
+
+    roscore
 
 In your host node type this command:
 
-``rostopic list``
+.. code-block:: linux
+
+    rostopic list
 
 to test whether the connection is established and the host node can communicate with the Master node or not.
 
@@ -74,11 +79,15 @@ to test whether the connection is established and the host node can communicate 
 
 To check whether the Master node can receive data from the host node run this command in a host node terminal:
 
-``rostopic pub -r10 /hello std_msgs/String "hello"``
+.. code-block:: linux
+
+    rostopic pub -r10 /hello std_msgs/String "hello"
 
 on the Maser node run the following command in a new terminal:
 
-``rostopic echo /hello``
+.. code-block:: linux
+
+    rostopic echo /hello
 
 The message "hello" should appear about 10 times per second.
 
@@ -88,8 +97,18 @@ The message "hello" should appear about 10 times per second.
 
 In case you faced any strange behaviour from the robot during transmitting data from a host node to the Master node, you can download:
 
-Chrony:  ``sudo apt-get install chrony``
+Chrony:  
+
+.. code-block:: linux
+
+    sudo apt-get install chrony
+
 or
-manually sync NTP: ``sudo ntpdate ntp.ubuntu.com``
+
+manually sync NTP: 
+
+.. code-block:: linux
+
+    sudo ntpdate ntp.ubuntu.com
 
 to fix the Clock synchronization problem.

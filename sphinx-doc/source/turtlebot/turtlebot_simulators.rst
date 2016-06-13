@@ -7,7 +7,9 @@ In this page, we will learn about two different simulators to test your Turtlebo
 
 You need to install the software:
 
-``sudo apt-get install ros-indigo-turtlebot-simulator``
+.. code-block:: linux
+
+    sudo apt-get install ros-indigo-turtlebot-simulator
 
 There is a couple of simulators that you can help you with your robot such as Gazebo, Stage, RViz and Stdr. The most used simulators are the Gazebo and the stage.
 
@@ -25,14 +27,28 @@ Stage is a 2D multi-robot simulator. It shows the user a world defined in a file
 
 Run the following command to run the Stage simulator:
 
-``roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch``
+.. code-block:: linux
+
+    roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch
 
 Click on the `2D Nav Goal` option on the top bar and command the robot to go anywhere you want in the map.
 
 .. NOTE:: 
-	You can run the following command ``roslaunch turtlebot_stage turtlebot_in_stage.launch`` if your PC is powerful and can run both simulators at the same time.
+	You can run the following command 
 
-Open the turtlebot_stage directory and type ``tree`` to be able to see all the files but we are intersted in the following files:
+	.. code-block:: linux
+
+         roslaunch turtlebot_stage turtlebot_in_stage.launch 
+
+	if your PC is powerful and can run both simulators at the same time.
+
+Open the turtlebot_stage directory and type 
+
+.. code-block:: linux
+
+    tree 
+
+to be able to see all the files but we are intersted in the following files:
 
 .. code-block:: python
     
@@ -52,21 +68,29 @@ In order to edit the map you want to have, open the file ``maze.png`` with any e
 
 Now you can run the simulator:
 
-``roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch``
+.. code-block:: linux
+
+    roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch
 
 You can also choose the ``.world`` and ``.yaml`` files by using the following command:
 
-``roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch map_file:="~/path/to/new/file.yaml" world_file:="~/path/to/new/file.world"``
+.. code-block:: linux
+
+    roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch map_file:="~/path/to/new/file.yaml" world_file:="~/path/to/new/file.world"
 
 Or in case you want to use the same files everytime you can run the following commands:
 
-``export TURTLEBOT_STAGE_MAP_FILE=~/path/to/new/file.yaml``
-``export TURTLEBOT_STAGE_WORLD_FILE=~/path/to/new/file.world``
+.. code-block:: linux
+
+    export TURTLEBOT_STAGE_MAP_FILE=~/path/to/new/file.yaml
+    export TURTLEBOT_STAGE_WORLD_FILE=~/path/to/new/file.world
 
 or simply add them to your shell setup file:
 
-``echo export TURTLEBOT_STAGE_MAP_FILE=~/path/to/new/file.yaml >> devel/setup.sh``
-``echo export TURTLEBOT_STAGE_WORLD_FILE=~/path/to/new/file.world >> devel/setup.sh``
+.. code-block:: linux
+
+    echo export TURTLEBOT_STAGE_MAP_FILE=~/path/to/new/file.yaml >> devel/setup.sh
+    echo export TURTLEBOT_STAGE_WORLD_FILE=~/path/to/new/file.world >> devel/setup.sh
 
 
 After you modify the map you may find out that the position of your robot is very close to an obstacle for example. Instead of moving the robot from the obstacle you can simply change the default position of the robot in the ``.world`` file by changing the values of the `pose [x y z theta]` 
@@ -76,7 +100,9 @@ After you modify the map you may find out that the position of your robot is ver
 
 or you can change tho position when you launch the simulator:
 
-``roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch initial_pose_y:=2.0 initial_pose_x:=1.0``
+.. code-block:: linux
+
+    roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch initial_pose_y:=2.0 initial_pose_x:=1.0
 
 You can also add an obstacle in any position in the map and with any size you like by creating a new ``.inc`` file:
 
@@ -109,7 +135,9 @@ In this section we will bring up the turtlebot robot in the `Gazebo` simulator.
 
 To run the `Gazebo` simulator run the following command:
 
-``roslaunch turtlebot_gazebo turtlebot_world.launch``
+.. code-block:: linux
+
+    roslaunch turtlebot_gazebo turtlebot_world.launch
 
 .. NOTE:: 
 	Gazebo may need a couple of updates before running to update its database and it will take a few moments.
@@ -123,13 +151,17 @@ Using Teleop package with Gazebo and RViz
 
 First, you need to bring up the `Gazebo` simulator as mentioned before. Second, open a new terminal and type the following:
 
-``roslaunch turtlebot_teleop keyboard_teleop.launch``
+.. code-block:: linux
+
+    roslaunch turtlebot_teleop keyboard_teleop.launch
 
 Try to move the robot around.
 
 Now to be able to see what the robot is acually sees you can open a new terminal and launch the RViz simulator:
 
-``roslaunch turtlebot_rviz_launchers view_robot.launch``
+.. code-block:: linux
+
+    roslaunch turtlebot_rviz_launchers view_robot.launch
 
 .. NOTE::
 	The RViz simulator may take a couple of minutes to be launched. Make sure you have a powerful PC with a good graphics card.
