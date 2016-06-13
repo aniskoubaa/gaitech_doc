@@ -329,8 +329,7 @@ This is the content of the ``voice_nav.py`` file:
          rospy.spin()
        except rospy.ROSInterruptException:
          rospy.loginfo("Voice navigation terminated.")
-   
-[******* Anis: I STOPPED HERE  ********]   
+     
 Now create another launch file called ``turtlebot_voice_teleop.launch`` and its content should be:
 
 .. code-block:: xml
