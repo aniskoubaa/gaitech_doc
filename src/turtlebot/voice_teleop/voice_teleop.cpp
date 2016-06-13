@@ -47,8 +47,8 @@ TurtlebotTeleop::TurtlebotTeleop():
   zero_twist_published_ = false;
 
   vel_pub_ = ph_.advertise<geometry_msgs::Twist>("cmd_vel", 1, true);
-  cmd_sub_ = nh_.subscribe<std_msgs::String>("command", 10, &TurtlebotTeleop::commandCallback, this);
-
+//  cmd_sub_ = nh_.subscribe<std_msgs>("command", 10, &TurtlebotTeleop::commandCallBack<const std_msgs::String>, this);
+  cmd_sub_ = nh_.subscribe("command", 1000, &TurtlebotTeleop::commandCallBack<const String>);	
   timer_ = nh_.createTimer(ros::Duration(0.1), boost::bind(&TurtlebotTeleop::publish, this));
 }
 
