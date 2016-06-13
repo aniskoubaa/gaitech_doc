@@ -59,13 +59,17 @@ In the your PC (the host device) open the ``/.bashrc`` file and scroll to the bo
    export ROS_IP=192.168.8.101
 
 
-Try to run the following command in your Master node (the one connected to the turtlebot):
+Try to run the following command in your Master node (the one connected to the turtlebot): 
 
-``roscore``
+.. code-block:: python
+
+    roscore
 
 In your host node type this command:
 
-``rostopic list``
+.. code-block:: python
+
+    rostopic list
 
 to test whether the connection is established and the host node can communicate with the Master node or not.
 
@@ -74,11 +78,15 @@ to test whether the connection is established and the host node can communicate 
 
 To check whether the Master node can receive data from the host node run this command in a host node terminal:
 
-``rostopic pub -r10 /hello std_msgs/String "hello"``
+.. code-block:: python
+
+    rostopic pub -r10 /hello std_msgs/String "hello"
 
 on the Maser node run the following command in a new terminal:
 
-``rostopic echo /hello``
+.. code-block:: python
+
+    rostopic echo /hello
 
 The message "hello" should appear about 10 times per second.
 
@@ -88,8 +96,18 @@ The message "hello" should appear about 10 times per second.
 
 In case you faced any strange behaviour from the robot during transmitting data from a host node to the Master node, you can download:
 
-Chrony:  ``sudo apt-get install chrony``
+Chrony:  
+
+.. code-block:: python
+
+    sudo apt-get install chrony
+
 or
-manually sync NTP: ``sudo ntpdate ntp.ubuntu.com``
+
+manually sync NTP: 
+
+.. code-block:: python
+
+    sudo ntpdate ntp.ubuntu.com
 
 to fix the Clock synchronization problem.

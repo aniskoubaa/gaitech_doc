@@ -197,27 +197,41 @@ All you have to do is to specify in the <code class="docutils literal"><span cla
 </pre></div>
 </div>
 <p>Try to run the following command in your Master node (the one connected to the turtlebot):</p>
-<p><code class="docutils literal"><span class="pre">roscore</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">roscore</span>
+</pre></div>
+</div>
 <p>In your host node type this command:</p>
-<p><code class="docutils literal"><span class="pre">rostopic</span> <span class="pre">list</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">rostopic</span> <span class="nb">list</span>
+</pre></div>
+</div>
 <p>to test whether the connection is established and the host node can communicate with the Master node or not.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">If the connection is successful you will be able to see a list of all the ROS topics published from the Master node if it fails then make sure that the ROS_MASTER_URI is set to the right value.</p>
 </div>
 <p>To check whether the Master node can receive data from the host node run this command in a host node terminal:</p>
-<p><code class="docutils literal"><span class="pre">rostopic</span> <span class="pre">pub</span> <span class="pre">-r10</span> <span class="pre">/hello</span> <span class="pre">std_msgs/String</span> <span class="pre">&quot;hello&quot;</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">rostopic</span> <span class="n">pub</span> <span class="o">-</span><span class="n">r10</span> <span class="o">/</span><span class="n">hello</span> <span class="n">std_msgs</span><span class="o">/</span><span class="n">String</span> <span class="s2">&quot;hello&quot;</span>
+</pre></div>
+</div>
 <p>on the Maser node run the following command in a new terminal:</p>
-<p><code class="docutils literal"><span class="pre">rostopic</span> <span class="pre">echo</span> <span class="pre">/hello</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">rostopic</span> <span class="n">echo</span> <span class="o">/</span><span class="n">hello</span>
+</pre></div>
+</div>
 <p>The message &#8220;hello&#8221; should appear about 10 times per second.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">If something is wrong with executing the previous step, make sure that the ROS_HOSTNAME in the host node is correct.</p>
 </div>
 <p>In case you faced any strange behaviour from the robot during transmitting data from a host node to the Master node, you can download:</p>
-<p>Chrony:  <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">chrony</span></code>
-or
-manually sync NTP: <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">ntpdate</span> <span class="pre">ntp.ubuntu.com</span></code></p>
+<p>Chrony:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">chrony</span>
+</pre></div>
+</div>
+<p>or</p>
+<p>manually sync NTP:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">ntpdate</span> <span class="n">ntp</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
 <p>to fix the Clock synchronization problem.</p>
 </div>
 
