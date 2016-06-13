@@ -1,7 +1,7 @@
 
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
-#include <sensor_msgs/String.h>
+#include <std_msgs/String.h>
 #include "boost/thread/mutex.hpp"
 #include "boost/thread/thread.hpp"
 #include "ros/console.h"
@@ -27,7 +27,6 @@ private:
 
   geometry_msgs::Twist last_published_;
   boost::mutex publish_mutex_;
-  bool deadman_pressed_;
   bool zero_twist_published_;
   ros::Timer timer_;
 
@@ -37,17 +36,14 @@ TurtlebotTeleop::TurtlebotTeleop():
   ph_("~"),
   linear_(1),
   angular_(0),
-  deadman_axis_(4),
   l_scale_(0.3),
   a_scale_(0.9)
 {
   ph_.param("axis_linear", linear_, linear_);
   ph_.param("axis_angular", angular_, angular_);
-  ph_.param("axis_deadman", deadman_axis_, deadman_axis_);
   ph_.param("scale_angular", a_scale_, a_scale_);
   ph_.param("scale_linear", l_scale_, l_scale_);
 
-  deadman_pressed_ = false;
   zero_twist_published_ = false;
 
   vel_pub_ = ph_.advertise<geometry_msgs::Twist>("cmd_vel", 1, true);
@@ -83,7 +79,7 @@ void TurtlebotTeleop::publish()
 {
   boost::mutex::scoped_lock lock(publish_mutex_);
 
-  if (deadman_pressed_)
+/*  if (deadman_pressed_)
   {
     vel_pub_.publish(last_published_);
     zero_twist_published_=false;
@@ -93,6 +89,7 @@ void TurtlebotTeleop::publish()
     vel_pub_.publish(*new geometry_msgs::Twist());
     zero_twist_published_=true;
   }
+*/
 }
 
 int main(int argc, char** argv)
