@@ -12,7 +12,8 @@ This tutorial will introduce to you how to chat with your turtlebot robot.
 ROS offer the ability to have a two way communication network between different ROS nodes. All what you have to do is to know the IP address for the ROS master node and the IPs for other ROS nodes.
 
 .. tip :: For Ubuntu users: to know the IP address for your device in the network you are connected to, you can open a terminal and type "ifconfig" and you will find something similar to the following:
-.. code-block:: python
+
+.. code-block:: linux
 
    lo        Link encap:Local Loopback
           inet addr:127.0.0.1  Mask:255.0.0.0
@@ -39,7 +40,7 @@ All you have to do is to specify in the ``/.bashrc`` file the IP address for the
 
 Open the ``/.bashrc file`` in the PC that has the master node and connected to the turtlebot robot. Scroll to the bottom of the file and add these lines:
 
-.. code-block:: python
+.. code-block:: linux
 
    #The localhost IP address
    export ROS_MASTER_URI=http://localhost:11311
@@ -48,7 +49,7 @@ Open the ``/.bashrc file`` in the PC that has the master node and connected to t
 
 In the your PC (the host device) open the ``/.bashrc`` file and scroll to the bottom of the file and add these lines:
 
-.. code-block:: python
+.. code-block:: linux
 
    source /opt/ros/indigo/setup.bash
    #The IP address for the Master node
@@ -61,13 +62,13 @@ In the your PC (the host device) open the ``/.bashrc`` file and scroll to the bo
 
 Try to run the following command in your Master node (the one connected to the turtlebot): 
 
-.. code-block:: python
+.. code-block:: linux
 
     roscore
 
 In your host node type this command:
 
-.. code-block:: python
+.. code-block:: linux
 
     rostopic list
 
@@ -78,13 +79,13 @@ to test whether the connection is established and the host node can communicate 
 
 To check whether the Master node can receive data from the host node run this command in a host node terminal:
 
-.. code-block:: python
+.. code-block:: linux
 
     rostopic pub -r10 /hello std_msgs/String "hello"
 
 on the Maser node run the following command in a new terminal:
 
-.. code-block:: python
+.. code-block:: linux
 
     rostopic echo /hello
 
@@ -98,7 +99,7 @@ In case you faced any strange behaviour from the robot during transmitting data 
 
 Chrony:  
 
-.. code-block:: python
+.. code-block:: linux
 
     sudo apt-get install chrony
 
@@ -106,7 +107,7 @@ or
 
 manually sync NTP: 
 
-.. code-block:: python
+.. code-block:: linux
 
     sudo ntpdate ntp.ubuntu.com
 
