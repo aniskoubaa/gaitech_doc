@@ -30,9 +30,9 @@ private:
 };
 /** constructor **/
 RobotVoiceTeleop::RobotVoiceTeleop():
-		  nodeHandle("~"),
-		  linearVelocity(1),
-		  angularVelocity(0)
+						  nodeHandle("~"),
+						  linearVelocity(1),
+						  angularVelocity(0)
 {
 	nodeHandle.param("linear_velocity", linearVelocity, linearVelocity);
 	nodeHandle.param("angular_velocity", angularVelocity, angularVelocity);
@@ -40,50 +40,49 @@ RobotVoiceTeleop::RobotVoiceTeleop():
 	velocityPublisher = nodeHandle.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
 	voiceCommandSubscriber = nodeHandle.subscribe("/recognizer/output", 1000, &RobotVoiceTeleop::commandCallBack, this);
 
-
+	printf("start control\n");
 	ros::Rate rate(5);
 	while (ros::ok()){
 		velocityPublisher.publish(cmd_vel);
 		rate.sleep();
+		ros::spinOnce();
 	}
 
 }
 /** callback **/
 void RobotVoiceTeleop::commandCallBack(const std_msgs::String& command)
 { 
-	geometry_msgs::Twist vel;
-
 	if(command.data.compare("stop") == 0)
 	{
-		vel.angular.z = 0;
-		vel.linear.x = 0;
+		cmd_vel.angular.z = 0;
+		cmd_vel.linear.x = 0;
 	}
 	else if(command.data.compare("forward") == 0)
 	{
-		vel.linear.x = 0.3;
-		vel.angular.z = 0;
+		cmd_vel.linear.x = 0.3;
+		cmd_vel.angular.z = 0;
 	}
 	else if(command.data.compare("backward") == 0)
-		{
-			vel.linear.x = -0.3;
-			vel.angular.z = 0;
-		}
+	{
+		cmd_vel.linear.x = -0.3;
+		cmd_vel.angular.z = 0;
+	}
 	else if(command.data.compare("left") == 0)
-		{
-			vel.linear.x = 0.0;
-			vel.angular.z = 0.5;
-		}
+	{
+		cmd_vel.linear.x = 0.0;
+		cmd_vel.angular.z = 0.5;
+	}
 	else if(command.data.compare("right") == 0)
-			{
-				vel.linear.x = 0.0;
-				vel.angular.z = -0.5;
-			}
+	{
+		cmd_vel.linear.x = 0.0;
+		cmd_vel.angular.z = -0.5;
+	}
 	else {
-		vel.angular.z = 0;
-		vel.linear.x = 0;
+		cmd_vel.angular.z = 0;
+		cmd_vel.linear.x = 0;
 	}
 
-	printf("vel.linear.x = %.2f, vel.angular.z = %.2f", vel.linear.x, vel.angular.z);
+	printf("cmd_vel.linear.x = %.2f, cmd_vel.angular.z = %.2f\n", cmd_vel.linear.x, cmd_vel.angular.z);
 
 }
 
