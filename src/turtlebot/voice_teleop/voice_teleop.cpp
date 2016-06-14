@@ -9,116 +9,88 @@
 
 std_msgs::String readCommand;
 
-class TurtlebotTeleop
+class RobotVoiceTeleop
 {
 public:
-  TurtlebotTeleop();
+	RobotVoiceTeleop();
 
 private:
-  void commandCallBack(const std_msgs::String& command);
-  void publish();
+	void commandCallBack(const std_msgs::String& command);
+	void publish();
 
-  ros::NodeHandle ph_;
+	ros::NodeHandle nodeHandle;
 
 
-  int linear_, angular_;
-  double l_scale_, a_scale_;
-  ros::Publisher vel_pub_;
-  ros::Subscriber cmd_sub_;
+	int linearVelocity, angularVelocity;
+	ros::Publisher velocityPublisher;
+	ros::Subscriber voiceCommandSubscriber;
+	geometry_msgs::Twist cmd_vel;
 
-  geometry_msgs::Twist last_published_;
-  boost::mutex publish_mutex_;
-  bool zero_twist_published_;
-//  ros::Timer timer_;
 
 };
-
-TurtlebotTeleop::TurtlebotTeleop():
-  ph_("~"),
-  linear_(1),
-  angular_(0),
-  l_scale_(0.3),
-  a_scale_(0.9)
+/** constructor **/
+RobotVoiceTeleop::RobotVoiceTeleop():
+		  nodeHandle("~"),
+		  linearVelocity(1),
+		  angularVelocity(0)
 {
-  ph_.param("axis_linear", linear_, linear_);
-  ph_.param("axis_angular", angular_, angular_);
-  ph_.param("scale_angular", a_scale_, a_scale_);
-  ph_.param("scale_linear", l_scale_, l_scale_);
+	nodeHandle.param("linear_velocity", linearVelocity, linearVelocity);
+	nodeHandle.param("angular_velocity", angularVelocity, angularVelocity);
 
-  zero_twist_published_ = false;
+	velocityPublisher = nodeHandle.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
+	voiceCommandSubscriber = nodeHandle.subscribe("/recognizer/output", 1000, &RobotVoiceTeleop::commandCallBack, this);
 
-//  vel_pub_ = ph_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
-//  cmd_sub_ = ph_.subscribe("/command", 1000, &TurtlebotTeleop::commandCallBack, this);
-//  cmd_sub_ = ph_.subscribe("command", 1000, commandCallBack<const std_msgs::String&>);	
-//  timer_ = ph_.createTimer(ros::Duration(0.1), boost::bind(&TurtlebotTeleop::publish, this));
+
+	ros::Rate rate(5);
+	while (ros::ok()){
+		velocityPublisher.publish(cmd_vel);
+		rate.sleep();
+	}
+
 }
-
-void TurtlebotTeleop::commandCallBack(const std_msgs::String& command)
+/** callback **/
+void RobotVoiceTeleop::commandCallBack(const std_msgs::String& command)
 { 
-  readCommand = command;
-  geometry_msgs::Twist vel;
-  
-  if(readCommand.data.compare("stop") == 0)
-  {
+	geometry_msgs::Twist vel;
 
-    vel.angular.z = 0;
-    vel.linear.x = 0;
-  }
-  else
-  {
-    vel.angular.z = 1;
-    vel.linear.x = 1;
-  }
+	if(command.data.compare("stop") == 0)
+	{
+		vel.angular.z = 0;
+		vel.linear.x = 0;
+	}
+	else if(command.data.compare("forward") == 0)
+	{
+		vel.linear.x = 0.3;
+		vel.angular.z = 0;
+	}
+	else if(command.data.compare("backward") == 0)
+		{
+			vel.linear.x = -0.3;
+			vel.angular.z = 0;
+		}
+	else if(command.data.compare("left") == 0)
+		{
+			vel.linear.x = 0.0;
+			vel.angular.z = 0.5;
+		}
+	else if(command.data.compare("right") == 0)
+			{
+				vel.linear.x = 0.0;
+				vel.angular.z = -0.5;
+			}
+	else {
+		vel.angular.z = 0;
+		vel.linear.x = 0;
+	}
 
-//  vel.angular.z = a_scale_*joy->axes[angular_];
-//  vel.linear.x = l_scale_*joy->axes[linear_];
-//  last_published_ = vel;
-//  deadman_pressed_ = joy->buttons[deadman_axis_];
+	printf("vel.linear.x = %.2f, vel.angular.z = %.2f", vel.linear.x, vel.angular.z);
+
 }
 
-void TurtlebotTeleop::publish()
-{
-  boost::mutex::scoped_lock lock(publish_mutex_);
 
-/*  if (deadman_pressed_)
-  {
-    vel_pub_.publish(last_published_);
-    zero_twist_published_=false;
-  }
-  else if(!deadman_pressed_ && !zero_twist_published_)
-  {
-    vel_pub_.publish(*new geometry_msgs::Twist());
-    zero_twist_published_=true;
-  }
-*/
-}
-
-void commandCallBack(const std_msgs::String& command)
-{ 
-  readCommand = command;
-  geometry_msgs::Twist vel;
-  
-  if(readCommand.data.compare("stop") == 0)
-  {
-
-    vel.angular.z = 0;
-    vel.linear.x = 0;
-  }
-  else
-  {
-    vel.angular.z = 1;
-    vel.linear.x = 1;
-  }
-
-//  vel.angular.z = a_scale_*joy->axes[angular_];
-//  vel.linear.x = l_scale_*joy->axes[linear_];
-//  last_published_ = vel;
-//  deadman_pressed_ = joy->buttons[deadman_axis_];
-}
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "voice_teleop");
-  TurtlebotTeleop voice_teleop;
-
-  ros::spin();
+	ros::init(argc, argv, "voice_teleop_node");
+	RobotVoiceTeleop voice_teleop;
+	ros::spin();
 }
