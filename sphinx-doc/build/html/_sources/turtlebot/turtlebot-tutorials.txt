@@ -20,3 +20,4 @@ In this page, we will provide you a quick start with Turtlebot robot.
    Keyboard Teleop <teleop-doc>
    First Tests <turtlebot-first-tests>
    Speech Recognition <speech-doc>
+   Send Goals to Navigation Stack<send-goals-nav-stack>

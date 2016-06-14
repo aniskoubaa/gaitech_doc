@@ -1,0 +1,243 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Navigation Stack &mdash; Gaitech Doc 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Gaitech Doc 2.5 documentation" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech Doc
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-background.html">ROS Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-programming-basics.html">Getting Started with ROS Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="turtlebot-tutorials.html">Turtlebot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech Doc</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Navigation Stack</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/turtlebot/navigation-stack.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="navigation-stack">
+<span id="id1"></span><h1>Navigation Stack<a class="headerlink" href="#navigation-stack" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial you will learn how to use the navigation stack on a robot and how to configure it on your ROS environment.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Make sure that you completed installing all the required packages in the previous tutorials and your network set-up is working fine between the ROS Master node and the host node.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The robot must be using <code class="docutils literal"><span class="pre">tf</span></code> to publish information about the coordination of the frames.</p>
+</div>
+<p>The idea behind Navigation Stack is to have a robot that can move in a world without crashing into obstacles,  drawing a map for this world or following a predefined map, send locations to the robot to go there and collect information about this world from the robot. For this to happen, Navigation stack collects different types of information from several topics and channels.</p>
+<div class="section" id="sensor-information">
+<h2>1. Sensor Information<a class="headerlink" href="#sensor-information" title="Permalink to this headline">¶</a></h2>
+<p>The robot uses the <code class="docutils literal"><span class="pre">sensor_msgs/LaserScan</span></code> or <code class="docutils literal"><span class="pre">sensor_msgs/PointCloud</span></code> messgaes from the sensors to communicate with ROS. There are a couple of sensors that have ROS drivers to take care of this issue such as the <cite>SCIP2.2-compliant Hokuyo Laser Devices</cite>, <cite>Hokuyo Model (04LX or 30LX)</cite> and <cite>SICK LMS2xx Lasers</cite>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To understand how to publish the previous type of messages to ROS follow the <code class="docutils literal"><span class="pre">Publishing</span> <span class="pre">Sensor</span> <span class="pre">Streams</span> <span class="pre">Over</span> <span class="pre">ROS</span></code> tutorial [<strong>***Reference Later***</strong>]</p>
+</div>
+</div>
+<div class="section" id="odometry-information">
+<h2>2. Odometry Information<a class="headerlink" href="#odometry-information" title="Permalink to this headline">¶</a></h2>
+<p>The odometry information&#8217;s messages <code class="docutils literal"><span class="pre">nav_msgs/Odometry</span></code> are published using <code class="docutils literal"><span class="pre">tf</span></code>. There are a couple of platforms for odometry with the supporting driviers such as <cite>Videre Erratic</cite> or <cite>PR2</cite>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To understand how to publish the previous message to ROS follow the <code class="docutils literal"><span class="pre">Publishing</span> <span class="pre">Odometry</span> <span class="pre">Information</span> <span class="pre">Over</span> <span class="pre">ROS</span></code> tutorial [<strong>***Reference Later***</strong>]</p>
+</div>
+</div>
+<div class="section" id="base-controller">
+<h2>3. Base Controller<a class="headerlink" href="#base-controller" title="Permalink to this headline">¶</a></h2>
+<p>The navigation stack uses the <code class="docutils literal"><span class="pre">geometry_msgs/Twist</span></code> messages to control the velocity of the robot over the topic <code class="docutils literal"><span class="pre">cmd_vel</span></code> that is able to take the <cite>vx</cite>, <cite>vy</cite>, <cite>vtheta</cite> &#8211;&gt; <cite>cmd_vel.linear.x</cite>, <cite>cmd_vel.linear.y</cite>, <cite>cmd_vel.angular.z</cite> velocities and convert them to motor commands sent to the mobile base. There are a couple of platforms for base control with the supporting driviers such as <cite>Videre Erratic</cite> or <cite>PR2</cite>.</p>
+</div>
+<div class="section" id="world-s-map">
+<h2>4. World&#8217;s Map<a class="headerlink" href="#world-s-map" title="Permalink to this headline">¶</a></h2>
+<p>As mentioned before, the navigation stack can function without having a predefined map but let&#8217;s assume that you have a map.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To understand how to build a map follow the <code class="docutils literal"><span class="pre">How</span> <span class="pre">to</span> <span class="pre">Build</span> <span class="pre">a</span> <span class="pre">Map</span> <span class="pre">Using</span> <span class="pre">Logged</span> <span class="pre">Data</span></code> tutorial [<strong>***Reference Later***</strong>]</p>
+</div>
+</div>
+<div class="section" id="navigation-stack-hierarchy">
+<h2>Navigation Stack Hierarchy<a class="headerlink" href="#navigation-stack-hierarchy" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/nav_stack_layout.png" class="align-center" src="../_images/nav_stack_layout.png" />
+<p>The previous sections discribed a little bit about this hierarchy and in the following sections you will learn about the rest of them.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

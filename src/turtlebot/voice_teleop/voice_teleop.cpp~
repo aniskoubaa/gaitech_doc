@@ -29,7 +29,7 @@ private:
   geometry_msgs::Twist last_published_;
   boost::mutex publish_mutex_;
   bool zero_twist_published_;
-//  ros::Timer timer_;
+  ros::Timer timer_;
 
 };
 
@@ -50,7 +50,7 @@ TurtlebotTeleop::TurtlebotTeleop():
 //  vel_pub_ = ph_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
 //  cmd_sub_ = ph_.subscribe("/command", 1000, &TurtlebotTeleop::commandCallBack, this);
 //  cmd_sub_ = ph_.subscribe("command", 1000, commandCallBack<const std_msgs::String&>);	
-//  timer_ = ph_.createTimer(ros::Duration(0.1), boost::bind(&TurtlebotTeleop::publish, this));
+  timer_ = ph_.createTimer(ros::Duration(0.1), boost::bind(&TurtlebotTeleop::publish, this));
 }
 
 void TurtlebotTeleop::commandCallBack(const std_msgs::String& command)

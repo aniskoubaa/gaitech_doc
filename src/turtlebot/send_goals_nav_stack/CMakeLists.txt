@@ -1,28 +1,19 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(gaitech_doc)
+project(send_goals_nav_stack)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  actionlib
+  move_base_msgs
   roscpp
-  rospy
-  std_msgs
 )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-add_executable(voice_teleop src/turtlebot/voice_teleop/voice_teleop.cpp)
-add_executable(joy_teleop src/turtlebot/voice_teleop/joy_teleop.cpp)
 
-target_link_libraries(
-	voice_teleop
-	${catkin_LIBRARIES}
-)
-target_link_libraries(
-	joy_teleop
-	${catkin_LIBRARIES}
-)
+
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
 ## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
@@ -76,7 +67,7 @@ target_link_libraries(
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   std_msgs
+#   move_base_msgs
 # )
 
 ################################################
@@ -110,8 +101,8 @@ target_link_libraries(
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES gaitech_doc
-#  CATKIN_DEPENDS roscpp rospy std_msgs
+#  LIBRARIES send_goals_nav_stack
+#  CATKIN_DEPENDS actionlib move_base_msgs roscpp
 #  DEPENDS system_lib
 )
 
@@ -127,24 +118,24 @@ include_directories(
 )
 
 ## Declare a C++ library
-# add_library(gaitech_doc
-#   src/${PROJECT_NAME}/gaitech_doc.cpp
+# add_library(send_goals_nav_stack
+#   src/${PROJECT_NAME}/send_goals_nav_stack.cpp
 # )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-# add_dependencies(gaitech_doc ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(send_goals_nav_stack ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(gaitech_doc_node src/gaitech_doc_node.cpp)
+# add_executable(send_goals_nav_stack_node src/send_goals_nav_stack_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(gaitech_doc_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(send_goals_nav_stack_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(gaitech_doc_node
+# target_link_libraries(send_goals_nav_stack_node
 #   ${catkin_LIBRARIES}
 # )
 
@@ -163,7 +154,7 @@ include_directories(
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS gaitech_doc gaitech_doc_node
+# install(TARGETS send_goals_nav_stack send_goals_nav_stack_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -188,10 +179,13 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_gaitech_doc.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_send_goals_nav_stack.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(send_goals src/send_goals.cpp)
+	target_link_libraries(send_goals ${catkin_LIBRARIES})
