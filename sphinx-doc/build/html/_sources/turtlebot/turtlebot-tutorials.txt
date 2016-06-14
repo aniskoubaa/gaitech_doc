@@ -21,3 +21,4 @@ In this page, we will provide you a quick start with Turtlebot robot.
    First Tests <turtlebot-first-tests>
    Speech Recognition <speech-doc>
    Send Goals to Navigation Stack<send-goals-nav-stack>
+   Building a map using Logged Data<build-map>

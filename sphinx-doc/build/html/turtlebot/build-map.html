@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Turtlebot Quick Start Tutorials &mdash; Gaitech Doc 2.5 documentation</title>
+  <title>Building a Map using Logged Data &mdash; Gaitech Doc 2.5 documentation</title>
   
 
   
@@ -33,8 +33,9 @@
 
   
     <link rel="top" title="Gaitech Doc 2.5 documentation" href="../index.html"/>
-        <link rel="next" title="Network Configuration" href="network-config-doc.html"/>
-        <link rel="prev" title="ROS Programming" href="../ros/ros-programming-basics.html"/> 
+        <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
+        <link rel="next" title="Drones" href="../drones/index.html"/>
+        <link rel="prev" title="Sending Goals to the Navigation Stack" href="send-goals-nav-stack.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -89,14 +90,17 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../ros/ros-background.html">ROS Background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ros/ros-programming-basics.html">Getting Started with ROS Programming</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Turtlebot Tutorials</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="turtlebot-tutorials.html">Turtlebot Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="network-config-doc.html">Network Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="turtlebot_simulators.html">Turtlebot Simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="turtlebot-first-tests.html">First Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Speech Recognition</a></li>
 <li class="toctree-l2"><a class="reference internal" href="send-goals-nav-stack.html">Send Goals to Navigation Stack</a></li>
-<li class="toctree-l2"><a class="reference internal" href="build-map.html">Building a map using Logged Data</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Building a map using Logged Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#building-your-map">Building your Map</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
@@ -130,11 +134,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Turtlebot Quick Start Tutorials</li>
+          <li><a href="turtlebot-tutorials.html">Turtlebot Quick Start Tutorials</a> &raquo;</li>
+      
+    <li>Building a Map using Logged Data</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/turtlebot-tutorials.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/build-map.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -144,11 +150,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="turtlebot-quick-start-tutorials">
-<span id="turtlebot-tutorials"></span><h1>Turtlebot Quick Start Tutorials<a class="headerlink" href="#turtlebot-quick-start-tutorials" title="Permalink to this headline">¶</a></h1>
-<p>In this page, we will provide you a quick start with Turtlebot robot.</p>
-<img alt="../_images/turtlebot.png" class="align-center" src="../_images/turtlebot.png" />
-<div class="toctree-wrapper compound">
+  <div class="section" id="building-a-map-using-logged-data">
+<span id="build-map"></span><h1>Building a Map using Logged Data<a class="headerlink" href="#building-a-map-using-logged-data" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial you will learn how to build your own map using logged transform and laser scan data.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node.</p>
+</div>
+<div class="section" id="building-your-map">
+<h2>Building your Map<a class="headerlink" href="#building-your-map" title="Permalink to this headline">¶</a></h2>
+<p>If you are working from source checkout, run this command:</p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>rosmake gmapping
+</pre></div>
+</div>
+<p>Download an bag to be able to test with:</p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>wget http://pr.willowgarage.com/data/gmapping/basic_localization_stage.bag
+</pre></div>
+</div>
+<p>Bring up your ROS master node:</p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>roscore
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Before running any nodes, make sure that the <code class="docutils literal"><span class="pre">use_sim_time</span></code> parameter is set to true which is responsible for the <code class="docutils literal"><span class="pre">/clock</span></code> topic which represent the <cite>simulation time</cite>:</p>
+<div class="last highlight-linux"><div class="highlight"><pre><span></span>rosparam set use_sim_time true
+</pre></div>
+</div>
+</div>
+<p>Bring up <code class="docutils literal"><span class="pre">slam_gmapping</span></code> to be able to take in laser scans and produce a map:</p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>rosrun gmapping slam_gmapping scan:=base_scan
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This step may take a couple of minutes.</p>
+</div>
+<p>To feed the data to <code class="docutils literal"><span class="pre">slam_gmapping</span></code> you need to run in a new terminal:</p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>rosbag play --clock &lt;name_of_the_bag_that_you_downloaded&gt;
+</pre></div>
+</div>
+<p>After <code class="docutils literal"><span class="pre">rosbag</span></code> finishes save and exit using the <code class="docutils literal"><span class="pre">map_saver</span></code> from the <code class="docutils literal"><span class="pre">map_server</span></code> package:</p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>rosrun map_server map_saver
+</pre></div>
+</div>
+<p>After this step you have a working map in a <code class="docutils literal"><span class="pre">map.pgm</span></code> file that you can view in any image viewer.</p>
 </div>
 </div>
 
@@ -159,10 +205,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="network-config-doc.html" class="btn btn-neutral float-right" title="Network Configuration" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../drones/index.html" class="btn btn-neutral float-right" title="Drones" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../ros/ros-programming-basics.html" class="btn btn-neutral" title="ROS Programming" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="send-goals-nav-stack.html" class="btn btn-neutral" title="Sending Goals to the Navigation Stack" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
