@@ -179,6 +179,15 @@
 </pre></div>
 </div>
 <p>the highlighted network is the one you are connected to and the highlighted IP address is your device&#8217;s IP.</p>
+<p>On your ROS master node type the following:</p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>sudo apt-get install openssh-server
+</pre></div>
+</div>
+<p>On your host node(workstation PC) confirm that you can ssh to the master node by running this command:</p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>ssh name_of_turtlebot_PC@TURTLEBOT_IP
+</pre></div>
+</div>
+<p>Then type the password for the turtlebot PC.</p>
 <p>The next part maybe a little bit tricky: To be able to use ROS in any project/environment you must have a ROS master node which is the main node that a user can communicate with either in the same device or by another devices.
 All you have to do is to specify in the <code class="docutils literal"><span class="pre">/.bashrc</span></code> file the IP address for the Master node and the host node (the other device).</p>
 <p>Open the <code class="docutils literal"><span class="pre">/.bashrc</span> <span class="pre">file</span></code> in the PC that has the master node and connected to the turtlebot robot. Scroll to the bottom of the file and add these lines:</p>

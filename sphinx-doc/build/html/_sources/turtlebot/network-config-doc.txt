@@ -35,6 +35,20 @@ ROS offer the ability to have a two way communication network between different 
 
 the highlighted network is the one you are connected to and the highlighted IP address is your device's IP.
 
+On your ROS master node type the following:
+
+.. code-block:: linux
+    
+    sudo apt-get install openssh-server
+
+On your host node(workstation PC) confirm that you can ssh to the master node by running this command:
+
+.. code-block:: linux
+
+    ssh name_of_turtlebot_PC@TURTLEBOT_IP 
+
+Then type the password for the turtlebot PC.
+
 The next part maybe a little bit tricky: To be able to use ROS in any project/environment you must have a ROS master node which is the main node that a user can communicate with either in the same device or by another devices.
 All you have to do is to specify in the ``/.bashrc`` file the IP address for the Master node and the host node (the other device).
 
