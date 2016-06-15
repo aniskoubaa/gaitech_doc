@@ -367,12 +367,12 @@ The last parameter which is <code class="docutils literal"><span class="pre">out
 <div class="section" id="a-voice-control-navigation-script">
 <h2>A Voice-Control Navigation Script<a class="headerlink" href="#a-voice-control-navigation-script" title="Permalink to this headline">¶</a></h2>
 <p>As mentioned before the <code class="docutils literal"><span class="pre">recognizer.py</span></code> node in the <cite>pocketsphinx</cite> package publishes a topic called <code class="docutils literal"><span class="pre">/recognizer/output</span></code>. But there must be a file that subscribes to this topic and gives orders to the robot according to the commands given by the user.
-The <code class="docutils literal"><span class="pre">voice_nav.py</span></code> file in the <cite>pocketsphinx</cite> package maps the commands into <cite>Twist</cite> messages that can be used to control your turtlebot robot.
-You can find this file in the <code class="docutils literal"><span class="pre">turtlebot_cont_movement/nodes</span></code> subdirectory.</p>
+The <code class="docutils literal"><span class="pre">voice_teleop.py</span></code> file in the <cite>pocketsphinx</cite> package maps the commands into <cite>Twist</cite> messages that can be used to control your turtlebot robot.
+You can find this file in the <code class="docutils literal"><span class="pre">turtlebot/voice_teleop</span></code> subdirectory.</p>
 </div>
 <div class="section" id="code-explanation">
 <h2>Code Explanation<a class="headerlink" href="#code-explanation" title="Permalink to this headline">¶</a></h2>
-<p>This is the content of the <code class="docutils literal"><span class="pre">voice_nav.py</span></code> file:</p>
+<p>This is the content of the <code class="docutils literal"><span class="pre">voice_teleop.py</span></code> file:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span> <span class="c1">#!/usr/bin/env python</span>
 
 <span class="kn">import</span> <span class="nn">rospy</span>
@@ -456,7 +456,7 @@ You can find this file in the <code class="docutils literal"><span class="pre">t
 </div>
 <p>Now create another launch file called <code class="docutils literal"><span class="pre">turtlebot_voice_teleop.launch</span></code> and its content should be:</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span>
- <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;voice_nav&quot;</span> <span class="na">pkg=</span><span class="s">&quot;turtlebot_cont_movement&quot;</span> <span class="na">type=</span><span class="s">&quot;voice_nav.py&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;voice_teleop&quot;</span> <span class="na">pkg=</span><span class="s">&quot;gaitech_doc&quot;</span> <span class="na">type=</span><span class="s">&quot;voice_teleop.py&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;scale_linear&quot;</span> <span class="na">value=</span><span class="s">&quot;0.5&quot;</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;scale_angular&quot;</span> <span class="na">value=</span><span class="s">&quot;1.5&quot;</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;max_speed&quot;</span> <span class="na">value=</span><span class="s">&quot;0.3&quot;</span><span class="nt">/&gt;</span>
@@ -482,7 +482,7 @@ You can find this file in the <code class="docutils literal"><span class="pre">t
 </div>
 <p>OR</p>
 <p>Bring up <cite>Stage</cite>  simulator using the following command:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch
+<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage.launch
 </pre></div>
 </div>
 <div class="admonition note">
@@ -497,12 +497,12 @@ You can find this file in the <code class="docutils literal"><span class="pre">t
 <p class="first admonition-title">Note</p>
 <p class="last">Make sure to check your Mic settings as discribed before.</p>
 </div>
-<p>Run the <code class="docutils literal"><span class="pre">cont_movement.launch</span></code> file which runs the <code class="docutils literal"><span class="pre">voice_nav.py</span></code> file:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_cont_movement cont_movement.launch
+<p>Run the <code class="docutils literal"><span class="pre">voice_teleop.launch</span></code> file which runs the <code class="docutils literal"><span class="pre">voice_teleop.py</span></code> file:</p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch gaitech_doc voice_teleop.launch
 </pre></div>
 </div>
 <p>The following command is responsible for controlling the speed of the robot:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_cont_movement turtlebot_voice_cont_movement.launch
+<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch gaitech_doc turtlebot_voice_teleop.launch
 </pre></div>
 </div>
 <p>Now test your robot by giving it any command from the list mentiond previously.</p>
@@ -513,11 +513,11 @@ You can find this file in the <code class="docutils literal"><span class="pre">t
 <p class="first admonition-title">Note</p>
 <p class="last">Before you test the robot make sure that your robot is in an open space with no obstacles or edges next to it.</p>
 </div>
-<p>From the ROS Master node(the Turtlebot&#8217;s laptop) run the following commands:</p>
+<p>From the ROS Mastegaitech_doclaptop run the following commands:</p>
 <div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch rbx1_bringup turtlebot_minimal_create.launch
 </pre></div>
 </div>
-<p>To make the monitoring process easier bring up <cite>rqt_console</cite> by running:</p>
+<p>To make the monitoring process easier bring up <code class="docutils literal"><span class="pre">rqt_console</span></code> by running:</p>
 <div class="highlight-linux"><div class="highlight"><pre><span></span>rqt_console &amp;
 </pre></div>
 </div>
@@ -525,17 +525,17 @@ You can find this file in the <code class="docutils literal"><span class="pre">t
 <p class="first admonition-title">Note</p>
 <p class="last">Check your sound settings as mentioned before.</p>
 </div>
-<p>On the host node(the user PC) run the <code class="docutils literal"><span class="pre">cont_movement.launch</span></code> file:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_cont_movement cont_movement.launch
+<p>On the host node(the user PC) run the <code class="docutils literal"><span class="pre">voice_teleop.launch</span></code> file:</p>
+<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch gaitech_doc voice_teleop.launch
 </pre></div>
 </div>
 <p>and in another terminal run the following command:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_cont_movement turtlebot_voice_cont_movement.launch
+<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch gaitech_doc turtlebot_voice_teleop.launch
 </pre></div>
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last">Try a simple command at first like the rotate right to avoid any accidents. You can change the robot&#8217;s speed by giving the command &#8220;go faster&#8221; or &#8220;slow down&#8221; and this will change the parameters for speed in the turtlebot_voice_nav.launch file. However, you will have to add the commands as mentioned previously in the <cite>config/cont_movement.txt</cite> file and redo all he steps again.</p>
+<p class="last">Try a simple command at first like the rotate right to avoid any accidents. You can change the robot&#8217;s speed by giving the command &#8220;go faster&#8221; or &#8220;slow down&#8221; and this will change the parameters for speed in the <code class="docutils literal"><span class="pre">turtlebot_voice_teleop.launch</span></code> file. However, you will have to add the commands as mentioned previously in the <code class="docutils literal"><span class="pre">config/voice_teleop.txt</span></code> file and redo all he steps again.</p>
 </div>
 <p>##import: speech-video in this location</p>
 </div>

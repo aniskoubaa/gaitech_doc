@@ -1,5 +1,5 @@
 <launch>
- <node name="voice_teleop" pkg="gaitech_doc" type="voice_teleop.py" output="screen">
+ <node name="voice_teleop" pkg="turtlebot_cont_movement" type="voice_teleop.py" output="screen">
  <param name="scale_linear" value="0.5" type="double"/>
  <param name="scale_angular" value="1.5" type="double"/>
  <param name="max_speed" value="0.3"/>

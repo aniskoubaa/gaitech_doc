@@ -239,14 +239,14 @@ A Voice-Control Navigation Script
 =================================
 
 As mentioned before the ``recognizer.py`` node in the `pocketsphinx` package publishes a topic called ``/recognizer/output``. But there must be a file that subscribes to this topic and gives orders to the robot according to the commands given by the user.
-The ``voice_nav.py`` file in the `pocketsphinx` package maps the commands into `Twist` messages that can be used to control your turtlebot robot.
-You can find this file in the ``turtlebot_cont_movement/nodes`` subdirectory.
+The ``voice_teleop.py`` file in the `pocketsphinx` package maps the commands into `Twist` messages that can be used to control your turtlebot robot.
+You can find this file in the ``turtlebot/voice_teleop`` subdirectory.
 
 
 Code Explanation
 ================
 
-This is the content of the ``voice_nav.py`` file:
+This is the content of the ``voice_teleop.py`` file:
 
 .. code-block:: python
 
@@ -335,7 +335,7 @@ Now create another launch file called ``turtlebot_voice_teleop.launch`` and its 
 .. code-block:: xml
     
     <launch>
-     <node name="voice_nav" pkg="turtlebot_cont_movement" type="voice_nav.py" output="screen">
+     <node name="voice_teleop" pkg="gaitech_doc" type="voice_teleop.py" output="screen">
      <param name="scale_linear" value="0.5" type="double"/>
      <param name="scale_angular" value="1.5" type="double"/>
      <param name="max_speed" value="0.3"/>
@@ -368,7 +368,7 @@ Bring up `Stage`  simulator using the following command:
 
 .. code-block:: linux
 
-   roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch
+   roslaunch turtlebot_stage turtlebot_in_stage.launch
 
 .. NOTE::
     These simulators requires a powerful PC with a good graphics card that can launch them. They also may crash once you start them but don't worry this is very normal, just rerun the script until it launches.
@@ -382,17 +382,17 @@ To able to view the commands that are recognizable by the robot we have to run t
 .. NOTE:: 
     Make sure to check your Mic settings as discribed before. 
 
-Run the ``cont_movement.launch`` file which runs the ``voice_nav.py`` file:
+Run the ``voice_teleop.launch`` file which runs the ``voice_teleop.py`` file:
 
 .. code-block:: linux
 
-   roslaunch turtlebot_cont_movement cont_movement.launch
+   roslaunch gaitech_doc voice_teleop.launch
 
 The following command is responsible for controlling the speed of the robot:
 
 .. code-block:: linux
 
-   roslaunch turtlebot_cont_movement turtlebot_voice_cont_movement.launch
+   roslaunch gaitech_doc turtlebot_voice_teleop.launch
 
 Now test your robot by giving it any command from the list mentiond previously.
 
@@ -402,13 +402,13 @@ Testing the Voice-Control with a Turtlebot Robot
 .. NOTE::
     Before you test the robot make sure that your robot is in an open space with no obstacles or edges next to it.
 
-From the ROS Master node(the Turtlebot's laptop) run the following commands:
+From the ROS Mastegaitech_doclaptop run the following commands:
 
 .. code-block:: linux
 
    roslaunch rbx1_bringup turtlebot_minimal_create.launch
 
-To make the monitoring process easier bring up `rqt_console` by running:
+To make the monitoring process easier bring up ``rqt_console`` by running:
 
 .. code-block:: linux
 
@@ -417,20 +417,20 @@ To make the monitoring process easier bring up `rqt_console` by running:
 .. NOTE::
     Check your sound settings as mentioned before.
 
-On the host node(the user PC) run the ``cont_movement.launch`` file:
+On the host node(the user PC) run the ``voice_teleop.launch`` file:
 
 .. code-block:: linux
 
-   roslaunch turtlebot_cont_movement cont_movement.launch
+   roslaunch gaitech_doc voice_teleop.launch
 
 and in another terminal run the following command:
 
 .. code-block:: linux
 
-   roslaunch turtlebot_cont_movement turtlebot_voice_cont_movement.launch
+   roslaunch gaitech_doc turtlebot_voice_teleop.launch
 
 .. TIP::
-    Try a simple command at first like the rotate right to avoid any accidents. You can change the robot's speed by giving the command "go faster" or "slow down" and this will change the parameters for speed in the turtlebot_voice_nav.launch file. However, you will have to add the commands as mentioned previously in the `config/cont_movement.txt` file and redo all he steps again.
+    Try a simple command at first like the rotate right to avoid any accidents. You can change the robot's speed by giving the command "go faster" or "slow down" and this will change the parameters for speed in the ``turtlebot_voice_teleop.launch`` file. However, you will have to add the commands as mentioned previously in the ``config/voice_teleop.txt`` file and redo all he steps again.
 
 
 ##import: speech-video in this location
