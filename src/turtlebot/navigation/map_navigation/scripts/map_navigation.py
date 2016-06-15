@@ -22,7 +22,7 @@ class map_navigation():
         
 	# Create a publisher which can "talk" to TurtleBot and tell it to move
         # Tip: You may need to change cmd_vel_mux/input/navi to /cmd_vel if you're not using TurtleBot2
-        self.cmd_vel = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
+        self.cmd_vel = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
      
 	#TurtleBot will stop if we don't keep telling it to move.  How often should we tell it to move? 5 HZ
         r = rospy.Rate(5);
@@ -30,15 +30,15 @@ class map_navigation():
         # Twist is a datatype for velocity
         move_cmd = Twist()
 	# let's go forward at 1 m/s
-        move_cmd.linear.x = 1
+        move_cmd.linear.x = 0.2
 	# let's turn at 0 radians/s
 	move_cmd.angular.z = 0
 
 	# Move it one step then stop the robot
         while not rospy.is_shutdown():
-	    # publish the velocity
+	    	# publish the velocity
             self.cmd_vel.publish(move_cmd)
-	        self.shutdown
+	        #self.shutdown
                         
         
     def shutdown(self):
