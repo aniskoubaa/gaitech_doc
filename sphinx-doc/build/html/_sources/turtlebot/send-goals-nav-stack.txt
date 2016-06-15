@@ -12,15 +12,7 @@ In this tutorial you will learn how to send destination goals to your robot thro
 Create a Package
 ================
 
-In order to create a node that sends commands/goals to the robot you have to create a ROS package. This package depends on the ``move_base_msgs``, ``actionlib`` and ``roscpp``. In your ``catkin_workspace`` type the following
-command:
-
-.. code-block:: linux
-	
-	catkin_create_pkg send_goals_nav_stack move_base_msgs actionlib roscpp
-	cd send_goals_nav_stack
-
-Next you need to create a file for the program in the following directory ``src/send_goals.cpp`` and write the following. The code is well commented so no need for furthur explanation:
+You need to create a file for the program in the following directory ``src/turtlebot/navigation/map_navigation/map_navigation.cpp`` and write the following. The code is well commented so no need for furthur explanation:
 
 .. code-block:: cpp
 	
@@ -35,7 +27,7 @@ Next you need to create a file for the program in the following directory ``src/
 	typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
 	int main(int argc, char** argv){
-  	ros::init(argc, argv, "send_goals");
+  	ros::init(argc, argv, "map_navigation");
 
   	//tell the action client that we want to spin a thread by default
   	MoveBaseClient ac("move_base", true);
@@ -79,8 +71,8 @@ In order to build up your file you just created need to edit your ``CMakeLists.t
 
 .. code-block:: python
 	
-	add_executable(send_goals src/send_goals.cpp)
-	target_link_libraries(send_goals ${catkin_LIBRARIES})
+	add_executable(map_navigation src/turtlebot/navigation/map_navigation/map_navigation.cpp)
+	target_link_libraries(map_navigation ${catkin_LIBRARIES})
 
 
 Build your workspace:
@@ -95,12 +87,12 @@ After that you need to start your Navigation Stack and check that the name of th
 	
 	rostopic list | grep move_base/goal
 
-If you saw some results then you have no errors otherwise just change the name of the action in the ``send_goals.cpp`` file to match the one in the robot navigation stack.
+If you saw some results then you have no errors otherwise just change the name of the action in the ``map_navigation.cpp`` file to match the one in the robot navigation stack.
 
 Then run the executable file you created before:
 
 .. code-block:: linux
 	
-	./bin/send_goals
+	./bin/map_navigation
 
 And you will notice your robot moving forward for 1 meter. 		
