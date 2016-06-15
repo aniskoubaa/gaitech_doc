@@ -42,7 +42,7 @@ Open the ``/.bashrc file`` in the PC that has the master node and connected to t
 
 .. code-block:: linux
 
-   #The localhost IP address
+   #The localhost IP address = IP address for the Master node
    export ROS_MASTER_URI=http://localhost:11311
    #The IP address for the Master node
    export ROS_HOSTNAME=192.168.8.101
