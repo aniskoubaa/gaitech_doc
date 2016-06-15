@@ -11,7 +11,7 @@ class RobotVoiceTeleop:
         rospy.init_node('voice_teleop')
         
         # Publish the Twist message to the cmd_vel topic
-        self.cmd_vel_pub = rospy.Publisher('cmd_vel', Twist, queue_size=5)
+        self.cmd_vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=5)
         
         # Subscribe to the /recognizer/output topic to receive voice commands.
         rospy.Subscriber('/recognizer/output', String, self.voice_command_callback)
@@ -32,8 +32,8 @@ class RobotVoiceTeleop:
         self.commands =             ['stop',
                                     'forward',
                                     'backward',
-                                    'rotate left',
-                                    'rotate right',
+                                    'left',
+                                    'right',
                                     ]
         rospy.loginfo("Ready to receive voice commands")
         # We have to keep publishing the cmd_vel message if we want the robot to keep moving.
@@ -52,10 +52,10 @@ class RobotVoiceTeleop:
             elif command == 'backward':
                 self.cmd_vel.linear.x = -0.2
                 self.cmd_vel.angular.z = 0.0
-            elif command == 'rotate left':
+            elif command == 'left':
                 self.cmd_vel.linear.x = 0.0
                 self.cmd_vel.angular.z = 0.5
-            elif command == 'rotate right':
+            elif command == 'right':
                 self.cmd_vel.linear.x = 0.0
                 self.cmd_vel.angular.z = -0.5
             elif command == 'stop':

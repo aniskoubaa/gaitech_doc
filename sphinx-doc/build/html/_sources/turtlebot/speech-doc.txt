@@ -21,7 +21,7 @@ Install PocketSphinx for Speech Recognition
 
 In order to download the ``pocketsphinx`` package on Ubuntu you need to install the ``gstreamer0.10-pocketsphinx`` and the ROS sound drivers.
 
-.. code-block:: linux
+.. code-block:: bash
 
     sudo apt-get install gstreamer0.10-pocketsphinx
     sudo apt-get install ros-indigo-pocketsphinx
@@ -41,14 +41,14 @@ First, you need to test of the recognizer is working. To get the best result it 
 Note that ``pocketsphinx`` comes as a packages in ROS Indigo. For more details, refer to `the pocketsphinx package <http://wiki.ros.org/pocketsphinx>`_ on ROS WiKi.
 You can find browse the directory of ``pocketsphinx`` package with the command:
 
-.. code-block:: linux
+.. code-block:: bash
 
    roscd pocketsphinx
 
 In the directory ``demo/``, you can observe the voice commands and dictionary. You may want to have a look at their content using ``more`` or ``nano`` text viewers. 
 Then, run the following command:
 
-.. code-block:: linux
+.. code-block:: bash
 
    roslaunch pocketsphinx robocup.launch
 
@@ -66,7 +66,7 @@ The ``robocup.dic`` contains the following code:
 This command will run the ``recognizer.py`` script with loading the dictionary ``robocup.dic``.
 A list of INFO messages will appear showing the loading of the recognition model. The last few messages will look like this:
 
-.. code-block:: linux
+.. code-block:: bash
 
     INFO: ngram_search_fwdtree.c(186): Creating search tree
     INFO: ngram_search_fwdtree.c(191): before: 0 root, 0 non-root channels, 12 single-phone words
@@ -92,13 +92,13 @@ If the recognizer successfuly detected your spoken word, you can move to the nex
 
 The spoken words found by the recognizer will be published to the topic ``/recognizer/output``. Type 
 
-.. code-block:: linux
+.. code-block:: bash
 
    rostopic echo /recognizer/output 
 
 in another terminal to see the results as follows:
 
-.. code-block:: linux
+.. code-block:: bash
 
     data: go to the room
     --
@@ -122,29 +122,29 @@ Code and dependencies
 =====================
 The scripts of voice teleoperation can be found in ``gaitech_doc/src/turtlebot/voice_teleop/`` that you imported from GITHUB. Make sure that you imported the code from GITHUB. 
 If you did not import the code from GITHUB, you can still create a new ROS package as follow:
-   * Go to your catkin workspace and then go to ``~/catkin_ws/src/`` 
-   * Create new a ROS package called ``gaitech_doc`` (or choose any other name) which depends on ``pocketsphinx``, ``roscpp``, ``rospy``, ``sound_play`` and ``std_msgs`` as follow:
+* Go to your catkin workspace and then go to ``~/catkin_ws/src/`` 
+* Create new a ROS package called ``gaitech_doc`` (or choose any other name) which depends on ``pocketsphinx``, ``roscpp``, ``rospy``, ``sound_play`` and ``std_msgs`` as follow:
 
-   .. code-block:: linux
+.. code-block:: bash
 
       catkin_create_pkg gaitech_doc roscpp rospy pocketsphinx sound_play std_msgs
 
  
  
-   * In the ``~/catkin_ws/src/``, write the following command to see all the files and folders created:
+* In the ``~/catkin_ws/src/``, write the following command to see all the files and folders created:
 
-   .. code-block:: linux
+.. code-block:: bash
 
       tree gaitech_doc
 
-   *  Now, compile your newly added package:
+*  Now, compile your newly added package:
 
-   .. code-block:: linux
+.. code-block:: bash
 
       $ cd ~/catkin_ws
       ~/catkin_ws$ catkin_make
 
-   *  Finally, open your ``package.xml`` file and add all the required dependencies (otherwise, your project will not find required packages):
+*  Finally, open your ``package.xml`` file and add all the required dependencies (otherwise, your project will not find required packages):
 
 .. code-block:: xml
 
@@ -201,7 +201,7 @@ that you need and the ``PocketSphinx`` can understand.
 Extract these files into the config subdirectory of the ``gaitech_doc`` package (or your package where you are working this example). These files must be provided as an input parameter to ``recognizer.py`` node. 
 To do so, you need to create a launch file as follow. 
    * First, create a folder and call it ``launch`` where to create launch files 
-   * Then, create a file called ``voice_teleop.launch``, and add the following XML code: 
+   * Then, create a file called ``recognizer.launch``, and add the following XML code: 
 
 .. code-block:: xml
 
@@ -213,22 +213,21 @@ To do so, you need to create a launch file as follow.
    </launch>
 
 .. NOTE::
-      If your package name is different from ``gaitech_doc`` make sure to consider this in the instruction ``value="$(find gaitech_doc)`` of the launch file. Otherwise, ROS will not be able to find the parameters
+      If your package name is different from ``gaitech_doc`` make sure to consider this in the instruction ``value="$(find gaitech_doc)`` of the launch file. Otherwise, ROS will not be able to find the parameters.
       Make sure that you put the correct path for the ``lm`` and ``dic`` files. 
 
 This file runs the ``recognizer.py`` node from the ``pocketsphinx`` package mentioned before in this tutorial. 
-The ``lm`` and ``dict`` parameters are mentioned how are they created and what is their use in the files ``motion_commands.lm`` and ``motion_commands.dic`` created in the previous step.
 The last parameter which is ``output="screen"`` is used to let us see in real-time the recognition results in the launch window.
 
-Launch the ``voice_teleop.launch`` file:
+Launch the ``recognizer.launch`` file:
 
-.. code-block:: linux
+.. code-block:: bash
    
-   roslaunch gaitech_doc voice_teleop.launch
+   roslaunch gaitech_doc recognizer.launch
 
 and in another terminal run the following command to see the published topics after giving the robot a couple of commands:
 
-.. code-block:: linux
+.. code-block:: bash
    
    rostopic echo /recognizer/output
 
@@ -238,15 +237,15 @@ and in another terminal run the following command to see the published topics af
 A Voice-Control Navigation Script
 =================================
 
-As mentioned before the ``recognizer.py`` node in the `pocketsphinx` package publishes a topic called ``/recognizer/output``. But there must be a file that subscribes to this topic and gives orders to the robot according to the commands given by the user.
-The ``voice_teleop.py`` file in the `pocketsphinx` package maps the commands into `Twist` messages that can be used to control your turtlebot robot.
-You can find this file in the ``turtlebot/voice_teleop`` subdirectory.
+In this section, we will present a small program ``src/turtlebot/voice_teleop/voice_teleop.py`` (``voice_teleop.cpp`` for C++) that will allow you to control your turtlebot robot using voice commands. 
+The idea is simple. The program will subscribe to the topic ``/recognizer/output``, which is published by the node ``recognizer.py`` node of the ``pocketsphinx`` package using the dictionary of words that we create above.
+Once a command is received, the callback function of the subscribed topic ``/recognizer/output`` will be executed to set the velocity of the robot based on the command received. 
 
 
 Code Explanation
 ================
 
-This is the content of the ``voice_teleop.py`` file:
+This is the content of the ``voice_teleop.py`` file in ``src/turtlebot/voice_teleop/`` directory:
 
 .. code-block:: python
 
@@ -330,87 +329,100 @@ This is the content of the ``voice_teleop.py`` file:
        except rospy.ROSInterruptException:
          rospy.loginfo("Voice navigation terminated.")
      
-Now create another launch file called ``turtlebot_voice_teleop.launch`` and its content should be:
+To execute the code, we create the following launch file called ``turtlebot_voice_teleop_stage.launch`` that will run the ``recognizer.py`` node, ``voice_teleop.py`` node and ``turtlebot_stage`` simulator. 
 
 .. code-block:: xml
     
     <launch>
-     <node name="voice_teleop" pkg="gaitech_doc" type="voice_teleop.py" output="screen">
-     <param name="scale_linear" value="0.5" type="double"/>
-     <param name="scale_angular" value="1.5" type="double"/>
-     <param name="max_speed" value="0.3"/>
-     <param name="start_speed" value="0.1"/>
-     <param name="linear_increment" value="0.05"/>
-     <param name="angular_increment" value="0.4"/>
-     </node>
+       <node name="recognizer" pkg="pocketsphinx" type="recognizer.py" output="screen">
+          <param name="lm" value="$(find gaitech_doc)/src/turtlebot/voice_teleop/config/motion_commands.lm"/>
+          <param name="dict" value="$(find gaitech_doc)/src/turtlebot/voice_teleop/config/motion_commands.dic"/>
+      </node>
+   
+      <node name="voice_teleop" pkg="gaitech_doc" type="voice_teleop.py" output="screen">
+         <remap from="/cmd_vel" to="/cmd_vel_mux/input/teleop"/>
+      </node>
+      
+      <include file="$(find turtlebot_stage)/launch/turtlebot_in_stage.launch"/> 
+   </launch>
+
+The first node starts the ``recognizer.py`` with the ``motion_command`` dictionary that we created previously.
+The scond node starts the ``voice_teleop.py`` node that will receives the voice commands and map them to velocities. 
+The third node starts the ``turtlebot_in_stage`` simulator and brings-up the turtlebot robot in simulatiion. This is equivalent to the command ``roslaunch turtlebot_stage turtlebot_in_stage.launch``. It also possible to run the ``voice_teleop.py`` node with Turtlebot Gazebo simulator by changing the last line of the launch file with
+
+.. code-block:: xml
+    
+    <launch>
+    ...
+      <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"/>
     </launch>
 
-This file controls the speed of the robot while moving.
 
-.. NOTE:: 
-    The increment speed parameters will be used when you add a command related to them such as `go faster`, `faster` or `go slower`, `slow`
+.. TIP::
+    It is important to note the topic remapping instruction ``<remap from="/cmd_vel" to="/cmd_vel_mux/input/teleop"/>`` in the launch file for the ``voice_teleop.py`` node. 
+    In fact, the ``voice_teleop.py`` node publishes velocities to the topic ``/cmd_vel``, whereas the turtlebot_stage simulator wait for velocities on the topic ``/cmd_vel_mux/input/teleop``.
+    This is the reason why we need to remap  the topic ``/cmd_vel`` to ``/cmd_vel_mux/input/teleop``. For more information about the ``<remap>`` tag, refer to `<remap> page in ROS WiKi <http://wiki.ros.org/roslaunch/XML/remap>`_.
 
 
 Testing the Voice-Control in the Gazebo and Stage Simulators
 ============================================================
+To test the voice teleopration using ``Turtlebot Stage simulator``, simply launch the launch file specified above as follows:
 
-This section introduce how to test the voice recognition with the Gazebo and Stage simulators. 
+.. code-block:: bash
 
-Now let's bring up `Gazebo`  with the simulation config file:
+   roslaunch gaitech_doc turtlebot_voice_teleop_stage.launch
 
-.. code-block:: linux
+Or, if you want to test with ``Turtlebot Gazebo Simulator``, simply run the following: 
 
-   roslaunch turtlebot_gazebo turtlebot_world.launch
+.. code-block:: bash
 
-OR
+   roslaunch gaitech_doc turtlebot_voice_teleop_gazebo.launch
 
-Bring up `Stage`  simulator using the following command:
+This is equivalent to running the following three commands in three terminals:
 
-.. code-block:: linux
+.. code-block:: bash
 
-   roslaunch turtlebot_stage turtlebot_in_stage.launch
+   roslaunch gaitech_doc recognizer.launch
+   rosrun gaitech_doc voice_teleop.py
+   roslaunch turtlebot_stage turtlebot_in_stage.launch 
 
 .. NOTE::
-    These simulators requires a powerful PC with a good graphics card that can launch them. They also may crash once you start them but don't worry this is very normal, just rerun the script until it launches.
+     These simulators requires a powerful PC with a good graphics card that can launch them. They also may crash once you start them but don't worry this is very normal, just rerun the script until it launches.
+     Make sure to check your Mic settings as described above. 
 
 To able to view the commands that are recognizable by the robot we have to run the ``rqt_console`` using the following command:
 
-.. code-block:: linux
+.. code-block:: bash
 
    rqt_console &
 
-.. NOTE:: 
-    Make sure to check your Mic settings as discribed before. 
 
-Run the ``voice_teleop.launch`` file which runs the ``voice_teleop.py`` file:
-
-.. code-block:: linux
-
-   roslaunch gaitech_doc voice_teleop.launch
-
-The following command is responsible for controlling the speed of the robot:
-
-.. code-block:: linux
-
-   roslaunch gaitech_doc turtlebot_voice_teleop.launch
-
-Now test your robot by giving it any command from the list mentiond previously.
-
-Testing the Voice-Control with a Turtlebot Robot
-================================================
+Now, test your robot by giving it any command from the list of commands you create above.
 
 .. NOTE::
+   Note that it is possible that commands are not correctly recognized if your voice is not clear or your microphone is not good enough. Try with high quality microphone for more reliable results.
+
+You can then update the code to add more commands, such as ``faster``, to increase the speed of the robot, ``slower``, to decrease the speed of the robot. The file  ``voice_teleop_advanced.py`` contains a more elaborated example with more commands. 
+
+
+Testing the Voice-Control with a Real Turtlebot Robot
+=====================================================
+
+Now, you will test the voice teleoperation with a real turtlebot robot. 
+
+.. WARNING::
     Before you test the robot make sure that your robot is in an open space with no obstacles or edges next to it.
+    Also, make sure that your computer machine is correctly configured to work with the Turtlebot laptop as in the :ref:`network-config-doc`.
 
-From the ROS Mastegaitech_doclaptop run the following commands:
+From the ROS Master gaitech_doc laptop run the following commands:
 
-.. code-block:: linux
+.. code-block:: bash
 
-   roslaunch rbx1_bringup turtlebot_minimal_create.launch
+   roslaunch turtlebot_bringup minimal.launch
 
 To make the monitoring process easier bring up ``rqt_console`` by running:
 
-.. code-block:: linux
+.. code-block:: bash
 
    rqt_console &
 
@@ -419,13 +431,13 @@ To make the monitoring process easier bring up ``rqt_console`` by running:
 
 On the host node(the user PC) run the ``voice_teleop.launch`` file:
 
-.. code-block:: linux
+.. code-block:: bash
 
    roslaunch gaitech_doc voice_teleop.launch
 
 and in another terminal run the following command:
 
-.. code-block:: linux
+.. code-block:: bash
 
    roslaunch gaitech_doc turtlebot_voice_teleop.launch
 

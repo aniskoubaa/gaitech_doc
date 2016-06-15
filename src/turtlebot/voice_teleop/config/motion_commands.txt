@@ -2,3 +2,4 @@ move forward
 move backward
 turn right
 turn left
+stop
