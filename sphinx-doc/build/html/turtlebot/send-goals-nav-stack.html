@@ -160,7 +160,7 @@
 </div>
 <div class="section" id="create-a-package">
 <h2>Create a Package<a class="headerlink" href="#create-a-package" title="Permalink to this headline">¶</a></h2>
-<p>You need to create a file for the program in the following directory <code class="docutils literal"><span class="pre">src/turtlebot/navigation/map_navigation/map_navigation.cpp</span></code> and write the following. The code is well commented so no need for furthur explanation:</p>
+<p>You need to create a file for the program in the following directory <code class="docutils literal"><span class="pre">src/turtlebot/navigation/map_navigation/map_navigation.cpp</span></code> (src/turtlebot/navigation/map_navigation/scripts/map_navigation.py in Python) and write the following. The code is well commented so no need for furthur explanation:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
 
 <span class="c1">//The following line is where we import the ``MoveBaseAction`` library which is responsible for accepting goals from users and move the robot to the specified location in its world.</span>
@@ -219,16 +219,16 @@ target_link_libraries(map_navigation ${catkin_LIBRARIES})
 </pre></div>
 </div>
 <p>Build your workspace:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>catkin_make
+<div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_make
 </pre></div>
 </div>
 <p>After that you need to start your Navigation Stack and check that the name of the action is similar to what we wrote in the program above or not:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>rostopic list | grep move_base/goal
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rostopic list <span class="p">|</span> grep move_base/goal
 </pre></div>
 </div>
 <p>If you saw some results then you have no errors otherwise just change the name of the action in the <code class="docutils literal"><span class="pre">map_navigation.cpp</span></code> file to match the one in the robot navigation stack.</p>
 <p>Then run the executable file you created before:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>./bin/map_navigation
+<div class="highlight-bash"><div class="highlight"><pre><span></span>./bin/map_navigation
 </pre></div>
 </div>
 <p>And you will notice your robot moving forward for 1 meter.</p>

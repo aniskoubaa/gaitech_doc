@@ -12,7 +12,7 @@ In this tutorial you will learn how to send destination goals to your robot thro
 Create a Package
 ================
 
-You need to create a file for the program in the following directory ``src/turtlebot/navigation/map_navigation/map_navigation.cpp`` and write the following. The code is well commented so no need for furthur explanation:
+You need to create a file for the program in the following directory ``src/turtlebot/navigation/map_navigation/map_navigation.cpp`` (src/turtlebot/navigation/map_navigation/scripts/map_navigation.py in Python) and write the following. The code is well commented so no need for furthur explanation:
 
 .. code-block:: cpp
 	
@@ -77,13 +77,13 @@ In order to build up your file you just created need to edit your ``CMakeLists.t
 
 Build your workspace:
 
-.. code-block:: linux
+.. code-block:: bash
 	
 	catkin_make
 
 After that you need to start your Navigation Stack and check that the name of the action is similar to what we wrote in the program above or not:
 
-.. code-block:: linux
+.. code-block:: bash
 	
 	rostopic list | grep move_base/goal
 
@@ -91,7 +91,7 @@ If you saw some results then you have no errors otherwise just change the name o
 
 Then run the executable file you created before:
 
-.. code-block:: linux
+.. code-block:: bash
 	
 	./bin/map_navigation
 
