@@ -156,7 +156,7 @@
 <h1>Turtlebot Simulators<a class="headerlink" href="#turtlebot-simulators" title="Permalink to this headline">¶</a></h1>
 <p>In this page, we will learn about two different simulators to test your Turtlebot robot programs.</p>
 <p>You need to install the software:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>sudo apt-get install ros-indigo-turtlebot-simulator
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-indigo-turtlebot-simulator
 </pre></div>
 </div>
 <p>There is a couple of simulators that you can help you with your robot such as Gazebo, Stage, RViz and Stdr. The most used simulators are the Gazebo and the stage.</p>
@@ -176,7 +176,7 @@
 </dl>
 <p>Stage is a 2D multi-robot simulator. It shows the user a world defined in a file with an extention <cite>.world</cite>. This world has everything the software needs to know from the obstacles, free space to robots and other objects.</p>
 <p>Run the following command to run the Stage simulator:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage.launch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage.launch
 </pre></div>
 </div>
 <img alt="../_images/stage_rviz.png" class="align-center" src="../_images/stage_rviz.png" />
@@ -186,13 +186,13 @@
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>You can run the following command</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch
 </pre></div>
 </div>
 <p class="last">if your PC is not powerful and can not run both simulators at the same time.</p>
 </div>
 <p>Open the turtlebot_stage directory and type</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>tree
+<div class="highlight-bash"><div class="highlight"><pre><span></span>tree
 </pre></div>
 </div>
 <p>to be able to see all the files but we are intersted in the following files:</p>
@@ -211,21 +211,21 @@
 </div>
 <p>In order to edit the map you want to have, open the file <code class="docutils literal"><span class="pre">maze.png</span></code> with any editor and modify it.</p>
 <p>Now you can run the simulator:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage.launch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage.launch
 </pre></div>
 </div>
 <p>You can also choose the <code class="docutils literal"><span class="pre">.world</span></code> and <code class="docutils literal"><span class="pre">.yaml</span></code> files by using the following command:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage.launch map_file:=&quot;~/path/to/new/file.yaml&quot; world_file:=&quot;~/path/to/new/file.world&quot;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage.launch map_file:<span class="o">=</span><span class="s2">&quot;~/path/to/new/file.yaml&quot;</span> world_file:<span class="o">=</span><span class="s2">&quot;~/path/to/new/file.world&quot;</span>
 </pre></div>
 </div>
 <p>Or in case you want to use the same files everytime you can run the following commands:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>export TURTLEBOT_STAGE_MAP_FILE=~/path/to/new/file.yaml
-export TURTLEBOT_STAGE_WORLD_FILE=~/path/to/new/file.world
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">TURTLEBOT_STAGE_MAP_FILE</span><span class="o">=</span>~/path/to/new/file.yaml
+<span class="nb">export</span> <span class="nv">TURTLEBOT_STAGE_WORLD_FILE</span><span class="o">=</span>~/path/to/new/file.world
 </pre></div>
 </div>
 <p>or simply add them to your shell setup file:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>echo export TURTLEBOT_STAGE_MAP_FILE=~/path/to/new/file.yaml &gt;&gt; devel/setup.sh
-echo export TURTLEBOT_STAGE_WORLD_FILE=~/path/to/new/file.world &gt;&gt; devel/setup.sh
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="nb">export</span> <span class="nv">TURTLEBOT_STAGE_MAP_FILE</span><span class="o">=</span>~/path/to/new/file.yaml &gt;&gt; devel/setup.sh
+<span class="nb">echo</span> <span class="nb">export</span> <span class="nv">TURTLEBOT_STAGE_WORLD_FILE</span><span class="o">=</span>~/path/to/new/file.world &gt;&gt; devel/setup.sh
 </pre></div>
 </div>
 <p>After you modify the map you may find out that the position of your robot is very close to an obstacle for example. Instead of moving the robot from the obstacle you can simply change the default position of the robot in the <code class="docutils literal"><span class="pre">.world</span></code> file by changing the values of the <cite>pose [x y z theta]</cite></p>
@@ -234,7 +234,7 @@ echo export TURTLEBOT_STAGE_WORLD_FILE=~/path/to/new/file.world &gt;&gt; devel/s
 <p class="last"><cite>theta</cite> is in degree.</p>
 </div>
 <p>or you can change tho position when you launch the simulator:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage.launch initial_pose_y:=2.0 initial_pose_x:=1.0
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage.launch initial_pose_y:<span class="o">=</span>2.0 initial_pose_x:<span class="o">=</span>1.0
 </pre></div>
 </div>
 <p>You can also add an obstacle in any position in the map and with any size you like by creating a new <code class="docutils literal"><span class="pre">.inc</span></code> file:</p>
@@ -263,7 +263,7 @@ echo export TURTLEBOT_STAGE_WORLD_FILE=~/path/to/new/file.world &gt;&gt; devel/s
 <h2>Gazebo Simulator<a class="headerlink" href="#gazebo-simulator" title="Permalink to this headline">¶</a></h2>
 <p>In this section we will bring up the turtlebot robot in the <cite>Gazebo</cite> simulator.</p>
 <p>To run the <cite>Gazebo</cite> simulator run the following command:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_gazebo turtlebot_world.launch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_gazebo turtlebot_world.launch
 </pre></div>
 </div>
 <img alt="../_images/gazebo.png" class="align-center" src="../_images/gazebo.png" />
@@ -279,13 +279,13 @@ echo export TURTLEBOT_STAGE_WORLD_FILE=~/path/to/new/file.world &gt;&gt; devel/s
 <p class="last">Try to make the teleop tutorial before you complete this tutorial to make sure you have all the necessary packages.</p>
 </div>
 <p>First, you need to bring up the <cite>Gazebo</cite> simulator as mentioned before. Second, open a new terminal and type the following:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_teleop keyboard_teleop.launch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_teleop keyboard_teleop.launch
 </pre></div>
 </div>
 <p>Try to move the robot around.</p>
 <img alt="../_images/gazebo_moving.png" class="align-center" src="../_images/gazebo_moving.png" />
 <p>Now to be able to see what the robot is acually sees you can open a new terminal and launch the RViz simulator:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>roslaunch turtlebot_rviz_launchers view_robot.launch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_rviz_launchers view_robot.launch
 </pre></div>
 </div>
 <img alt="../_images/gazebo_rviz.png" class="align-center" src="../_images/gazebo_rviz.png" />

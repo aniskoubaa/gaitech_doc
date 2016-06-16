@@ -14,32 +14,32 @@ Building your Map
 
 If you are working from source checkout, run this command:
 
-.. code-block:: linux
+.. code-block:: bash
 	
 	rosmake gmapping
 
 Download an bag to be able to test with:
 
-.. code-block:: linux
+.. code-block:: bash
 	
 	wget http://pr.willowgarage.com/data/gmapping/basic_localization_stage.bag
 
 Bring up your ROS master node:
 
-.. code-block:: linux
+.. code-block:: bash
 	
 	roscore
 
 .. NOTE:: 
 	Before running any nodes, make sure that the ``use_sim_time`` parameter is set to true which is responsible for the ``/clock`` topic which represent the `simulation time`:
 
-	.. code-block:: linux
+	.. code-block:: bash
 
 		rosparam set use_sim_time true
 
 Bring up ``slam_gmapping`` to be able to take in laser scans and produce a map:
 
-.. code-block:: linux
+.. code-block:: bash
 	
 	rosrun gmapping slam_gmapping scan:=base_scan
 
@@ -48,13 +48,13 @@ Bring up ``slam_gmapping`` to be able to take in laser scans and produce a map:
 
 To feed the data to ``slam_gmapping`` you need to run in a new terminal:
 
-.. code-block:: linux
+.. code-block:: bash
 	
 	rosbag play --clock <name_of_the_bag_that_you_downloaded>
 
 After ``rosbag`` finishes save and exit using the ``map_saver`` from the ``map_server`` package:
 
-.. code-block:: linux
+.. code-block:: bash
 	
 	rosrun map_server map_saver
 

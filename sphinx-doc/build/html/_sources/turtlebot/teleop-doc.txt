@@ -11,13 +11,13 @@ This tutorial will introduce to you how to control your turtlebot robot using ss
 
 On the Master node run the following command:
 
-.. code-block:: linux
+.. code-block:: bash
 
     roslaunch turtlebot_bringup minimal.launch
 
 On your PC (the host node) run the following command:
 
-.. code-block:: linux
+.. code-block:: bash
 
     roslaunch turtlebot_teleop keyboard_teleop.launch
 

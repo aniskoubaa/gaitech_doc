@@ -160,26 +160,26 @@
 <div class="section" id="building-your-map">
 <h2>Building your Map<a class="headerlink" href="#building-your-map" title="Permalink to this headline">¶</a></h2>
 <p>If you are working from source checkout, run this command:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>rosmake gmapping
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rosmake gmapping
 </pre></div>
 </div>
 <p>Download an bag to be able to test with:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>wget http://pr.willowgarage.com/data/gmapping/basic_localization_stage.bag
+<div class="highlight-bash"><div class="highlight"><pre><span></span>wget http://pr.willowgarage.com/data/gmapping/basic_localization_stage.bag
 </pre></div>
 </div>
 <p>Bring up your ROS master node:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>roscore
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roscore
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>Before running any nodes, make sure that the <code class="docutils literal"><span class="pre">use_sim_time</span></code> parameter is set to true which is responsible for the <code class="docutils literal"><span class="pre">/clock</span></code> topic which represent the <cite>simulation time</cite>:</p>
-<div class="last highlight-linux"><div class="highlight"><pre><span></span>rosparam set use_sim_time true
+<div class="last highlight-bash"><div class="highlight"><pre><span></span>rosparam <span class="nb">set</span> use_sim_time <span class="nb">true</span>
 </pre></div>
 </div>
 </div>
 <p>Bring up <code class="docutils literal"><span class="pre">slam_gmapping</span></code> to be able to take in laser scans and produce a map:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>rosrun gmapping slam_gmapping scan:=base_scan
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun gmapping slam_gmapping scan:<span class="o">=</span>base_scan
 </pre></div>
 </div>
 <div class="admonition note">
@@ -187,11 +187,11 @@
 <p class="last">This step may take a couple of minutes.</p>
 </div>
 <p>To feed the data to <code class="docutils literal"><span class="pre">slam_gmapping</span></code> you need to run in a new terminal:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>rosbag play --clock &lt;name_of_the_bag_that_you_downloaded&gt;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rosbag play --clock &lt;name_of_the_bag_that_you_downloaded&gt;
 </pre></div>
 </div>
 <p>After <code class="docutils literal"><span class="pre">rosbag</span></code> finishes save and exit using the <code class="docutils literal"><span class="pre">map_saver</span></code> from the <code class="docutils literal"><span class="pre">map_server</span></code> package:</p>
-<div class="highlight-linux"><div class="highlight"><pre><span></span>rosrun map_server map_saver
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun map_server map_saver
 </pre></div>
 </div>
 <p>After this step you have a working map in a <code class="docutils literal"><span class="pre">map.pgm</span></code> file that you can view in any image viewer.</p>
