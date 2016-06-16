@@ -26,7 +26,7 @@ Lecture 1: Start a ROS Master Node
       * Configure your ROS environment in the *.bashrc* script file
       * Find the list of ROS nodes and ROS topics
 
-
+.. youtube:: xgLETnSMMYA
 
 
 Lecture 2: Understanding ROS Topics, Nodes and Messages

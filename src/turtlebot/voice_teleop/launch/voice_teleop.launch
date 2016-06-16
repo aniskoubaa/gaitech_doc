@@ -7,5 +7,4 @@
         <node name="voice_teleop" pkg="gaitech_doc" type="voice_teleop.py" output="screen">
  		<remap from="/cmd_vel" to="/cmd_vel_mux/input/teleop"/>
  	</node>
-	
-   </launch>
+</launch>
