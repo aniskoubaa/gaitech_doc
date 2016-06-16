@@ -34,12 +34,12 @@ class map_navigation():
 	# let's turn at 0 radians/s
 	move_cmd.angular.z = 0
 
-	# Move it one step then stop the robot
+	# The robot will keep moving till you press ctrl + c
         while not rospy.is_shutdown():
 	    	# publish the velocity
             self.cmd_vel.publish(move_cmd)
 	        #self.shutdown
-                        
+            self.shutdown            
         
     def shutdown(self):
         # stop turtlebot

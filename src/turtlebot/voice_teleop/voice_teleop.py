@@ -32,8 +32,8 @@ class RobotVoiceTeleop:
         self.commands =             ['stop',
                                     'forward',
                                     'backward',
-                                    'left',
-                                    'right',
+                                    'turn left',
+                                    'turn right',
                                     ]
         rospy.loginfo("Ready to receive voice commands")
         # We have to keep publishing the cmd_vel message if we want the robot to keep moving.
@@ -52,10 +52,10 @@ class RobotVoiceTeleop:
             elif command == 'backward':
                 self.cmd_vel.linear.x = -0.2
                 self.cmd_vel.angular.z = 0.0
-            elif command == 'left':
+            elif command == 'turn left':
                 self.cmd_vel.linear.x = 0.0
                 self.cmd_vel.angular.z = 0.5
-            elif command == 'right':
+            elif command == 'turn right':
                 self.cmd_vel.linear.x = 0.0
                 self.cmd_vel.angular.z = -0.5
             elif command == 'stop':
@@ -77,5 +77,4 @@ if __name__=="__main__":
       rospy.spin()
     except rospy.ROSInterruptException:
       rospy.loginfo("Voice navigation terminated.")
-
 

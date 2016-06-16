@@ -368,7 +368,7 @@ Once a command is received, the callback function of the subscribed topic <code 
 <div class="section" id="code-explanation">
 <h2>Code Explanation<a class="headerlink" href="#code-explanation" title="Permalink to this headline">¶</a></h2>
 <p>This is the content of the <code class="docutils literal"><span class="pre">voice_teleop.py</span></code> file in <code class="docutils literal"><span class="pre">src/turtlebot/voice_teleop/</span></code> directory:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span> <span class="c1">#!/usr/bin/env python</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 
 <span class="kn">import</span> <span class="nn">rospy</span>
 <span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Twist</span>
@@ -381,7 +381,7 @@ Once a command is received, the callback function of the subscribed topic <code 
         <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;voice_teleop&#39;</span><span class="p">)</span>
 
         <span class="c1"># Publish the Twist message to the cmd_vel topic</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;cmd_vel&#39;</span><span class="p">,</span> <span class="n">Twist</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;/cmd_vel&#39;</span><span class="p">,</span> <span class="n">Twist</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
         <span class="c1"># Subscribe to the /recognizer/output topic to receive voice commands.</span>
         <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;/recognizer/output&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">voice_command_callback</span><span class="p">)</span>
@@ -400,11 +400,11 @@ Once a command is received, the callback function of the subscribed topic <code 
         <span class="c1"># A mapping from keywords or phrases to commands</span>
         <span class="c1">#we consider the following simple commands, which you can extend on your own</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">commands</span> <span class="o">=</span>             <span class="p">[</span><span class="s1">&#39;stop&#39;</span><span class="p">,</span>
-                                    <span class="s1">&#39;forward&#39;</span><span class="p">,</span>
-                                    <span class="s1">&#39;backward&#39;</span><span class="p">,</span>
-                                    <span class="s1">&#39;rotate left&#39;</span><span class="p">,</span>
-                                    <span class="s1">&#39;rotate right&#39;</span><span class="p">,</span>
-                                    <span class="p">]</span>
+                                <span class="s1">&#39;forward&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;backward&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;turn left&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;turn right&#39;</span><span class="p">,</span>
+                                <span class="p">]</span>
         <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Ready to receive voice commands&quot;</span><span class="p">)</span>
         <span class="c1"># We have to keep publishing the cmd_vel message if we want the robot to keep moving.</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">():</span>
@@ -422,10 +422,10 @@ Once a command is received, the callback function of the subscribed topic <code 
             <span class="k">elif</span> <span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;backward&#39;</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
-            <span class="k">elif</span> <span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;rotate left&#39;</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;turn left&#39;</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.5</span>
-            <span class="k">elif</span> <span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;rotate right&#39;</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;turn right&#39;</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span>
             <span class="k">elif</span> <span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;stop&#39;</span><span class="p">:</span>
@@ -498,8 +498,11 @@ roslaunch turtlebot_stage turtlebot_in_stage.launch
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">These simulators requires a powerful PC with a good graphics card that can launch them. They also may crash once you start them but don&#8217;t worry this is very normal, just rerun the script until it launches.
-Make sure to check your Mic settings as described above.</p>
+<p>These simulators requires a powerful PC with a good graphics card that can launch them. They also may crash once you start them but don&#8217;t worry this is very normal, just rerun the script until it launches.
+Make sure to check your Mic settings as described above. If you got an error running the <code class="docutils literal"><span class="pre">recognizer</span></code> node then try installing the following package:</p>
+<div class="last highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install gstreamer0.10-gconf
+</pre></div>
+</div>
 </div>
 <p>To able to view the commands that are recognizable by the robot we have to run the <code class="docutils literal"><span class="pre">rqt_console</span></code> using the following command:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>rqt_console <span class="p">&amp;</span>
