@@ -374,11 +374,17 @@ To test the voice teleopration using ``Turtlebot Stage simulator``, simply launc
 
    roslaunch gaitech_doc turtlebot_voice_teleop_stage.launch
 
+.. image:: images/voice_teleop_stage.png
+    :align: center
+
 Or, if you want to test with ``Turtlebot Gazebo Simulator``, simply run the following: 
 
 .. code-block:: bash
 
    roslaunch gaitech_doc turtlebot_voice_teleop_gazebo.launch
+
+.. image:: images/voice_teleop_gazebo.png
+    :align: center
 
 This is equivalent to running the following three commands in three terminals:
 
