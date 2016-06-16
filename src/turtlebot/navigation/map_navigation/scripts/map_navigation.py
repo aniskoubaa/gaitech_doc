@@ -29,7 +29,7 @@ class map_navigation():
 
         # Twist is a datatype for velocity
         move_cmd = Twist()
-	# let's go forward at 1 m/s
+	# let's go forward at 0.2 m/s
         move_cmd.linear.x = 0.2
 	# let's turn at 0 radians/s
 	move_cmd.angular.z = 0
