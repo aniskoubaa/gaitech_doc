@@ -40,4 +40,8 @@ target_link_libraries(voice_teleop_node ${catkin_LIBRARIES})
 #add_executable(joy_teleop src/turtlebot/voice_teleop/joy_teleop.cpp)
 #target_link_libraries(joy_teleop ${catkin_LIBRARIES})
 
+add_executable(free_space_navigation_node src/turtlebot/navigation/free_space_navigation/free_space_navigation.cpp)
+target_link_libraries(free_space_navigation_node ${catkin_LIBRARIES})
+
+
 
