@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sending Goals to the Navigation Stack &mdash; Gaitech Doc 2.5 documentation</title>
+  <title>Building a Map using Kenict sensor &mdash; Gaitech Doc 2.5 documentation</title>
   
 
   
@@ -34,7 +34,7 @@
   
     <link rel="top" title="Gaitech Doc 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
-        <link rel="next" title="Building a Map using Logged Data" href="build-map.html"/>
+        <link rel="next" title="Sending Goals to the Navigation Stack" href="send-goals-nav-stack.html"/>
         <link rel="prev" title="Turtlebot Voice Teleoperation" href="speech-doc.html"/> 
 
   
@@ -96,11 +96,8 @@
 <li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="turtlebot-first-tests.html">First Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Speech Recognition</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Send Goals to Navigation Stack</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#create-a-package">Create a Package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#build-the-package-and-run-it">Build the package and Run it</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Create a Map using Kenict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send-goals-nav-stack.html">Send Goals to Navigation Stack</a></li>
 <li class="toctree-l2"><a class="reference internal" href="build-map.html">Building a map using Logged Data</a></li>
 </ul>
 </li>
@@ -137,11 +134,11 @@
       
           <li><a href="turtlebot-tutorials.html">Turtlebot Quick Start Tutorials</a> &raquo;</li>
       
-    <li>Sending Goals to the Navigation Stack</li>
+    <li>Building a Map using Kenict sensor</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/send-goals-nav-stack.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/create-map-kenict.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -151,39 +148,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="sending-goals-to-the-navigation-stack">
-<span id="send-goals-nav-stack"></span><h1>Sending Goals to the Navigation Stack<a class="headerlink" href="#sending-goals-to-the-navigation-stack" title="Permalink to this headline">¶</a></h1>
-<p>In this tutorial you will learn how to send destination goals to your robot through the navigation stack without crashing in any obstacle that maybe in the robot&#8217;s world. We will use the RViz as a simulator to test our programs first. The user will have the option either to set the goal by clicking on the location on the map and the robot has to deal with the rest or by setting the goal by writing a code for the robot which is the aim of this tutorial.</p>
+  <div class="section" id="building-a-map-using-kenict-sensor">
+<span id="create-map-kenict"></span><h1>Building a Map using Kenict sensor<a class="headerlink" href="#building-a-map-using-kenict-sensor" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial you will learn how to build your own map using Kenict sensor attached to your turtlebot.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node and your navigation stack is working properly.</p>
+<p class="last">Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node.</p>
 </div>
-<div class="section" id="create-a-package">
-<h2>Create a Package<a class="headerlink" href="#create-a-package" title="Permalink to this headline">¶</a></h2>
-<p>You need to create a file for the program in the following directory <code class="docutils literal"><span class="pre">src/turtlebot/navigation/map_navigation/map_navigation.cpp</span></code> (src/turtlebot/navigation/map_navigation/scripts/map_navigation.py in Python) and write the following. The code is well commented so no need for furthur explanation:</p>
-</div>
-<div class="section" id="build-the-package-and-run-it">
-<h2>Build the package and Run it<a class="headerlink" href="#build-the-package-and-run-it" title="Permalink to this headline">¶</a></h2>
-<p>In order to build up your file you just created need to edit your <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code> file. Open the file and add the following lines to the bottom of the file.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>add_executable(map_navigation src/turtlebot/navigation/map_navigation/map_navigation.cpp)
-target_link_libraries(map_navigation ${catkin_LIBRARIES})
+<p>In order to connect the <cite>Kenict</cite> sensor with the ROS Indigo environment you can type the following three commands in your <code class="docutils literal"><span class="pre">.bashrc</span></code> file:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">TURTLEBOT_3D_SENSOR</span><span class="o">=</span>kenict
+<span class="nb">export</span> <span class="nv">TURTLEBOT_BASE</span><span class="o">=</span>kobuki
+<span class="nb">export</span> <span class="nv">TURTLEBOT_STACKS</span><span class="o">=</span>hexagons
 </pre></div>
 </div>
-<p>Build your workspace:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_make
+<p>Then save, exit and close the terminal.</p>
+<p>On you host node(your work station) run the following commands in separate terminals:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roscore
+roslaunch turtlebot_bringup minimal.launch
+roslaunch turtlebot_navigation gmapping_demo.launch
+roslaunch turtlebot_rviz_launchers view_navigation.launch
+roslaunch turtlebot_teleop keyboard_teleop.launch
 </pre></div>
 </div>
-<p>After that you need to start your Navigation Stack and check that the name of the action is similar to what we wrote in the program above or not:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rostopic list <span class="p">|</span> grep move_base/goal
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Connect to the Master node using the <code class="docutils literal"><span class="pre">ssh</span> <span class="pre">turtlebot_PC_name&#64;TURTLEBOT_IP</span></code> before running any command in every terminal you use.</p>
+</div>
+<p>Start moving the robot around and watch the RViz simulator as the map starts to show up.</p>
+<p>Finally you will end-up with a map looking like this one:</p>
+<img alt="../_images/kenict_map.png" class="align-center" src="../_images/kenict_map.png" />
+<p>You can save the map you just created by running the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun map_server map_saver -f /tmp/my_map
 </pre></div>
 </div>
-<p>If you saw some results then you have no errors otherwise just change the name of the action in the <code class="docutils literal"><span class="pre">map_navigation.cpp</span></code> file to match the one in the robot navigation stack.</p>
-<p>Then run the executable file you created before:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>./bin/map_navigation
-</pre></div>
-</div>
-<p>And you will notice your robot moving forward for 1 meter.</p>
-</div>
+<p>[<a href="#id1"><span class="problematic" id="id2">**</span></a>** Link to Vishu&#8217;s Video on YouTube <a href="#id3"><span class="problematic" id="id4">**</span></a><a href="#id5"><span class="problematic" id="id6">**</span></a>]</p>
 </div>
 
 
@@ -193,7 +191,7 @@ target_link_libraries(map_navigation ${catkin_LIBRARIES})
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="build-map.html" class="btn btn-neutral float-right" title="Building a Map using Logged Data" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="send-goals-nav-stack.html" class="btn btn-neutral float-right" title="Sending Goals to the Navigation Stack" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="speech-doc.html" class="btn btn-neutral" title="Turtlebot Voice Teleoperation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
