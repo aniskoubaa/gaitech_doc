@@ -15,11 +15,11 @@ In this page, we will provide you a quick start with Turtlebot robot.
 .. toctree::
    :hidden:
 
+   First Tests <turtlebot-first-tests>
    Network Configuration <network-config-doc>
    Turtlebot Simulators <turtlebot_simulators>
    Keyboard Teleop <teleop-doc>
-   First Tests <turtlebot-first-tests>
-   Speech Recognition <speech-doc>
+   Voice Teleoperation <speech-doc>
    Create a Map using Kenict <create-map-kenict>
    Send Goals to Navigation Stack<send-goals-nav-stack>
    Building a map using Logged Data<build-map>
