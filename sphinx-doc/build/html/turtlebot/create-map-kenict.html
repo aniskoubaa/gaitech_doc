@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Turtlebot Quick Start Tutorials &mdash; Gaitech Doc 2.5 documentation</title>
+  <title>Building a Map using Kenict sensor &mdash; Gaitech Doc 2.5 documentation</title>
   
 
   
@@ -33,8 +33,9 @@
 
   
     <link rel="top" title="Gaitech Doc 2.5 documentation" href="../index.html"/>
-        <link rel="next" title="Network Configuration" href="network-config-doc.html"/>
-        <link rel="prev" title="ROS Programming" href="../ros/ros-programming-basics.html"/> 
+        <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
+        <link rel="next" title="Sending Goals to the Navigation Stack" href="send-goals-nav-stack.html"/>
+        <link rel="prev" title="Turtlebot Voice Teleoperation" href="speech-doc.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -89,13 +90,13 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../ros/ros-background.html">ROS Background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ros/ros-programming-basics.html">Getting Started with ROS Programming</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Turtlebot Tutorials</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="turtlebot-tutorials.html">Turtlebot Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="network-config-doc.html">Network Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="turtlebot_simulators.html">Turtlebot Simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="turtlebot-first-tests.html">First Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Speech Recognition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kenict</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Create a Map using Kenict</a></li>
 <li class="toctree-l2"><a class="reference internal" href="send-goals-nav-stack.html">Send Goals to Navigation Stack</a></li>
 <li class="toctree-l2"><a class="reference internal" href="build-map.html">Building a map using Logged Data</a></li>
 </ul>
@@ -131,11 +132,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Turtlebot Quick Start Tutorials</li>
+          <li><a href="turtlebot-tutorials.html">Turtlebot Quick Start Tutorials</a> &raquo;</li>
+      
+    <li>Building a Map using Kenict sensor</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/turtlebot-tutorials.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/create-map-kenict.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -145,12 +148,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="turtlebot-quick-start-tutorials">
-<span id="turtlebot-tutorials"></span><h1>Turtlebot Quick Start Tutorials<a class="headerlink" href="#turtlebot-quick-start-tutorials" title="Permalink to this headline">¶</a></h1>
-<p>In this page, we will provide you a quick start with Turtlebot robot.</p>
-<img alt="../_images/turtlebot.png" class="align-center" src="../_images/turtlebot.png" />
-<div class="toctree-wrapper compound">
+  <div class="section" id="building-a-map-using-kenict-sensor">
+<span id="create-map-kenict"></span><h1>Building a Map using Kenict sensor<a class="headerlink" href="#building-a-map-using-kenict-sensor" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial you will learn how to build your own map using Kenict sensor attached to your turtlebot.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node.</p>
 </div>
+<p>In order to connect the <cite>Kenict</cite> sensor with the ROS Indigo environment you can type the following three commands in your <code class="docutils literal"><span class="pre">.bashrc</span></code> file:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">TURTLEBOT_3D_SENSOR</span><span class="o">=</span>kenict
+<span class="nb">export</span> <span class="nv">TURTLEBOT_BASE</span><span class="o">=</span>kobuki
+<span class="nb">export</span> <span class="nv">TURTLEBOT_STACKS</span><span class="o">=</span>hexagons
+</pre></div>
+</div>
+<p>Then save, exit and close the terminal.</p>
+<p>On you host node(your work station) run the following commands in separate terminals:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roscore
+roslaunch turtlebot_bringup minimal.launch
+roslaunch turtlebot_navigation gmapping_demo.launch
+roslaunch turtlebot_rviz_launchers view_navigation.launch
+roslaunch turtlebot_teleop keyboard_teleop.launch
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Connect to the Master node using the <code class="docutils literal"><span class="pre">ssh</span> <span class="pre">turtlebot_PC_name&#64;TURTLEBOT_IP</span></code> before running any command in every terminal you use.</p>
+</div>
+<p>Start moving the robot around and watch the RViz simulator as the map starts to show up.</p>
+<p>[<a href="#id1"><span class="problematic" id="id2">**</span></a>** Link to Vishu&#8217;s Video on YouTube <a href="#id3"><span class="problematic" id="id4">**</span></a><a href="#id5"><span class="problematic" id="id6">**</span></a>]</p>
 </div>
 
 
@@ -160,10 +185,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="network-config-doc.html" class="btn btn-neutral float-right" title="Network Configuration" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="send-goals-nav-stack.html" class="btn btn-neutral float-right" title="Sending Goals to the Navigation Stack" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../ros/ros-programming-basics.html" class="btn btn-neutral" title="ROS Programming" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="speech-doc.html" class="btn btn-neutral" title="Turtlebot Voice Teleoperation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
