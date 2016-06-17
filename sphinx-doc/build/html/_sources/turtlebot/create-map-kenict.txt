@@ -34,4 +34,16 @@ On you host node(your work station) run the following commands in separate termi
 
 Start moving the robot around and watch the RViz simulator as the map starts to show up. 
 
+Finally you will end-up with a map looking like this one:
+
+.. image:: images/kenict_map.png
+    :align: center
+
+You can save the map you just created by running the following command:
+
+.. code-block:: bash
+	
+	rosrun map_server map_saver -f /tmp/my_map
+
+
 [**** Link to Vishu's Video on YouTube ****]
