@@ -161,55 +161,6 @@
 <div class="section" id="create-a-package">
 <h2>Create a Package<a class="headerlink" href="#create-a-package" title="Permalink to this headline">¶</a></h2>
 <p>You need to create a file for the program in the following directory <code class="docutils literal"><span class="pre">src/turtlebot/navigation/map_navigation/map_navigation.cpp</span></code> (src/turtlebot/navigation/map_navigation/scripts/map_navigation.py in Python) and write the following. The code is well commented so no need for furthur explanation:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
-
-<span class="c1">//The following line is where we import the ``MoveBaseAction`` library which is responsible for accepting goals from users and move the robot to the specified location in its world.</span>
-<span class="cp">#include</span> <span class="cpf">&lt;move_base_msgs/MoveBaseAction.h&gt;</span><span class="cp"></span>
-
-<span class="cp">#include</span> <span class="cpf">&lt;actionlib/client/simple_action_client.h&gt;</span><span class="cp"></span>
-
-<span class="c1">//this line is where we create the client that will communicate with actions that adhere to the base station interface</span>
-<span class="k">typedef</span> <span class="n">actionlib</span><span class="o">::</span><span class="n">SimpleActionClient</span><span class="o">&lt;</span><span class="n">move_base_msgs</span><span class="o">::</span><span class="n">MoveBaseAction</span><span class="o">&gt;</span> <span class="n">MoveBaseClient</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">){</span>
-<span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">&quot;map_navigation&quot;</span><span class="p">);</span>
-
-<span class="c1">//tell the action client that we want to spin a thread by default</span>
-<span class="n">MoveBaseClient</span> <span class="n">ac</span><span class="p">(</span><span class="s">&quot;move_base&quot;</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
-
-<span class="c1">//wait for the action server to come up and then start the process</span>
-<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">ac</span><span class="p">.</span><span class="n">waitForServer</span><span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">Duration</span><span class="p">(</span><span class="mf">5.0</span><span class="p">))){</span>
-<span class="n">ROS_INFO</span><span class="p">(</span><span class="s">&quot;Waiting for the move_base action server to come up&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c1">//This is where you create the goal to send to move_base using move_base_msgs::MoveBaseGoal messages to tell the robot to move one meter forward in the coordinate frame.</span>
-<span class="n">move_base_msgs</span><span class="o">::</span><span class="n">MoveBaseGoal</span> <span class="n">goal</span><span class="p">;</span>
-
-<span class="c1">//we&#39;ll send a goal to the robot to move 1 meter forward</span>
-<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">&quot;base_link&quot;</span><span class="p">;</span>
-<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
-
-<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">;</span>
-<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">;</span>
-
-<span class="n">ROS_INFO</span><span class="p">(</span><span class="s">&quot;Sending goal&quot;</span><span class="p">);</span>
-
-<span class="c1">//this command sends the goal to the move_base node to be processed</span>
-<span class="n">ac</span><span class="p">.</span><span class="n">sendGoal</span><span class="p">(</span><span class="n">goal</span><span class="p">);</span>
-
-<span class="c1">//After finalizing everything you have to wait for the goal to finish processing</span>
-<span class="n">ac</span><span class="p">.</span><span class="n">waitForResult</span><span class="p">();</span>
-
-<span class="c1">//here we check for the goal if it succeded or failed and send a message according to the goal status.</span>
-<span class="k">if</span><span class="p">(</span><span class="n">ac</span><span class="p">.</span><span class="n">getState</span><span class="p">()</span> <span class="o">==</span> <span class="n">actionlib</span><span class="o">::</span><span class="n">SimpleClientGoalState</span><span class="o">::</span><span class="n">SUCCEEDED</span><span class="p">)</span>
-<span class="n">ROS_INFO</span><span class="p">(</span><span class="s">&quot;Hooray, the base moved 1 meter forward&quot;</span><span class="p">);</span>
-<span class="k">else</span>
-<span class="n">ROS_INFO</span><span class="p">(</span><span class="s">&quot;The base failed to move forward 1 meter for some reason&quot;</span><span class="p">);</span>
-
-<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
 </div>
 <div class="section" id="build-the-package-and-run-it">
 <h2>Build the package and Run it<a class="headerlink" href="#build-the-package-and-run-it" title="Permalink to this headline">¶</a></h2>

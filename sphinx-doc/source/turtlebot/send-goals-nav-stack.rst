@@ -15,7 +15,8 @@ Create a Package
 You need to create a file for the program in the following directory ``src/turtlebot/navigation/map_navigation/map_navigation.cpp`` (src/turtlebot/navigation/map_navigation/scripts/map_navigation.py in Python) and write the following. The code is well commented so no need for furthur explanation:
 
 .. code-block:: cpp
-	
+	//inspired by markwsilliman/turtlebot repository
+
 	#include <ros/ros.h>
 	
 	//The following line is where we import the ``MoveBaseAction`` library which is responsible for accepting goals from users and move the robot to the specified location in its world.

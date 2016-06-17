@@ -448,12 +448,6 @@ On the host node(the user PC) run the ``voice_teleop.launch`` file:
 
    roslaunch gaitech_doc voice_teleop.launch
 
-and in another terminal run the following command:
-
-.. code-block:: bash
-
-   roslaunch gaitech_doc turtlebot_voice_teleop.launch
-
 .. TIP::
     Try a simple command at first like the rotate right to avoid any accidents. You can change the robot's speed by giving the command "go faster" or "slow down" and this will change the parameters for speed in the ``turtlebot_voice_teleop.launch`` file. However, you will have to add the commands as mentioned previously in the ``config/voice_teleop.txt`` file and redo all he steps again.
 
