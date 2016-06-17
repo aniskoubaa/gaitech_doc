@@ -439,23 +439,16 @@ To make the monitoring process easier bring up ``rqt_console`` by running:
 
    rqt_console &
 
-.. NOTE::
-    Check your sound settings as mentioned before.
-
 On the host node(the user PC) run the ``voice_teleop.launch`` file:
 
 .. code-block:: bash
 
    roslaunch gaitech_doc voice_teleop.launch
 
-and in another terminal run the following command:
-
-.. code-block:: bash
-
-   roslaunch gaitech_doc turtlebot_voice_teleop.launch
-
 .. TIP::
-    Try a simple command at first like the rotate right to avoid any accidents. You can change the robot's speed by giving the command "go faster" or "slow down" and this will change the parameters for speed in the ``turtlebot_voice_teleop.launch`` file. However, you will have to add the commands as mentioned previously in the ``config/voice_teleop.txt`` file and redo all he steps again.
+    Try a simple command at first like the rotate right to avoid any accidents. 
+    You can change the robot's speed by giving the command "go faster" or "slow down" and this will change the parameters for speed in the ``turtlebot_voice_teleop.launch`` file. 
+    However, you will have to add the commands as mentioned previously in the ``config/voice_teleop.txt`` file and redo all he steps again.
 
 
 ##import: speech-video in this location

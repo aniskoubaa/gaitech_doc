@@ -28,6 +28,7 @@
 #include <fstream>
 
 using namespace std;
+#define LINEAR_VELOCITY_MINIMUM_THRESHOLD 0.2
 #define ANGULAR_VELOCITY_MINIMUM_THRESHOLD 0.4
 
 //declare publishers
@@ -53,6 +54,8 @@ double degree2radian(double degreeAngle);
 double radian2degree(double radianAngle);
 double calculateYaw( double x1, double y1, double x2,double y2);
 
+void moveSquare(double sideLength);
+
 int main(int argc, char **argv){
 
 	//initialize the ROS node
@@ -72,13 +75,7 @@ int main(int argc, char **argv){
 	loop.sleep();loop.sleep();loop.sleep();loop.sleep();loop.sleep();
 	ros::spinOnce();
 	while (ros::ok()){
-		move (0.5, 2.0, true);
-		ros::spinOnce();loop.sleep();
-		move_v2 (0.5, 2.0, false);
-		ros::spinOnce();loop.sleep();
-		move_v3 (0.5, 0.5, true);
-		ros::spinOnce();loop.sleep();
-		rotate (0.8, degree2radian(90), true);
+		moveSquare(1.0);
 		return 0;
 	}
 
@@ -97,6 +94,13 @@ void poseCallback(const nav_msgs::Odometry::ConstPtr & pose_message){
 	turtlebot_odom_pose.pose.pose.orientation.x=pose_message->pose.pose.orientation.x;
 	turtlebot_odom_pose.pose.pose.orientation.y=pose_message->pose.pose.orientation.y;
 	turtlebot_odom_pose.pose.pose.orientation.z=pose_message->pose.pose.orientation.z;
+}
+
+void moveSquare(double sideLength){
+	for (int i=0;i<4;i++){
+		move (0.5, sideLength, true);
+		rotate (0.4, degree2radian(90), true);
+	}
 }
 
 
@@ -353,7 +357,7 @@ double rotate(double angular_velocity, double radians,  bool clockwise)
 	double angle_turned =0.0;
 
 	//validate angular velocity; ANGULAR_VELOCITY_MINIMUM_THRESHOLD is the minimum allowed
-	angular_velocity=((angular_velocity>0.4)?angular_velocity:0.4);
+	angular_velocity=((angular_velocity>ANGULAR_VELOCITY_MINIMUM_THRESHOLD)?angular_velocity:ANGULAR_VELOCITY_MINIMUM_THRESHOLD);
 
 	while(radians < 0) radians += 2*M_PI;
 	while(radians > 2*M_PI) radians -= 2*M_PI;
