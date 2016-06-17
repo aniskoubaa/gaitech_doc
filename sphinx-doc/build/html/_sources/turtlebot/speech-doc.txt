@@ -9,11 +9,13 @@ This tutorial will introduce how to control your turtlebot robot using speech re
 .. WARNING::
     Make sure that you completed installing all the required packages in the previous tutorials and your network set-up is working fine between the ROS Master node and the host node.
 
-In this tutorial you will learn how to:
+.. NOTE::
 
-   * Teleoprate a real and simulated turtlebot with voice commands
-   * Create a custom voice-command vocabulary  
-   * Work with pocket-sphinx package in ROS 
+   In this tutorial you will learn how to:
+
+      * Teleoprate a real and simulated turtlebot with voice commands
+      * Create a custom voice-command vocabulary  
+      * Work with pocket-sphinx package in ROS 
 
 
 Install PocketSphinx for Speech Recognition
@@ -450,5 +452,64 @@ On the host node(the user PC) run the ``voice_teleop.launch`` file:
     You can change the robot's speed by giving the command "go faster" or "slow down" and this will change the parameters for speed in the ``turtlebot_voice_teleop.launch`` file. 
     However, you will have to add the commands as mentioned previously in the ``config/voice_teleop.txt`` file and redo all he steps again.
 
+Video Demonstration
+===================
 
-##import: speech-video in this location
+.. youtube :: mZ4-HIYWWOI
+
+Hands-on Activities
+===================
+
+In these section, you will extend the example above and implement a smarter version of the voice teleoperation application. 
+
+Question 1: Extending Voice Vocabulary
+--------------------------------------
+
+Extend the example above to consider more voice commands to control the robot motion. Implement the following commands:
+
+* define the following variables:
+
+   * ``start_speed`` : the initial speed used when starting the script. 
+   * ``linear_increment`` : a certain increment to add/substract to linear velocity. The default value is 0.05
+   * ``angular_increment`` : a certain increment to add/substract the angular velocity. The default value is 0.4
+   * ``max_speed``: the maximum linear velocity allowed
+   * ``max_angular_speed`` : the maximum angular velocity allowed
+* **rotate left**: makes the robot rotate to the left  (with a linear velocity equal to zero)
+* **rotate right**: makes the robot rotate to the right  (with a linear velocity equal to zero)
+* **turn left**: if the linear velocity is different from zero, it increases the angular velocity with ``linear_increment``. If the linear velocity is zero, it sets the angular velocity to the default angular speed (e.g. 0.5)
+* **turn right**: if the linear velocity is different from zero, it decreases the angular velocity with ``angular_increment``. If the linear velocity is zero, it sets the angular velocity to the default negative angular speed (e.g. -0.5) 
+* **slower**: decreases the linear velocity by the increment ``linear_increment``and the angular velocity by the increment ``angular_increment``
+* **faster**: increases the linear velocity by the increment ``linear_increment``and the angular velocity by the increment ``angular_increment``
+* **half**: sets the linear and angular velocities to the half of their current values. 
+* **full**: sets the linear speeds to the maximum speed value
+
+Make sure that all speeds are within the range of the minimum and maximum speeds allowed. 
+
+After modification, test you code as illustrated above on both simulated and real turtlebot robot. 
+
+
+Question2: Leveraging the Use of Launch Files
+---------------------------------------------
+The variables defined above ``linear_increment``, ``angular_increment``, ``max_speed`` and ``max_angular_speed`` are set based on the user's preference. 
+It is more appropriate to set these values as parameters into the launch file and then read these parameters from your program or script before using them.
+
+Modify the code so that to allow the user to define these parameters from the launch file. 
+
+.. Hint::
+   You should use ``rospy.get_param("~param_name", default_value)`` in Python to read a parameter from a launch file and
+   use ``nh.getParam("/global_name", global_name)``  in C++. For more details refer to `Python Parameter Server <http://wiki.ros.org/rospy/Overview/Parameter%20Server>`_   and `C++ Parameter Server <http://wiki.ros.org/roscpp/Overview/Parameter%20Server>`_. 
+
+
+Question3: Enabling/Disabling Voice Teleopration
+------------------------------------------------
+
+Now, you will add a new functionality to either enable or disable the voice teleopration. 
+For this, you need to add two keywords into the vocabulary. 
+   * ``pause``: when the user says ``pause`` the voice teleoperation should be paused. It means even if the user says more voice commands, they will not be executed
+   * ``resume``: when the user says ``resume``, the voice teleopration is resumed and voice commands will be executed again.  
+
+Make necessary changes to provide these functionalities. 
+                         
+                                    
+
+

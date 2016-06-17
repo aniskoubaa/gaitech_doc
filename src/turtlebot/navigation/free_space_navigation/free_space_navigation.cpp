@@ -62,9 +62,6 @@ int main(int argc, char **argv){
 	ros::init(argc, argv, "free_space_navigation_node");
 	ros::NodeHandle n;
 
-
-
-
 	//subscribe to the odometry topic to get the position of the robot
 	pose_subscriber = n.subscribe("/odom", 10, poseCallback);
 	//register the velocity publisher
@@ -72,12 +69,26 @@ int main(int argc, char **argv){
 
 	ros::spinOnce();
 	ros::Rate loop(1);
-	loop.sleep();loop.sleep();loop.sleep();loop.sleep();loop.sleep();
+	loop.sleep();loop.sleep();loop.sleep();//loop.sleep();loop.sleep();
 	ros::spinOnce();
+
 	while (ros::ok()){
+		ros::spinOnce();loop.sleep();
+		printf("robot initial pose: (%.2f, %.2f, %.2f)\n",
+										turtlebot_odom_pose.pose.pose.position.x,
+										turtlebot_odom_pose.pose.pose.position.y,
+										radian2degree(tf::getYaw(turtlebot_odom_pose.pose.pose.orientation)));
 		moveSquare(1.0);
+		//exercise: try to remove the ros::SpinOnce() and observe and comment the result
+		ros::spinOnce();loop.sleep();ros::spinOnce();
+		printf("robot final pose: (%.2f, %.2f, %.2f)\n",
+											turtlebot_odom_pose.pose.pose.position.x,
+											turtlebot_odom_pose.pose.pose.position.y,
+											radian2degree(tf::getYaw(turtlebot_odom_pose.pose.pose.orientation)));
 		return 0;
 	}
+
+
 
 	return 0;
 }
@@ -194,7 +205,7 @@ void move(double speed, double distance, bool isForward){
 		distance_moved = sqrt(pow((current_transform.getOrigin().x()-init_transform.getOrigin().x()), 2) +
 				pow((current_transform.getOrigin().y()-init_transform.getOrigin().y()), 2));
 
-		cout<<"Method 1: distance moved: "<<distance_moved <<", "<<distance<<endl;
+		//cout<<"Method 1: distance moved: "<<distance_moved <<", "<<distance<<endl;
 		//cout<<turtlebot_odom_pose.pose.pose.position.x<<", "<<turtlebot_odom_pose.pose.pose.position.y<<endl;
 		//cout<<init_transform.getOrigin().x() <<", "<<init_transform.getOrigin().y()<<endl;
 		//cout<<current_transform.getOrigin().x() <<", "<<current_transform.getOrigin().y()<<endl<<endl;

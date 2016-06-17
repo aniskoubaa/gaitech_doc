@@ -4,9 +4,9 @@
    contain the root `toctree` directive.
 
 .. _ros-doc:
-===================================
-Welcome to Gaitech's Documentation!
-===================================
+======================================
+Welcome to Gaitech's Education Portal!
+======================================
 
 
    

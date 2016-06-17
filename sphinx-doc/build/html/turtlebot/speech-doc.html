@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Turtlebot Voice Teleoperation &mdash; Gaitech Doc 2.5 documentation</title>
+  <title>Turtlebot Voice Teleoperation &mdash; Gaitech EDU 2.5 documentation</title>
   
 
   
@@ -32,9 +32,9 @@
   
 
   
-    <link rel="top" title="Gaitech Doc 2.5 documentation" href="../index.html"/>
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
-        <link rel="next" title="Sending Goals to the Navigation Stack" href="send-goals-nav-stack.html"/>
+        <link rel="next" title="Building a Map using Kenict sensor" href="create-map-kenict.html"/>
         <link rel="prev" title="Turtlebot First Tests" href="turtlebot-first-tests.html"/> 
 
   
@@ -53,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> Gaitech Doc
+            <a href="../index.html" class="icon icon-home"> Gaitech EDU
           
 
           
@@ -104,8 +104,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#code-explanation">Code Explanation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#testing-the-voice-control-in-the-gazebo-and-stage-simulators">Testing the Voice-Control in the Gazebo and Stage Simulators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#testing-the-voice-control-with-a-real-turtlebot-robot">Testing the Voice-Control with a Real Turtlebot Robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#video-demonstration">Video Demonstration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hands-on-activities">Hands-on Activities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#question-1-extending-voice-vocabulary">Question 1: Extending Voice Vocabulary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#question2-leveraging-the-use-of-launch-files">Question2: Leveraging the Use of Launch Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#question3-enabling-disabling-voice-teleopration">Question3: Enabling/Disabling Voice Teleopration</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kenict</a></li>
 <li class="toctree-l2"><a class="reference internal" href="send-goals-nav-stack.html">Send Goals to Navigation Stack</a></li>
 <li class="toctree-l2"><a class="reference internal" href="build-map.html">Building a map using Logged Data</a></li>
 </ul>
@@ -124,7 +132,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">Gaitech Doc</a>
+        <a href="../index.html">Gaitech EDU</a>
       </nav>
 
 
@@ -164,14 +172,17 @@
 <p class="first admonition-title">Warning</p>
 <p class="last">Make sure that you completed installing all the required packages in the previous tutorials and your network set-up is working fine between the ROS Master node and the host node.</p>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
 <p>In this tutorial you will learn how to:</p>
-<blockquote>
+<blockquote class="last">
 <div><ul class="simple">
 <li>Teleoprate a real and simulated turtlebot with voice commands</li>
 <li>Create a custom voice-command vocabulary</li>
 <li>Work with pocket-sphinx package in ROS</li>
 </ul>
 </div></blockquote>
+</div>
 <div class="section" id="install-pocketsphinx-for-speech-recognition">
 <h2>Install PocketSphinx for Speech Recognition<a class="headerlink" href="#install-pocketsphinx-for-speech-recognition" title="Permalink to this headline">¶</a></h2>
 <p>In order to download the <code class="docutils literal"><span class="pre">pocketsphinx</span></code> package on Ubuntu you need to install the <code class="docutils literal"><span class="pre">gstreamer0.10-pocketsphinx</span></code> and the ROS sound drivers.</p>
@@ -543,7 +554,71 @@ Also, make sure that your computer machine is correctly configured to work with 
 You can change the robot&#8217;s speed by giving the command &#8220;go faster&#8221; or &#8220;slow down&#8221; and this will change the parameters for speed in the <code class="docutils literal"><span class="pre">turtlebot_voice_teleop.launch</span></code> file.
 However, you will have to add the commands as mentioned previously in the <code class="docutils literal"><span class="pre">config/voice_teleop.txt</span></code> file and redo all he steps again.</p>
 </div>
-<p>##import: speech-video in this location</p>
+</div>
+<div class="section" id="video-demonstration">
+<h2>Video Demonstration<a class="headerlink" href="#video-demonstration" title="Permalink to this headline">¶</a></h2>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/mZ4-HIYWWOI" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
+<div class="section" id="hands-on-activities">
+<h2>Hands-on Activities<a class="headerlink" href="#hands-on-activities" title="Permalink to this headline">¶</a></h2>
+<p>In these section, you will extend the example above and implement a smarter version of the voice teleoperation application.</p>
+<div class="section" id="question-1-extending-voice-vocabulary">
+<h3>Question 1: Extending Voice Vocabulary<a class="headerlink" href="#question-1-extending-voice-vocabulary" title="Permalink to this headline">¶</a></h3>
+<p>Extend the example above to consider more voice commands to control the robot motion. Implement the following commands:</p>
+<ul>
+<li><p class="first">define the following variables:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">start_speed</span></code> : the initial speed used when starting the script.</li>
+<li><code class="docutils literal"><span class="pre">linear_increment</span></code> : a certain increment to add/substract to linear velocity. The default value is 0.05</li>
+<li><code class="docutils literal"><span class="pre">angular_increment</span></code> : a certain increment to add/substract the angular velocity. The default value is 0.4</li>
+<li><code class="docutils literal"><span class="pre">max_speed</span></code>: the maximum linear velocity allowed</li>
+<li><code class="docutils literal"><span class="pre">max_angular_speed</span></code> : the maximum angular velocity allowed</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>rotate left</strong>: makes the robot rotate to the left  (with a linear velocity equal to zero)</p>
+</li>
+<li><p class="first"><strong>rotate right</strong>: makes the robot rotate to the right  (with a linear velocity equal to zero)</p>
+</li>
+<li><p class="first"><strong>turn left</strong>: if the linear velocity is different from zero, it increases the angular velocity with <code class="docutils literal"><span class="pre">linear_increment</span></code>. If the linear velocity is zero, it sets the angular velocity to the default angular speed (e.g. 0.5)</p>
+</li>
+<li><p class="first"><strong>turn right</strong>: if the linear velocity is different from zero, it decreases the angular velocity with <code class="docutils literal"><span class="pre">angular_increment</span></code>. If the linear velocity is zero, it sets the angular velocity to the default negative angular speed (e.g. -0.5)</p>
+</li>
+<li><p class="first"><strong>slower</strong>: decreases the linear velocity by the increment <code class="docutils literal"><span class="pre">linear_increment``and</span> <span class="pre">the</span> <span class="pre">angular</span> <span class="pre">velocity</span> <span class="pre">by</span> <span class="pre">the</span> <span class="pre">increment</span> <span class="pre">``angular_increment</span></code></p>
+</li>
+<li><p class="first"><strong>faster</strong>: increases the linear velocity by the increment <code class="docutils literal"><span class="pre">linear_increment``and</span> <span class="pre">the</span> <span class="pre">angular</span> <span class="pre">velocity</span> <span class="pre">by</span> <span class="pre">the</span> <span class="pre">increment</span> <span class="pre">``angular_increment</span></code></p>
+</li>
+<li><p class="first"><strong>half</strong>: sets the linear and angular velocities to the half of their current values.</p>
+</li>
+<li><p class="first"><strong>full</strong>: sets the linear speeds to the maximum speed value</p>
+</li>
+</ul>
+<p>Make sure that all speeds are within the range of the minimum and maximum speeds allowed.</p>
+<p>After modification, test you code as illustrated above on both simulated and real turtlebot robot.</p>
+</div>
+<div class="section" id="question2-leveraging-the-use-of-launch-files">
+<h3>Question2: Leveraging the Use of Launch Files<a class="headerlink" href="#question2-leveraging-the-use-of-launch-files" title="Permalink to this headline">¶</a></h3>
+<p>The variables defined above <code class="docutils literal"><span class="pre">linear_increment</span></code>, <code class="docutils literal"><span class="pre">angular_increment</span></code>, <code class="docutils literal"><span class="pre">max_speed</span></code> and <code class="docutils literal"><span class="pre">max_angular_speed</span></code> are set based on the user&#8217;s preference.
+It is more appropriate to set these values as parameters into the launch file and then read these parameters from your program or script before using them.</p>
+<p>Modify the code so that to allow the user to define these parameters from the launch file.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">You should use <code class="docutils literal"><span class="pre">rospy.get_param(&quot;~param_name&quot;,</span> <span class="pre">default_value)</span></code> in Python to read a parameter from a launch file and
+use <code class="docutils literal"><span class="pre">nh.getParam(&quot;/global_name&quot;,</span> <span class="pre">global_name)</span></code>  in C++. For more details refer to <a class="reference external" href="http://wiki.ros.org/rospy/Overview/Parameter%20Server">Python Parameter Server</a>   and <a class="reference external" href="http://wiki.ros.org/roscpp/Overview/Parameter%20Server">C++ Parameter Server</a>.</p>
+</div>
+</div>
+<div class="section" id="question3-enabling-disabling-voice-teleopration">
+<h3>Question3: Enabling/Disabling Voice Teleopration<a class="headerlink" href="#question3-enabling-disabling-voice-teleopration" title="Permalink to this headline">¶</a></h3>
+<p>Now, you will add a new functionality to either enable or disable the voice teleopration.
+For this, you need to add two keywords into the vocabulary.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">pause</span></code>: when the user says <code class="docutils literal"><span class="pre">pause</span></code> the voice teleoperation should be paused. It means even if the user says more voice commands, they will not be executed</li>
+<li><code class="docutils literal"><span class="pre">resume</span></code>: when the user says <code class="docutils literal"><span class="pre">resume</span></code>, the voice teleopration is resumed and voice commands will be executed again.</li>
+</ul>
+</div></blockquote>
+<p>Make necessary changes to provide these functionalities.</p>
+</div>
 </div>
 </div>
 
@@ -554,7 +629,7 @@ However, you will have to add the commands as mentioned previously in the <code 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="send-goals-nav-stack.html" class="btn btn-neutral float-right" title="Sending Goals to the Navigation Stack" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="create-map-kenict.html" class="btn btn-neutral float-right" title="Building a Map using Kenict sensor" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="turtlebot-first-tests.html" class="btn btn-neutral" title="Turtlebot First Tests" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
