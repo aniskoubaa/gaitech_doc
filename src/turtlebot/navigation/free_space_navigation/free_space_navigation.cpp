@@ -109,8 +109,8 @@ void poseCallback(const nav_msgs::Odometry::ConstPtr & pose_message){
 
 void moveSquare(double sideLength){
 	for (int i=0;i<4;i++){
-		move (0.5, sideLength, true);
-		rotate (0.4, degree2radian(90), true);
+		move(0.3, sideLength, true);
+		rotate (0.3, degree2radian(85), true);
 	}
 }
 
