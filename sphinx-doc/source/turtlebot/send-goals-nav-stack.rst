@@ -94,6 +94,6 @@ Then run the executable file you created before:
 
 .. code-block:: bash
 	
-	./bin/map_navigation
+	rosrun gaitech_doc map_navigation
 
 And you will notice your robot moving forward for 1 meter. 		
