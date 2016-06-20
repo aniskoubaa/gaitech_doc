@@ -27,7 +27,7 @@ class free_space_navigation():
         #let's turn at 45 deg/s
         turnMessage = Twist()
         turnMessage.linear.x = 0
-        turnMessage.angular.z = radians(45); #45 deg/s in radians/s
+        turnMessage.angular.z = radians(25); #45 deg/s in radians/s
 
     #two keep drawing squares.  Go forward for 2 seconds (10 x 5 HZ) then turn for 2 second
     count = 0
@@ -59,3 +59,5 @@ if __name__ == '__main__':
         free_space_navigation()
     except:
         rospy.loginfo("node terminated.")
+
+
