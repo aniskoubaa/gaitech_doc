@@ -182,7 +182,7 @@ void move(double speed, double distance, bool isForward){
 		 *************************************************/
 		try{
 			//wait for the transform to be found
-			listener.waitForTransform("/map", "/odom", ros::Time(0), ros::Duration(10.0) );
+			listener.waitForTransform("/base_footprint", "/odom", ros::Time(0), ros::Duration(10.0) );
 			//Once the transform is found,get the initial_transform transformation.
 			listener.lookupTransform("/base_footprint", "/odom",ros::Time(0), current_transform);
 		}
@@ -279,7 +279,7 @@ void move_v2(double speed, double distance, bool isForward){
 		 *************************************************/
 		try{
 			//wait for the transform to be found
-			listener.waitForTransform("/map", "/odom", ros::Time(0), ros::Duration(10.0) );
+			listener.waitForTransform("/base_footprint", "/odom", ros::Time(0), ros::Duration(10.0) );
 			//Once the transform is found,get the initial_transform transformation.
 			listener.lookupTransform("/base_footprint", "/odom",ros::Time(0), current_transform);
 		}
