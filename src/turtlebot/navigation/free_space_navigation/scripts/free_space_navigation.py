@@ -11,7 +11,7 @@ from nav_msgs.msg import Odometry
 class free_space_navigation():
     LINEAR_VELOCITY_MINIMUM_THRESHOLD  = 0.2
     ANGULAR_VELOCITY_MINIMUM_THRESHOLD = 0.4
-    turtlebot_odom_pose = Odometry()
+    
 
     def __init__(self):
         # initiliaze
@@ -19,7 +19,7 @@ class free_space_navigation():
 
         # What to do you ctrl + c    
         rospy.on_shutdown(self.shutdown)
-        
+        self.turtlebot_odom_pose = Odometry()
         self.velocityPublisher = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size=10)
         self.pose_subscriber = rospy.Subscribe("/odom", 10, self.poseCallback)     
     # 2 HZ
