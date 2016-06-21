@@ -33,7 +33,7 @@ class free_space_navigation():
         self.turtlebot_odom_pose = Odometry()
     pose_message = Odometry()
         self.velocityPublisher = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size=10)
-        self.pose_subscriber = rospy.Subscriber("/odom", 10, poseCallback)     
+        self.pose_subscriber = rospy.Subscriber("/odom", 10, self.poseCallback)     
     # 2 HZ
         r = rospy.Rate(2)
         r.sleep()
