@@ -339,8 +339,8 @@ void move_v3(double speed, double distance, bool isForward){
 		loop_rate.sleep();
 		distance_moved = sqrt(pow((turtlebot_odom_pose.pose.pose.position.x-initial_turtlebot_odom_pose.pose.pose.position.x), 2) +
 				pow((turtlebot_odom_pose.pose.pose.position.y-initial_turtlebot_odom_pose.pose.pose.position.y), 2));
-		cout<<turtlebot_odom_pose.pose.pose.position.x<<", "<<turtlebot_odom_pose.pose.pose.position.y<<endl;
-		cout<<"Method 3: distance moved: "<<distance_moved <<", "<<distance<<endl<<endl;
+		//cout<<turtlebot_odom_pose.pose.pose.position.x<<", "<<turtlebot_odom_pose.pose.pose.position.y<<endl;
+		//cout<<"Method 3: distance moved: "<<distance_moved <<", "<<distance<<endl<<endl;
 	}while((distance_moved<distance)&&(ros::ok()));
 	//finally, stop the robot when the distance is moved
 	VelocityMessage.linear.x =0;
