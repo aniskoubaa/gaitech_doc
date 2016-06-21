@@ -13,15 +13,27 @@ class free_space_navigation():
     ANGULAR_VELOCITY_MINIMUM_THRESHOLD = 0.4
     
 
+    def poseCallback(self,pose_message):
+
+        self.turtlebot_odom_pose.pose.pose.position.x=pose_message.pose.pose.position.x
+        self.turtlebot_odom_pose.pose.pose.position.y=pose_message.pose.pose.position.y
+        self.turtlebot_odom_pose.pose.pose.position.z=pose_message.pose.pose.position.z
+
+        self.turtlebot_odom_pose.pose.pose.orientation.w=pose_message.pose.pose.orientation.w
+        self.turtlebot_odom_pose.pose.pose.orientation.x=pose_message.pose.pose.orientation.x
+        self.turtlebot_odom_pose.pose.pose.orientation.y=pose_message.pose.pose.orientation.y
+        self.turtlebot_odom_pose.pose.pose.orientation.z=pose_message.pose.pose.orientation.z
+
     def __init__(self):
         # initiliaze
-        rospy.init_node('free_space_navigation', anonymous=False)
+        rospy.init_node('free_space_navigation')
 
         # What to do you ctrl + c    
         rospy.on_shutdown(self.shutdown)
         self.turtlebot_odom_pose = Odometry()
+    pose_message = Odometry()
         self.velocityPublisher = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size=10)
-        self.pose_subscriber = rospy.Subscribe("/odom", 10, self.poseCallback)     
+        self.pose_subscriber = rospy.Subscriber("/odom", 10, poseCallback)     
     # 2 HZ
         r = rospy.Rate(2)
         r.sleep()
@@ -44,7 +56,7 @@ class free_space_navigation():
                       degrees(yaw))
         rospy.spin()
             moveSquare(1.0)
-        return 0
+        
 
         
     def shutdown(self):
@@ -53,16 +65,6 @@ class free_space_navigation():
         self.velocityPublisher.publish(Twist())
         rospy.sleep(1)
     
-    def poseCallback(self,pose_message):
-
-        self.turtlebot_odom_pose.pose.pose.position.x=pose_message.pose.pose.position.x
-        self.turtlebot_odom_pose.pose.pose.position.y=pose_message.pose.pose.position.y
-        self.turtlebot_odom_pose.pose.pose.position.z=pose_message.pose.pose.position.z
-
-        self.turtlebot_odom_pose.pose.pose.orientation.w=pose_message.pose.pose.orientation.w
-        self.turtlebot_odom_pose.pose.pose.orientation.x=pose_message.pose.pose.orientation.x
-        self.turtlebot_odom_pose.pose.pose.orientation.y=pose_message.pose.pose.orientation.y
-        self.turtlebot_odom_pose.pose.pose.orientation.z=pose_message.pose.pose.orientation.z
 
     def moveSquare(self,sideLength):
         for i in range(0, 4):
@@ -382,7 +384,8 @@ class free_space_navigation():
 if __name__ == '__main__':
     try:
         free_space_navigation()
-    except:
+    rospy.spin()
+    except rospy.ROSInterruptException:
         rospy.loginfo("node terminated.")
 
 
