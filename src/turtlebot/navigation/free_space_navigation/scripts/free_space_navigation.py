@@ -89,9 +89,9 @@ class free_space_navigation():
             try:
 
                 #wait for the transform to be found
-                listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
+                listener.waitForTransform("base_footprint", "odom", rospy.Time(0), rospy.Duration(10.0) )
                 #Once the transform is found,get the initial_transform transformation.
-                listener.lookupTransform("/base_footprint", "/odom",rospy.Time(0), current_transform)
+                listener.lookupTransform("base_footprint", "odom",rospy.Time(0), current_transform)
         
             except Exception:
                 rospy.Duration(1.0)
@@ -349,7 +349,7 @@ class free_space_navigation():
         self.turtlebot_odom_pose = Odometry()
     pose_message = Odometry()
         self.velocityPublisher = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size=10)
-        self.pose_subscriber = rospy.Subscriber("/odom", String, self.poseCallback)     
+        self.pose_subscriber = rospy.Subscriber("odom", String, self.poseCallback)     
     # 2 HZ
         r = rospy.Rate(2)
         r.sleep()
