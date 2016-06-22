@@ -5,7 +5,8 @@ import tf
 import numpy
 import geometry_msgs.msg
 from geometry_msgs.msg import Twist
-from math import radians
+from math import radians,degrees
+import math
 from nav_msgs.msg import Odometry
 from std_msgs.msg import String
 
@@ -36,7 +37,7 @@ class free_space_navigation():
         #declare a Twist message to send velocity commands
         VelocityMessage = Twist()
         # declare tf transform listener: this transform listener will be used to listen and capture the transformation between
-        # the /odom frame (that represent the reference frame) and the base_footprint frame the represent moving frame
+        # the odom frame (that represent the reference frame) and the base_footprint frame the represent moving frame
         listener = tf.TransformListener()
         #declare tf transform
         #init_transform: is the transformation before starting the motion
@@ -69,9 +70,9 @@ class free_space_navigation():
         try:
             #wait for the transform to be found
 
-            listener.waitForTransform("base_footprint", "odom", rospy.Time(0),rospy.Duration(10.0))
+            listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0),rospy.Duration(10.0))
             #Once the transform is found,get the initial_transform transformation.
-            listener.lookupTransform("base_footprint", "odom", rospy.Time(0),init_transform)
+            listener.lookupTransform("/base_footprint", "/odom", rospy.Time(0),init_transform)
         except Exception:
             rospy.Duration(1.0)
     
@@ -81,7 +82,6 @@ class free_space_navigation():
         # * STEP1. PUBLISH THE VELOCITY MESSAGE
         # ***************************************/
             self.velocityPublisher.publish(VelocityMessage)
-            rospy.spin()
             loop_rate.sleep()
         #/**************************************************
         # * STEP2. ESTIMATE THE DISTANCE MOVED BY THE ROBOT
@@ -89,9 +89,9 @@ class free_space_navigation():
             try:
 
                 #wait for the transform to be found
-                listener.waitForTransform("base_footprint", "odom", rospy.Time(0), rospy.Duration(10.0) )
+                listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
                 #Once the transform is found,get the initial_transform transformation.
-                listener.lookupTransform("base_footprint", "odom",rospy.Time(0), current_transform)
+                listener.lookupTransform("/base_footprint", "/odom",rospy.Time(0), current_transform)
         
             except Exception:
                 rospy.Duration(1.0)
@@ -105,8 +105,8 @@ class free_space_navigation():
          #    --> transform.getOrigin().y(): represents the y coordinate of the transformation
          #
          # calculate the distance moved
-            distance_moved = sqrt(pow((current_transform.getOrigin().x()-init_transform.getOrigin().x()), 2) +
-                pow((current_transform.getOrigin().y()-init_transform.getOrigin().y()), 2))
+            distance_moved = math.sqrt(math.pow((current_transform.getOrigin().x()-init_transform.getOrigin().x()), 2) +
+                math.pow((current_transform.getOrigin().y()-init_transform.getOrigin().y()), 2));
 
         #cout<<"Method 1: distance moved: "<<distance_moved <<", "<<distance<<endl
         #cout<<turtlebot_odom_pose.pose.pose.position.x<<", "<<turtlebot_odom_pose.pose.pose.position.y<<endl
@@ -126,7 +126,7 @@ class free_space_navigation():
         #declare a Twist message to send velocity commands
         VelocityMessage = Twist()
         # declare tf transform listener: this transform listener will be used to listen and capture the transformation between
-        # the /odom frame (that represent the reference frame) and the base_footprint frame the represent moving frame
+        # the odom frame (that represent the reference frame) and the base_footprint frame the represent moving frame
         listener = tf.TransformListener()
         #declare tf transform
         #init_transform: is the transformation before starting the motion
@@ -154,9 +154,9 @@ class free_space_navigation():
         try:
             #wait for the transform to be found
 
-            listener.waitForTransform("base_footprint", "odom", rospy.Time(0),rospy.Duration(10.0))
+            listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0),rospy.Duration(10.0))
             #Once the transform is found,get the initial_transform transformation.
-            listener.lookupTransform("base_footprint", "odom", rospy.Time(0),init_transform)
+            listener.lookupTransform("/base_footprint", "/odom", rospy.Time(0),init_transform)
         except Exception:
             rospy.Duration(1.0)
     
@@ -336,8 +336,13 @@ class free_space_navigation():
 
 
     def moveSquare(self,sideLength):
+        rospy.loginfo("hello world1")
+
         for i in range(0, 4):
+            rospy.loginfo("hello world2")
             self.move(0.3, sideLength, True)
+            rospy.loginfo("hello world3")
+
             self.rotate (0.3, radiansa(85), True)
    
     def __init__(self):
@@ -349,9 +354,10 @@ class free_space_navigation():
         self.turtlebot_odom_pose = Odometry()
     pose_message = Odometry()
         self.velocityPublisher = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size=10)
-        self.pose_subscriber = rospy.Subscriber("odom", String, self.poseCallback)     
+        self.pose_subscriber = rospy.Subscriber("/odom", Odometry, self.poseCallback)     
     # 2 HZ
         r = rospy.Rate(2)
+        
         r.sleep()
     # create two different Twist() variables.  One for moving forward.  One for turning 45 degrees.
 
@@ -365,8 +371,8 @@ class free_space_navigation():
 
     #two keep drawing squares.  Go forward for 2 seconds (10 x 5 HZ) then turn for 2 second
         while not rospy.is_shutdown():
-            rospy.spin()
             sideLength=1.0
+
             self.moveSquare(sideLength)
         
 
