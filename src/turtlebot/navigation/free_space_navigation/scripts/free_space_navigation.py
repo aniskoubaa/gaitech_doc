@@ -6,13 +6,13 @@ import numpy
 import geometry_msgs.msg
 from geometry_msgs.msg import Twist
 from math import radians,degrees
-import math
+from math import *
 from nav_msgs.msg import Odometry
 from std_msgs.msg import String
-
+LINEAR_VELOCITY_MINIMUM_THRESHOLD  = 0.2
+ANGULAR_VELOCITY_MINIMUM_THRESHOLD = 0.4
 class free_space_navigation():
-    LINEAR_VELOCITY_MINIMUM_THRESHOLD  = 0.2
-    ANGULAR_VELOCITY_MINIMUM_THRESHOLD = 0.4
+
     
 
     def poseCallback(self,pose_message):
@@ -72,7 +72,10 @@ class free_space_navigation():
 
             listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0),rospy.Duration(10.0))
             #Once the transform is found,get the initial_transform transformation.
-            listener.lookupTransform("/base_footprint", "/odom", rospy.Time(0),init_transform)
+            (trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))
+            #listener.lookupTransform("/base_footprint", "/odom", rospy.Time(0),init_transform)
+            start = 0.5 * sqrt(trans[0] ** 2 + trans[1] ** 2)
+
         except Exception:
             rospy.Duration(1.0)
     
@@ -91,33 +94,34 @@ class free_space_navigation():
                 #wait for the transform to be found
                 listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
                 #Once the transform is found,get the initial_transform transformation.
-                listener.lookupTransform("/base_footprint", "/odom",rospy.Time(0), current_transform)
-        
-            except Exception:
+                #listener.lookupTransform("/base_footprint", "/odom",rospy.Time(0))
+                (trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))
+            except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
                 rospy.Duration(1.0)
-        
-         # Calculate the distance moved by the robot
-         # There are two methods that give the same result
-         #
-         # Method 1: Calculate the distance between the two transformations
-         # Hint:
-         #    --> transform.getOrigin().x(): represents the x coordinate of the transformation
-         #    --> transform.getOrigin().y(): represents the y coordinate of the transformation
-         #
-         # calculate the distance moved
-            distance_moved = math.sqrt(math.pow((current_transform.getOrigin().x()-init_transform.getOrigin().x()), 2) +
-                math.pow((current_transform.getOrigin().y()-init_transform.getOrigin().y()), 2));
-
-        #cout<<"Method 1: distance moved: "<<distance_moved <<", "<<distance<<endl
-        #cout<<turtlebot_odom_pose.pose.pose.position.x<<", "<<turtlebot_odom_pose.pose.pose.position.y<<endl
-        #cout<<init_transform.getOrigin().x() <<", "<<init_transform.getOrigin().y()<<endl
-        #cout<<current_transform.getOrigin().x() <<", "<<current_transform.getOrigin().y()<<endl<<endl
-
+        # Calculate the distance moved by the robot
+        # There are two methods that give the same result
+        #
+        # Method 1: Calculate the distance between the two transformations
+        # Hint:
+        #    --> transform.getOrigin().x(): represents the x coordinate of the transformation
+        #    --> transform.getOrigin().y(): represents the y coordinate of the transformation
+        #
+        # calculate the distance moved
+            #distance_moved = math.sqrt(math.pow((current_transform.getOrigin().x()-init_transform.getOrigin().x()), 2) +
+             #   math.pow((current_transform.getOrigin().y()-init_transform.getOrigin().y()), 2))
+            #angular = 4 * atan2(trans[1], trans[0])
+            end = 0.5 * sqrt(trans[0] ** 2 + trans[1] ** 2)
+            distance_moved = float(end) - float(start)
+            #rospy.loginfo(angular)
+            rospy.loginfo(distance_moved)
+            #rospy.loginfo(VelocityMessage.linear.z)
+            #rospy.loginfo(init_transform.transform.translation)
+       
             if not (distance_moved<distance):
                 break
             
             #finally, stop the robot when the distance is moved
-        VelocityMessage.linear.x =0
+        VelocityMessage.linear.x =0 
         self.velocityPublisher.publish(VelocityMessage)
 
     
@@ -274,7 +278,7 @@ class free_space_navigation():
 
 
     # record the starting transform from the odometry to the base frame
-        TFListener.lookupTransform("base_footprint", "odom", rospy.Time(0),current_transform)
+        TFListener.lookupTransform("base_footprint", "odom", rospy.Time(0))
 
         velocityMessage.linear.x = 0.0
         velocityMessage.linear.y = 0.0
@@ -342,8 +346,7 @@ class free_space_navigation():
             rospy.loginfo("hello world2")
             self.move(0.3, sideLength, True)
             rospy.loginfo("hello world3")
-
-            self.rotate (0.3, radiansa(85), True)
+            self.rotate (0.3, radians(85), True)
    
     def __init__(self):
         # initiliaze
@@ -371,7 +374,7 @@ class free_space_navigation():
 
     #two keep drawing squares.  Go forward for 2 seconds (10 x 5 HZ) then turn for 2 second
         while not rospy.is_shutdown():
-            sideLength=1.0
+            sideLength=0.3
 
             self.moveSquare(sideLength)
         
