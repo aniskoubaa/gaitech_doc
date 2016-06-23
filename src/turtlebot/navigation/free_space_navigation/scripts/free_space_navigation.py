@@ -136,7 +136,6 @@ class free_space_navigation():
             VelocityMessage.linear.x =abs(speed)
         else: #else set the velocity to negative value to move backward
             VelocityMessage.linear.x =-abs(speed)
-        rospy.loginfo(type(VelocityMessage.linear.y))   
         #all velocities of other axes must be zero.
         VelocityMessage.linear.y =0.0
         VelocityMessage.linear.z =0.0
@@ -244,7 +243,7 @@ class free_space_navigation():
             rospy.Duration(1.0)
         distance_moved = 0
         while True :
-            
+            rospy.loginfo("Turtlebot moves forwards") 
         #/***************************************
         # * STEP1. PUBLISH THE VELOCITY MESSAGE
         # ***************************************/
@@ -273,7 +272,6 @@ class free_space_navigation():
         # calculate the distance moved
             end = 0.5 * sqrt(trans[0] ** 2 + trans[1] ** 2)
             distance_moved = distance_moved+abs(abs(float(end)) - abs(float(start)))
-            rospy.loginfo(distance_moved)
             if not (distance_moved<distance):
                 break
             
@@ -289,7 +287,7 @@ class free_space_navigation():
             rotateMessage.linear.x = 0
             rotateMessage.angular.z = radians(45); #45 deg/s in radians/s
         
-            rospy.loginfo("Turtlebot Turning")
+            rospy.loginfo("Turtlebot is Turning")
             r = rospy.Rate(5)
 
             for x in range(0,10):
