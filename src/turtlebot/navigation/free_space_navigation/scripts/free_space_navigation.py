@@ -111,7 +111,7 @@ class free_space_navigation():
              #   math.pow((current_transform.getOrigin().y()-init_transform.getOrigin().y()), 2))
             #angular = 4 * atan2(trans[1], trans[0])
             end = 0.5 * sqrt(trans[0] ** 2 + trans[1] ** 2)
-            distance_moved = float(end) - float(start)
+            distance_moved = abs(float(end) - float(start))
             #rospy.loginfo(angular)
             rospy.loginfo(distance_moved)
             #rospy.loginfo(VelocityMessage.linear.z)
@@ -145,8 +145,13 @@ class free_space_navigation():
             VelocityMessage.linear.x =abs(speed)
         else: #else set the velocity to negative value to move backward
             VelocityMessage.linear.x =-abs(speed)
+        rospy.loginfo(type(VelocityMessage.linear.y))   
         #all velocities of other axes must be zero.
-        VelocityMessage.linear.y , VelocityMessage.linear.z , VelocityMessage.angular.x , VelocityMessage.angular.y , VelocityMessage.angular.z =0
+        VelocityMessage.linear.y =0.0
+        VelocityMessage.linear.z =0.0
+        VelocityMessage.angular.x =0.0
+        VelocityMessage.angular.y =0.0
+        VelocityMessage.angular.z =0.0
 
         distance_moved = 0.0
         loop_rate = rospy.Rate(10) # we publish the velocity at 10 Hz (10 times a second)
@@ -170,7 +175,6 @@ class free_space_navigation():
         # * STEP1. PUBLISH THE VELOCITY MESSAGE
         # ***************************************/
             self.velocityPublisher.publish(VelocityMessage)
-            rospy.spin()
             loop_rate.sleep()
         #/**************************************************
         # * STEP2. ESTIMATE THE DISTANCE MOVED BY THE ROBOT
@@ -190,8 +194,8 @@ class free_space_navigation():
          # Hint:
          #    --> transform.getOrigin().length(): return the displacement of the origin of the transformation
          #
-            relative_transform = Transform.init_transform.inverse() * current_transform
-            distance_moved= relative_transform.getOrigin().length()
+            #relative_transform = Transform.init_transform.inverse() * current_transform
+            #distance_moved= relative_transform.getOrigin().length()
 #*************************************************************************************************************************
         
             if not distance_moved<distance:
@@ -248,89 +252,23 @@ class free_space_navigation():
         self.velocityPublisher.publish(VelocityMessage)
 
     
-    def rotate(self,angular_velocity,radians, clockwise):
-
-    #delcare a Twist message to send velocity commands
-        velocityMessage = Twist()
-    #declare tf transform listener: this transform listener will be used to listen and capture the transformation between
-    # the odom frame (that represent the reference frame) and the base_footprint frame the represent moving frame
-        TFListener = tf.TransformListener()
-    #declare tf transform
-    #init_transform: is the transformation before starting the motion
-        init_transform = geometry_msgs.msg.TransformStamped()
-    #current_transformation: is the transformation while the robot is moving
-        current_transform = geometry_msgs.msg.TransformStamped()
-    #initial coordinates (for method 3)
-        initial_turtlebot_odom_pose = Odometry()
-
-        angle_turned =0.0
-
-        angular_velocity = angular_velocity if angular_velocity>ANGULAR_VELOCITY_MINIMUM_THRESHOLD else ANGULAR_VELOCITY_MINIMUM_THRESHOLD
+    def rotate(self):
         
-        while(radians < 0):
-            radians += 2*pi
-    
-        while(radians > 2*pi):
-            radians -= 2*pi
-    
-    # wait for the listener to get the first message
-        TFListener.waitForTransform("base_footprint", "odom", rospy.Time(0),rospy.Duration(1.0))
-
-
-    # record the starting transform from the odometry to the base frame
-        TFListener.lookupTransform("base_footprint", "odom", rospy.Time(0))
-
-        velocityMessage.linear.x = 0.0
-        velocityMessage.linear.y = 0.0
-        velocityMessage.linear.z = angular_velocity if clockwise else -angular_velocity
-        #the axis we want to be rotating by
-        desired_turn_axis= [0,0,1]
-        desired_turn_axis=desired_turn_axis if (not clockwise)  else (-1*desired_turn_axis)
+        rotateMessage = Twist()
         
-        rate=rospy.Rate(10)
-        done = False
+            rotateMessage.linear.x = 0
+            rotateMessage.angular.z = radians(45); #45 deg/s in radians/s
         
-        while (not done):
-            #send the drive command
-            self.velocityPublisher.publish(velocityMessage)
-            rate.sleep()
-            # get the current transform
-            try:
+            rospy.loginfo("Turning")
+            r = rospy.Rate(5)
 
-                # wait for the listener to get the first message
-                TFListener.waitForTransform("base_footprint", "odom", rospy.Time(0),rospy.Duration(1.0))
-                # record the starting transform from the odometry to the base frame
-                TFListener.lookupTransform("base_footprint", "odom", rospy.Time(0),current_transform)
-            except Exception:
-                break
+            for x in range(0,10):
 
-# *************************************** I need Help HERE **************************************************                
+                self.velocityPublisher.publish(rotateMessage)
+            r.sleep()            
+        #rospy.loginfo(angular)
+        #rospy.loginfo(distance_moved)        
 
-            # I cannot find how to initialize these variables      
-            relative_transform = Transform.init_transform.inverse() * current_transform
-            actual_turn_axis = relative_transform.getRotation().getAxis()
-            angle_turned = relative_transform.getRotation().getAngle()
-# ***********************************************************************************************************    
-
-            if (fabs(angle_turned) < 1.0e-2):
-                continue
-            if (vdot(desired_turn_axis,actual_turn_axis) < 0 ):
-                angle_turned = (2 * pi) - angle_turned
-            
-            if (not clockwise):
-                velocityMessage.angular.z = (angular_velocity-ANGULAR_VELOCITY_MINIMUM_THRESHOLD) * (fabs(degrees(radians-angle_turned)/degrees(radians)))+ANGULAR_VELOCITY_MINIMUM_THRESHOLD
-            elif (clockwise):
-                velocityMessage.angular.z = (-angular_velocity+ANGULAR_VELOCITY_MINIMUM_THRESHOLD) * (fabs(degrees(radians-angle_turned)/degrees(radians)))-ANGULAR_VELOCITY_MINIMUM_THRESHOLD
-
-            if (angle_turned > radians):
-                done = True
-                velocityMessage.linear.x , velocityMessage.linear.y , velocityMessage.angular.z = 0
-                self.velocityPublisher.publish(velocityMessage)
-        
-        if (done):
-            return angle_turned
-
-        return angle_turned
 
     def calculateYaw( x1, y1, x2,y2):
         bearing = atan2((y2 - y1),(x2 - x1))
@@ -344,9 +282,9 @@ class free_space_navigation():
 
         for i in range(0, 4):
             rospy.loginfo("hello world2")
-            self.move(0.3, sideLength, True)
+            #self.move_v2(0.3, sideLength, True)
             rospy.loginfo("hello world3")
-            self.rotate (0.3, radians(85), True)
+            self.rotate ()
    
     def __init__(self):
         # initiliaze
@@ -355,36 +293,18 @@ class free_space_navigation():
         # What to do you ctrl + c    
         rospy.on_shutdown(self.shutdown)
         self.turtlebot_odom_pose = Odometry()
-    pose_message = Odometry()
+        pose_message = Odometry()
         self.velocityPublisher = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size=10)
         self.pose_subscriber = rospy.Subscriber("/odom", Odometry, self.poseCallback)     
     # 2 HZ
         r = rospy.Rate(2)
         
         r.sleep()
-    # create two different Twist() variables.  One for moving forward.  One for turning 45 degrees.
 
-        
-    # by default angular.z is 0 so setting this isn't required
-
-        #let's turn at 45 deg/s
-        turnMessage = Twist()
-        turnMessage.linear.x = 0
-        turnMessage.angular.z = radians(25) #45 deg/s in radians/s
-
-    #two keep drawing squares.  Go forward for 2 seconds (10 x 5 HZ) then turn for 2 second
         while not rospy.is_shutdown():
             sideLength=0.3
 
-            self.moveSquare(sideLength)
-        
-
-        # go forward 0.4 m (2 seconds * 0.2 m / seconds)
-            #(roll,pitch,yaw) = tf.transformations.euler_from_quaternion(self.turtlebot_odom_pose.pose.pose.orientation)
-            #rospy.loginfo(self.turtlebot_odom_pose.pose.pose.position.x,
-             #         self.turtlebot_odom_pose.pose.pose.position.y,
-              #        degrees(yaw))
-          
+            self.moveSquare(sideLength)       
 
         
     def shutdown(self):
@@ -400,9 +320,6 @@ class free_space_navigation():
 if __name__ == '__main__':
     try:
         free_space_navigation()
-    rospy.spin()
+        rospy.spin()
     except rospy.ROSInterruptException:
         rospy.loginfo("node terminated.")
-
-
-
