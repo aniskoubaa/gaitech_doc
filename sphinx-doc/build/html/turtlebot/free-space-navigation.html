@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Turtlebot free movement in Space &mdash; Gaitech EDU 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
+        <link rel="next" title="Sending Goals to the Navigation Stack" href="send-goals-nav-stack.html"/>
+        <link rel="prev" title="Building a Map using Kenict sensor" href="create-map-kenict.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech EDU
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-background.html">ROS Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-programming-basics.html">Getting Started with ROS Programming</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="turtlebot-tutorials.html">Turtlebot Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-first-tests.html">First Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-config-doc.html">Network Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turtlebot_simulators.html">Turtlebot Simulators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kenict</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Turtlebot free movement in Space</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#c-and-python-code-for-the-square-path">C++ and Python Code for the square path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-code-using-stage-and-rviz-simulators">Running the code using Stage and RViz Simulators</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="send-goals-nav-stack.html">Send Goals to Navigation Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build-map.html">Building a map using Logged Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech EDU</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="turtlebot-tutorials.html">Turtlebot Quick Start Tutorials</a> &raquo;</li>
+      
+    <li>Turtlebot free movement in Space</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/turtlebot/free-space-navigation.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="turtlebot-free-movement-in-space">
+<span id="free-space-navigation"></span><h1>Turtlebot free movement in Space<a class="headerlink" href="#turtlebot-free-movement-in-space" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial will introduce how to control your turtlebot robot using <cite>Python</cite> and <cite>C++</cite> code to move in a specific path you deside in your code. We chose to make the robot move in a square path but you can extend the code and write your own path.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Make sure that you completed installing all the required packages in the previous tutorials and your network set-up is working fine between the ROS Master node and the host node.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>In this tutorial you will learn how to:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>Teleoprate a real and simulated turtlebot</li>
+<li>Create a custom path for the turtlebot to move in</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="c-and-python-code-for-the-square-path">
+<h2>C++ and Python Code for the square path<a class="headerlink" href="#c-and-python-code-for-the-square-path" title="Permalink to this headline">¶</a></h2>
+<p>You can find the whole <code class="docutils literal"><span class="pre">cpp</span></code> and <code class="docutils literal"><span class="pre">python</span></code> files in our <a class="reference external" href="https://github.com/aniskoubaa/gaitech_doc">GitHub repository</a> in the following <a class="reference external" href="https://github.com/aniskoubaa/gaitech_doc/tree/master/src/turtlebot/navigation/free_space_navigation">path</a>. Go to <cite>scripts</cite> to find the <code class="docutils literal"><span class="pre">python</span></code> code.</p>
+<p>In the code you will find 3 <cite>move</cite> methods and each one of them has its approach so you will be able to know 3 different ways of controlling and manipulating the turtlebot robot . The code is also well explained so you can easily understand what each line is doing in the code and what is its functionality.</p>
+<p>After downloading the repository make sure you place it in your <code class="docutils literal"><span class="pre">catkin_ws/src</span></code> then run the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_make
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You may find a couple of errors due to your need to install missing packages.</p>
+</div>
+</div>
+<div class="section" id="running-the-code-using-stage-and-rviz-simulators">
+<h2>Running the code using Stage and RViz Simulators<a class="headerlink" href="#running-the-code-using-stage-and-rviz-simulators" title="Permalink to this headline">¶</a></h2>
+<p>Bring up your simulator:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage.launch
+</pre></div>
+</div>
+<p>If your PC is not fast enough to run the <cite>Stage</cite> with <cite>RViz</cite> you can run only the <cite>Stage</cite> using this command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch
+</pre></div>
+</div>
+<p>After that run the <code class="docutils literal"><span class="pre">cpp</span></code> node by typing the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_doc free_space_navigation
+</pre></div>
+</div>
+<p>or launch the <code class="docutils literal"><span class="pre">free_space_navigation_stage.launch</span></code> file to launch both simulators and the <code class="docutils literal"><span class="pre">cpp</span></code> node.</p>
+<img alt="../_images/stage-square-move-cpp.png" class="align-center" src="../_images/stage-square-move-cpp.png" />
+<p>You can also choose to run the <code class="docutils literal"><span class="pre">python</span></code> script by running this command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_workspace/src/gaitech_doc/src/turtlebot/navigation/free_space_navigation/script/free_space_navigation.py
+</pre></div>
+</div>
+<img alt="../_images/stage-square-move-python.png" class="align-center" src="../_images/stage-square-move-python.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You can try the three <code class="docutils literal"><span class="pre">move</span></code> methods by calling each one of them in the <code class="docutils literal"><span class="pre">moveSquare</span></code> method.
+You can try the same codes with <cite>Gazebo</cite> simulator but you need to have a fast PC. All you have to do is to launch <cite>Gazebo</cite> by typing the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_gazebo turtlebot_world.launch
+</pre></div>
+</div>
+<p class="last">Then run either one of the files as mentioned above.</p>
+</div>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/SHPCyqFDr1Q" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="send-goals-nav-stack.html" class="btn btn-neutral float-right" title="Sending Goals to the Navigation Stack" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="create-map-kenict.html" class="btn btn-neutral" title="Building a Map using Kenict sensor" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
