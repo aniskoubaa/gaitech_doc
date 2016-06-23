@@ -78,7 +78,7 @@ class free_space_navigation():
 
         except Exception:
             rospy.Duration(1.0)
-    
+        distance_moved = 0
         while True :
             
         #/***************************************
@@ -111,12 +111,8 @@ class free_space_navigation():
              #   math.pow((current_transform.getOrigin().y()-init_transform.getOrigin().y()), 2))
             #angular = 4 * atan2(trans[1], trans[0])
             end = 0.5 * sqrt(trans[0] ** 2 + trans[1] ** 2)
-            distance_moved = abs(float(end) - float(start))
-            #rospy.loginfo(angular)
+            distance_moved = distance_moved+abs(abs(float(end)) - abs(float(start)))
             rospy.loginfo(distance_moved)
-            #rospy.loginfo(VelocityMessage.linear.z)
-            #rospy.loginfo(init_transform.transform.translation)
-       
             if not (distance_moved<distance):
                 break
             
@@ -259,13 +255,13 @@ class free_space_navigation():
             rotateMessage.linear.x = 0
             rotateMessage.angular.z = radians(45); #45 deg/s in radians/s
         
-            rospy.loginfo("Turning")
+            rospy.loginfo("Turtlebot Turning")
             r = rospy.Rate(5)
 
             for x in range(0,10):
 
                 self.velocityPublisher.publish(rotateMessage)
-            r.sleep()            
+                r.sleep()            
         #rospy.loginfo(angular)
         #rospy.loginfo(distance_moved)        
 
@@ -282,7 +278,7 @@ class free_space_navigation():
 
         for i in range(0, 4):
             rospy.loginfo("hello world2")
-            #self.move_v2(0.3, sideLength, True)
+            self.move(0.3, sideLength, True)
             rospy.loginfo("hello world3")
             self.rotate ()
    
@@ -303,7 +299,6 @@ class free_space_navigation():
 
         while not rospy.is_shutdown():
             sideLength=0.3
-
             self.moveSquare(sideLength)       
 
         
