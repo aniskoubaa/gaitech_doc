@@ -205,10 +205,6 @@ void move(double speed, double distance, bool isForward){
 		distance_moved = sqrt(pow((current_transform.getOrigin().x()-init_transform.getOrigin().x()), 2) +
 				pow((current_transform.getOrigin().y()-init_transform.getOrigin().y()), 2));
 
-		//cout<<"Method 1: distance moved: "<<distance_moved <<", "<<distance<<endl;
-		//cout<<turtlebot_odom_pose.pose.pose.position.x<<", "<<turtlebot_odom_pose.pose.pose.position.y<<endl;
-		//cout<<init_transform.getOrigin().x() <<", "<<init_transform.getOrigin().y()<<endl;
-		//cout<<current_transform.getOrigin().x() <<", "<<current_transform.getOrigin().y()<<endl<<endl;
 
 	}while((distance_moved<distance)&&(ros::ok()));
 	//finally, stop the robot when the distance is moved
@@ -339,8 +335,7 @@ void move_v3(double speed, double distance, bool isForward){
 		loop_rate.sleep();
 		distance_moved = sqrt(pow((turtlebot_odom_pose.pose.pose.position.x-initial_turtlebot_odom_pose.pose.pose.position.x), 2) +
 				pow((turtlebot_odom_pose.pose.pose.position.y-initial_turtlebot_odom_pose.pose.pose.position.y), 2));
-		//cout<<turtlebot_odom_pose.pose.pose.position.x<<", "<<turtlebot_odom_pose.pose.pose.position.y<<endl;
-		//cout<<"Method 3: distance moved: "<<distance_moved <<", "<<distance<<endl<<endl;
+
 	}while((distance_moved<distance)&&(ros::ok()));
 	//finally, stop the robot when the distance is moved
 	VelocityMessage.linear.x =0;
@@ -412,9 +407,6 @@ double rotate(double angular_velocity, double radians,  bool clockwise)
 		tf::Vector3 actual_turn_axis = relative_transform.getRotation().getAxis();
 		angle_turned = relative_transform.getRotation().getAngle();
 
-		//std::cout<<"angle_turned: "<<radian2degree(angle_turned)<<std::endl;
-		//std::cout<<"radians: "<<radian2degree(radians)<<std::endl;
-
 		if (fabs(angle_turned) < 1.0e-2) continue;
 		if (actual_turn_axis.dot(desired_turn_axis ) < 0 )
 			angle_turned = 2 * M_PI - angle_turned;
@@ -425,7 +417,6 @@ double rotate(double angular_velocity, double radians,  bool clockwise)
 			if (clockwise)
 				VelocityMessage.angular.z = (-angular_velocity+ANGULAR_VELOCITY_MINIMUM_THRESHOLD) * (fabs(radian2degree(radians-angle_turned)/radian2degree(radians)))-ANGULAR_VELOCITY_MINIMUM_THRESHOLD;
 
-		//std::cout<<"VelocityMessage.angular.z: "<<VelocityMessage.angular.z<<std::endl;
 		if (angle_turned > radians) {
 			done = true;
 			VelocityMessage.linear.x = VelocityMessage.linear.y = VelocityMessage.angular.z = 0;
