@@ -108,11 +108,6 @@ class free_space_navigation():
                     distance_moved = sqrt(pow((current_transform.getOrigin().x()-init_transform.getOrigin().x()), 2) +
                         pow((current_transform.getOrigin().y()-init_transform.getOrigin().y()), 2));
 
-        #cout<<"Method 1: distance moved: "<<distance_moved <<", "<<distance<<endl
-        #cout<<turtlebot_odom_pose.pose.pose.position.x<<", "<<turtlebot_odom_pose.pose.pose.position.y<<endl
-        #cout<<init_transform.getOrigin().x() <<", "<<init_transform.getOrigin().y()<<endl
-        #cout<<current_transform.getOrigin().x() <<", "<<current_transform.getOrigin().y()<<endl<<endl
-
                     if not (distance_moved<distance):
                         break
             
@@ -276,9 +271,6 @@ class free_space_navigation():
         #    --> transform.getOrigin().y(): represents the y coordinate of the transformation
         #
         # calculate the distance moved
-            #distance_moved = math.sqrt(math.pow((current_transform.getOrigin().x()-init_transform.getOrigin().x()), 2) +
-             #   math.pow((current_transform.getOrigin().y()-init_transform.getOrigin().y()), 2))
-            #angular = 4 * atan2(trans[1], trans[0])
             end = 0.5 * sqrt(trans[0] ** 2 + trans[1] ** 2)
             distance_moved = distance_moved+abs(abs(float(end)) - abs(float(start)))
             rospy.loginfo(distance_moved)
@@ -304,9 +296,6 @@ class free_space_navigation():
 
                 self.velocityPublisher.publish(rotateMessage)
                 r.sleep()            
-        #rospy.loginfo(angular)
-        #rospy.loginfo(distance_moved)        
-
 
     def calculateYaw( x1, y1, x2,y2):
         bearing = atan2((y2 - y1),(x2 - x1))
@@ -316,12 +305,8 @@ class free_space_navigation():
 
 
     def moveSquare(self,sideLength):
-        rospy.loginfo("hello world1")
-
         for i in range(0, 4):
-            rospy.loginfo("hello world2")
             self.move_v3(0.3, sideLength, True)
-            rospy.loginfo("hello world3")
             self.rotate ()
    
     def __init__(self):
@@ -334,7 +319,7 @@ class free_space_navigation():
         pose_message = Odometry()
         self.velocityPublisher = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size=10)
         self.pose_subscriber = rospy.Subscriber("/odom", Odometry, self.poseCallback)     
-    # 2 HZ
+        # 2 HZ
         r = rospy.Rate(2)
         
         r.sleep()
