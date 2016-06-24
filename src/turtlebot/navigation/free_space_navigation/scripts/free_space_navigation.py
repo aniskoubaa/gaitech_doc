@@ -5,7 +5,8 @@ import tf
 import numpy
 import geometry_msgs.msg
 from geometry_msgs.msg import Twist, Point, Quaternion
-from math import radians,degrees, sqrt, pi, pow
+from math import radians,degrees
+from math import *
 from nav_msgs.msg import Odometry
 from std_msgs.msg import String
 from rbx1_nav.transform_utils import quat_to_angle, normalize_angle
@@ -80,11 +81,8 @@ class free_space_navigation():
                     listener.lookupTransform("/base_footprint", "/odom", rospy.Time(0))
             except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
                     rospy.Duration(1.0)
-
-            # Set the movement command to forward motion
-                VelocityMessage.linear.x = 0.2
-            
-            # Get the starting position values     
+        
+        # Get the starting position values     
                 (position, rotation) = self.get_odom(listener)
                         
                 x_start = position.x
@@ -138,7 +136,6 @@ class free_space_navigation():
             VelocityMessage.linear.x =abs(speed)
         else: #else set the velocity to negative value to move backward
             VelocityMessage.linear.x =-abs(speed)
-        rospy.loginfo(type(VelocityMessage.linear.y))   
         #all velocities of other axes must be zero.
         VelocityMessage.linear.y =0.0
         VelocityMessage.linear.z =0.0
@@ -172,23 +169,23 @@ class free_space_navigation():
         #/**************************************************
         # * STEP2. ESTIMATE THE DISTANCE MOVED BY THE ROBOT
         # *************************************************/
-            try:
 
                 #wait for the transform to be found
-                listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
+            listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
                 #Once the transform is found,get the initial_transform transformation.
-                listener.lookupTransform("/base_footprint", "/odom",rospy.Time(0), current_transform)
-        
-            except Exception:
-                rospy.Duration(1.0)
+            (trans,rot) = listener.lookupTransform("/base_footprint", "/odom",rospy.Time(0))
 
 #*********************************Same Problem as rotate Method***********************************************************
          # Method 2: using transform composition. We calculate the relative transform, then we determine its length
          # Hint:
          #    --> transform.getOrigin().length(): return the displacement of the origin of the transformation
          #
-            relative_transform = Transform.init_transform.inverse() * current_transform
-            distance_moved= relative_transform.getOrigin().length()
+                        transform = tf.transformations.concatenate_matrices(tf.transformations.translation_matrix(trans),      tf.transformations.quaternion_matrix(rot))
+                        #rospy.loginfo(type(transform))
+                        inverse_transform = tf.transformations.inverse_matrix(transform)
+            relative_transform = inverse_transform * current_transform.transform.translation.x
+                        rospy.loginfo(type(relative_transform))
+            distance_moved= relative_transform
 #*************************************************************************************************************************
         
             if not distance_moved<distance:
@@ -317,7 +314,7 @@ class free_space_navigation():
     def moveSquare(self,sideLength):
 
         for i in range(0, 4):
-            self.move(0.3, sideLength, True)
+            self.move_v2(0.3, sideLength, True)
             rospy.sleep(1.0)
             self.rotate ()
    
