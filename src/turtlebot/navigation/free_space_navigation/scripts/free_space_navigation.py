@@ -5,8 +5,7 @@ import tf
 import numpy
 import geometry_msgs.msg
 from geometry_msgs.msg import Twist, Point, Quaternion
-from math import radians,degrees
-from math import *
+from math import radians,degrees, sqrt, pi, pow
 from nav_msgs.msg import Odometry
 from std_msgs.msg import String
 from rbx1_nav.transform_utils import quat_to_angle, normalize_angle
@@ -188,8 +187,8 @@ class free_space_navigation():
          # Hint:
          #    --> transform.getOrigin().length(): return the displacement of the origin of the transformation
          #
-            #relative_transform = Transform.init_transform.inverse() * current_transform
-            #distance_moved= relative_transform.getOrigin().length()
+            relative_transform = Transform.init_transform.inverse() * current_transform
+            distance_moved= relative_transform.getOrigin().length()
 #*************************************************************************************************************************
         
             if not distance_moved<distance:
