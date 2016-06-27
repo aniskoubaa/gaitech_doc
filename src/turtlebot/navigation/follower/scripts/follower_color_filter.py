@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 
+#This script uses the cv_bridge package to convert images coming on the topic
+#sensor_msgs/Image to OpenCV messages and then convert their colors from RGB to HSV
+#then apply a threshold for hues near the color yellow to obtain the binary image 
+#to be able to see only the yellow line and follow it 
+
 import rospy, cv2, cv_bridge, numpy
 from sensor_msgs.msg import Image
 
