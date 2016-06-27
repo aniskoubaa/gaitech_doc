@@ -102,6 +102,8 @@
 <li class="toctree-l2"><a class="reference internal" href="build-map.html">Building a map using Logged Data</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Line Follower</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#introducing-the-opencv">Introducing the OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#draw-a-line-in-gazebo">Draw a line in Gazebo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#follow-the-line">Follow the line</a></li>
 </ul>
 </li>
 </ul>
@@ -240,6 +242,81 @@ Run the following commands:</p>
 </pre></div>
 </div>
 <p>Run the <code class="docutils literal"><span class="pre">python</span></code> script after saving the changes. You will be able to see an image of whatever infront of the robot.</p>
+</div>
+<div class="section" id="draw-a-line-in-gazebo">
+<h2>Draw a line in Gazebo<a class="headerlink" href="#draw-a-line-in-gazebo" title="Permalink to this headline">¶</a></h2>
+<p>[<strong>*******No Resources Yet*********</strong>]</p>
+</div>
+<div class="section" id="follow-the-line">
+<h2>Follow the line<a class="headerlink" href="#follow-the-line" title="Permalink to this headline">¶</a></h2>
+<p>After drawing the yellow line we need to make the robot follow this line. The apprach that is used here is for the robot the follow the line after defining the center of the line and draw a red dot at the center point of the line and keep this dot at 1 meter distance from the robot. Then move the robot according to the line path.</p>
+<p>Open a new file and call it <code class="docutils literal"><span class="pre">line_follower.py</span></code> and write the following script:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+
+<span class="c1">#This Program is tested on Gazebo Simulator</span>
+<span class="c1">#This script uses the cv_bridge package to convert images coming on the topic</span>
+<span class="c1">#sensor_msgs/Image to OpenCV messages and then convert their colors from RGB to HSV</span>
+<span class="c1">#then apply a threshold for hues near the color yellow to obtain the binary image</span>
+<span class="c1">#to be able to see only the yellow line and then follow that line</span>
+<span class="c1">#It uses an approach called proportional and simply means</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span><span class="o">,</span> <span class="nn">cv2</span><span class="o">,</span> <span class="nn">cv_bridge</span><span class="o">,</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Twist</span>
+
+<span class="k">class</span> <span class="nc">Follower</span><span class="p">:</span>
+
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span> <span class="o">=</span> <span class="n">cv_bridge</span><span class="o">.</span><span class="n">CvBridge</span><span class="p">()</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s2">&quot;window&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">image_sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;camera/rgb/image_raw&#39;</span><span class="p">,</span>
+                        <span class="n">Image</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_callback</span><span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;cmd_vel_mux/input/teleop&#39;</span><span class="p">,</span>
+                        <span class="n">Twist</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">twist</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">image_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+
+                <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span><span class="o">.</span><span class="n">imgmsg_to_cv2</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="n">desired_encoding</span><span class="o">=</span><span class="s1">&#39;bgr8&#39;</span><span class="p">)</span>
+                <span class="n">hsv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HSV</span><span class="p">)</span>
+                <span class="n">lower_yellow</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+                <span class="n">upper_yellow</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">250</span><span class="p">])</span>
+                <span class="n">mask</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">inRange</span><span class="p">(</span><span class="n">hsv</span><span class="p">,</span> <span class="n">lower_yellow</span><span class="p">,</span> <span class="n">upper_yellow</span><span class="p">)</span>
+
+                <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
+                <span class="n">search_top</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">h</span><span class="o">/</span><span class="mi">4</span>
+                <span class="n">search_bot</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">h</span><span class="o">/</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">20</span>
+                <span class="n">mask</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">search_top</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">mask</span><span class="p">[</span><span class="n">search_bot</span><span class="p">:</span><span class="n">h</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+                <span class="n">M</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">moments</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">M</span><span class="p">[</span><span class="s1">&#39;m00&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">cx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">M</span><span class="p">[</span><span class="s1">&#39;m10&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">M</span><span class="p">[</span><span class="s1">&#39;m00&#39;</span><span class="p">])</span>
+                        <span class="n">cy</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">M</span><span class="p">[</span><span class="s1">&#39;m01&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">M</span><span class="p">[</span><span class="s1">&#39;m00&#39;</span><span class="p">])</span>
+                        <span class="n">cv2</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">),</span> <span class="mi">20</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">#The proportional controller is implemented in the following four lines which</span>
+<span class="c1">#is reposible of linear scaling of an error to drive the control output.</span>
+                        <span class="n">err</span> <span class="o">=</span> <span class="n">cx</span> <span class="o">-</span> <span class="n">w</span><span class="o">/</span><span class="mi">2</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.2</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">twist</span><span class="p">)</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;window&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;line_follower&#39;</span><span class="p">)</span>
+<span class="n">follower</span> <span class="o">=</span> <span class="n">Follower</span><span class="p">()</span>
+<span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Open <cite>Gazebo</cite> and then run the <code class="docutils literal"><span class="pre">python</span></code> script:</p>
+<div class="highlight-bach"><div class="highlight"><pre><span></span>python your_path/line_follower.py
+</pre></div>
+</div>
 </div>
 </div>
 
