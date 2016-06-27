@@ -24,3 +24,4 @@ In this page, we will provide you a quick start with Turtlebot robot.
    Turtlebot free movement in Space<free-space-navigation>
    Send Goals to Navigation Stack<send-goals-nav-stack>
    Building a map using Logged Data<build-map>
+   Line Follower<line-follower>

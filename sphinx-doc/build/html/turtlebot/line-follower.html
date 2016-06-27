@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Turtlebot Line Follower &mdash; Gaitech EDU 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
+        <link rel="next" title="Drones" href="../drones/index.html"/>
+        <link rel="prev" title="Building a Map using Logged Data" href="build-map.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech EDU
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-background.html">ROS Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-programming-basics.html">Getting Started with ROS Programming</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="turtlebot-tutorials.html">Turtlebot Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-first-tests.html">First Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-config-doc.html">Network Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turtlebot_simulators.html">Turtlebot Simulators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kenict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send-goals-nav-stack.html">Send Goals to Navigation Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build-map.html">Building a map using Logged Data</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Line Follower</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introducing-the-opencv">Introducing the OpenCV</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech EDU</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="turtlebot-tutorials.html">Turtlebot Quick Start Tutorials</a> &raquo;</li>
+      
+    <li>Turtlebot Line Follower</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/turtlebot/line-follower.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="turtlebot-line-follower">
+<span id="line-follower"></span><h1>Turtlebot Line Follower<a class="headerlink" href="#turtlebot-line-follower" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial will introduce how to control your turtlebot robot to follow a line using the <code class="docutils literal"><span class="pre">cv_bridge</span></code> package.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Make sure that you completed installing all the required packages in the previous tutorials and your network set-up is working fine between the ROS Master node and the host node.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>In this tutorial you will learn how to:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>Teleoprate a real and simulated turtlebot with line following program</li>
+<li>Create your own path</li>
+<li>Test your program on Gazebo Simulator</li>
+</ul>
+</div></blockquote>
+</div>
+<p>The <code class="docutils literal"><span class="pre">cv_bridge</span></code> package is used to convert images coming on the topic <code class="docutils literal"><span class="pre">sensor_msgs/Image</span></code> to messages that <code class="docutils literal"><span class="pre">OpenCV</span></code> can open and display them.</p>
+<div class="section" id="introducing-the-opencv">
+<h2>Introducing the OpenCV<a class="headerlink" href="#introducing-the-opencv" title="Permalink to this headline">¶</a></h2>
+<p>OpenCV is a popular open source computer vision library. We will use this library to view images and stream from the turtlbot robot so it can follow a line on the ground. In order to do that we will need to see the line, define the centre of this line and finally move the robot to follow the robot.
+Messages from the camera are published on the <code class="docutils literal"><span class="pre">the</span> <span class="pre">sensor_msgs/Image</span></code> topic so we will need to write a node that subscribe to the same topic.</p>
+<p>Open any text editor you like and type the following in a file called <code class="docutils literal"><span class="pre">follower.py</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="k">def</span> <span class="nf">image_callback</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;follower&#39;</span><span class="p">)</span>
+<span class="n">image_sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;camera/rgb/image_raw&#39;</span><span class="p">,</span> <span class="n">Image</span><span class="p">,</span> <span class="n">image_callback</span><span class="p">)</span>
+<span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This a very simple subscriber node that does nothing.
+Run the following commands:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roscore
+</pre></div>
+</div>
+<p>Start up your Gazebo simulator:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_gazebo turtlebot_world.launch
+</pre></div>
+</div>
+<p>then type this command to see all the topics published so far.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rostopic list
+</pre></div>
+</div>
+<p>You will see something like the following.</p>
+<img alt="../_images/rostopic_list.png" class="align-center" src="../_images/rostopic_list.png" />
+<p>We are only interested about the <code class="docutils literal"><span class="pre">camera</span></code> topics.</p>
+<p>Now run your python script:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_path/follower.py
+</pre></div>
+</div>
+<p>To be able to make sure that it is working run the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rosnode list
+</pre></div>
+</div>
+<p>This will give you a list of all the active nodes on your ROS environment and you will find your <code class="docutils literal"><span class="pre">follower</span></code> node between them.</p>
+<p>Now you need to create a <code class="docutils literal"><span class="pre">python</span></code> script to view the images from the turtlebot. Save the following <code class="docutils literal"><span class="pre">python</span></code> script in a file called <code class="docutils literal"><span class="pre">follower_opencv.py</span></code> :</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="c1">#This script uses the cv_bridge package to convert images coming on the topic</span>
+<span class="c1">#sensor_msgs/Image to OpenCV messages and display them on the screen</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">cv2</span><span class="o">,</span> <span class="nn">cv_bridge</span>
+<span class="k">class</span> <span class="nc">Follower</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span> <span class="o">=</span> <span class="n">cv_bridge</span><span class="o">.</span><span class="n">CvBridge</span><span class="p">()</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s2">&quot;window&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">image_sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;camera/rgb/image_raw&#39;</span><span class="p">,</span>
+                <span class="n">Image</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_callback</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">image_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+                <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span><span class="o">.</span><span class="n">imgmsg_to_cv2</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="n">desired_encoding</span><span class="o">=</span><span class="s1">&#39;bgr8&#39;</span><span class="p">)</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;window&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;follower&#39;</span><span class="p">)</span>
+<span class="n">follower</span> <span class="o">=</span> <span class="n">Follower</span><span class="p">()</span>
+<span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Run the <code class="docutils literal"><span class="pre">python</span></code> script after saving the changes. You will be able to see an image of whatever infront of the robot.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../drones/index.html" class="btn btn-neutral float-right" title="Drones" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="build-map.html" class="btn btn-neutral" title="Building a Map using Logged Data" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
