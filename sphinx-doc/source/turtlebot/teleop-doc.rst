@@ -47,5 +47,6 @@ This is the script of the keyboard_teleop.launch file:
 
 Notice that the keyboard teleop node takes two parameters(scale_linear and scale_angular) and they are used to determine the speed of the turtlebot speed. It is very important to keep the speed very small when you are testing. However, you can change the speed value as much as you like.
 
+.. youtube:: pjq-vThdWjw
 
 You can do the same tutorial to control your turtlebot robot using a PlayStation3 `Joystick <http://wiki.ros.org/turtlebot_teleop/Tutorials/indigo/Joystick%20Teleop>`_ .

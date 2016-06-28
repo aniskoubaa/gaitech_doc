@@ -197,7 +197,7 @@ Draw a yellow line on your ground using a colored paper or a ducktape.
 
 .. NOTE::
 	Make sure that the color ground's color is different than the yellow color you are using to avoid conflict and ensure good results.
-	
+
 On your master node(turtlebot PC) run the following commands:
 
 .. code-block:: bach
@@ -210,3 +210,5 @@ on your host node(your PC) run the ``python`` script:
 .. code-block:: bach
 	
 	python your_path/line_follower.py
+
+.. youtube:: qptuCbHESi8

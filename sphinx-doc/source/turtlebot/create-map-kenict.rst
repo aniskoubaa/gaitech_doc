@@ -46,4 +46,4 @@ You can save the map you just created by running the following command:
 	rosrun map_server map_saver -f /tmp/my_map
 
 
-[**** Link to Vishu's Video on YouTube ****]
+.. youtube:: QzZif1e767k
