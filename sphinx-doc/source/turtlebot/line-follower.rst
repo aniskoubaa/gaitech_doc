@@ -111,7 +111,7 @@ Run the ``python`` script after saving the changes. You will be able to see an i
 Draw a line in Gazebo
 =====================
 
-Install the full version of `Gazebo Simulator <http://gazebosim.org/download>`_ and draw a yellow line using the tutorials provided in the examples on the website. 
+Install the full version of `Gazebo Simulator <http://gazebosim.org/download>`_ and draw a yellow line using the tutorials provided on the website. 
 
 Follow the line
 ===============
