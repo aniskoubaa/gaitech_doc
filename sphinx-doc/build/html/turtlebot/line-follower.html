@@ -104,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#introducing-the-opencv">Introducing the OpenCV</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#draw-a-line-in-gazebo">Draw a line in Gazebo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#follow-the-line">Follow the line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-on-your-turtlebot">Test on your Turtlebot</a></li>
 </ul>
 </li>
 </ul>
@@ -314,6 +315,23 @@ Run the following commands:</p>
 </pre></div>
 </div>
 <p>Open <cite>Gazebo</cite> and then run the <code class="docutils literal"><span class="pre">python</span></code> script:</p>
+<div class="highlight-bach"><div class="highlight"><pre><span></span>python your_path/line_follower.py
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-on-your-turtlebot">
+<h2>Test on your Turtlebot<a class="headerlink" href="#test-on-your-turtlebot" title="Permalink to this headline">¶</a></h2>
+<p>Draw a yellow line on your ground using a colored paper or a ducktape.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Make sure that the color ground&#8217;s color is different than the yellow color you are using to avoid conflict and ensure good results.</p>
+</div>
+<p>On your master node(turtlebot PC) run the following commands:</p>
+<div class="highlight-bach"><div class="highlight"><pre><span></span>roscore
+roslaunch turtlebot_bringup minimal.launch
+</pre></div>
+</div>
+<p>on your host node(your PC) run the <code class="docutils literal"><span class="pre">python</span></code> script:</p>
 <div class="highlight-bach"><div class="highlight"><pre><span></span>python your_path/line_follower.py
 </pre></div>
 </div>
