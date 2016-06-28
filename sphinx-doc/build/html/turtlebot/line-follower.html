@@ -178,7 +178,7 @@
 <div class="section" id="introducing-the-opencv">
 <h2>Introducing the OpenCV<a class="headerlink" href="#introducing-the-opencv" title="Permalink to this headline">¶</a></h2>
 <p>OpenCV is a popular open source computer vision library. We will use this library to view images and stream from the turtlbot robot so it can follow a line on the ground. In order to do that we will need to see the line, define the centre of this line and finally move the robot to follow the robot.
-Messages from the camera are published on the <code class="docutils literal"><span class="pre">the</span> <span class="pre">sensor_msgs/Image</span></code> topic so we will need to write a node that subscribe to the same topic.</p>
+Messages from the camera are published on the <code class="docutils literal"><span class="pre">sensor_msgs/Image</span></code> topic so we will need to write a node that subscribe to the same topic.</p>
 <p>Open any text editor you like and type the following in a file called <code class="docutils literal"><span class="pre">follower.py</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="kn">import</span> <span class="nn">rospy</span>

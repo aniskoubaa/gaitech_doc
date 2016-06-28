@@ -23,7 +23,7 @@ Introducing the OpenCV
 ======================
 
 OpenCV is a popular open source computer vision library. We will use this library to view images and stream from the turtlbot robot so it can follow a line on the ground. In order to do that we will need to see the line, define the centre of this line and finally move the robot to follow the robot.
-Messages from the camera are published on the ``the sensor_msgs/Image`` topic so we will need to write a node that subscribe to the same topic.
+Messages from the camera are published on the ``sensor_msgs/Image`` topic so we will need to write a node that subscribe to the same topic.
 
 Open any text editor you like and type the following in a file called ``follower.py``:
 
