@@ -129,7 +129,7 @@ def callback(data):
 
 if __name__ == "__main__":
     # Initialize the node
-    rospy.init_node('follow', log_level=rospy.DEBUG, anonymous=True)
+    rospy.init_node('turtlebot_follow', log_level=rospy.DEBUG, anonymous=True)
     listener()
     #follower = follower()
     #rospy.spin()

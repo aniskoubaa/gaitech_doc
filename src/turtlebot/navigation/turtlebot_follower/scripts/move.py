@@ -177,7 +177,7 @@ def tracker_callback(data):
 	"""Checks to see if the subscriber from tracking.py has sent in a True value for
 	tracking a person. If True, it will publish to follow.py to begin following."""
 	if str(data) == "data: True":
-		pub = rospy.Publisher('move', Bool)
+		pub = rospy.Publisher('move', Bool,queue_size=10)
 		pub.publish(True)
 
 if __name__ == "__main__":
