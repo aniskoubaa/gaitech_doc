@@ -10,10 +10,11 @@
 # writing.  ROS will use whatever manifest you specify, even if it's
 # not in the current package.  This can be *really* hard to debug.
 
-#"""Code modified by Peter Tran and Rocky Mazorow to include barking function,
-#as well as intergrating it with move.py and bark.py."""
+"""Code modified by Peter Tran and Rocky Mazorow to include barking function,
+as well as intergrating it with move.py and bark.py."""
 
 
+#import roslib; roslib.load_manifest('follower_bark')
 import rospy
 import numpy as np
 import os
@@ -35,7 +36,7 @@ class follower:
         self.sub = rospy.Subscriber('scan', LaserScan, self.laser_callback)
 
         # Publish movement commands to the turtlebot's base
-        self.pub = rospy.Publisher('camera/depth/points', Twist, queue_size=10)
+        self.pub = rospy.Publisher('mobile_base/commands/velocity', Twist, queue_size = 10)
 
         # How close should we get to things, and what are our speeds?
         self.stopDistance = stopDistance
@@ -65,8 +66,8 @@ class follower:
 	rospy.logdebug('position: {0}'.format(self.position))
 
 	#if there's something within self.followDist from us, start following.
-#	"""Also publishes to bark.py once it begins to follow. This is to get
-#	the robot to begin barking as it follows the person."""
+	"""Also publishes to bark.py once it begins to follow. This is to get
+	the robot to begin barking as it follows the person."""
 	if (self.closest < self.followDist):
 	    self.pubbark = rospy.Publisher('follow', String)
 	    self.pubbark.publish(String("Bark"))
@@ -117,7 +118,7 @@ def listener():
 	"""Subscribes to move.py."""
 	print "I am listening"
 	rospy.Subscriber("move", Bool, callback)
-	#rospy.spin()
+	rospy.spin()
 
 def callback(data):
 	"""Checks if the data sent in from move.py is True, which depends on what
@@ -128,7 +129,7 @@ def callback(data):
 
 if __name__ == "__main__":
     # Initialize the node
-    rospy.init_node('turtlebot_follow', log_level=rospy.DEBUG, anonymous=True)
+    rospy.init_node('follow', log_level=rospy.DEBUG, anonymous=True)
     listener()
     #follower = follower()
     #rospy.spin()
