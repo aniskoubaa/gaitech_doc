@@ -110,5 +110,4 @@ Which means that all sensor detected a cliff as the robot is away from the groun
 Testing the motors of the Kobuki base
 =====================================
 
-Testing the motors of the Kobuki base
-=====================================
+
