@@ -21,20 +21,28 @@
           args="messages camera/rgb/image_color/compressed 5"/>
 
   <!--  Load turtlebot follower into the 3d sensors nodelet manager to avoid pointcloud serializing -->
-    <node pkg="gaitech" type="turtlebot_follower.py" name="turtlebot_follower"
-          args="load turtlebot_follower/TurtlebotFollower camera/camera_nodelet_manager">
-      <remap from="turtlebot_follower/cmd_vel" to="follower_velocity_smoother/raw_cmd_vel"/>
-      <remap from="depth/points" to="camera/depth/points"/>
-      <param name="enabled" value="true" />
-      <param name="x_scale" value="7.0" />
-      <param name="z_scale" value="2.0" />
-      <param name="min_x" value="-0.35" />
-      <param name="max_x" value="0.35" />
-      <param name="min_y" value="0.1" />
-      <param name="max_y" value="0.5" />
-      <param name="max_z" value="1.2" />
-      <param name="goal_z" value="0.6" />
-    </node>
+  <node pkg="gaitech_doc" name="follower" type="follower.py" output="screen">
+    <remap from="point_cloud" to="/camera/depth/points" />
+    
+    <rosparam>
+       min_x: -0.3
+       max_x: 0.3
+       min_y: 0.1
+       max_y: 0.5
+       max_z: 1.6
+       goal_z: 0.8
+       z_threshold: 0.025
+       x_threshold: 0.025
+       z_scale: 1.0
+       x_scale: 3.0
+       max_angular_speed: 5.0
+       min_angular_speed: 0.1
+       max_linear_speed: 0.4
+       min_linear_speed: 0.05
+    </rosparam>
+
+  </node>
+
   </group>
 
 </launch>
