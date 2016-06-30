@@ -40,6 +40,7 @@ Lecture 2: Understanding ROS Topics, Nodes and Messages
       * Understand ROS nodes and its related terminal commands
       * Undertsand ROS messages and its related terminal commands
 
+.. youtube:: Yx_vGAt74sk
 
 Review Questions
 ================

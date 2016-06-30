@@ -28,7 +28,7 @@ In this video, you will learn:
    * How to configure ``CMakeLists.txt`` and ``package.xml`` to add new required packages for compilation and runtime
    * How to run a program in ROS
 
-
+.. youtube:: 8bUkLNEu5Ns
 
 Review Questions
 ================

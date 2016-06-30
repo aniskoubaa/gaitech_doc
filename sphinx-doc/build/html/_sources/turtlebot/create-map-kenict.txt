@@ -30,7 +30,7 @@ On you host node(your work station) run the following commands in separate termi
 	roslaunch turtlebot_teleop keyboard_teleop.launch
 
 .. WARNING::
-	Connect to the Master node using the ``ssh turtlebot_PC_name@TURTLEBOT_IP`` before running any command in every terminal you use except for the ``RViz`` command run it in a normal terminal.
+	Connect to the Master node using the ``ssh turtlebot_PC_name@TURTLEBOT_IP`` command before running any command in every terminal you use, except for the ``RViz`` command run it in a normal terminal.
 
 Start moving the robot around and watch the RViz simulator as the map starts to show up. 
 

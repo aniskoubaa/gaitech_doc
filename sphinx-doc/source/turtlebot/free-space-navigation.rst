@@ -1,10 +1,13 @@
 .. _free-space-navigation:
 
-================================
-Turtlebot free movement in Space
-================================
+===============================
+Turtlebot Free Space Navigation
+===============================
 
-This tutorial will introduce how to control your turtlebot robot using `Python` and `C++` code to move in a specific path you deside in your code. We chose to make the robot move in a square path but you can extend the code and write your own path.
+This tutorial is the first lesson in the series of robot navigation. We consider the case of an open space with no obstacles. 
+The objective of this tutorial is to learn how to make the Turtlebot robot move using ROS. You will mainly learn how to publish a velocity message to make the robot move for a certain distance, or rotate for a certain angle. 
+For this, you will create the functions ``move`` and ``rotate`` using different techniques. 
+In particular, you will learn how to use ``TF`` package to estimate the distance traveled by the robot and the angle rotated by the robot using frame transformations. 
 
 .. WARNING::
     Make sure that you completed installing all the required packages in the previous tutorials and your network set-up is working fine between the ROS Master node and the host node.
@@ -13,10 +16,19 @@ This tutorial will introduce how to control your turtlebot robot using `Python` 
 
    In this tutorial you will learn how to:
 
-      * Teleoprate a real and simulated turtlebot
-      * Create a custom path for the turtlebot to move in  
+      * Make the robot navigate in an open obstcale-free space
+      * Develop functions to make the robot move straight for a certain distance
+      * Develop functions to make the robot rotate for a certain angle. 
+      * use ``TF`` package to estimate the traveled distance and the rotated angle by a robot
 
-C++ and Python Code for the square path 
+Background
+==========
+The objective is to develop functions to make the robot moves in an open space in straight line for a certain distance, and rotate left or right for certain angle. 
+In the previous tutorial using the Turtlesim, we used the simple equation 
+
+
+
+C++ and Python Code for the square path
 =======================================
 
 You can find the whole ``cpp`` and ``python`` files in our `GitHub repository <https://github.com/aniskoubaa/gaitech_doc>`_ in the following `path <https://github.com/aniskoubaa/gaitech_doc/tree/master/src/turtlebot/navigation/free_space_navigation>`_. Go to `scripts` to find the ``python`` code.
