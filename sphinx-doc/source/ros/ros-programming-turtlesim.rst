@@ -14,6 +14,8 @@ The robot should cover the whole area to be cleaned.
 For this, we will develop, step-by-step, several functions to make the robot move straight and rotate and use these functions in developing the cleaning application.
 You can then extend this application to make it even smarter and more comprehensive.  
 
+The code of this tutorial is available in ``src/turtlesim/cleaning_app/robot_cleaner.cpp`` of ``gaitech_doc`` package.
+
 
 .. warning:: 
    It is assumed that you already know the main concepts on ROS including ROS topics, ROS nodes, ROS messages and ROS services. 
