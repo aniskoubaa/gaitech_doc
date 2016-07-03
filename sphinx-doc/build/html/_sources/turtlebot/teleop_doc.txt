@@ -1,8 +1,0 @@
-
-
-
-
-
-
-.. image:: images/turtlebot.png
-    :align: center
