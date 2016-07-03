@@ -39,9 +39,13 @@ In this video, you will:
 
 Lecture 2: Moving in a Straight Line
 ====================================
-In this video, you will:
+In this video, you will learn:
 
    * How to develop the simplest program with ROS
+   * How to publish a message to a ROS topic using C++ and Python
+   * How to subscribe a message to a ROS topic using C++ and Python
+   * How to configure ``CMakeLists.txt`` and ``package.xml`` to add new required packages for compilation and runtime
+   * How to run a program in ROS
 
 .. youtube:: PGZMlzBlMmw
 

@@ -14,8 +14,7 @@ Welcome to Gaitech's Education Portal!
 .. toctree::
    :hidden:
    
-   ROS Background <ros/ros-background>
-   Getting Started with ROS Programming <ros/ros-programming-basics>
+   ROS Quick Start <ros/ros-tutorials>
    Turtlebot Tutorials <turtlebot/turtlebot-tutorials>
    Drones Tutorials <drones/index>
 
