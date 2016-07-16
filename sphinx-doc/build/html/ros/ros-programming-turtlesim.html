@@ -98,6 +98,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#lecture-4-go-to-goal-location-pid-controller">Lecture 4: Go to Goal Location (PID Controller)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#lecture-5-grid-and-spiral-cleaning-application">Lecture 5: Grid and Spiral Cleaning Application</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#review-questions">Review Questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#do-it-yourself">Do-It-Yourself</a></li>
 </ul>
 </li>
 </ul>
@@ -188,7 +189,10 @@ The tutorial could be completed in 2 to 4 hours.</p>
 <p>In this video, you will:</p>
 <blockquote>
 <div><ul class="simple">
-<li>How to develop the simplest program with ROS</li>
+<li>develop a function to make the robot move in a straight line forward and backward</li>
+<li>understand how to choose the right ROS topic to publish a message for a certain functionality</li>
+<li>use the Twist message to send linear velocity commands to move in straight line</li>
+<li>control the distance traveled by the robot</li>
 </ul>
 </div></blockquote>
 <iframe width="640" height="360" src="http://www.youtube.com/embed/PGZMlzBlMmw" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
@@ -197,37 +201,32 @@ The tutorial could be completed in 2 to 4 hours.</p>
 <p>In this video, you will learn:</p>
 <blockquote>
 <div><ul class="simple">
-<li>How to develop the simplest program with ROS</li>
-<li>How to publish a message to a ROS topic using C++ and Python</li>
-<li>How to subscribe a message to a ROS topic using C++ and Python</li>
-<li>How to configure <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code> and <code class="docutils literal"><span class="pre">package.xml</span></code> to add new required packages for compilation and runtime</li>
-<li>How to run a program in ROS</li>
+<li>understand rotation conventional assumptions</li>
+<li>develop a function to make the robot rotate left and right</li>
+<li>use the Twist message to send angular velocity commands to rotate</li>
+<li>set the desired orientation of the robot after rotation</li>
+<li>develop and use some basic functions related to rotation</li>
 </ul>
 </div></blockquote>
 <iframe width="640" height="360" src="http://www.youtube.com/embed/Ddqwq2WXFEk" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
 <div class="section" id="lecture-4-go-to-goal-location-pid-controller">
 <h2>Lecture 4: Go to Goal Location (PID Controller)<a class="headerlink" href="#lecture-4-go-to-goal-location-pid-controller" title="Permalink to this headline">¶</a></h2>
-<p>In this video, you will learn:</p>
+<p>In this video, you will:</p>
 <blockquote>
 <div><ul class="simple">
-<li>How to develop the simplest program with ROS</li>
-<li>How to publish a message to a ROS topic using C++ and Python</li>
-<li>How to subscribe a message to a ROS topic using C++ and Python</li>
-<li>How to configure <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code> and <code class="docutils literal"><span class="pre">package.xml</span></code> to add new required packages for compilation and runtime</li>
-<li>How to run a program in ROS</li>
+<li>understand the essential of PID controllers</li>
+<li>develop a PID controller to make the robot head towards a specified location</li>
 </ul>
 </div></blockquote>
+<p>For a good introduction on PID controllers for mobile robots, it is recommended to watch Lecture 1 and Lecture of the online course on <a class="reference external" href="https://www.youtube.com/watch?v=KZEWLZJwYNc&amp;list=PLciAw3uhNCiD3dkLTPJgHoMnsu8XgCt1m">Control of Mobile Robots, provided by Georgia Institute of Technology</a>.</p>
 <iframe width="640" height="360" src="http://www.youtube.com/embed/Qh15Nol5htM" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
 <div class="section" id="lecture-5-grid-and-spiral-cleaning-application">
 <h2>Lecture 5: Grid and Spiral Cleaning Application<a class="headerlink" href="#lecture-5-grid-and-spiral-cleaning-application" title="Permalink to this headline">¶</a></h2>
-<p>In this video, you will learn:</p>
+<p>In this video, you will:</p>
 <blockquote>
 <div><ul class="simple">
-<li>How to develop the simplest program with ROS</li>
-<li>How to publish a message to a ROS topic using C++ and Python</li>
-<li>How to subscribe a message to a ROS topic using C++ and Python</li>
-<li>How to configure <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code> and <code class="docutils literal"><span class="pre">package.xml</span></code> to add new required packages for compilation and runtime</li>
-<li>How to run a program in ROS</li>
+<li>use the move and rotate functions to develop the clearning applications and area coverage</li>
+<li>develop a new function to make the robot cover the area in spiral form</li>
 </ul>
 </div></blockquote>
 <iframe width="640" height="360" src="http://www.youtube.com/embed/ehH8oLfsz-w" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
@@ -235,14 +234,18 @@ The tutorial could be completed in 2 to 4 hours.</p>
 <h2>Review Questions<a class="headerlink" href="#review-questions" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>Write the C++/Python instruction that creates a new topic called chatter of type String?</li>
-<li>Write the C++/Python instruction that effectively publishes a message on the chatter topic?</li>
-<li>How to add a new exectuable in <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code> and <code class="docutils literal"><span class="pre">package.xml</span></code> to be able to compile and run a C++ ROS program?</li>
-<li>How to declare a topic subscriber in C++/Python?</li>
-<li>What is the role of the subscriber callback function?</li>
-<li>in C++, what is the difference between <code class="docutils literal"><span class="pre">std_msgs::String::ConstPtr</span></code> and <code class="docutils literal"><span class="pre">std_msgs::String</span></code>?</li>
+<li>What are the steps followed to develop the cleaning application?</li>
+<li>Explain how the Twist message is used to make the robot move stright and rotate?</li>
+<li>What is the equation used to make the robot move in spiral form? How this implemented in ROS?</li>
+<li>What is the drawback of method used to control the traveled distance and rotated angle? Explain and justify your claim.</li>
 </ul>
 </div></blockquote>
+</div>
+<div class="section" id="do-it-yourself">
+<h2>Do-It-Yourself<a class="headerlink" href="#do-it-yourself" title="Permalink to this headline">¶</a></h2>
+<p>You are requested to extend the cleaning application by making it smarter.
+We want to program the robot such that it moves 1 meter, then rotates 360 degrees in place, and repeat the process until the area is cleaned.
+You need to use a loop to control the robot motion until the end of the mission.</p>
 </div>
 </div>
 

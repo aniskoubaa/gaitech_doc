@@ -37,62 +37,69 @@ In this video, you will:
 
 .. youtube:: qtVDso-iBNA
 
-
+ 
 
 Lecture 2: Moving in a Straight Line
 ====================================
 In this video, you will:
 
-   * How to develop the simplest program with ROS
+   * develop a function to make the robot move in a straight line forward and backward
+   * understand how to choose the right ROS topic to publish a message for a certain functionality
+   * use the Twist message to send linear velocity commands to move in straight line
+   * control the distance traveled by the robot
 
 .. youtube:: PGZMlzBlMmw
+
+ 
 
 Lecture 3: Rotating Left and Right
 ==================================
 In this video, you will learn:
 
-   * How to develop the simplest program with ROS
-   * How to publish a message to a ROS topic using C++ and Python
-   * How to subscribe a message to a ROS topic using C++ and Python
-   * How to configure ``CMakeLists.txt`` and ``package.xml`` to add new required packages for compilation and runtime
-   * How to run a program in ROS
+   * understand rotation conventional assumptions
+   * develop a function to make the robot rotate left and right
+   * use the Twist message to send angular velocity commands to rotate
+   * set the desired orientation of the robot after rotation
+   * develop and use some basic functions related to rotation
    
 .. youtube:: Ddqwq2WXFEk
    
+ 
+
 Lecture 4: Go to Goal Location (PID Controller)
 ===============================================
-In this video, you will learn:
+In this video, you will:
 
-   * How to develop the simplest program with ROS
-   * How to publish a message to a ROS topic using C++ and Python
-   * How to subscribe a message to a ROS topic using C++ and Python
-   * How to configure ``CMakeLists.txt`` and ``package.xml`` to add new required packages for compilation and runtime
-   * How to run a program in ROS
+   * understand the essential of PID controllers
+   * develop a PID controller to make the robot head towards a specified location
+   
+For a good introduction on PID controllers for mobile robots, it is recommended to watch Lecture 1 and Lecture of the online course on `Control of Mobile Robots, provided by Georgia Institute of Technology <https://www.youtube.com/watch?v=KZEWLZJwYNc&list=PLciAw3uhNCiD3dkLTPJgHoMnsu8XgCt1m>`_.
 
 .. youtube:: Qh15Nol5htM
 
 
 Lecture 5: Grid and Spiral Cleaning Application
 ===============================================
-In this video, you will learn:
+In this video, you will:
 
-   * How to develop the simplest program with ROS
-   * How to publish a message to a ROS topic using C++ and Python
-   * How to subscribe a message to a ROS topic using C++ and Python
-   * How to configure ``CMakeLists.txt`` and ``package.xml`` to add new required packages for compilation and runtime
-   * How to run a program in ROS
+   * use the move and rotate functions to develop the clearning applications and area coverage
+   * develop a new function to make the robot cover the area in spiral form 
 
 .. youtube:: ehH8oLfsz-w
 
 Review Questions
 ================
-   * Write the C++/Python instruction that creates a new topic called chatter of type String?
-   * Write the C++/Python instruction that effectively publishes a message on the chatter topic?
-   * How to add a new exectuable in ``CMakeLists.txt`` and ``package.xml`` to be able to compile and run a C++ ROS program?
-   * How to declare a topic subscriber in C++/Python?
-   * What is the role of the subscriber callback function? 
-   * in C++, what is the difference between ``std_msgs::String::ConstPtr`` and ``std_msgs::String``? 
+   * What are the steps followed to develop the cleaning application?
+   * Explain how the Twist message is used to make the robot move stright and rotate?
+   * What is the equation used to make the robot move in spiral form? How this implemented in ROS?
+   * What is the drawback of method used to control the traveled distance and rotated angle? Explain and justify your claim.  
+   
 
+Do-It-Yourself
+==============
+You are requested to extend the cleaning application by making it smarter. 
+We want to program the robot such that it moves 1 meter, then rotates 360 degrees in place, and repeat the process until the area is cleaned. 
+You need to use a loop to control the robot motion until the end of the mission. 
 
 
 
