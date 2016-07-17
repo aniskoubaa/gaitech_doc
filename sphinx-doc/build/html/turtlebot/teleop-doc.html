@@ -95,14 +95,13 @@
 <li class="toctree-l2"><a class="reference internal" href="turtlebot_simulators.html">Turtlebot Simulators</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Keyboard Teleop</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#code-explanation">Code Explanation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#video-demonstration">Video Demonstration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#questions">Questions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kenict</a></li>
 <li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
-<li class="toctree-l2"><a class="reference internal" href="send-goals-nav-stack.html">Send Goals to Navigation Stack</a></li>
-<li class="toctree-l2"><a class="reference internal" href="build-map.html">Building a map using Logged Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="line-follower.html">Line Follower</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
@@ -175,7 +174,9 @@
 </div>
 <div class="section" id="code-explanation">
 <h2>Code Explanation<a class="headerlink" href="#code-explanation" title="Permalink to this headline">¶</a></h2>
-<p>This is the script of the keyboard_teleop.launch file:</p>
+<p>The source code of the keyboard teleop could be found in <code class="docutils literal"><span class="pre">src/tutlebot/keyboard_teleop</span></code> folder of the <code class="docutils literal"><span class="pre">gaitech_doc</span></code> package.
+Note that by default the keyboard teleop application is in the folder <code class="docutils literal"><span class="pre">/opt/ros/indigo/share/turtlebot_teleop</span></code> of the ROS distribution.
+We explain the following script of the <code class="docutils literal"><span class="pre">keyboard_teleop.launch</span></code> file:</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span> <span class="nt">&lt;launch&gt;</span>
   <span class="c">&lt;!-- turtlebot_teleop_key already has its own built in velocity smoother --&gt;</span>
    <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">&quot;turtlebot_teleop&quot;</span> <span class="na">type=</span><span class="s">&quot;turtlebot_teleop_key&quot;</span> <span class="na">name=</span><span class="s">&quot;turtlebot_teleop_keyboard&quot;</span>  <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
@@ -186,8 +187,33 @@
 <span class="nt">&lt;/launch&gt;</span>
 </pre></div>
 </div>
-<p>Notice that the keyboard teleop node takes two parameters(scale_linear and scale_angular) and they are used to determine the speed of the turtlebot speed. It is very important to keep the speed very small when you are testing. However, you can change the speed value as much as you like.</p>
-<iframe width="640" height="360" src="http://www.youtube.com/embed/pjq-vThdWjw" frameborder="0" allowfullscreen="1">&nbsp;</iframe><p>You can do the same tutorial to control your turtlebot robot using a PlayStation3 <a class="reference external" href="http://wiki.ros.org/turtlebot_teleop/Tutorials/indigo/Joystick%20Teleop">Joystick</a> .</p>
+<p>The launch file runs the ROS node <code class="docutils literal"><span class="pre">turtlebot_teleop_key</span></code> of the package <code class="docutils literal"><span class="pre">turtlebot_teleop</span></code>.
+Notice that the keyboard teleop node takes two parameters(<code class="docutils literal"><span class="pre">scale_linear</span></code> and <code class="docutils literal"><span class="pre">scale_angular</span></code>)
+and they are used to determine the scale of the linear and angular speed of the turtlebot.
+It is very important to keep the speed very small when you are testing.
+However, you can change the speed value as much as you like, depending on the ground type.</p>
+<p>The command <code class="docutils literal"><span class="pre">&lt;remap</span> <span class="pre">from=&quot;turtlebot_teleop_keyboard/cmd_vel&quot;</span> <span class="pre">to=&quot;cmd_vel_mux/input/teleop&quot;/&gt;</span></code> remap the topic of the velocity command to <code class="docutils literal"><span class="pre">cmd_vel_mux/input/teleop</span></code>, which is the topic that the turtlebot uses to receive velocity commands.
+In fact, in the <code class="docutils literal"><span class="pre">turtlebot_teleop_key</span></code> the programmers used the topic <code class="docutils literal"><span class="pre">turtlebot_teleop_keyboard/cmd_vel</span></code> to publish velocity commands, but the turtlebot uses the <code class="docutils literal"><span class="pre">cmd_vel_mux/input/teleop</span></code> topic to receive velocity command.
+The <code class="docutils literal"><span class="pre">remap</span></code> command allows to change the definition of the <code class="docutils literal"><span class="pre">turtlebot_teleop_keyboard/cmd_vel</span></code> to the topic defined in the turtlebot robot.
+Without the remap the keyboard teleopartion will not work as the topic used for publishing velocity commands will be different from the one used to receive them in the robot.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can either control a real turtlebot or a simulated turtlebot (in Stage or Gazebo) using the keyboard teleoperation.
+If for some reason it does not work, make sure to correctly map the ROS topic over which the robot receives velocity commands.</p>
+</div>
+</div>
+<div class="section" id="video-demonstration">
+<h2>Video Demonstration<a class="headerlink" href="#video-demonstration" title="Permalink to this headline">¶</a></h2>
+<p>You can watch an illustration of keyboard teleoperation of the turtlebot in this video</p>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/pjq-vThdWjw" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
+<div class="section" id="questions">
+<h2>Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Read the code of <code class="docutils literal"><span class="pre">keyboad_teleop.cpp</span></code> and <code class="docutils literal"><span class="pre">keyboad_teleop.py</span></code>.  What is the topic used to publish velocity commands to the robot? What the line of code that does that?</li>
+<li>What is the topic that the turtlebot uses to receive velocity commands? How can you find this information?</li>
+<li>What is the technique used to link the topic of the velocity command published by the keyboard teleop node and the velocity command topic received by the robot?</li>
+<li>What is the role of <code class="docutils literal"><span class="pre">scale_linear</span></code> and <code class="docutils literal"><span class="pre">scale_angular</span></code>. Explain.</li>
+</ul>
 </div>
 </div>
 
@@ -257,7 +283,19 @@
           SphinxRtdTheme.StickyNav.enable();
       });
   </script>
-   
+  
+ 
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
 
 </body>
 </html>

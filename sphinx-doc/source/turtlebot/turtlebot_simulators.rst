@@ -13,9 +13,6 @@ You need to install the software:
 
 There is a couple of simulators that you can help you with your robot such as Gazebo, Stage, RViz and Stdr. The most used simulators are the Gazebo and the stage.
 
-.. NOTE::
-    Make sure that you completed installing all the required packets in the previous tutorials and your ROS environment is full working.
-
 Stage Simulator
 ===============
 
@@ -42,14 +39,6 @@ The following picture is after you choose a position for the robot to go.
 .. image:: images/stage_rviz_moving.png
     :align: center
 
-.. NOTE:: 
-	You can run the following command 
-
-	.. code-block:: bash
-
-          roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch
-
-	if your PC is not powerful and can not run both simulators at the same time.
 
 Open the turtlebot_stage directory and type 
 

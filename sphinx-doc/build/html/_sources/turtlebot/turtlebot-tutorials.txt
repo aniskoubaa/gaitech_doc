@@ -22,6 +22,4 @@ In this page, we will provide you a quick start with Turtlebot robot.
    Voice Teleoperation <speech-doc>
    Create a Map using Kenict <create-map-kenict>
    Turtlebot free movement in Space<free-space-navigation>
-   Send Goals to Navigation Stack<send-goals-nav-stack>
-   Building a map using Logged Data<build-map>
-   Line Follower<line-follower>
+

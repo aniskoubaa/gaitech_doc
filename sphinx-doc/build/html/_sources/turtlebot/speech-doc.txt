@@ -460,7 +460,7 @@ Video Demonstration
 Hands-on Activities
 ===================
 
-In these section, you will extend the example above and implement a smarter version of the voice teleoperation application. 
+In this section, you will extend the example above and implement a smarter version of the voice teleoperation application. 
 
 Question 1: Extending Voice Vocabulary
 --------------------------------------

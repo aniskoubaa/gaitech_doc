@@ -95,11 +95,13 @@
 <li class="toctree-l2"><a class="reference internal" href="turtlebot_simulators.html">Turtlebot Simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Create a Map using Kenict</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Create a Map using Kenict</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#kinect-3d-sensor-configuration">Kinect 3D sensor configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#start-mapping-ros-nodes">Start Mapping ROS Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#video-demonstration">Video Demonstration</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
-<li class="toctree-l2"><a class="reference internal" href="send-goals-nav-stack.html">Send Goals to Navigation Stack</a></li>
-<li class="toctree-l2"><a class="reference internal" href="build-map.html">Building a map using Logged Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="line-follower.html">Line Follower</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
@@ -156,14 +158,26 @@
 <p class="first admonition-title">Warning</p>
 <p class="last">Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node.</p>
 </div>
-<p>In order to connect the <cite>Kenict</cite> sensor with the ROS Indigo environment you can type the following three commands in your <code class="docutils literal"><span class="pre">.bashrc</span></code> file:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">TURTLEBOT_3D_SENSOR</span><span class="o">=</span>kenict
+<p>By default, ROS indigo supports <code class="docutils literal"><span class="pre">Asus</span> <span class="pre">Live</span> <span class="pre">Pro</span></code> 3D sensor and has no default support to <code class="docutils literal"><span class="pre">Kinect</span></code> 3D sensor.
+If you use <code class="docutils literal"><span class="pre">Asus</span> <span class="pre">Live</span> <span class="pre">Pro</span></code> 3D sensor, then skip the Kinect configuration step below.</p>
+<div class="section" id="kinect-3d-sensor-configuration">
+<h2>Kinect 3D sensor configuration<a class="headerlink" href="#kinect-3d-sensor-configuration" title="Permalink to this headline">¶</a></h2>
+<p>In order to connect the <code class="docutils literal"><span class="pre">Kinect</span></code> sensor with the ROS Indigo environment, you can type the following three commands in your <code class="docutils literal"><span class="pre">.bashrc</span></code> file:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">TURTLEBOT_3D_SENSOR</span><span class="o">=</span>kinect
 <span class="nb">export</span> <span class="nv">TURTLEBOT_BASE</span><span class="o">=</span>kobuki
 <span class="nb">export</span> <span class="nv">TURTLEBOT_STACKS</span><span class="o">=</span>hexagons
 </pre></div>
 </div>
-<p>Then save, exit and close the terminal.</p>
-<p>On you host node(your work station) run the following commands in separate terminals:</p>
+<p>Then save, exit and close the terminal.
+Open a new terminal.</p>
+</div>
+<div class="section" id="start-mapping-ros-nodes">
+<h2>Start Mapping ROS Nodes<a class="headerlink" href="#start-mapping-ros-nodes" title="Permalink to this headline">¶</a></h2>
+<p>On you workstation (or on the robot machine), run the following commands in separate terminals:</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you execute the following command on your workstation (recommended), you must make sure to have correctly set-up the network configuration as explained in <a class="reference internal" href="network-config-doc.html#network-config-doc"><span class="std std-ref">Network Configuration</span></a>.</p>
+</div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>roscore
 roslaunch turtlebot_bringup minimal.launch
 roslaunch turtlebot_navigation gmapping_demo.launch
@@ -175,14 +189,18 @@ roslaunch turtlebot_teleop keyboard_teleop.launch
 <p class="first admonition-title">Warning</p>
 <p class="last">Connect to the Master node using the <code class="docutils literal"><span class="pre">ssh</span> <span class="pre">turtlebot_PC_name&#64;TURTLEBOT_IP</span></code> command before running any command in every terminal you use, except for the <code class="docutils literal"><span class="pre">RViz</span></code> command run it in a normal terminal.</p>
 </div>
-<p>Start moving the robot around and watch the RViz simulator as the map starts to show up.</p>
+<p>Start moving the robot around using <code class="docutils literal"><span class="pre">keyboard</span> <span class="pre">teleop</span></code> application or a joytsick and watch the RViz simulator as the map starts to be built-up.</p>
 <p>Finally you will end-up with a map looking like this one:</p>
 <img alt="../_images/kenict_map.png" class="align-center" src="../_images/kenict_map.png" />
 <p>You can save the map you just created by running the following command:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun map_server map_saver -f /tmp/my_map
 </pre></div>
 </div>
+</div>
+<div class="section" id="video-demonstration">
+<h2>Video Demonstration<a class="headerlink" href="#video-demonstration" title="Permalink to this headline">¶</a></h2>
 <iframe width="640" height="360" src="http://www.youtube.com/embed/QzZif1e767k" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
+</div>
 
 
            </div>
@@ -250,7 +268,19 @@ roslaunch turtlebot_teleop keyboard_teleop.launch
           SphinxRtdTheme.StickyNav.enable();
       });
   </script>
-   
+  
+ 
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
 
 </body>
 </html>

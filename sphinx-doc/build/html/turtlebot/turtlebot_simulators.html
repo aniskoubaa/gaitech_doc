@@ -102,9 +102,6 @@
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kenict</a></li>
 <li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
-<li class="toctree-l2"><a class="reference internal" href="send-goals-nav-stack.html">Send Goals to Navigation Stack</a></li>
-<li class="toctree-l2"><a class="reference internal" href="build-map.html">Building a map using Logged Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="line-follower.html">Line Follower</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
@@ -162,10 +159,6 @@
 </pre></div>
 </div>
 <p>There is a couple of simulators that you can help you with your robot such as Gazebo, Stage, RViz and Stdr. The most used simulators are the Gazebo and the stage.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Make sure that you completed installing all the required packets in the previous tutorials and your ROS environment is full working.</p>
-</div>
 <div class="section" id="stage-simulator">
 <h2>Stage Simulator<a class="headerlink" href="#stage-simulator" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
@@ -185,14 +178,6 @@
 <p>Click on the <cite>2D Nav Goal</cite> option on the top bar and command the robot to go anywhere you want in the map.</p>
 <p>The following picture is after you choose a position for the robot to go.</p>
 <img alt="../_images/stage_rviz_moving.png" class="align-center" src="../_images/stage_rviz_moving.png" />
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>You can run the following command</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage_no_rviz.launch
-</pre></div>
-</div>
-<p class="last">if your PC is not powerful and can not run both simulators at the same time.</p>
-</div>
 <p>Open the turtlebot_stage directory and type</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>tree
 </pre></div>
@@ -364,7 +349,19 @@
           SphinxRtdTheme.StickyNav.enable();
       });
   </script>
-   
+  
+ 
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
 
 </body>
 </html>

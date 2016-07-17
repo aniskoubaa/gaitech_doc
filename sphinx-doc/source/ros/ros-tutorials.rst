@@ -8,7 +8,7 @@
 =========================
 ROS Quick Start Tutorials
 =========================
-In this page, we will provide you a quick start with Turtlebot robot.
+In this page, we will provide you a quick start with ROS.
 
 .. image:: ../images/ros/ros.png
     :align: center
