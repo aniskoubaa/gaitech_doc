@@ -100,11 +100,12 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kenict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kinect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../partners/index.html">Partners</a></li>
 </ul>
 
             
@@ -158,7 +159,7 @@
 <div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-indigo-turtlebot-simulator
 </pre></div>
 </div>
-<p>There is a couple of simulators that you can help you with your robot such as Gazebo, Stage, RViz and Stdr. The most used simulators are the Gazebo and the stage.</p>
+<p>There is a couple of simulators that you can help you with your robot such as Gazebo, Stage, RViz and Stdr. The most used simulators are the Gazebo and the Stage.</p>
 <div class="section" id="stage-simulator">
 <h2>Stage Simulator<a class="headerlink" href="#stage-simulator" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
@@ -191,7 +192,7 @@
 <span class="n">rviz</span><span class="o">/</span><span class="n">robot_navigation</span><span class="o">.</span><span class="n">rviz</span>
 </pre></div>
 </div>
-<p>The <cite>.rviz</cite> file has all the settings for the RViz simulator so you don&#8217;t need to worry about. The <code class="docutils literal"><span class="pre">turtlebot.inc</span></code> file defines the layout and the sensor for the turtlebot robot.</p>
+<p>The <cite>.rviz</cite> file has all the settings for the RViz simulator so you don&#8217;t need to worry about it. The <code class="docutils literal"><span class="pre">turtlebot.inc</span></code> file defines the layout and the sensor for the turtlebot robot.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Make sure to keep a copy of the original files in case you did something wrong specially the <code class="docutils literal"><span class="pre">.png</span></code> <code class="docutils literal"><span class="pre">.yaml</span></code> <code class="docutils literal"><span class="pre">.world</span></code> files.</p>
@@ -263,7 +264,7 @@
 <h2>Using Teleop package with Gazebo and RViz<a class="headerlink" href="#using-teleop-package-with-gazebo-and-rviz" title="Permalink to this headline">¶</a></h2>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
-<p class="last">Try to make the teleop tutorial before you complete this tutorial to make sure you have all the necessary packages.</p>
+<p class="last">Try to finish the teleop tutorial before you complete this tutorial to make sure you have all the necessary packages.</p>
 </div>
 <p>First, you need to bring up the <cite>Gazebo</cite> simulator as mentioned before. Second, open a new terminal and type the following:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_teleop keyboard_teleop.launch

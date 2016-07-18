@@ -11,7 +11,7 @@ You need to install the software:
 
     sudo apt-get install ros-indigo-turtlebot-simulator
 
-There is a couple of simulators that you can help you with your robot such as Gazebo, Stage, RViz and Stdr. The most used simulators are the Gazebo and the stage.
+There is a couple of simulators that you can help you with your robot such as Gazebo, Stage, RViz and Stdr. The most used simulators are the Gazebo and the Stage.
 
 Stage Simulator
 ===============
@@ -57,7 +57,7 @@ to be able to see all the files but we are intersted in the following files:
     maps/stage/turtlebot.inc
     rviz/robot_navigation.rviz
 
-The `.rviz` file has all the settings for the RViz simulator so you don't need to worry about. The ``turtlebot.inc`` file defines the layout and the sensor for the turtlebot robot.
+The `.rviz` file has all the settings for the RViz simulator so you don't need to worry about it. The ``turtlebot.inc`` file defines the layout and the sensor for the turtlebot robot.
 
 .. NOTE:: 
 	Make sure to keep a copy of the original files in case you did something wrong specially the ``.png`` ``.yaml`` ``.world`` files.
@@ -150,7 +150,7 @@ Using Teleop package with Gazebo and RViz
 =========================================
 
 .. HINT::
-	Try to make the teleop tutorial before you complete this tutorial to make sure you have all the necessary packages.
+	Try to finish the teleop tutorial before you complete this tutorial to make sure you have all the necessary packages.
 
 First, you need to bring up the `Gazebo` simulator as mentioned before. Second, open a new terminal and type the following:
 
