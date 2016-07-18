@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Building a Map using Kenict sensor &mdash; Gaitech EDU 2.5 documentation</title>
+  <title>Building a Map using Kinect sensor &mdash; Gaitech EDU 2.5 documentation</title>
   
 
   
@@ -95,7 +95,7 @@
 <li class="toctree-l2"><a class="reference internal" href="turtlebot_simulators.html">Turtlebot Simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Create a Map using Kenict</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Create a Map using Kinect</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#kinect-3d-sensor-configuration">Kinect 3D sensor configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#start-mapping-ros-nodes">Start Mapping ROS Nodes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#video-demonstration">Video Demonstration</a></li>
@@ -137,7 +137,7 @@
       
           <li><a href="turtlebot-tutorials.html">Turtlebot Quick Start Tutorials</a> &raquo;</li>
       
-    <li>Building a Map using Kenict sensor</li>
+    <li>Building a Map using Kinect sensor</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -151,9 +151,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="building-a-map-using-kenict-sensor">
-<span id="create-map-kenict"></span><h1>Building a Map using Kenict sensor<a class="headerlink" href="#building-a-map-using-kenict-sensor" title="Permalink to this headline">¶</a></h1>
-<p>In this tutorial you will learn how to build your own map using Kenict sensor attached to your turtlebot.</p>
+  <div class="section" id="building-a-map-using-kinect-sensor">
+<span id="create-map-kenict"></span><h1>Building a Map using Kinect sensor<a class="headerlink" href="#building-a-map-using-kinect-sensor" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial you will learn how to build your own map using Kinect sensor attached to your turtlebot.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node.</p>
@@ -173,21 +173,24 @@ Open a new terminal.</p>
 </div>
 <div class="section" id="start-mapping-ros-nodes">
 <h2>Start Mapping ROS Nodes<a class="headerlink" href="#start-mapping-ros-nodes" title="Permalink to this headline">¶</a></h2>
-<p>On you workstation (or on the robot machine), run the following commands in separate terminals:</p>
+<p>On the master node (the robot machine) run the following commands:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roscore
+roslaunch turtlebot_bringup minimal.launch
+roslaunch turtlebot_navigation gmapping_demo.launch
+</pre></div>
+</div>
+<p>On your workstation (the host node), run the following commands:</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">If you execute the following command on your workstation (recommended), you must make sure to have correctly set-up the network configuration as explained in <a class="reference internal" href="network-config-doc.html#network-config-doc"><span class="std std-ref">Network Configuration</span></a>.</p>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roscore
-roslaunch turtlebot_bringup minimal.launch
-roslaunch turtlebot_navigation gmapping_demo.launch
-roslaunch turtlebot_rviz_launchers view_navigation.launch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_rviz_launchers view_navigation.launch
 roslaunch turtlebot_teleop keyboard_teleop.launch
 </pre></div>
 </div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Connect to the Master node using the <code class="docutils literal"><span class="pre">ssh</span> <span class="pre">turtlebot_PC_name&#64;TURTLEBOT_IP</span></code> command before running any command in every terminal you use, except for the <code class="docutils literal"><span class="pre">RViz</span></code> command run it in a normal terminal.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">OR connect to the Master node using the <code class="docutils literal"><span class="pre">ssh</span> <span class="pre">turtlebot_PC_name&#64;TURTLEBOT_IP</span></code> command before running any command in every terminal you use and run all the previous commands, except for the <code class="docutils literal"><span class="pre">RViz</span></code> command run it in a normal terminal(without using <code class="docutils literal"><span class="pre">ssh</span></code>).</p>
 </div>
 <p>Start moving the robot around using <code class="docutils literal"><span class="pre">keyboard</span> <span class="pre">teleop</span></code> application or a joytsick and watch the RViz simulator as the map starts to be built-up.</p>
 <p>Finally you will end-up with a map looking like this one:</p>

@@ -1,10 +1,10 @@
 .. _create-map-kenict:
 
 ==================================
-Building a Map using Kenict sensor
+Building a Map using Kinect sensor
 ==================================
 
-In this tutorial you will learn how to build your own map using Kenict sensor attached to your turtlebot. 
+In this tutorial you will learn how to build your own map using Kinect sensor attached to your turtlebot. 
 
 .. WARNING::
     Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node.
@@ -27,8 +27,15 @@ Open a new terminal.
 
 Start Mapping ROS Nodes
 =======================
+On the master node (the robot machine) run the following commands:
 
-On you workstation (or on the robot machine), run the following commands in separate terminals:
+.. code-block:: bash
+	
+	roscore
+	roslaunch turtlebot_bringup minimal.launch
+	roslaunch turtlebot_navigation gmapping_demo.launch
+
+On your workstation (the host node), run the following commands:
 
 .. WARNING::
     If you execute the following command on your workstation (recommended), you must make sure to have correctly set-up the network configuration as explained in :ref:`network-config-doc`.
@@ -36,14 +43,11 @@ On you workstation (or on the robot machine), run the following commands in sepa
 
 .. code-block:: bash
 
-	roscore
-	roslaunch turtlebot_bringup minimal.launch
-	roslaunch turtlebot_navigation gmapping_demo.launch
 	roslaunch turtlebot_rviz_launchers view_navigation.launch
 	roslaunch turtlebot_teleop keyboard_teleop.launch
 
-.. WARNING::
-	Connect to the Master node using the ``ssh turtlebot_PC_name@TURTLEBOT_IP`` command before running any command in every terminal you use, except for the ``RViz`` command run it in a normal terminal.
+.. TIP::
+	OR connect to the Master node using the ``ssh turtlebot_PC_name@TURTLEBOT_IP`` command before running any command in every terminal you use and run all the previous commands, except for the ``RViz`` command run it in a normal terminal(without using ``ssh``).
 
 Start moving the robot around using ``keyboard teleop`` application or a joytsick and watch the RViz simulator as the map starts to be built-up. 
 
