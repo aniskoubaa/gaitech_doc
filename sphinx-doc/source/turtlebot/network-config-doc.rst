@@ -90,7 +90,6 @@ Open the ``.bashrc`` file in the robot machine (use the command ``gedit .bashrc`
    export ROS_MASTER_URI=http://localhost:11311
    #The IP address for the Master node
    export ROS_HOSTNAME=192.168.8.100
-   export ROS_IP=192.168.8.100
 
 replace ``192.168.8.101``  with the correct IP address of the robot machine (see above for getting the IP address).
 The line ``export ROS_MASTER_URI=http://localhost:11311`` means that the ROS master runs in the localhost of the robot machine. 
@@ -105,8 +104,6 @@ Now, in your workstation PC open the ``.bashrc`` file and scroll to the bottom o
    export ROS_MASTER_URI=http://192.168.8.100:11311
    #The IP address for your device/host IP address
    export ROS_HOSTNAME=192.168.8.101
-   #The IP address for your device/host IP address
-   export ROS_IP=192.168.8.101
 
 The line ``export ROS_MASTER_URI=http://192.168.8.100:11311`` means that the ROS master runs in the machine with IP address ``192.168.8.100`` which must correspond to the robot machine IP address.
 The line ``export ROS_HOSTNAME=192.168.8.101`` specifies the hostname of the workstation machine, which must be exactly the same found with the ``ifconfig`` command

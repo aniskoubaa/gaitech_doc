@@ -103,11 +103,12 @@
 <li class="toctree-l2"><a class="reference internal" href="turtlebot_simulators.html">Turtlebot Simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kenict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kinect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../partners/index.html">Partners</a></li>
 </ul>
 
             
@@ -228,7 +229,6 @@ All you have to do is to specify in the <code class="docutils literal"><span cla
 <span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://localhost:11311
 <span class="c1">#The IP address for the Master node</span>
 <span class="nb">export</span> <span class="nv">ROS_HOSTNAME</span><span class="o">=</span>192.168.8.100
-<span class="nb">export</span> <span class="nv">ROS_IP</span><span class="o">=</span>192.168.8.100
 </pre></div>
 </div>
 <p>replace <code class="docutils literal"><span class="pre">192.168.8.101</span></code>  with the correct IP address of the robot machine (see above for getting the IP address).
@@ -240,8 +240,6 @@ The line <code class="docutils literal"><span class="pre">export</span> <span cl
 <span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://192.168.8.100:11311
 <span class="c1">#The IP address for your device/host IP address</span>
 <span class="nb">export</span> <span class="nv">ROS_HOSTNAME</span><span class="o">=</span>192.168.8.101
-<span class="c1">#The IP address for your device/host IP address</span>
-<span class="nb">export</span> <span class="nv">ROS_IP</span><span class="o">=</span>192.168.8.101
 </pre></div>
 </div>
 <p>The line <code class="docutils literal"><span class="pre">export</span> <span class="pre">ROS_MASTER_URI=http://192.168.8.100:11311</span></code> means that the ROS master runs in the machine with IP address <code class="docutils literal"><span class="pre">192.168.8.100</span></code> which must correspond to the robot machine IP address.
