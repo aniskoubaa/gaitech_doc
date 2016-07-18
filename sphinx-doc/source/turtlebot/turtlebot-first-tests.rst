@@ -22,7 +22,7 @@ Open a terminal and write:
 
 This command will start the Kobuki base of the Turtlebot. You should hear a sound when it is turned on.
 
-.. seealso:: For me details about Turtlebot bring up refer to `Turtlebot Bringup in ROS Wiki <http://wiki.ros.org/turtlebot_bringup/Tutorials/indigo/TurtleBot%20Bringup>`_.
+.. seealso:: For more details about Turtlebot bring up refer to `Turtlebot Bringup in ROS Wiki <http://wiki.ros.org/turtlebot_bringup/Tutorials/indigo/TurtleBot%20Bringup>`_.
 
 
 Testing the bumper sensor

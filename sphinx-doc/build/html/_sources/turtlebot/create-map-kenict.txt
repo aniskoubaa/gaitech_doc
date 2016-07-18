@@ -62,6 +62,9 @@ You can save the map you just created by running the following command:
 	
 	rosrun map_server map_saver -f /tmp/my_map
 
+.. NOTE::
+	The ``tmp`` file gets cleaned everytime the system is booted so after saving the map you can move the files to another location or save it in another location directly.
+	
 Video Demonstration
 ===================
 .. youtube:: QzZif1e767k
