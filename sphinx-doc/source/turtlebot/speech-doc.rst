@@ -7,7 +7,7 @@ Turtlebot Voice Teleoperation
 This tutorial will introduce how to control your turtlebot robot using speech recognition.
 
 .. WARNING::
-    Make sure that you completed installing all the required packages in the previous tutorials and your network set-up is working fine between the ROS Master node and the host node.
+    Make sure that you completed installing all the required packages in the previous tutorials and your network set-up is working fine between the ROS Master node and the Host node.
 
 .. NOTE::
 
@@ -35,13 +35,13 @@ You do not need to worry about connecting the audio input stream with your PC or
 
 Test the PocketSphinx Recognizer
 ================================
-First, you need to test of the recognizer is working. To get the best result it is better to have an external Mic connected to you PC either by USB, standard audio or Bluetooth.
+First, you need to test if the recognizer is working. To get the best result it is better to have an external Mic connected to you PC either by USB, standard audio or Bluetooth.
 
 .. NOTE::
     Make sure that the Mic you are using is the one that is selected in the sound settings in your PC. Try to test your Mic before hands to make sure that the quality is good and check the volume meter.
 
-Note that ``pocketsphinx`` comes as a packages in ROS Indigo. For more details, refer to `the pocketsphinx package <http://wiki.ros.org/pocketsphinx>`_ on ROS WiKi.
-You can find browse the directory of ``pocketsphinx`` package with the command:
+Note that ``pocketsphinx`` comes as a packages in ROS Indigo. For more details, refer to the `pocketsphinx package <http://wiki.ros.org/pocketsphinx>`_ on ROS WiKi.
+You can browse the directory of ``pocketsphinx`` package with the command:
 
 .. code-block:: bash
 
@@ -88,7 +88,7 @@ Now, you can start saying some words to check if the recognizer will be able to 
 You can also try different words. 
 
 .. WARNING::
-   It might be possible that the recognizer will detect words different from what you pronounced. This may be due to (1) bad microphone, in this case try to get a high-quality microphone, (2) your pronounciation is not enough clear. In this case, try to repeat the word. 
+   It might be possible that the recognizer will detect words different from what you pronounced. This may be due to (1) bad microphone, in this case try to get a high-quality microphone, (2) your pronounciation is not clear enough. In this case, try to repeat the word. 
 
 If the recognizer successfuly detected your spoken word, you can move to the next step to talk to your robot. 
 
@@ -109,7 +109,7 @@ in another terminal to see the results as follows:
 
 To see all the predefined commands in the RoboCup demo, run the following commands:
 
-.. code-block:: c
+.. code-block:: bash
    
    roscd pocketsphinx/demo
    more robocup.corpus
@@ -117,7 +117,7 @@ To see all the predefined commands in the RoboCup demo, run the following comman
 Try saying a word that is not in the list such as "the food is hot" and see the results on the topic ``/recognizer/output``, which will show something different. The recognizer will always try to find the nearest match to the word you say.
 
 .. WARNING::
-  Make sure that you mute the recognizer when not using it because this will send random data to the robot.
+  Make sure that you mute the recognizer when you are not using it because this will send random data to the robot.
 
 
 Code and dependencies
@@ -180,7 +180,7 @@ In this section, you will learn how to add a vocabulary or corpus as it is speci
 In partiuclar, we will create a simple vocabulary of commands to move the turtlebot robot forward, backward, and rotate it left and right. 
 
 Create a folder and call it ``config`` and inside this folder create a ``txt`` file called ``motion_commands.txt`` 
-and put the following commands (which you can extend more later) for the robot motion:
+and put the following commands (which you can extend later) for the robot motion:
 
 .. code-block:: python
 
