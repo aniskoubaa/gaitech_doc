@@ -153,3 +153,7 @@ It is straightforward using tum_ardrone_GUI to command the robot
 
 .. image:: images/Tum_ardrone_GUI.png
 	:align: center
+
+.. NOTE:: 
+
+	For more information you can visit `AR.Drone ROS Documentation <http://ardrone-autonomy.readthedocs.io/en/latest/installation.html>`_, `ROS Driver for AR.Drone <https://github.com/AutonomyLab/ardrone_autonomy>`_ and `Up and flying with the AR.Drone and ROS: Getting started <http://robohub.org/up-and-flying-with-the-ar-drone-and-ros-getting-started/>`_
