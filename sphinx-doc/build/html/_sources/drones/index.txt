@@ -15,4 +15,4 @@ This page is for drones
    :hidden:
    
    Work with AR Parrot 2 using ROS <ar_parrot_2/ar-parrot-2-ros>
-   Turtlebot Tutorials <turtlebot/turtlebot-tutorials>
+   Simulation of AR Parrot 2 <ar_parrot_2/simulation-ar-parrot-2>
