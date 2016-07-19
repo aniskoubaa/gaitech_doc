@@ -10,3 +10,9 @@ Contents:
 
 
 This page is for drones
+
+.. toctree::
+   :hidden:
+   
+   Work with AR Parrot 2 using ROS <ar_parrot_2/ar-parrot-2-ros>
+   Turtlebot Tutorials <turtlebot/turtlebot-tutorials>
