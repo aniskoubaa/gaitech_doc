@@ -10,3 +10,8 @@ Gaitech EDU Partners
 Gaitech is pround to present the partners who partecipated in the process of building this comprehensive educational framework on Robot Operating System (ROS).
 
 
+Prince Sultan University - Riyadh/KSA
+=====================================
+
+.. image:: images/logoooo.PNG
+    :align: left

@@ -112,11 +112,12 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kenict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kinect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../partners/index.html">Partners</a></li>
 </ul>
 
             
@@ -168,7 +169,7 @@
 <p>This tutorial will introduce how to control your turtlebot robot using speech recognition.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Make sure that you completed installing all the required packages in the previous tutorials and your network set-up is working fine between the ROS Master node and the host node.</p>
+<p class="last">Make sure that you completed installing all the required packages in the previous tutorials and your network set-up is working fine between the ROS Master node and the Host node.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -194,13 +195,13 @@ sudo apt-get install libasound2
 </div>
 <div class="section" id="test-the-pocketsphinx-recognizer">
 <h2>Test the PocketSphinx Recognizer<a class="headerlink" href="#test-the-pocketsphinx-recognizer" title="Permalink to this headline">¶</a></h2>
-<p>First, you need to test of the recognizer is working. To get the best result it is better to have an external Mic connected to you PC either by USB, standard audio or Bluetooth.</p>
+<p>First, you need to test if the recognizer is working. To get the best result it is better to have an external Mic connected to you PC either by USB, standard audio or Bluetooth.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Make sure that the Mic you are using is the one that is selected in the sound settings in your PC. Try to test your Mic before hands to make sure that the quality is good and check the volume meter.</p>
 </div>
-<p>Note that <code class="docutils literal"><span class="pre">pocketsphinx</span></code> comes as a packages in ROS Indigo. For more details, refer to <a class="reference external" href="http://wiki.ros.org/pocketsphinx">the pocketsphinx package</a> on ROS WiKi.
-You can find browse the directory of <code class="docutils literal"><span class="pre">pocketsphinx</span></code> package with the command:</p>
+<p>Note that <code class="docutils literal"><span class="pre">pocketsphinx</span></code> comes as a packages in ROS Indigo. For more details, refer to the <a class="reference external" href="http://wiki.ros.org/pocketsphinx">pocketsphinx package</a> on ROS WiKi.
+You can browse the directory of <code class="docutils literal"><span class="pre">pocketsphinx</span></code> package with the command:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>roscd pocketsphinx
 </pre></div>
 </div>
@@ -237,7 +238,7 @@ INFO: ngram_search_fwdtree.c<span class="o">(</span>338<span class="o">)</span>:
 <p>You can also try different words.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">It might be possible that the recognizer will detect words different from what you pronounced. This may be due to (1) bad microphone, in this case try to get a high-quality microphone, (2) your pronounciation is not enough clear. In this case, try to repeat the word.</p>
+<p class="last">It might be possible that the recognizer will detect words different from what you pronounced. This may be due to (1) bad microphone, in this case try to get a high-quality microphone, (2) your pronounciation is not clear enough. In this case, try to repeat the word.</p>
 </div>
 <p>If the recognizer successfuly detected your spoken word, you can move to the next step to talk to your robot.</p>
 <p>The spoken words found by the recognizer will be published to the topic <code class="docutils literal"><span class="pre">/recognizer/output</span></code>. Type</p>
@@ -252,14 +253,14 @@ data: hello
 </pre></div>
 </div>
 <p>To see all the predefined commands in the RoboCup demo, run the following commands:</p>
-<div class="highlight-c"><div class="highlight"><pre><span></span><span class="n">roscd</span> <span class="n">pocketsphinx</span><span class="o">/</span><span class="n">demo</span>
-<span class="n">more</span> <span class="n">robocup</span><span class="p">.</span><span class="n">corpus</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roscd pocketsphinx/demo
+more robocup.corpus
 </pre></div>
 </div>
 <p>Try saying a word that is not in the list such as &#8220;the food is hot&#8221; and see the results on the topic <code class="docutils literal"><span class="pre">/recognizer/output</span></code>, which will show something different. The recognizer will always try to find the nearest match to the word you say.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Make sure that you mute the recognizer when not using it because this will send random data to the robot.</p>
+<p class="last">Make sure that you mute the recognizer when you are not using it because this will send random data to the robot.</p>
 </div>
 </div>
 <div class="section" id="code-and-dependencies">
@@ -315,7 +316,7 @@ If you did not import the code from GITHUB, you can still create a new ROS packa
 <p>In this section, you will learn how to add a vocabulary or corpus as it is specified in the <code class="docutils literal"><span class="pre">PocketSphinx</span></code>.
 In partiuclar, we will create a simple vocabulary of commands to move the turtlebot robot forward, backward, and rotate it left and right.</p>
 <p>Create a folder and call it <code class="docutils literal"><span class="pre">config</span></code> and inside this folder create a <code class="docutils literal"><span class="pre">txt</span></code> file called <code class="docutils literal"><span class="pre">motion_commands.txt</span></code>
-and put the following commands (which you can extend more later) for the robot motion:</p>
+and put the following commands (which you can extend later) for the robot motion:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">move</span> <span class="n">forward</span>
 <span class="n">move</span> <span class="n">backwards</span>
 <span class="n">turn</span> <span class="n">right</span>
