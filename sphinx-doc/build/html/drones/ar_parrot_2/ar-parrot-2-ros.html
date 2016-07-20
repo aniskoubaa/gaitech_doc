@@ -196,14 +196,26 @@
 </pre></div>
 </div>
 <img alt="../../_images/2a.png" class="align-center" src="../../_images/2a.png" />
-<p>In new terminal you can control the robot by sending messages through topics, for example to takeoff:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rostopic pub -1 ardrone/takeoff std_msgs/Empty
+<dl class="docutils">
+<dt>In new terminal you can control the robot by sending messages through topics, for example:</dt>
+<dd><ul class="first last">
+<li><p class="first">To takeoff:</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span></span>rostopic pub -1 ardrone/takeoff std_msgs/Empty
 </pre></div>
 </div>
-<p>To land:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rostopic pub -1 ardrone/land std_msgs/Empty
+</div></blockquote>
+</li>
+<li><p class="first">To land:</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span></span>rostopic pub -1 ardrone/land std_msgs/Empty
 </pre></div>
 </div>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
 </div>
 <div class="section" id="control-the-robot-from-your-code-in-python">
 <h2>Control the robot from your code in python<a class="headerlink" href="#control-the-robot-from-your-code-in-python" title="Permalink to this headline">¶</a></h2>

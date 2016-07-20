@@ -64,17 +64,18 @@ You can view the robot camera using following command:
 .. image:: images/2a.png
 	:align: center
 
-In new terminal you can control the robot by sending messages through topics, for example to takeoff:
+In new terminal you can control the robot by sending messages through topics, for example:
+	* To takeoff:
 
-.. code-block:: bash
+		.. code-block:: bash
 
-	rostopic pub -1 ardrone/takeoff std_msgs/Empty
+			rostopic pub -1 ardrone/takeoff std_msgs/Empty
 
-To land:
+	* To land:
 
-.. code-block:: bash
+		.. code-block:: bash
 
-	rostopic pub -1 ardrone/land std_msgs/Empty
+			rostopic pub -1 ardrone/land std_msgs/Empty
 
 Control the robot from your code in python
 ==========================================
