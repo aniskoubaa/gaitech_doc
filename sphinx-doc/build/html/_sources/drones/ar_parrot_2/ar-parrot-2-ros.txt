@@ -20,13 +20,13 @@ Install and compile following package:
 Working with real drone
 =======================
 
-Create new package (e.g. drone_application)
+Create new package (e.g. ``drone_application``)
 
 .. code-block:: bash
 
 	catkin_create_pkg drone_application std_msgs rospy roscpp
 
-create a launch file (e.g: launch_drone.launch) and paste following lines:
+create a launch file (e.g: ``launch_drone.launch``) and paste following lines:
 
 .. code-block:: bash
 	
@@ -80,7 +80,7 @@ In new terminal you can control the robot by sending messages through topics, fo
 Control the robot from your code in python
 ==========================================
 
-To write simple code to takeoff, create your .py file (e.g: takeoff.by) and paste following code:
+To write simple code to takeoff, create your .py file (e.g: ``takeoff.py``) and paste following code:
 
 .. code-block:: python
 
@@ -94,14 +94,14 @@ To write simple code to takeoff, create your .py file (e.g: takeoff.by) and past
    		rospy.init_node('takeoff', anonymous=True) 
    		rate = rospy.Rate(10) # 10hz 
    		while not rospy.is_shutdown(): 
-       		pub.publish(Empty()) 
-       		rate.sleep() 
+       		  pub.publish(Empty()) 
+       		  rate.sleep() 
 
 	if __name__ == '__main__': 
    		try: 
-       		takeoff() 
+       		  takeoff() 
    		except rospy.ROSInterruptException: 
-       		pass
+       		  pass
 
 Launch the drone
 
@@ -118,7 +118,7 @@ Run you code in new terminal:
 Control the robot using tum_ardrone package
 ===========================================
 
-Create a launch file (e.g: launch_tum_drone.launch) and paste following lines:	
+Create a launch file (e.g: ``launch_tum_drone.launch``) and paste following lines:	
 
 .. code-block:: bash
 
@@ -150,11 +150,11 @@ In terminal:
 .. image:: images/Tum_drone_launch.png
 	:align: center
 
-It is straightforward using tum_ardrone_GUI to command the robot
+It is straightforward using ``tum_ardrone_GUI`` to command the robot
 
 .. image:: images/Tum_ardrone_GUI.png
 	:align: center
 
 .. NOTE:: 
 
-	For more information you can visit `AR.Drone ROS Documentation <http://ardrone-autonomy.readthedocs.io/en/latest/installation.html>`_, `ROS Driver for AR.Drone <https://github.com/AutonomyLab/ardrone_autonomy>`_ and `Up and flying with the AR.Drone and ROS: Getting started <http://robohub.org/up-and-flying-with-the-ar-drone-and-ros-getting-started/>`_
+	For more information you can visit `AR.Drone ROS Documentation <http://ardrone-autonomy.readthedocs.io/en/latest/installation.html>`_ , `ROS Driver for AR.Drone <https://github.com/AutonomyLab/ardrone_autonomy>`_ and `Up and flying with the AR.Drone and ROS: Getting started <http://robohub.org/up-and-flying-with-the-ar-drone-and-ros-getting-started/>`_

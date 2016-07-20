@@ -166,11 +166,11 @@
 </div>
 <div class="section" id="working-with-real-drone">
 <h2>Working with real drone<a class="headerlink" href="#working-with-real-drone" title="Permalink to this headline">¶</a></h2>
-<p>Create new package (e.g. drone_application)</p>
+<p>Create new package (e.g. <code class="docutils literal"><span class="pre">drone_application</span></code>)</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_create_pkg drone_application std_msgs rospy roscpp
 </pre></div>
 </div>
-<p>create a launch file (e.g: launch_drone.launch) and paste following lines:</p>
+<p>create a launch file (e.g: <code class="docutils literal"><span class="pre">launch_drone.launch</span></code>) and paste following lines:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
         &lt;arg <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;droneip&quot;</span> <span class="nv">default</span><span class="o">=</span><span class="s2">&quot;192.168.1.1&quot;</span> /&gt;
         &lt;node <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;ardrone_driver&quot;</span> <span class="nv">pkg</span><span class="o">=</span><span class="s2">&quot;ardrone_autonomy&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;ardrone_driver&quot;</span> <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span> <span class="nv">args</span><span class="o">=</span><span class="s2">&quot;-ip </span><span class="k">$(</span>arg droneip<span class="k">)</span><span class="s2">&quot;</span>&gt;
@@ -219,7 +219,7 @@
 </div>
 <div class="section" id="control-the-robot-from-your-code-in-python">
 <h2>Control the robot from your code in python<a class="headerlink" href="#control-the-robot-from-your-code-in-python" title="Permalink to this headline">¶</a></h2>
-<p>To write simple code to takeoff, create your .py file (e.g: takeoff.by) and paste following code:</p>
+<p>To write simple code to takeoff, create your .py file (e.g: <code class="docutils literal"><span class="pre">takeoff.py</span></code>) and paste following code:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="kn">import</span> <span class="nn">rospy</span>
 <span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
@@ -230,14 +230,14 @@
         <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;takeoff&#39;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
         <span class="n">rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 10hz</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">():</span>
-        <span class="n">pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">Empty</span><span class="p">())</span>
-        <span class="n">rate</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
+          <span class="n">pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">Empty</span><span class="p">())</span>
+          <span class="n">rate</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-        <span class="n">takeoff</span><span class="p">()</span>
+          <span class="n">takeoff</span><span class="p">()</span>
         <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ROSInterruptException</span><span class="p">:</span>
-        <span class="k">pass</span>
+          <span class="k">pass</span>
 </pre></div>
 </div>
 <p>Launch the drone</p>
@@ -251,7 +251,7 @@
 </div>
 <div class="section" id="control-the-robot-using-tum-ardrone-package">
 <h2>Control the robot using tum_ardrone package<a class="headerlink" href="#control-the-robot-using-tum-ardrone-package" title="Permalink to this headline">¶</a></h2>
-<p>Create a launch file (e.g: launch_tum_drone.launch) and paste following lines:</p>
+<p>Create a launch file (e.g: <code class="docutils literal"><span class="pre">launch_tum_drone.launch</span></code>) and paste following lines:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
 
         &lt;arg <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;droneip&quot;</span> <span class="nv">default</span><span class="o">=</span><span class="s2">&quot;192.168.1.1&quot;</span> /&gt;
@@ -277,11 +277,11 @@
 </pre></div>
 </div>
 <img alt="../../_images/Tum_drone_launch.png" class="align-center" src="../../_images/Tum_drone_launch.png" />
-<p>It is straightforward using tum_ardrone_GUI to command the robot</p>
+<p>It is straightforward using <code class="docutils literal"><span class="pre">tum_ardrone_GUI</span></code> to command the robot</p>
 <img alt="../../_images/Tum_ardrone_GUI.png" class="align-center" src="../../_images/Tum_ardrone_GUI.png" />
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">For more information you can visit <a class="reference external" href="http://ardrone-autonomy.readthedocs.io/en/latest/installation.html">AR.Drone ROS Documentation</a>, <a class="reference external" href="https://github.com/AutonomyLab/ardrone_autonomy">ROS Driver for AR.Drone</a> and <a class="reference external" href="http://robohub.org/up-and-flying-with-the-ar-drone-and-ros-getting-started/">Up and flying with the AR.Drone and ROS: Getting started</a></p>
+<p class="last">For more information you can visit <a class="reference external" href="http://ardrone-autonomy.readthedocs.io/en/latest/installation.html">AR.Drone ROS Documentation</a> , <a class="reference external" href="https://github.com/AutonomyLab/ardrone_autonomy">ROS Driver for AR.Drone</a> and <a class="reference external" href="http://robohub.org/up-and-flying-with-the-ar-drone-and-ros-getting-started/">Up and flying with the AR.Drone and ROS: Getting started</a></p>
 </div>
 </div>
 </div>
