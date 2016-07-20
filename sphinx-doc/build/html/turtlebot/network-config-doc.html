@@ -175,7 +175,7 @@ To allow this, it is needed to configure the laptop of your robot and your machi
 <p>ROS offers the ability to have a two-way communication network between different ROS nodes. All what you have to do is to know the IP address for the ROS master node and the IPs for other ROS nodes.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last">For Ubuntu users: to know the IP address for your device in the network you are connected to, you can open a terminal and type &#8220;ifconfig&#8221; and you will find something similar to the following:</p>
+<p class="last">For Ubuntu users: to know the IP address for your device in the network you are connected to, you can open a terminal and type <code class="docutils literal"><span class="pre">ifconfig</span></code> and you will find something similar to the following:</p>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>lo        Link encap:Local Loopback
        inet addr:127.0.0.1  Mask:255.0.0.0
@@ -263,7 +263,7 @@ The line <code class="docutils literal"><span class="pre">export</span> <span cl
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If the connection is successful you will be able to see a list of all the ROS topics published from the Master node if it fails then make sure that the ROS_MASTER_URI is set to the right value.</p>
+<p class="last">If the connection is successful you will be able to see a list of all the ROS topics published from the Master node if it fails then make sure that the <code class="docutils literal"><span class="pre">ROS_MASTER_URI</span></code> is set to the right value.</p>
 </div>
 <p>To check whether the Master node can receive data from the host node, run this command in a workstation PC terminal:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>rostopic pub -r10 /hello std_msgs/String <span class="s2">&quot;hello&quot;</span>
@@ -276,13 +276,13 @@ The line <code class="docutils literal"><span class="pre">export</span> <span cl
 <p>The message &#8220;hello&#8221; should appear about 10 times per second.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last">If something is wrong with executing the previous step, make sure that the ROS_HOSTNAME in the host node is correct.</p>
+<p class="last">If something is wrong with executing the previous step, make sure that the <code class="docutils literal"><span class="pre">ROS_HOSTNAME</span></code> in the host node is correct.</p>
 </div>
 <p>You can also watch the example of running the turtlesim in the video tutorial above.</p>
 </div>
 <div class="section" id="sychronization-utilities">
 <h2>Sychronization Utilities<a class="headerlink" href="#sychronization-utilities" title="Permalink to this headline">¶</a></h2>
-<p>In case you faced any strange behaviour from the robot during transmitting data from a host node to the Master node, you can download:</p>
+<p>In case you faced any strange behaviour from the robot during transmitting data from a Host node to the Master node, you can download:</p>
 <p>Chrony:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install chrony
 </pre></div>
@@ -292,7 +292,7 @@ The line <code class="docutils literal"><span class="pre">export</span> <span cl
 <div class="highlight-bash"><div class="highlight"><pre><span></span>sudo ntpdate ntp.ubuntu.com
 </pre></div>
 </div>
-<p>to fix the Clock synchronization problem.</p>
+<p>to fix the clock synchronization problem.</p>
 </div>
 </div>
 

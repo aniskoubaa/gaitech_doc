@@ -23,7 +23,7 @@ Getting your IP address
 =======================
 ROS offers the ability to have a two-way communication network between different ROS nodes. All what you have to do is to know the IP address for the ROS master node and the IPs for other ROS nodes.
 
-.. tip :: For Ubuntu users: to know the IP address for your device in the network you are connected to, you can open a terminal and type "ifconfig" and you will find something similar to the following:
+.. tip :: For Ubuntu users: to know the IP address for your device in the network you are connected to, you can open a terminal and type ``ifconfig`` and you will find something similar to the following:
 
 .. code-block:: bash
 
@@ -132,7 +132,7 @@ If all is fine, you should be able to see the list of topics available in the ro
    /rosout_agg
 
 .. NOTE::
-    If the connection is successful you will be able to see a list of all the ROS topics published from the Master node if it fails then make sure that the ROS_MASTER_URI is set to the right value.
+    If the connection is successful you will be able to see a list of all the ROS topics published from the Master node if it fails then make sure that the ``ROS_MASTER_URI`` is set to the right value.
 
 To check whether the Master node can receive data from the host node, run this command in a workstation PC terminal:
 
@@ -149,13 +149,13 @@ on the robot machine that is already running the Maser node, run the following c
 The message "hello" should appear about 10 times per second.
 
 .. Tip::
-   If something is wrong with executing the previous step, make sure that the ROS_HOSTNAME in the host node is correct.
+   If something is wrong with executing the previous step, make sure that the ``ROS_HOSTNAME`` in the host node is correct.
 
 You can also watch the example of running the turtlesim in the video tutorial above.
 
 Sychronization Utilities
 ========================
-In case you faced any strange behaviour from the robot during transmitting data from a host node to the Master node, you can download:
+In case you faced any strange behaviour from the robot during transmitting data from a Host node to the Master node, you can download:
 
 
 Chrony:  
@@ -172,4 +172,4 @@ manually sync NTP:
 
     sudo ntpdate ntp.ubuntu.com
 
-to fix the Clock synchronization problem.
+to fix the clock synchronization problem.
