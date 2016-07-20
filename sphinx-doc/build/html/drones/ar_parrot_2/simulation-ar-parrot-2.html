@@ -254,10 +254,10 @@ roslaunch cvg_sim_test demo_tool.launch
 <span class="n">rate</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-        <span class="k">try</span><span class="p">:</span>
-        <span class="n">takeoff</span><span class="p">()</span>
-        <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ROSInterruptException</span><span class="p">:</span>
-        <span class="k">pass</span>
+  <span class="k">try</span><span class="p">:</span>
+   <span class="n">takeoff</span><span class="p">()</span>
+  <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ROSInterruptException</span><span class="p">:</span>
+   <span class="k">pass</span>
 </pre></div>
 </div>
 <p>Launch the simulator:</p>
@@ -429,10 +429,10 @@ To run simulator, create a launch file (e.g: <code class="docutils literal"><spa
 <div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
         &lt;arg <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;droneip&quot;</span> <span class="nv">default</span><span class="o">=</span><span class="s2">&quot;192.168.1.1&quot;</span> /&gt;
         &lt;node <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;ardrone_driver&quot;</span> <span class="nv">pkg</span><span class="o">=</span><span class="s2">&quot;ardrone_autonomy&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;ardrone_driver&quot;</span> <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span> <span class="nv">args</span><span class="o">=</span><span class="s2">&quot;-ip </span><span class="k">$(</span>arg droneip<span class="k">)</span><span class="s2">&quot;</span>&gt;
-                &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;navdata_demo&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;False&quot;</span> /&gt;
-                &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;realtime_navdata&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;True&quot;</span> /&gt;
-                &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;realtime_video&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;True&quot;</span> /&gt;
-                &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;looprate&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;30&quot;</span> /&gt;
+          &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;navdata_demo&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;False&quot;</span> /&gt;
+          &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;realtime_navdata&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;True&quot;</span> /&gt;
+          &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;realtime_video&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;True&quot;</span> /&gt;
+          &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;looprate&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;30&quot;</span> /&gt;
         &lt;/node&gt;
 
         &lt;include <span class="nv">file</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>find gazebo_ros<span class="k">)</span><span class="s2">/launch/empty_world.launch&quot;</span>&gt;
