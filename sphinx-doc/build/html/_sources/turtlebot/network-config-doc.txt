@@ -27,7 +27,7 @@ ROS offers the ability to have a two-way communication network between different
 
 .. code-block:: bash
 
-   lo        Link encap:Local Loopback
+   lo     Link encap:Local Loopback
           inet addr:127.0.0.1  Mask:255.0.0.0
           inet6 addr: ::1/128 Scope:Host
           UP LOOPBACK RUNNING  MTU:16436  Metric:1
@@ -36,7 +36,7 @@ ROS offers the ability to have a two-way communication network between different
           collisions:0 txqueuelen:0
           RX bytes:587372914 (587.3 MB)  TX bytes:587372914 (587.3 MB)
 
-   wlan1   Link encap:Ethernet  HWaddr 48:5d:60:75:58:90
+   wlan1  Link encap:Ethernet  HWaddr 48:5d:60:75:58:90
           inet addr:10.0.129.17  Bcast:10.0.129.255  Mask:255.255.254.0
           inet6 addr: fe80::4a5d:60ff:fe75:5890/64 Scope:Link
           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
