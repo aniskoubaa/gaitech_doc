@@ -13,9 +13,9 @@ In this tutorial you will learn how to work with AR Parrot 2 using in ROS.
 Required Packages
 =================
 
-Install and compile following packages:
+Install and compile following package:
 
-`ardrone_autonomy <http://wiki.ros.org/ardrone_autonomy>`_ is the ROS driver for Parrot AR­Drone 1.0 and 2.0.
+	* `ardrone_autonomy <http://wiki.ros.org/ardrone_autonomy>`_ is the ROS driver for Parrot AR­Drone 1.0 and 2.0.
 
 Working with real drone
 =======================
@@ -26,7 +26,7 @@ Create new package (e.g. drone_application)
 
 	catkin_create_pkg drone_application std_msgs rospy roscpp
 
-create a lunch file (e.g: launch_drone.launch) and paste following lines:
+create a launch file (e.g: launch_drone.launch) and paste following lines:
 
 .. code-block:: bash
 	
@@ -117,7 +117,7 @@ Run you code in new terminal:
 Control the robot using tum_ardrone package
 ===========================================
 
-Create a lunch file (e.g: launch_tum_drone.launch) and paste following lines:	
+Create a launch file (e.g: launch_tum_drone.launch) and paste following lines:	
 
 .. code-block:: bash
 

@@ -29,7 +29,7 @@ Create new package (e.g. drone_application)
 	
 	catkin_create_pkg drone_application std_msgs rospy roscpp
 
-To run simulator, create a lunch file (e.g: test_simulator.launch) and paste following lines:
+To run simulator, create a launch file (e.g: test_simulator.launch) and paste following lines:
 
 .. code-block:: bash
 
@@ -172,27 +172,30 @@ Create your html file (e.g. drone.html) and paste the following code:
  
   	// If there is an error on the backend, an 'error' emit will be emitted. 
   	ros.on('error', function(error) { 
-    document.getElementById('connecting').style.display = 'none'; 
-    document.getElementById('connected').style.display = 'none'; 
-    document.getElementById('closed').style.display = 'none'; 
-    document.getElementById('error').style.display = 'inline'; 
-    console.log(error); 
+    	
+    	document.getElementById('connecting').style.display = 'none'; 
+    	document.getElementById('connected').style.display = 'none'; 
+    	document.getElementById('closed').style.display = 'none'; 
+    	document.getElementById('error').style.display = 'inline'; 
+    	console.log(error); 
   	}); 
  
   	// Find out exactly when we made a connection. 
   	ros.on('connection', function() { 
-    console.log('Connection made!'); 
-    document.getElementById('connecting').style.display = 'none'; 
-    document.getElementById('error').style.display = 'none'; 
-    document.getElementById('closed').style.display = 'none'; 
-    document.getElementById('connected').style.display = 'inline'; 
+    	
+    	console.log('Connection made!'); 
+    	document.getElementById('connecting').style.display = 'none'; 
+    	document.getElementById('error').style.display = 'none'; 
+    	document.getElementById('closed').style.display = 'none'; 
+    	document.getElementById('connected').style.display = 'inline'; 
   	}); 
  
   	ros.on('close', function() { 
-    console.log('Connection closed.'); 
-    document.getElementById('connecting').style.display = 'none'; 
-    document.getElementById('connected').style.display = 'none'; 
-    document.getElementById('closed').style.display = 'inline'; 
+    	
+    	console.log('Connection closed.'); 
+    	document.getElementById('connecting').style.display = 'none'; 
+    	document.getElementById('connected').style.display = 'none'; 
+    	document.getElementById('closed').style.display = 'inline'; 
   	}); 
  
   	// Create a connection to the rosbridge WebSocket server. 
@@ -219,9 +222,9 @@ Create your html file (e.g. drone.html) and paste the following code:
  	function Land() { 
  	// First, we create a Topic object with details of the topic's name and message type. 
   	var land = new ROSLIB.Topic({ 
-    ros : ros, 
-    name : 'ardrone/land', 
-    messageType : 'std_msgs/Empty' 
+    	ros : ros, 
+    	name : 'ardrone/land', 
+    	messageType : 'std_msgs/Empty' 
   	}); 
  
   	// Then we create the payload to be published. The object we pass in to ros.Message matches the 
@@ -237,9 +240,9 @@ Create your html file (e.g. drone.html) and paste the following code:
  	TheForm = document.movingForm; 
  
   	var coordinate = new ROSLIB.Topic({ 
-    ros : ros, 
-    name : 'tum_ardrone/com', 
-    messageType : 'std_msgs/String' 
+    	ros : ros, 
+    	name : 'tum_ardrone/com', 
+    	messageType : 'std_msgs/String' 
   	}); 
  
   	// Then we create the payload to be published. The object we pass in to ros.Message matches the 
@@ -263,18 +266,18 @@ Create your html file (e.g. drone.html) and paste the following code:
  	<form/> 
  	<br> 
  	<div id="statusIndicator"> 
-    <p id="connecting"> 
-      Connecting to rosbridge... 
-    </p> 
-    <p id="connected" style="color:#00D600; display:none"> 
-      Connected 
-    </p> 
-    <p id="error" style="color:#FF0000; display:none"> 
-      Error in the backend! 
-    </p> 
-    <p id="closed" style="display:none"> 
-      Connection closed. 
-    </p> 
+    	<p id="connecting"> 
+      	Connecting to rosbridge... 
+    	</p> 
+    	<p id="connected" style="color:#00D600; display:none"> 
+      	Connected 
+    	</p> 
+    	<p id="error" style="color:#FF0000; display:none"> 
+     	 Error in the backend! 
+    	</p> 
+    	<p id="closed" style="display:none"> 
+      	Connection closed. 
+    	</p> 
   	</div> 
  	</body> 
  	</html>
@@ -326,7 +329,7 @@ Using tum_ardrone package
 =========================
 
 Install `tum_ardrone <http://www.ros.org/wiki/tum_ardrone>`_ package.
-To run simulator, create a lunch file (e.g: test_tum_ardrone.launch) and paste following lines:
+To run simulator, create a launch file (e.g: test_tum_ardrone.launch) and paste following lines:
 
 .. code-block:: bash
 

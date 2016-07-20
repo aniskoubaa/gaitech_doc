@@ -34,7 +34,7 @@
   
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../../index.html"/>
         <link rel="up" title="Drones" href="../index.html"/>
-        <link rel="next" title="Gaitech EDU Partners" href="../../partners/index.html"/>
+        <link rel="next" title="Simulation of AR Parrot 2" href="simulation-ar-parrot-2.html"/>
         <link rel="prev" title="Drones" href="../index.html"/> 
 
   
@@ -98,6 +98,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#control-the-robot-using-tum-ardrone-package">Control the robot using tum_ardrone package</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="simulation-ar-parrot-2.html">Simulation of AR Parrot 2</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../partners/index.html">Partners</a></li>
@@ -156,8 +157,12 @@
 </div>
 <div class="section" id="required-packages">
 <h2>Required Packages<a class="headerlink" href="#required-packages" title="Permalink to this headline">¶</a></h2>
-<p>Install and compile following packages:</p>
-<p><a class="reference external" href="http://wiki.ros.org/ardrone_autonomy">ardrone_autonomy</a> is the ROS driver for Parrot AR­Drone 1.0 and 2.0.</p>
+<p>Install and compile following package:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://wiki.ros.org/ardrone_autonomy">ardrone_autonomy</a> is the ROS driver for Parrot AR­Drone 1.0 and 2.0.</li>
+</ul>
+</div></blockquote>
 </div>
 <div class="section" id="working-with-real-drone">
 <h2>Working with real drone<a class="headerlink" href="#working-with-real-drone" title="Permalink to this headline">¶</a></h2>
@@ -165,7 +170,7 @@
 <div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_create_pkg drone_application std_msgs rospy roscpp
 </pre></div>
 </div>
-<p>create a lunch file (e.g: launch_drone.launch) and paste following lines:</p>
+<p>create a launch file (e.g: launch_drone.launch) and paste following lines:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
         &lt;arg <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;droneip&quot;</span> <span class="nv">default</span><span class="o">=</span><span class="s2">&quot;192.168.1.1&quot;</span> /&gt;
         &lt;node <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;ardrone_driver&quot;</span> <span class="nv">pkg</span><span class="o">=</span><span class="s2">&quot;ardrone_autonomy&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;ardrone_driver&quot;</span> <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span> <span class="nv">args</span><span class="o">=</span><span class="s2">&quot;-ip </span><span class="k">$(</span>arg droneip<span class="k">)</span><span class="s2">&quot;</span>&gt;
@@ -234,7 +239,7 @@
 </div>
 <div class="section" id="control-the-robot-using-tum-ardrone-package">
 <h2>Control the robot using tum_ardrone package<a class="headerlink" href="#control-the-robot-using-tum-ardrone-package" title="Permalink to this headline">¶</a></h2>
-<p>Create a lunch file (e.g: launch_tum_drone.launch) and paste following lines:</p>
+<p>Create a launch file (e.g: launch_tum_drone.launch) and paste following lines:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
 
         &lt;arg <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;droneip&quot;</span> <span class="nv">default</span><span class="o">=</span><span class="s2">&quot;192.168.1.1&quot;</span> /&gt;
@@ -276,7 +281,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../partners/index.html" class="btn btn-neutral float-right" title="Gaitech EDU Partners" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="simulation-ar-parrot-2.html" class="btn btn-neutral float-right" title="Simulation of AR Parrot 2" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../index.html" class="btn btn-neutral" title="Drones" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

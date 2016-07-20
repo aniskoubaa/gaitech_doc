@@ -172,7 +172,7 @@
 <div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_create_pkg drone_application std_msgs rospy roscpp
 </pre></div>
 </div>
-<p>To run simulator, create a lunch file (e.g: test_simulator.launch) and paste following lines:</p>
+<p>To run simulator, create a launch file (e.g: test_simulator.launch) and paste following lines:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
         &lt;include <span class="nv">file</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>find gazebo_ros<span class="k">)</span><span class="s2">/launch/empty_world.launch&quot;</span>&gt;
         &lt;arg <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;world_name&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>find cvg_sim_gazebo<span class="k">)</span><span class="s2">/worlds/ardrone_testworld.world&quot;</span>/&gt;
@@ -273,126 +273,129 @@ $ roslaunch cvg_sim_test demo_tool.launch
 <h2>Use web interface with the simulator<a class="headerlink" href="#use-web-interface-with-the-simulator" title="Permalink to this headline">¶</a></h2>
 <p>Install roslibjs from this <a class="reference external" href="https://github.com/RobotWebTools/roslibjs">repository</a>.
 Create your html file (e.g. drone.html) and paste the following code:</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span>    <span class="cp">&lt;!DOCTYPE html&gt;</span>
-    <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../build/roslib.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../build/roslib.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 
-    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="c1">// Connecting to ROS</span>
-    <span class="c1">// -----------------</span>
-    <span class="kd">var</span> <span class="nx">ros</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ROSLIB</span><span class="p">.</span><span class="nx">Ros</span><span class="p">();</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="c1">// Connecting to ROS</span>
+<span class="c1">// -----------------</span>
+<span class="kd">var</span> <span class="nx">ros</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ROSLIB</span><span class="p">.</span><span class="nx">Ros</span><span class="p">();</span>
 
-    <span class="c1">// If there is an error on the backend, an &#39;error&#39; emit will be emitted.</span>
-    <span class="nx">ros</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+<span class="c1">// If there is an error on the backend, an &#39;error&#39; emit will be emitted.</span>
+<span class="nx">ros</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;connecting&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;connected&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;closed&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;inline&#39;</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-    <span class="p">});</span>
+<span class="p">});</span>
 
-    <span class="c1">// Find out exactly when we made a connection.</span>
-    <span class="nx">ros</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="c1">// Find out exactly when we made a connection.</span>
+<span class="nx">ros</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Connection made!&#39;</span><span class="p">);</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;connecting&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;closed&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;connected&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;inline&#39;</span><span class="p">;</span>
-    <span class="p">});</span>
+<span class="p">});</span>
 
-    <span class="nx">ros</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">ros</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Connection closed.&#39;</span><span class="p">);</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;connecting&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;connected&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;closed&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;inline&#39;</span><span class="p">;</span>
-    <span class="p">});</span>
+<span class="p">});</span>
 
-    <span class="c1">// Create a connection to the rosbridge WebSocket server.</span>
-    <span class="nx">ros</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">&#39;ws://localhost:9090&#39;</span><span class="p">);</span>
+<span class="c1">// Create a connection to the rosbridge WebSocket server.</span>
+<span class="nx">ros</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">&#39;ws://localhost:9090&#39;</span><span class="p">);</span>
 
-    <span class="c1">// Write your code here, to publish or subscribe in topics</span>
+<span class="c1">// Write your code here, to publish or subscribe in topics</span>
 
-    <span class="kd">function</span> <span class="nx">Takeoff</span><span class="p">()</span> <span class="p">{</span>
-            <span class="c1">// First, we create a Topic object with details of the topic&#39;s name and message type.</span>
-            <span class="kd">var</span> <span class="nx">takeoff</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ROSLIB</span><span class="p">.</span><span class="nx">Topic</span><span class="p">({</span>
-    <span class="nx">ros</span> <span class="o">:</span> <span class="nx">ros</span><span class="p">,</span>
-    <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;ardrone/takeoff&#39;</span><span class="p">,</span>
-    <span class="nx">messageType</span> <span class="o">:</span> <span class="s1">&#39;std_msgs/Empty&#39;</span>
-    <span class="p">});</span>
+<span class="kd">function</span> <span class="nx">Takeoff</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// First, we create a Topic object with details of the topic&#39;s name and message type.</span>
+        <span class="kd">var</span> <span class="nx">takeoff</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ROSLIB</span><span class="p">.</span><span class="nx">Topic</span><span class="p">({</span>
+<span class="nx">ros</span> <span class="o">:</span> <span class="nx">ros</span><span class="p">,</span>
+<span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;ardrone/takeoff&#39;</span><span class="p">,</span>
+<span class="nx">messageType</span> <span class="o">:</span> <span class="s1">&#39;std_msgs/Empty&#39;</span>
+<span class="p">});</span>
 
-    <span class="c1">// Then we create the payload to be published. The object we pass in to ros.Message matches the</span>
-    <span class="c1">// fields defined in the geometry_msgs/Twist.msg definition.</span>
-    <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ROSLIB</span><span class="p">.</span><span class="nx">Message</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="c1">// Then we create the payload to be published. The object we pass in to ros.Message matches the</span>
+<span class="c1">// fields defined in the geometry_msgs/Twist.msg definition.</span>
+<span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ROSLIB</span><span class="p">.</span><span class="nx">Message</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
 
-    <span class="c1">// And finally, publish.</span>
-    <span class="nx">takeoff</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="c1">// And finally, publish.</span>
+<span class="nx">takeoff</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+<span class="p">}</span>
 
-    <span class="kd">function</span> <span class="nx">Land</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// First, we create a Topic object with details of the topic&#39;s name and message type.</span>
-    <span class="kd">var</span> <span class="nx">land</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ROSLIB</span><span class="p">.</span><span class="nx">Topic</span><span class="p">({</span>
+<span class="kd">function</span> <span class="nx">Land</span><span class="p">()</span> <span class="p">{</span>
+<span class="c1">// First, we create a Topic object with details of the topic&#39;s name and message type.</span>
+<span class="kd">var</span> <span class="nx">land</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ROSLIB</span><span class="p">.</span><span class="nx">Topic</span><span class="p">({</span>
 <span class="nx">ros</span> <span class="o">:</span> <span class="nx">ros</span><span class="p">,</span>
 <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;ardrone/land&#39;</span><span class="p">,</span>
 <span class="nx">messageType</span> <span class="o">:</span> <span class="s1">&#39;std_msgs/Empty&#39;</span>
-    <span class="p">});</span>
+<span class="p">});</span>
 
-    <span class="c1">// Then we create the payload to be published. The object we pass in to ros.Message matches the</span>
-    <span class="c1">// fields defined in the geometry_msgs/Twist.msg definition.</span>
-    <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ROSLIB</span><span class="p">.</span><span class="nx">Message</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="c1">// Then we create the payload to be published. The object we pass in to ros.Message matches the</span>
+<span class="c1">// fields defined in the geometry_msgs/Twist.msg definition.</span>
+<span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ROSLIB</span><span class="p">.</span><span class="nx">Message</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
 
-    <span class="c1">// And finally, publish.</span>
-    <span class="nx">land</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="c1">// And finally, publish.</span>
+<span class="nx">land</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+<span class="p">}</span>
 
-    <span class="kd">function</span> <span class="nx">GoTo</span><span class="p">(){</span>
-    <span class="kd">var</span> <span class="nx">TheForm</span><span class="p">;</span>
-    <span class="nx">TheForm</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">movingForm</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">GoTo</span><span class="p">(){</span>
+<span class="kd">var</span> <span class="nx">TheForm</span><span class="p">;</span>
+<span class="nx">TheForm</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">movingForm</span><span class="p">;</span>
 
-    <span class="kd">var</span> <span class="nx">coordinate</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ROSLIB</span><span class="p">.</span><span class="nx">Topic</span><span class="p">({</span>
+<span class="kd">var</span> <span class="nx">coordinate</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ROSLIB</span><span class="p">.</span><span class="nx">Topic</span><span class="p">({</span>
 <span class="nx">ros</span> <span class="o">:</span> <span class="nx">ros</span><span class="p">,</span>
 <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;tum_ardrone/com&#39;</span><span class="p">,</span>
 <span class="nx">messageType</span> <span class="o">:</span> <span class="s1">&#39;std_msgs/String&#39;</span>
-    <span class="p">});</span>
+<span class="p">});</span>
 
-    <span class="c1">// Then we create the payload to be published. The object we pass in to ros.Message matches the</span>
-    <span class="c1">// fields defined in the geometry_msgs/Twist.msg definition.</span>
-    <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ROSLIB</span><span class="p">.</span><span class="nx">Message</span><span class="p">({</span><span class="nx">data</span> <span class="o">:</span> <span class="s2">&quot;c goto 20 20 5 2&quot;</span><span class="p">});</span>
-    <span class="c1">// And finally, publish.</span>
-    <span class="nx">coordinate</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="c1">// Then we create the payload to be published. The object we pass in to ros.Message matches the</span>
+<span class="c1">// fields defined in the geometry_msgs/Twist.msg definition.</span>
+<span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ROSLIB</span><span class="p">.</span><span class="nx">Message</span><span class="p">({</span><span class="nx">data</span> <span class="o">:</span> <span class="s2">&quot;c goto 20 20 5 2&quot;</span><span class="p">});</span>
+<span class="c1">// And finally, publish.</span>
+<span class="nx">coordinate</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
 
-    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Drone Application<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">value</span><span class="o">=</span> <span class="s">&quot;Takeoff&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;Takeoff()&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;width:150px&quot;</span><span class="p">/&gt;</span>
-    <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">value</span><span class="o">=</span> <span class="s">&quot;Land&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;Land()&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;width:150px&quot;</span><span class="p">/&gt;</span>
-    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">name</span><span class="o">=</span><span class="s">movingForm</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span> <span class="s">&quot;coordinate&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;width:142px&quot;</span><span class="p">/&gt;</span>
-    <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">value</span><span class="o">=</span> <span class="s">&quot;Go to&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;GoTo()&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;width:150px&quot;</span><span class="p">/&gt;</span>
-    <span class="p">&lt;</span><span class="nt">form</span><span class="p">/&gt;</span>
-    <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;statusIndicator&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Drone Application<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">value</span><span class="o">=</span> <span class="s">&quot;Takeoff&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;Takeoff()&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;width:150px&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">value</span><span class="o">=</span> <span class="s">&quot;Land&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;Land()&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;width:150px&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">form</span> <span class="na">name</span><span class="o">=</span><span class="s">movingForm</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span> <span class="s">&quot;coordinate&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;width:142px&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">value</span><span class="o">=</span> <span class="s">&quot;Go to&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;GoTo()&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;width:150px&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">form</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;statusIndicator&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;connecting&quot;</span><span class="p">&gt;</span>
-  Connecting to rosbridge...
+Connecting to rosbridge...
 <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;connected&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;color:#00D600; display:none&quot;</span><span class="p">&gt;</span>
-  Connected
+Connected
 <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;error&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;color:#FF0000; display:none&quot;</span><span class="p">&gt;</span>
-  Error in the backend!
+ Error in the backend!
 <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;closed&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;display:none&quot;</span><span class="p">&gt;</span>
-  Connection closed.
+Connection closed.
 <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 <p>In new terminal:</p>
@@ -422,7 +425,7 @@ Create your html file (e.g. drone.html) and paste the following code:</p>
 <div class="section" id="using-tum-ardrone-package">
 <h2>Using tum_ardrone package<a class="headerlink" href="#using-tum-ardrone-package" title="Permalink to this headline">¶</a></h2>
 <p>Install <a class="reference external" href="http://www.ros.org/wiki/tum_ardrone">tum_ardrone</a> package.
-To run simulator, create a lunch file (e.g: test_tum_ardrone.launch) and paste following lines:</p>
+To run simulator, create a launch file (e.g: test_tum_ardrone.launch) and paste following lines:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
         &lt;arg <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;droneip&quot;</span> <span class="nv">default</span><span class="o">=</span><span class="s2">&quot;192.168.1.1&quot;</span> /&gt;
         &lt;node <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;ardrone_driver&quot;</span> <span class="nv">pkg</span><span class="o">=</span><span class="s2">&quot;ardrone_autonomy&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;ardrone_driver&quot;</span> <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span> <span class="nv">args</span><span class="o">=</span><span class="s2">&quot;-ip </span><span class="k">$(</span>arg droneip<span class="k">)</span><span class="s2">&quot;</span>&gt;
