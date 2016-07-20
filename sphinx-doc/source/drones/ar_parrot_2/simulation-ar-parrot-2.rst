@@ -23,13 +23,13 @@ Install and compile following packages:
 Testing the simulator
 =====================
 
-Create new package (e.g. drone_application)
+Create new package (e.g. ``drone_application``)
 
 .. code-block:: bash
 	
 	catkin_create_pkg drone_application std_msgs rospy roscpp
 
-To run simulator, create a launch file (e.g: test_simulator.launch) and paste following lines:
+To run simulator, create a launch file (e.g: ``test_simulator.launch``) and paste following lines:
 
 .. code-block:: bash
 
@@ -78,44 +78,44 @@ Here is a list of commands that you could try :
 .. code-block:: bash
 	
 	# fly forward
-	$ rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 1.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
+	rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 1.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
 	# fly backward
-	$ rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: -1.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
+	rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: -1.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
 	# fly to left 
-	$ rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 1.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
+	rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 1.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
 	# fly to right 
-	$ rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: -1.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
+	rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: -1.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
 	# fly up 
-	$ rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 0.0, z: 1.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
+	rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 0.0, z: 1.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
 	# fly down 
-	$ rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 0.0, z: -1.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
+	rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 0.0, z: -1.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
 	# counterclockwise rotation
-	$ rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 0.0, z: 	0.0}, angular: {x: 0.0,y: 0.0,z: 1.0}}'
+	rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 0.0, z: 	0.0}, angular: {x: 0.0,y: 0.0,z: 1.0}}'
 	# clockwise rotation
-	$ rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 0.0, z: 	0.0}, angular: {x: 0.0,y: 0.0,z: -1.0}}'
+	rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 0.0, z: 	0.0}, angular: {x: 0.0,y: 0.0,z: -1.0}}'
 	# stop
-	$ rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 0.0, z: 	0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
+	rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.0, y: 0.0, z: 	0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'
 	# switch camera
-	$ rosservice call /ardrone/togglecam 
+	rosservice call /ardrone/togglecam 
 	# The output camera
-	$ rosrun image_view image_view image:=/ardrone/image_raw
+	rosrun image_view image_view image:=/ardrone/image_raw
 	# The front camera
-	$ rosrun image_view image_view image:=/ardrone/front/image_raw
+	rosrun image_view image_view image:=/ardrone/front/image_raw
 	# The buttom camera
-	$ rosrun image_view image_view image:=/ardrone/bottom/image_raw
+	rosrun image_view image_view image:=/ardrone/bottom/image_raw
 	# The height senso
-	$ rostopic echo /sonar_height
+	rostopic echo /sonar_height
 	#The navigation info
-	$ rostopic echo /ardrone/navdata
+	rostopic echo /ardrone/navdata
 	#A launch file for joystick drivers and image view nodes
-	$ roslaunch cvg_sim_test demo_tool.launch 	
+	roslaunch cvg_sim_test demo_tool.launch 	
 
 For more details about the commands and package visit: `tum_simulator <http://wiki.ros.org/tum_simulator>`_
 
 Control the robot from your code in python
 ==========================================
 
-To write simple code to takeoff, create your .py file (e.g: takeoff.by) and paste following code:
+To write simple code to takeoff, create your .py file (e.g: ``takeoff.py``) and paste following code:
 
 .. code-block:: python
 
@@ -154,7 +154,7 @@ Use web interface with the simulator
 ====================================
 
 Install roslibjs from this `repository <https://github.com/RobotWebTools/roslibjs>`_. 
-Create your html file (e.g. drone.html) and paste the following code:
+Create your html file (e.g. ``drone.html``) and paste the following code:
 
 .. code-block:: html
 
@@ -329,7 +329,7 @@ Using tum_ardrone package
 =========================
 
 Install `tum_ardrone <http://www.ros.org/wiki/tum_ardrone>`_ package.
-To run simulator, create a launch file (e.g: test_tum_ardrone.launch) and paste following lines:
+To run simulator, create a launch file (e.g: ``test_tum_ardrone.launch``) and paste following lines:
 
 .. code-block:: bash
 
@@ -365,12 +365,12 @@ In terminal:
 
 	roslaunch drone_application test_tum_ardrone.launch
 
-This launch file will start the simulator in gazebo as before and ardrone_driver along with tum_ardrone nodes.
+This launch file will start the simulator in gazebo as before and ``ardrone_driver`` along with ``tum_ardrone`` nodes.
 
 .. image:: images/Ardrone_tutorial_tum_ardrone.png
 	:align: center
 
-The Ar Drone can be controlled using tum_ardrone GUI
+The Ar Drone can be controlled using ``tum_ardrone_GUI``
 
 .. image:: images/Tum_ardrone_GUI.png
 	:align: center
