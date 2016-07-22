@@ -18,5 +18,5 @@ Gaitech is pround to present the members who partecipated in the process of buil
 
 	* @Maram Alajlan	
 
-	* @Abdelrahman Mahmoud
+	* `@Abdelrahman Mahmoud <https://github.com/Amahmoud1994>`_
 
