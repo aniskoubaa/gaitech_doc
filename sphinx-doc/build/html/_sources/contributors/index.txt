@@ -12,7 +12,7 @@ Gaitech is pround to present the members who partecipated in the process of buil
 
 	* `@Dr.Anis Koubaa <http://dei.isep.ipp.pt/~akoubaa/>`_
 
-	* @Dr.Zavier Lee
+	* `@Dr.Zavier Lee <http://www.haust.edu.cn/article/detail.aspx?id=53082>`_
 	
 	* @Vishu
 
