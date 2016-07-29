@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ROS OpenKinect with Turtlebot &mdash; Gaitech EDU 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
+        <link rel="next" title="Drones" href="../drones/index.html"/>
+        <link rel="prev" title="Turtlebot Free Space Navigation" href="free-space-navigation.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech EDU
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="turtlebot-tutorials.html">Turtlebot Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-first-tests.html">First Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-config-doc.html">Network Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turtlebot_simulators.html">Turtlebot Simulators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kinect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ROS OpenKinect with Turtlebot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-ros-openni-and-openkinect-drivers">Installing ROS OpenNI and OpenKinect Drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-your-kinect-camera">Testing Your Kinect Camera</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech EDU</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="turtlebot-tutorials.html">Turtlebot Quick Start Tutorials</a> &raquo;</li>
+      
+    <li>ROS OpenKinect with Turtlebot</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/turtlebot/openKinect-turtlebot.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ros-openkinect-with-turtlebot">
+<span id="openkinect-turtlebot"></span><h1>ROS OpenKinect with Turtlebot<a class="headerlink" href="#ros-openkinect-with-turtlebot" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial you will learn how to configure your turtlebot robot to display image from Microsoft Kinect.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node.</p>
+</div>
+<div class="section" id="installing-ros-openni-and-openkinect-drivers">
+<h2>Installing ROS OpenNI and OpenKinect Drivers<a class="headerlink" href="#installing-ros-openni-and-openkinect-drivers" title="Permalink to this headline">¶</a></h2>
+<p>You need to download the ROS OpenNI and OpenKinect drivers by running the following commands:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-indigo-openni-* ros-indigo-openni2-* <span class="se">\ </span>ros-indigo-freenect-*
+rospack profile
+</pre></div>
+</div>
+<p>Now you can test your camera. Type the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch freenect_launch freenect.launch
+</pre></div>
+</div>
+<p>You should see these lines in the terminal:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>process<span class="o">[</span>camera/camera_nodelet_manager-1<span class="o">]</span>: started with pid <span class="o">[</span>18070<span class="o">]</span>
+<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>1420555647.969035762<span class="o">]</span>: Initializing nodelet with <span class="m">4</span> worker
+threads.
+process<span class="o">[</span>camera/driver-2<span class="o">]</span>: started with pid <span class="o">[</span>18078<span class="o">]</span>
+Warning: USB events thread - failed to <span class="nb">set</span> priority. This might cause
+loss of data...
+process<span class="o">[</span>camera/rectify_color-3<span class="o">]</span>: started with pid <span class="o">[</span>18112<span class="o">]</span>
+process<span class="o">[</span>camera/depth_rectify_depth-4<span class="o">]</span>: started with pid <span class="o">[</span>18126<span class="o">]</span>
+etc.
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Do not worry about the warning appearing in the terminal after running the previous command.</p>
+</div>
+</div>
+<div class="section" id="testing-your-kinect-camera">
+<h2>Testing Your Kinect Camera<a class="headerlink" href="#testing-your-kinect-camera" title="Permalink to this headline">¶</a></h2>
+<p>After running the previous command you can now run this command to know all the topics published by the camera:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rostopic list
+</pre></div>
+</div>
+<p>The following examples are to demonstrate the difference between a couple of topics:</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li>To test the RGB image from camera type the following command:</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun image_view image_view image:<span class="o">=</span>/camera/rgb/image_raw
+</pre></div>
+</div>
+<p>You will see something like this:</p>
+<img alt="../_images/camera-rgb.png" class="align-center" src="../_images/camera-rgb.png" />
+<ul class="simple">
+<li>To test the Mono image from camera type the following command:</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun image_view image_view image:<span class="o">=</span>/camera/rgb/image_rect_mono
+</pre></div>
+</div>
+<p>You will see something like this:</p>
+<img alt="../_images/camera-mono.png" class="align-center" src="../_images/camera-mono.png" />
+<ul class="simple">
+<li>To test the depth image from camera type the following command:</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun image_view image_view image:<span class="o">=</span>/camera/depth/image_rect
+</pre></div>
+</div>
+<p>You will see something like this:</p>
+<img alt="../_images/camera-depth.png" class="align-center" src="../_images/camera-depth.png" />
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The darker the object is the closer it is to the turtlebot.</p>
+</div>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../drones/index.html" class="btn btn-neutral float-right" title="Drones" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="free-space-navigation.html" class="btn btn-neutral" title="Turtlebot Free Space Navigation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
