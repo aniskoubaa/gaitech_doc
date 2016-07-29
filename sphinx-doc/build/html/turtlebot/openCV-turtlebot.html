@@ -35,7 +35,7 @@
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
         <link rel="next" title="Drones" href="../drones/index.html"/>
-        <link rel="prev" title="Turtlebot Free Space Navigation" href="free-space-navigation.html"/> 
+        <link rel="prev" title="ROS OpenKinect with Turtlebot" href="openKinect-turtlebot.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -97,8 +97,9 @@
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kinect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openKinect-turtlebot.html">ROS OpenKinect with Turtlebot</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">ROS OpenCV with Turtlebot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#installing-ros-openni-and-openkinect-drivers">Installing ROS OpenNI and OpenKinect Drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-opencv-packages">Installing OpenCV packages</a></li>
 </ul>
 </li>
 </ul>
@@ -153,75 +154,33 @@
             
   <div class="section" id="ros-opencv-with-turtlebot">
 <span id="opencv-turtlebot"></span><h1>ROS OpenCV with Turtlebot<a class="headerlink" href="#ros-opencv-with-turtlebot" title="Permalink to this headline">¶</a></h1>
-<p>In this tutorial you will learn how to configure your turtlebot robot with openCV and display image from Microsoft Kinect.</p>
+<p>In this tutorial you will learn how to configure your turtlebot robot with OpenCV to stream videos from Microsoft Kinect.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node.</p>
+<ul class="last simple">
+<li>Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node.</li>
+<li>Make sure to complete the ROS OpenKinect with Turtlebot tutorial.</li>
+</ul>
 </div>
-<div class="section" id="installing-ros-openni-and-openkinect-drivers">
-<h2>Installing ROS OpenNI and OpenKinect Drivers<a class="headerlink" href="#installing-ros-openni-and-openkinect-drivers" title="Permalink to this headline">¶</a></h2>
-<p>You need to download the ROS OpenNI and OpenKinect drivers by running the following commands:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-indigo-openni-* ros-indigo-openni2-* <span class="se">\ </span>ros-indigo-freenect-*
+<div class="section" id="installing-opencv-packages">
+<h2>Installing OpenCV packages<a class="headerlink" href="#installing-opencv-packages" title="Permalink to this headline">¶</a></h2>
+<p>You need to download the OpenCV packages by running the following commands:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-indigo-vision-opencv libopencv-dev <span class="se">\ </span>python-opencv
 rospack profile
 </pre></div>
 </div>
-<p>Now you can test your camera. Type the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch freenect_launch freenect.launch
+<p>After installation type this command to make sure that you have successfully installed the packages:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python
+&gt;&gt;&gt; from cv2 import cv
+&gt;&gt;&gt; quit<span class="o">()</span>
 </pre></div>
 </div>
-<p>You should see these lines in the terminal:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>process<span class="o">[</span>camera/camera_nodelet_manager-1<span class="o">]</span>: started with pid <span class="o">[</span>18070<span class="o">]</span>
-<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>1420555647.969035762<span class="o">]</span>: Initializing nodelet with <span class="m">4</span> worker
-threads.
-process<span class="o">[</span>camera/driver-2<span class="o">]</span>: started with pid <span class="o">[</span>18078<span class="o">]</span>
-Warning: USB events thread - failed to <span class="nb">set</span> priority. This might cause
-loss of data...
-process<span class="o">[</span>camera/rectify_color-3<span class="o">]</span>: started with pid <span class="o">[</span>18112<span class="o">]</span>
-process<span class="o">[</span>camera/depth_rectify_depth-4<span class="o">]</span>: started with pid <span class="o">[</span>18126<span class="o">]</span>
-etc.
+<p>You can type the following command to make sure that the OpenCV Python library is installed in its proper location:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>locate cv2.so <span class="p">|</span> grep python
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Do not worry about the warning appearing in the terminal after running the previous command.</p>
-</div>
-<p>After running the previous command you can now run this command to know all the topics published by the camera:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rostopic list
-</pre></div>
-</div>
-<p>The following examples are to demonstrate the difference between a couple of topics:</p>
-<blockquote>
-<div><blockquote>
-<div><ul class="simple">
-<li>To test the RGB image from camera type the following command:</li>
-</ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun image_view image_view image:<span class="o">=</span>/camera/rgb/image_raw
-</pre></div>
-</div>
-<p>You will see something like this:</p>
-<img alt="../_images/camera-rgb.png" class="align-center" src="../_images/camera-rgb.png" />
-<ul class="simple">
-<li>To test the Mono image from camera type the following command:</li>
-</ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun image_view image_view image:<span class="o">=</span>/camera/rgb/image_rect_mono
-</pre></div>
-</div>
-<p>You will see something like this:</p>
-<img alt="../_images/camera-mono.png" class="align-center" src="../_images/camera-mono.png" />
-<ul class="simple">
-<li>To test the depth image from camera type the following command:</li>
-</ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun image_view image_view image:<span class="o">=</span>/camera/depth/image_rect
-</pre></div>
-</div>
-<p>You will see something like this:</p>
-<img alt="../_images/camera-depth.png" class="align-center" src="../_images/camera-depth.png" />
-</div></blockquote>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The darker the object is the closer it is to the turtlebot.</p>
-</div>
-</div></blockquote>
+<p>You will get an output like this:</p>
+<img alt="../_images/openCV-python.png" class="align-center" src="../_images/openCV-python.png" />
 </div>
 </div>
 
@@ -235,7 +194,7 @@ etc.
         <a href="../drones/index.html" class="btn btn-neutral float-right" title="Drones" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="free-space-navigation.html" class="btn btn-neutral" title="Turtlebot Free Space Navigation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="openKinect-turtlebot.html" class="btn btn-neutral" title="ROS OpenKinect with Turtlebot" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
