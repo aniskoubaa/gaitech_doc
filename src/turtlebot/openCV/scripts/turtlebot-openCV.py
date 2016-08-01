@@ -1,27 +1,5 @@
 #!/usr/bin/env python
 
-""" cv_bridge_demo.py - Version 1.1 2013-12-20
-
-    A ROS-to-OpenCV node that uses cv_bridge to map a ROS image topic and optionally a ROS
-    depth image topic to the equivalent OpenCV image stream(s).
-    
-    Created for the Pi Robot Project: http://www.pirobot.org
-    Copyright (c) 2011 Patrick Goebel.  All rights reserved.
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details at:
-    
-    http://www.gnu.org/licenses/gpl.html
-      
-"""
-
 import rospy
 import sys
 import cv2
@@ -30,9 +8,9 @@ from sensor_msgs.msg import Image, CameraInfo
 from cv_bridge import CvBridge, CvBridgeError
 import numpy as np
 
-class cvBridgeDemo():
+class turtlebot_openCV():
     def __init__(self):
-        self.node_name = "cv_bridge_demo"
+        self.node_name = "turtlebot_openCV"
         
         rospy.init_node(self.node_name)
         
@@ -138,7 +116,7 @@ class cvBridgeDemo():
     
 def main(args):       
     try:
-        cvBridgeDemo()
+        turtlebot_openCV()
         rospy.spin()
     except KeyboardInterrupt:
         print "Shutting down vision node."
