@@ -60,22 +60,20 @@ class cvBridgeDemo():
         rospy.wait_for_message("input_rgb_image", Image)
         rospy.loginfo("Ready.")
 
-    def image_callback(self, ros_image):
+    def image_callback(self, data):
         # Use cv_bridge() to convert the ROS image to OpenCV format
-        try:
-            frame = self.bridge.imgmsg_to_cv2(ros_image, "bgr8")
-        except CvBridgeError, e:
-            print e
+        # Convert the ROS image to OpenCV format using a cv_bridge helper function
+        frame = self.convert_image(data)
+                
+        # Process the image to detect and track objects or features
+        processed_image = self.process_image(frame)
         
-        # Convert the image to a numpy array since most cv2 functions
-        # require numpy arrays.
-        frame = np.array(frame, dtype=np.uint8)
-        
-        # Process the frame using the process_image() function
-        display_image = self.process_image(frame)
-                       
+        # If the result is a greyscale image, convert to 3-channel for display purposes """
+        #if processed_image.channels == 1:
+            #cv.CvtColor(processed_image, self.processed_image, cv.CV_GRAY2BGR)
+               
         # Display the image.
-        cv2.imshow(self.node_name, display_image)
+        cv2.imshow(self.node_name, processed_image)
         
         # Process any keyboard commands
         self.keystroke = cv2.waitKey(5)
@@ -104,23 +102,36 @@ class cvBridgeDemo():
     
         # Display the result
         cv2.imshow("Depth Image", depth_display_image)
+
+    def convert_image(self, ros_image):
+        
+        # Use cv_bridge() to convert the ROS image to OpenCV format
+        try:
+            cv_image = self.bridge.imgmsg_to_cv2(ros_image, "bgr8")       
+            return np.array(cv_image, dtype=np.uint8)
+        except CvBridgeError, e:
+            print e
+
+    def convert_depth_image(self, ros_image):
+        # Use cv_bridge() to convert the ROS image to OpenCV format
+        try:
+            depth_image = self.bridge.imgmsg_to_cv2(ros_image, "passthrough")
+            
+            # Convert to a numpy array since this is what OpenCV uses
+            depth_image = np.array(depth_image, dtype=np.float32)
+            
+            return depth_image
+        
+        except CvBridgeError, e:
+            print e
           
-    def process_image(self, frame):
-        # Convert to greyscale
-        grey = cv2.cvtColor(frame, cv.CV_BGR2GRAY)
-        
-        # Blur the image
-        grey = cv2.blur(grey, (7, 7))
-        
-        # Compute edges using the Canny edge filter
-        edges = cv2.Canny(grey, 15.0, 30.0)
-        
-        return edges
-    
     def process_depth_image(self, frame):
         # Just return the raw image for this demo
         return frame
-    
+        
+    def process_image(self, frame): 
+        return frame
+        
     def cleanup(self):
         print "Shutting down vision node."
         cv2.destroyAllWindows()   
