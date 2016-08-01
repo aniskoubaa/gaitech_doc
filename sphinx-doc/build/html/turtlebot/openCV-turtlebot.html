@@ -100,6 +100,7 @@
 <li class="toctree-l2"><a class="reference internal" href="openKinect-turtlebot.html">ROS OpenKinect with Turtlebot</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">ROS OpenCV with Turtlebot</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installing-opencv-packages">Installing OpenCV packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transform-image-from-ros-to-opencv">Transform Image from ROS to OpenCV</a></li>
 </ul>
 </li>
 </ul>
@@ -181,6 +182,32 @@ rospack profile
 </div>
 <p>You will get an output like this:</p>
 <img alt="../_images/openCV-python.png" class="align-center" src="../_images/openCV-python.png" />
+</div>
+<div class="section" id="transform-image-from-ros-to-opencv">
+<h2>Transform Image from ROS to OpenCV<a class="headerlink" href="#transform-image-from-ros-to-opencv" title="Permalink to this headline">¶</a></h2>
+<p>In this section you will learn how to recieve and transform images from ROS and transform them to OpenCV.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Make sure that you downloaded the <code class="docutils literal"><span class="pre">gaitech_doc</span></code> package from our GitHub <a class="reference external" href="https://github.com/aniskoubaa/gaitech_doc">repository</a></p>
+</div>
+<p>You will find a launch file called <code class="docutils literal"><span class="pre">turtlebot_openCV</span></code> in the following path <code class="docutils literal"><span class="pre">gaitech_doc/src/turtlebot/openCV/launch/turtlebot_openCV.launch</span></code> , run the file in a terminal:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_doc turtlebot_openCV.launch
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Make sure that your camera driver is running.</p>
+<div class="last highlight-bash"><div class="highlight"><pre><span></span>roslaunch freenect_launch freenect.launch
+</pre></div>
+</div>
+</div>
+<p>After a short time you will see some thing like this:</p>
+<img alt="../_images/openCV.png" class="align-center" src="../_images/openCV.png" />
+<p>To understand the whole process of transformation you can open the <code class="docutils literal"><span class="pre">python</span></code> script in the following path <code class="docutils literal"><span class="pre">gaitech_doc/src/turtlebot/openCV/scripts/turtlebot_openCV.py</span></code> , the file is well documented so you will be able to understand everything written inside the code.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This code is originally from the <code class="docutils literal"><span class="pre">cv_bridge_opencv.py</span></code> file in the <code class="docutils literal"><span class="pre">rbx1_vision</span></code> package but with some other modifications.</p>
+</div>
 </div>
 </div>
 
