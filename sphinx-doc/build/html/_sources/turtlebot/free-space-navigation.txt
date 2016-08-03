@@ -6,12 +6,10 @@ Turtlebot Free Space Navigation
 ===============================
 
 This tutorial is the first lesson in the series of robot navigation. We consider the case of an open space with no obstacles. 
+
 The objective of this tutorial is to learn how to make the Turtlebot robot move using ROS. You will mainly learn how to publish a velocity message to make the robot move for a certain distance, or rotate for a certain angle. 
 For this, you will create the functions ``move`` and ``rotate`` using different techniques. 
 In particular, you will learn how to use ``TF`` package to estimate the distance traveled by the robot and the angle rotated by the robot using frame transformations. 
-
-.. WARNING::
-    Make sure that you completed installing all the required packages in the previous tutorials and your network set-up is working fine between the ROS Master node and the host node.
 
 .. NOTE::
 
@@ -25,16 +23,28 @@ In particular, you will learn how to use ``TF`` package to estimate the distance
 Background
 ==========
 The objective is to develop functions to make the robot moves in an open space in straight line for a certain distance, and rotate left or right for certain angle. 
-In the previous tutorial using the Turtlesim, we used the simple equation 
+Using these primitives, it is possible to make the robot move in a free space. 
+
+In :ref:`ros-programming-turtlesim` tutorial, we used the simple equation of ``distance=time*speed`` to make the robot move to a certain distance.
+However, this method is not effective in case of a real robot considering the following reason: the inaccuracy of IMU sensor data that provide the speed of the robot in addition to the friction with the ground will 
+compromise the accuracy of the calculated traveled distance in a certain time duration, which results in an estimation error. This issue is even worse in case of rotation. This estimation error will quickly cumulate over time leading to inacceptable localization error.  
+Fortunately, in ROS, there is the frame transformation package, denoted as ``tf`` package, that provides several interesting and advanced functionalities to estimate the motion of a frame (in this case the frame attached to the robot), with respect to a fixed frame (i.e the reference frame). 
+In this tutorial, we will use the ``tf`` package to estimate the traveled distance of the robot, in addition to the rotated angle of the robot. 
+
+ 
+.. NOTE::
+
+   It is important to have a prior knowledge on frame transformation first to understand the code. Check some online tutorials or ask your instructor. 
 
 
 
 C++ and Python Code for the square path
 =======================================
 
-You can find the whole ``cpp`` and ``python`` files in our `GitHub repository <https://github.com/aniskoubaa/gaitech_doc>`_ in the following `path <https://github.com/aniskoubaa/gaitech_doc/tree/master/src/turtlebot/navigation/free_space_navigation>`_. Go to `scripts` to find the ``python`` code.
+You can find the whole ``cpp`` and ``python`` files in our `GitHub repository <https://github.com/aniskoubaa/gaitech_doc>`_ in the following `path <https://github.com/aniskoubaa/gaitech_doc/tree/master/src/turtlebot/navigation/free_space_navigation>`_. 
+They are located in ``src/turtlebot/navigation/free_space_navigation``. Go to `scripts` to find the ``python`` code.
 
-In the code you will find 3 `move` methods and each one of them has its approach so you will be able to know 3 different ways of controlling and manipulating the turtlebot robot . The code is also well explained so you can easily understand what each line is doing in the code and what is its functionality.	
+In the code you will find 3 ``move`` methods and each one of them has its approach so you will be able to know 3 different ways of controlling and manipulating the turtlebot robot . The code is also well explained so you can easily understand what each line is doing in the code and what is its functionality.	
 
 After downloading the repository make sure you place it in your ``catkin_ws/src`` then run the following command:
 
@@ -45,6 +55,47 @@ After downloading the repository make sure you place it in your ``catkin_ws/src`
 .. NOTE::
 	
 	You may find a couple of errors due to your need to install missing packages.
+   
+Anaylzing the code
+==================
+We first analyze the ``move`` function to make the robot moves with a certain speed for a certain distance in stragight line either forward or backward. 
+
+
+The following code below sets the linear speed of the x-axis as positive value if the intention is to move forward, and negative value if the robot is to move backward, based on the value of ``isForward`` boolean variable. All other liear speeds and angular speeds must be set to zero. 
+It has to be noted that the x-axis of the linear speed is the axis that points to the front of the robot from its center. 
+
+**C++ Code**
+
+.. code-block:: c
+
+    //set the linear velocity to a positive value if isFoward is true
+   if (isForward)
+      VelocityMessage.linear.x =abs(speed);
+   else //else set the velocity to negative value to move backward
+      VelocityMessage.linear.x =-abs(speed);
+   //all velocities of other axes must be zero.
+   VelocityMessage.linear.y =0;
+   VelocityMessage.linear.z =0;
+   //The angular velocity of all axes must be zero because we want  a straight motion
+   VelocityMessage.angular.x = 0;
+   VelocityMessage.angular.y = 0;
+   VelocityMessage.angular.z =0;
+
+**Python Code**
+
+.. code-block:: python
+
+    if (isForward):
+            VelocityMessage.linear.x =abs(speed)
+        else: #else set the velocity to negative value to move backward
+            VelocityMessage.linear.x =-abs(speed)
+        #all velocities of other axes must be zero.
+        VelocityMessage.linear.y =0.0
+        VelocityMessage.linear.z =0.0
+        VelocityMessage.angular.x =0.0
+        VelocityMessage.angular.y =0.0
+        VelocityMessage.angular.z =0.0
+
 
 Running the code using Stage and RViz Simulators
 ================================================

@@ -58,7 +58,7 @@ class free_space_navigation():
         #current_transformation: is the transformation while the robot is moving
             current_transform = geometry_msgs.msg.TransformStamped()
             
-        position = Point()
+            position = Point()
 
         #set the linear velocity to a positive value if isFoward is True
             if (isForward):
@@ -83,18 +83,18 @@ class free_space_navigation():
                     rospy.Duration(1.0)
         
         # Get the starting position values     
-                (position, rotation) = self.get_odom(listener)
+            (position, rotation) = self.get_odom(listener)
                         
-                x_start = position.x
-                y_start = position.y
+            x_start = position.x
+            y_start = position.y
             
             # Keep track of the distance traveled
-                distance_moved = 0
+            distance_moved = 0
             
             # Enter the loop to move along a side
-                while distance_moved < distance and not rospy.is_shutdown():
-                # Publish the Twist message and sleep 1 cycle         
-                    self.velocityPublisher.publish(VelocityMessage)
+            while distance_moved < distance and not rospy.is_shutdown():
+            # Publish the Twist message and sleep 1 cycle         
+                self.velocityPublisher.publish(VelocityMessage)
                
             try:
             #wait for the transform to be found
@@ -106,15 +106,14 @@ class free_space_navigation():
                 rospy.Duration(1.0)
                 
                 # Get the current position
-                    (position, rotation) = self.get_odom(listener)
+                (position, rotation) = self.get_odom(listener)
                 # Compute the Euclidean distance from the start
-                    distance_moved = sqrt(pow((position.x - x_start), 2) + 
-                                    pow((position.y - y_start), 2))
+                distance_moved = sqrt(pow((position.x - x_start), 2) + pow((position.y - y_start), 2))
                             
             #finally, stop the robot when the distance is moved
-        VelocityMessage = Twist()           
+            VelocityMessage = Twist()           
             self.velocityPublisher.publish(VelocityMessage)
-        rospy.sleep(1.0)
+            rospy.sleep(1.0)
     
     def move_v2(self, speed, distance, isForward):
 
@@ -180,11 +179,11 @@ class free_space_navigation():
          # Hint:
          #    --> transform.getOrigin().length(): return the displacement of the origin of the transformation
          #
-                        transform = tf.transformations.concatenate_matrices(tf.transformations.translation_matrix(trans),      tf.transformations.quaternion_matrix(rot))
-                        #rospy.loginfo(type(transform))
-                        inverse_transform = tf.transformations.inverse_matrix(transform)
+            transform = tf.transformations.concatenate_matrices(tf.transformations.translation_matrix(trans),      tf.transformations.quaternion_matrix(rot))
+            #rospy.loginfo(type(transform))
+            inverse_transform = tf.transformations.inverse_matrix(transform)
             relative_transform = inverse_transform * current_transform.transform.translation.x
-                        rospy.loginfo(type(relative_transform))
+            rospy.loginfo(type(relative_transform))
             distance_moved= relative_transform
 #*************************************************************************************************************************
         
@@ -290,16 +289,16 @@ class free_space_navigation():
         
         rotateMessage = Twist()
         
-            rotateMessage.linear.x = 0
-            rotateMessage.angular.z = radians(45); #45 deg/s in radians/s
-        
-            rospy.loginfo("Turtlebot Turning")
-            r = rospy.Rate(5)
+        rotateMessage.linear.x = 0
+        rotateMessage.angular.z = radians(45); #45 deg/s in radians/s
+    
+        rospy.loginfo("Turtlebot Turning")
+        r = rospy.Rate(5)
 
-            for x in range(0,10):
+        for x in range(0,10):
 
-                self.velocityPublisher.publish(rotateMessage)
-                r.sleep()            
+            self.velocityPublisher.publish(rotateMessage)
+            r.sleep()            
         #rospy.loginfo(angular)
         #rospy.loginfo(distance_moved)        
 
@@ -330,9 +329,9 @@ class free_space_navigation():
         self.pose_subscriber = rospy.Subscriber("/odom", Odometry, self.poseCallback)     
             
         # The odom frame is usually just /odom
-            self.odom_frame = rospy.get_param('~odom_frame', '/odom')
-            # Set the odom frame
-            self.odom_frame = '/odom'
+        self.odom_frame = rospy.get_param('~odom_frame', '/odom')
+        # Set the odom frame
+        self.odom_frame = '/odom'
         self.base_frame = '/base_footprint'
 
         # 2 HZ
