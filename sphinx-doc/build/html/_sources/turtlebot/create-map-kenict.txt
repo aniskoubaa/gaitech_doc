@@ -1,9 +1,9 @@
 
 .. _create-map-kenict:
 
-==================================
-Building a Map using Kinect sensor
-==================================
+===============================
+Building a Map with a Turtlebot
+===============================
 
 In this tutorial, you will learn how to build your own map using Kinect sensor attached to your turtlebot. 
 
