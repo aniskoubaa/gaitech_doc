@@ -92,7 +92,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="turtlebot-tutorials.html">Turtlebot Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="turtlebot-first-tests.html">First Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openKinect-turtlebot.html">Setting-up 3D Sensor for the Turtlebot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-config-doc.html">Network Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-simulators.html">Turtlebot Simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Create a Map using Kinect</a><ul>
@@ -102,7 +104,6 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
-<li class="toctree-l2"><a class="reference internal" href="openKinect-turtlebot.html">ROS OpenKinect with Turtlebot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="openCV-turtlebot.html">ROS OpenCV with Turtlebot</a></li>
 </ul>
 </li>
@@ -156,13 +157,13 @@
             
   <div class="section" id="building-a-map-using-kinect-sensor">
 <span id="create-map-kenict"></span><h1>Building a Map using Kinect sensor<a class="headerlink" href="#building-a-map-using-kinect-sensor" title="Permalink to this headline">¶</a></h1>
-<p>In this tutorial you will learn how to build your own map using Kinect sensor attached to your turtlebot.</p>
+<p>In this tutorial, you will learn how to build your own map using Kinect sensor attached to your turtlebot.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node.</p>
+<p class="last">Make sure that you already made the tutorial on <a class="reference internal" href="openKinect-turtlebot.html#openkinect-turtlebot"><span class="std std-ref">Setting-up 3D Sensor for the Turtlebot</span></a>.</p>
 </div>
-<p>By default, ROS indigo supports <code class="docutils literal"><span class="pre">Asus</span> <span class="pre">Live</span> <span class="pre">Pro</span></code> 3D sensor and has no default support to <code class="docutils literal"><span class="pre">Kinect</span></code> 3D sensor.
-If you use <code class="docutils literal"><span class="pre">Asus</span> <span class="pre">Live</span> <span class="pre">Pro</span></code> 3D sensor, then skip the Kinect configuration step below.</p>
+<p>As mentioned in <a class="reference internal" href="openKinect-turtlebot.html#openkinect-turtlebot"><span class="std std-ref">Setting-up 3D Sensor for the Turtlebot</span></a>, ROS indigo supports by default <code class="docutils literal"><span class="pre">Asus</span> <span class="pre">Live</span> <span class="pre">Pro</span></code> 3D sensor and has no default support to <code class="docutils literal"><span class="pre">Kinect</span></code> 3D sensor.
+If you use <code class="docutils literal"><span class="pre">Asus</span> <span class="pre">Live</span> <span class="pre">Pro</span></code> 3D sensor, then skip the Kinect 3D sensor configuration step below.</p>
 <div class="section" id="kinect-3d-sensor-configuration">
 <h2>Kinect 3D sensor configuration<a class="headerlink" href="#kinect-3d-sensor-configuration" title="Permalink to this headline">¶</a></h2>
 <p>In order to connect the <code class="docutils literal"><span class="pre">Kinect</span></code> sensor with the ROS Indigo environment, you can type the following three commands in your <code class="docutils literal"><span class="pre">.bashrc</span></code> file:</p>

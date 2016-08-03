@@ -5,16 +5,17 @@
 Building a Map using Kinect sensor
 ==================================
 
-In this tutorial you will learn how to build your own map using Kinect sensor attached to your turtlebot. 
+In this tutorial, you will learn how to build your own map using Kinect sensor attached to your turtlebot. 
 
 .. WARNING::
-    Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node.
+    Make sure that you already made the tutorial on :ref:`openKinect-turtlebot`.
 
-By default, ROS indigo supports ``Asus Live Pro`` 3D sensor and has no default support to ``Kinect`` 3D sensor. 
-If you use ``Asus Live Pro`` 3D sensor, then skip the Kinect configuration step below. 
+As mentioned in :ref:`openKinect-turtlebot`, ROS indigo supports by default ``Asus Live Pro`` 3D sensor and has no default support to ``Kinect`` 3D sensor. 
+If you use ``Asus Live Pro`` 3D sensor, then skip the Kinect 3D sensor configuration step below. 
 
 Kinect 3D sensor configuration
 ==============================
+
 In order to connect the ``Kinect`` sensor with the ROS Indigo environment, you can type the following three commands in your ``.bashrc`` file:
 
 .. code-block:: bash
@@ -28,6 +29,7 @@ Open a new terminal.
 
 Start Mapping ROS Nodes
 =======================
+
 On the master node (the robot machine) run the following commands:
 
 .. code-block:: bash

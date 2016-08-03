@@ -14,11 +14,12 @@ In this page, we will provide you a quick start with Turtlebot robot.
    :hidden:
 
    First Tests <turtlebot-first-tests>
+   Setting-up 3D Sensor for the Turtlebot<openKinect-turtlebot>
    Network Configuration <network-config-doc>
-   Turtlebot Simulators <turtlebot_simulators>
+   Turtlebot Simulators <turtlebot-simulators>
    Keyboard Teleop <teleop-doc>
    Voice Teleoperation <speech-doc>
    Create a Map using Kinect <create-map-kenict>
    Turtlebot free movement in Space<free-space-navigation>
-   ROS OpenKinect with Turtlebot<openKinect-turtlebot>
+   
    ROS OpenCV with Turtlebot<openCV-turtlebot>

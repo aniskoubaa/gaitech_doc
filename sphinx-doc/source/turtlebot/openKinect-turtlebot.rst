@@ -47,6 +47,23 @@ Present the following
    * how to run with some screen shorts  
    * Illustrate the above execution with a small video demo
 
+
+By default, ROS indigo supports ``Asus Live Pro`` 3D sensor and has no default support to ``Kinect`` 3D sensor. 
+If you use ``Asus Live Pro`` 3D sensor, then skip the Kinect configuration step below. 
+
+Kinect 3D sensor configuration
+------------------------------
+In order to connect the ``Kinect`` sensor with the ROS Indigo environment, you can type the following three commands in your ``.bashrc`` file:
+
+.. code-block:: bash
+
+   export TURTLEBOT_3D_SENSOR=kinect
+   export TURTLEBOT_BASE=kobuki
+   export TURTLEBOT_STACKS=hexagons
+
+Then save, exit and close the terminal.
+Open a new terminal. 
+
 Installing ROS OpenNI and OpenKinect Drivers
 --------------------------------------------
 

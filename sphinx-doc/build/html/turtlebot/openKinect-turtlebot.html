@@ -34,8 +34,8 @@
   
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
-        <link rel="next" title="ROS OpenCV with Turtlebot" href="openCV-turtlebot.html"/>
-        <link rel="prev" title="Turtlebot Free Space Navigation" href="free-space-navigation.html"/> 
+        <link rel="next" title="Network Configuration" href="network-config-doc.html"/>
+        <link rel="prev" title="Turtlebot First Tests" href="turtlebot-first-tests.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -92,20 +92,22 @@
 <li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="turtlebot-tutorials.html">Turtlebot Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="turtlebot-first-tests.html">First Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="network-config-doc.html">Network Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
-<li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kinect</a></li>
-<li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ROS OpenKinect with Turtlebot</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Setting-up 3D Sensor for the Turtlebot</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#asus-live-pro-3d-sensor">Asus Live Pro 3D Sensor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#kinect-3d-sensor">Kinect 3D Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#kinect-3d-sensor-configuration">Kinect 3D sensor configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#installing-ros-openni-and-openkinect-drivers">Installing ROS OpenNI and OpenKinect Drivers</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#testing-your-kinect-camera">Testing Your Kinect Camera</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="network-config-doc.html">Network Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-simulators.html">Turtlebot Simulators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kinect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="openCV-turtlebot.html">ROS OpenCV with Turtlebot</a></li>
 </ul>
 </li>
@@ -190,6 +192,7 @@ In this tutorial, we will introduce how to set-up and test both sensors for ROS 
 <li>the location of the openni package</li>
 <li>explain the 3dsensor.launch file in the turtlebot_bringup package</li>
 <li>how to run with some screen shorts</li>
+<li>Illustrate the above execution with a small video demo</li>
 </ul>
 </dd>
 </dl>
@@ -205,9 +208,23 @@ In this tutorial, we will introduce how to set-up and test both sensors for ROS 
 <li>the location of the openni package</li>
 <li>explain the 3dsensor.launch file in the turtlebot_bringup package</li>
 <li>how to run with some screen shorts</li>
+<li>Illustrate the above execution with a small video demo</li>
 </ul>
 </dd>
 </dl>
+<p>By default, ROS indigo supports <code class="docutils literal"><span class="pre">Asus</span> <span class="pre">Live</span> <span class="pre">Pro</span></code> 3D sensor and has no default support to <code class="docutils literal"><span class="pre">Kinect</span></code> 3D sensor.
+If you use <code class="docutils literal"><span class="pre">Asus</span> <span class="pre">Live</span> <span class="pre">Pro</span></code> 3D sensor, then skip the Kinect configuration step below.</p>
+<div class="section" id="kinect-3d-sensor-configuration">
+<h3>Kinect 3D sensor configuration<a class="headerlink" href="#kinect-3d-sensor-configuration" title="Permalink to this headline">¶</a></h3>
+<p>In order to connect the <code class="docutils literal"><span class="pre">Kinect</span></code> sensor with the ROS Indigo environment, you can type the following three commands in your <code class="docutils literal"><span class="pre">.bashrc</span></code> file:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">TURTLEBOT_3D_SENSOR</span><span class="o">=</span>kinect
+<span class="nb">export</span> <span class="nv">TURTLEBOT_BASE</span><span class="o">=</span>kobuki
+<span class="nb">export</span> <span class="nv">TURTLEBOT_STACKS</span><span class="o">=</span>hexagons
+</pre></div>
+</div>
+<p>Then save, exit and close the terminal.
+Open a new terminal.</p>
+</div>
 <div class="section" id="installing-ros-openni-and-openkinect-drivers">
 <h3>Installing ROS OpenNI and OpenKinect Drivers<a class="headerlink" href="#installing-ros-openni-and-openkinect-drivers" title="Permalink to this headline">¶</a></h3>
 <p>First, you need to download the ROS OpenNI and OpenKinect drivers by running the following commands:</p>
@@ -286,10 +303,10 @@ etc.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="openCV-turtlebot.html" class="btn btn-neutral float-right" title="ROS OpenCV with Turtlebot" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="network-config-doc.html" class="btn btn-neutral float-right" title="Network Configuration" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="free-space-navigation.html" class="btn btn-neutral" title="Turtlebot Free Space Navigation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="turtlebot-first-tests.html" class="btn btn-neutral" title="Turtlebot First Tests" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
