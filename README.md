@@ -1,8 +1,9 @@
 Welcome to Gaitech’s Education Portal!
+================================
 Gaitech is pround to provide you a comprehensive educational framework on Robot Operating System (ROS). We provide a series of online tutorials on ROS that will help you getting familiar with ROS.
 
-_images/ros1.png
 FAQs about Gaitech EDU
+=====================
 What is Gaitech EDU?
 Gaitech EDU is an educational website on robotics and in particular on Robot Operating System (ROS). The objective is to provide an easy-to-follow educational content that helps in better mastering the concepts of ROS and promoting its use for developing robotics software. Gaitech company strives to contribute to the development of ROS and provides its customers and ROS users with technical support and an open education framework to learn ROS.
 
