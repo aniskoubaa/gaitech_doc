@@ -14,8 +14,41 @@ In this tutorial, we will introduce how to set-up and test both sensors for ROS 
 .. WARNING::
     Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node.
 
+
+.. NOTE::
+
+   In this tutorial you will learn how to:
+
+      * Set-up, configure and test Asus Live Pro 3D sensor for a Turtlebot
+      * Set-up, configure and test Kinect sensor for a Turtlebot
+       
+
+Asus Live Pro 3D Sensor
+=======================
+Present the following
+   * explain that this is the default sensor
+   * show a picture of it
+   * installation process
+   * what are the configuration needed of environment variable to start Turtlebot with Kinect for Indigo and later versions
+   * the location of the openni package
+   * explain the 3dsensor.launch file in the turtlebot_bringup package
+   * how to run with some screen shorts 
+   * Illustrate the above execution with a small video demo
+
+
+Kinect 3D Sensor
+================
+Present the following
+   * explain that this is the default sensor
+   * show a picture of it
+   * installation process
+   * the location of the openni package
+   * explain the 3dsensor.launch file in the turtlebot_bringup package
+   * how to run with some screen shorts  
+   * Illustrate the above execution with a small video demo
+
 Installing ROS OpenNI and OpenKinect Drivers
-============================================
+--------------------------------------------
 
 First, you need to download the ROS OpenNI and OpenKinect drivers by running the following commands:
 

@@ -40,6 +40,7 @@ Gaitech Education website is NOT meant to be a substitue of ROS wiki documentati
 In principle, any ROS user should first go through the ROS wiki beginners tutorials, at least for installation, setting up the environment and understanding ROS framework.
 Gaitech EDU website provide high-quality tutorials in both textual and video format with open source code and instruction of usage. Some of the tutorials in ROS Wiki documentation were reproduced with more details and concrete illustration for faster introduction to the main concepts such as publisher/subscriber paradigm, topics, messages, etc. 
 In addition, Gaitech EDU website provides a educational content on the Turtlebot robot for both simulated robots and real robots. 
+In addition, Gaitech EDU provides solution to some common problems faced by ROS users. 
 
 How Tutorials are designed?
 ---------------------------
