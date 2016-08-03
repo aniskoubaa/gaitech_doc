@@ -1,3 +1,5 @@
+
+.. _turtlebot-simulators:
 ====================
 Turtlebot Simulators
 ====================

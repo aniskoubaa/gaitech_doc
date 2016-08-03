@@ -1,12 +1,9 @@
-.. gaitech documentation master file, created by
-   sphinx-quickstart on Sun May  8 09:56:52 2016.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-.. _turtlebot-tutorials:
 
+.. _turtlebot-tutorials:
 ===============================
 Turtlebot Quick Start Tutorials
 ===============================
+
 In this page, we will provide you a quick start with Turtlebot robot.
 
 .. image:: images/turtlebot.png
