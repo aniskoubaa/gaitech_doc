@@ -1,5 +1,6 @@
 
 .. _ros-programming:
+
 ===============
 ROS Programming
 ===============
@@ -11,6 +12,8 @@ The first thing you need to understand in ROS is how to subscribe to a ROS topic
    It is assumed that you already know the main concepts on ROS including ROS topics, ROS nodes, ROS messages and ROS services. 
    If not, you need to first take the first tutorial on :ref:`ROS Background <ros-bakground>`. 
  
+
+The code of this tutorial is available in ``src/ros_basics/talker_listener/`` of ``gaitech_doc`` package.
 
 
 .. NOTE:: The following tutorial is based on the ROS tutorial  `Writing a Simple Publisher and Subscriber (C++) <http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber(c%2B%2B)>`_ and  `Python <http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29>`_ but provides more practical programming and configuration hints. Although some videos are shown for ROS Hydro, they are also valid for all subsquent versions including Indigo and Jade, as they deal with the basics.

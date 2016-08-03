@@ -1,19 +1,23 @@
 
 .. _openKinect-turtlebot:
 
-=============================
-ROS OpenKinect with Turtlebot
-=============================
+======================================
+Setting-up 3D Sensor for the Turtlebot
+======================================
 
-In this tutorial you will learn how to configure your turtlebot robot to display image from Microsoft Kinect. 
+In this tutorial you will learn how to configure your turtlebot robot to display image from 3D sensor, including Asus Live Pro camera and Kinect Camera.
+Prio to ROS Indigo, the Turtlebot ROS package provided a default support for Kinect camera. 
+However, for ROS Indigo and later versions, Turtlebot package provides a default support for Asus Live Pro 3D sensor, 
+and it requires some additional configuration to work with Kinect. 
+In this tutorial, we will introduce how to set-up and test both sensors for ROS Indigo and later versions. 
 
 .. WARNING::
     Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node.
 
-Installing ROS OpenNI and OpenKinect Drivers 
+Installing ROS OpenNI and OpenKinect Drivers
 ============================================
 
-You need to download the ROS OpenNI and OpenKinect drivers by running the following commands:
+First, you need to download the ROS OpenNI and OpenKinect drivers by running the following commands:
 
 .. code-block:: bash
 

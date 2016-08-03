@@ -34,6 +34,16 @@ include_directories(
 ## Declare a catkin package
 ## Declare a cpp executable
 
+#talker
+add_executable(talker_node src/ros_basics/talker_listener/talker.cpp)
+target_link_libraries (talker_node ${catkin_LIBRARIES})
+#add_dependencies(talker gaitech_doc_generate_message_cpp)
+
+#listener
+add_executable(listener_node src/ros_basics/talker_listener/listener.cpp)
+target_link_libraries (listener_node ${catkin_LIBRARIES})
+#add_dependencies(talker gaitech_doc_generate_message_cpp)
+
 add_executable(voice_teleop_node src/turtlebot/voice_teleop/voice_teleop.cpp)
 target_link_libraries(voice_teleop_node ${catkin_LIBRARIES})
 

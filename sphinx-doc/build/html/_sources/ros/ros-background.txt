@@ -1,5 +1,6 @@
    
 .. _ros-background:
+
 ==============
 ROS Background
 ==============
@@ -21,6 +22,8 @@ Lecture 1: Start a ROS Master Node
       * Configure your ROS environment in the *.bashrc* script file
       * Find the list of ROS nodes and ROS topics
 
+Listen to the following video.
+
 .. youtube:: xgLETnSMMYA
 
 
@@ -34,6 +37,8 @@ Lecture 2: Understanding ROS Topics, Nodes and Messages
       * Understand ROS topics and its related terminal commands
       * Understand ROS nodes and its related terminal commands
       * Undertsand ROS messages and its related terminal commands
+
+Listen to the following video.
 
 .. youtube:: Yx_vGAt74sk
 
