@@ -67,7 +67,26 @@ You can save the map you just created by running the following command:
 
 .. NOTE::
 	The ``tmp`` file gets cleaned everytime the system is booted so after saving the map you can move the files to another location or save it in another location directly.
-	
+
+The previous command will generate two file in the name you specify so in this case the two file's names are ``my_map.pgm`` and ``my_map.yaml``. 
+If you opened the ``.yaml`` file you will see something like this:
+
+.. code-block:: yaml
+
+	image: /tmp/my_map.pgm
+	resolution: 0.050000
+	origin: [-12.200000, -12.200000, 0.000000]
+	negate: 0
+	occupied_thresh: 0.65
+	free_thresh: 0.196
+
+Everyline specify a certain information from the map's file which is the ``.pgm`` file, the resolution of the map, the starting location of the turtlebot robot to how much space does the obstacles/free space occupy from the map.
+
+The ``.pgm`` is just an image of the map which you can open using any image editor program and it will look like this:
+
+.. image:: images/pgm_map.png
+	:align: center 
+
 Video Demonstration
 ===================
 .. youtube:: QzZif1e767k

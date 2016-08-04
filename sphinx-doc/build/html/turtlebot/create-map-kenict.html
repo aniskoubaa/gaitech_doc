@@ -97,7 +97,7 @@
 <li class="toctree-l2"><a class="reference internal" href="turtlebot-simulators.html">Turtlebot Simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Create a Map using Kinect</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Building a Map with a Turtlebot</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#kinect-3d-sensor-configuration">Kinect 3D sensor configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#start-mapping-ros-nodes">Start Mapping ROS Nodes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#video-demonstration">Video Demonstration</a></li>
@@ -207,6 +207,19 @@ roslaunch turtlebot_teleop keyboard_teleop.launch
 <p class="first admonition-title">Note</p>
 <p class="last">The <code class="docutils literal"><span class="pre">tmp</span></code> file gets cleaned everytime the system is booted so after saving the map you can move the files to another location or save it in another location directly.</p>
 </div>
+<p>The previous command will generate two file in the name you specify so in this case the two file&#8217;s names are <code class="docutils literal"><span class="pre">my_map.pgm</span></code> and <code class="docutils literal"><span class="pre">my_map.yaml</span></code>.
+If you opened the <code class="docutils literal"><span class="pre">.yaml</span></code> file you will see something like this:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/my_map.pgm</span>
+<span class="l l-Scalar l-Scalar-Plain">resolution</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.050000</span>
+<span class="l l-Scalar l-Scalar-Plain">origin</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">-12.200000</span><span class="p p-Indicator">,</span> <span class="nv">-12.200000</span><span class="p p-Indicator">,</span> <span class="nv">0.000000</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">negate</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="l l-Scalar l-Scalar-Plain">occupied_thresh</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.65</span>
+<span class="l l-Scalar l-Scalar-Plain">free_thresh</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.196</span>
+</pre></div>
+</div>
+<p>Everyline specify a certain information from the map&#8217;s file which is the <code class="docutils literal"><span class="pre">.pgm</span></code> file, the resolution of the map, the starting location of the turtlebot robot to how much space does the obstacles/free space occupy from the map.</p>
+<p>The <code class="docutils literal"><span class="pre">.pgm</span></code> is just an image of the map which you can open using any image editor program and it will look like this:</p>
+<img alt="../_images/pgm_map.png" class="align-center" src="../_images/pgm_map.png" />
 </div>
 <div class="section" id="video-demonstration">
 <h2>Video Demonstration<a class="headerlink" href="#video-demonstration" title="Permalink to this headline">¶</a></h2>
