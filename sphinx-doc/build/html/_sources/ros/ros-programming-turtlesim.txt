@@ -16,7 +16,7 @@ The code of this tutorial is available in ``src/turtlesim/cleaning_app/robot_cle
 
 .. warning:: 
    It is assumed that you already know the main concepts on ROS including ROS topics, ROS nodes, ROS messages and ROS services. 
-   If not, you need to first take the first tutorials on :ref:`ROS Background <ros-bakground>` and :ref:`ROS Programming Basics <ros-programming>`. 
+   If not, you need to first take the first tutorials on :ref:`ros-background` and :ref:`ros-programming`. 
  
 
 .. NOTE:: The following tutorial aims at introducing necessary and fundamental concepts of ROS beyond the simple talker/listener tutorial, like navigation, motion control, distance estimation, rotated angle estimation, and some ROS packages including TF. 

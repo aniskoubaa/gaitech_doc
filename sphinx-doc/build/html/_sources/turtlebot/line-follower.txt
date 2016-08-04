@@ -47,6 +47,7 @@ Run the following commands:
 .. code-block:: bash
 	
 	roscore
+   
 Start up your Gazebo simulator:
 
 .. code-block:: bash
@@ -63,6 +64,7 @@ You will see something like the following.
 
 .. image:: images/rostopic_list.png
 	:align: center
+   
 We are only interested about the ``camera`` topics.
 
 Now run your python script:
@@ -186,7 +188,7 @@ Open a new file and call it ``line_follower.py`` and write the following script:
 
 Open `Gazebo` and then run the ``python`` script:
 
-.. code-block:: bach
+.. code-block:: bash
 	
 	python your_path/line_follower.py
 
@@ -201,14 +203,14 @@ Draw a yellow line on your ground using a colored paper or a ducktape.
 
 On your master node(turtlebot PC) run the following commands:
 
-.. code-block:: bach
+.. code-block:: bash
 	
 	roscore
 	roslaunch turtlebot_bringup minimal.launch
 
 on your host node(your PC) run the ``python`` script:
 
-.. code-block:: bach
+.. code-block:: bash
 	
 	python your_path/line_follower.py
 

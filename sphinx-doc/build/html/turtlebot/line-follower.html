@@ -32,7 +32,10 @@
   
 
   
-    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/> 
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
+        <link rel="next" title="Navigation Stack" href="navigation-stack.html"/>
+        <link rel="prev" title="Turtlebot Voice Teleoperation" href="speech-doc.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -84,10 +87,30 @@
           
             
             
-                <ul>
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/get-started.html">Get Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="turtlebot-tutorials.html">Turtlebot Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="turtlebot-tutorials.html">Turtlebot Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-first-tests.html">First Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openKinect-turtlebot.html">Setting-up 3D Sensor for the Turtlebot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-config-doc.html">Network Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-simulators.html">Turtlebot Simulators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Line Follower</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introducing-the-opencv">Introducing the OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#draw-a-line-in-gazebo">Draw a line in Gazebo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#follow-the-line">Follow the line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-on-your-turtlebot">Test on your Turtlebot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="navigation-stack.html">Navigation Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Building a Map with a Turtlebot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send-goals-nav-stack.html">Send to a Goal Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openCV-turtlebot.html">ROS OpenCV with Turtlebot</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
 </ul>
@@ -119,6 +142,8 @@
 <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="turtlebot-tutorials.html">Turtlebot Quick Start Tutorials</a> &raquo;</li>
       
     <li>Turtlebot Line Follower</li>
       <li class="wy-breadcrumbs-aside">
@@ -293,7 +318,7 @@ Run the following commands:</p>
 </pre></div>
 </div>
 <p>Open <cite>Gazebo</cite> and then run the <code class="docutils literal"><span class="pre">python</span></code> script:</p>
-<div class="highlight-bach"><div class="highlight"><pre><span></span>python your_path/line_follower.py
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_path/line_follower.py
 </pre></div>
 </div>
 </div>
@@ -305,12 +330,12 @@ Run the following commands:</p>
 <p class="last">Make sure that the color ground&#8217;s color is different than the yellow color you are using to avoid conflict and ensure good results.</p>
 </div>
 <p>On your master node(turtlebot PC) run the following commands:</p>
-<div class="highlight-bach"><div class="highlight"><pre><span></span>roscore
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roscore
 roslaunch turtlebot_bringup minimal.launch
 </pre></div>
 </div>
 <p>on your host node(your PC) run the <code class="docutils literal"><span class="pre">python</span></code> script:</p>
-<div class="highlight-bach"><div class="highlight"><pre><span></span>python your_path/line_follower.py
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_path/line_follower.py
 </pre></div>
 </div>
 <iframe width="640" height="360" src="http://www.youtube.com/embed/qptuCbHESi8" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
@@ -320,6 +345,15 @@ roslaunch turtlebot_bringup minimal.launch
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="navigation-stack.html" class="btn btn-neutral float-right" title="Navigation Stack" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="speech-doc.html" class="btn btn-neutral" title="Turtlebot Voice Teleoperation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

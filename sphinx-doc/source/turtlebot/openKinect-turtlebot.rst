@@ -31,24 +31,36 @@ The default sensor that is used with ROS Indigo is the Asus Xtion Pro Live 3D se
 .. image:: images/asus_camera.png
 	:align: center
 
-To use this sensor with the turtlebot robot you will have to add the following lines in the ``.bashrc`` script file:
+If Asus is not your default 3Dsensor, then, to use this sensor with the turtlebot robot you will have to add the following lines in the ``.bashrc`` script file:
 
 .. code-block:: bash
 
-	export TURTLEBOT_BASE=create
-	export TURTLEBOT_STACKS=circles
 	export TURTLEBOT_3D_SENSOR=asus_xtion_pro
+
+Remember that if you work with ROS Indigo and later version, you do not need to make the above command, as it is the default 3D sensor, unless you already changed it to another setting. 
 
 Installing the Openni Package
 -----------------------------
 
-If you are going to use the Asus sensor then you will need to install the ``oppeni`` package, so run the following command:
+If you are going to use the Asus sensor then you will need to install the ``openni`` package, so run the following command:
 
 .. code-block:: bash
 
 	sudo apt-get install ros-indigo-openni-* ros-indigo-openni2-*
 
 Both the packages will be installed in the same folder and you can find this file in the following path ``/opt/ros/indigo/share/openni2_camera`` and ``/opt/ros/indigo/share/openni_camera``. You will find more ``oppeni`` folders which also belongs to the same package.
+Note that this is the package that is responsible for running the 3D sensor. Prio to ROS Indigo, this ROS package was configured to start Kinect 3D sensor by default. However, for ROS Indigo and later versions, it was configured to run Asus Live Pro 3D sensor by defaut.
+If you want to use Kinect 3D sensor with your Turtlebot on ROS Indigo and later version, refer to the next section :ref:`kinect3d`.
+
+
+.. NOTE::
+
+   For more details about openni on ROS, please refer to the following ROS documentation pages:
+
+      * `openni_launch <http://wiki.ros.org/openni_launch>`_: Launch files to open an OpenNI device and load all nodelets to convert raw depth/RGB/IR streams to depth images, disparity images, and (registered) point clouds 
+      * `openni_camera <http://wiki.ros.org/openni_camera>`_: A ROS driver for OpenNI depth (+ RGB) cameras. These include: Microsoft Kinect, PrimeSense PSDK, ASUS Xtion Pro and Pro Live The driver publishes raw depth, RGB, and IR image streams.
+      * `QuickStart Tutorial <http://wiki.ros.org/openni_launch/Tutorials/QuickStart>`_: This tutorial demonstrates how to open a Kinect (or other OpenNI device) in ROS, introduces ROS tools for visualization and configuration, and explains how to get registered (depth + RGB) outputs like color point clouds.
+
 
 Explanning the 3dsensor.launch File
 -----------------------------------
@@ -67,7 +79,8 @@ In line number 21 :
 
 	<arg name="3d_sensor"   default="$(env TURTLEBOT_3D_SENSOR)"/>  <!-- kinect, asus_xtion_pro -->
 
-The ``TURTLEBOT_3D_SENSOR`` variable is set in the previous steps in the ``.bashrc`` file according your sensor type. And the same variable will affect more variables' initialization afterwards in the same ``.launch`` file.
+The ``TURTLEBOT_3D_SENSOR`` environment variable is set in the previous steps in the ``.bashrc`` file according to your sensor type. 
+Note that the value of this variable will affect more setting parameters for the initialization of the 3D sensor afterwards in the same ``.launch`` file.
 
 
 Testing the Asus Sensor
@@ -80,19 +93,24 @@ After all the installation steps you can test your environment by typing the fol
 	roslaunch turtlebot_bringup 3dsensor.launch
 	roslaunch turtlebot_rviz_launchers view_robot.launch
 
-After launching the ``RViz`` simulator press on the `Image` icon on the left list and you would be able to see something like this:
+After launching the ``RViz`` simulator (``rosrun rviz rviz``) press on the ``Image`` icon on the left list and you would be able to see something like this:
 
 .. image:: images/rviz_camera.png
 	:align: center
 
+You can also launch the ``image_view`` program to vizualize the video streams:
 
+.. code-block:: bash
 
+   rosrun image_view image_view image:=/camera/rgb/image_raw
+
+.. _kinect3d:
 
 Kinect 3D Sensor
 ================
 
 By default, ROS indigo supports ``Asus Live Pro`` 3D sensor and has no default support to ``Kinect`` 3D sensor. 
-If you use ``Asus Live Pro`` 3D sensor, then skip the Kinect configuration step below. 
+If you use ``Asus Live Pro`` 3D sensor, then skip the Kinect configuration step below. If you use ``Kinect`` 3D sensor, then follow the steps below to configure correctly your Turtlebot robot with it.
 The following image is for the ``Kinect`` 3D sensor:
 
 .. image:: images/kinect_camera.jpg
@@ -100,21 +118,19 @@ The following image is for the ``Kinect`` 3D sensor:
 
 Kinect 3D sensor configuration
 ------------------------------
+
 In order to connect the ``Kinect`` sensor with the ROS Indigo environment, you can type the following three commands in your ``.bashrc`` file:
 
 .. code-block:: bash
 
    export TURTLEBOT_3D_SENSOR=kinect
-   export TURTLEBOT_BASE=kobuki
-   export TURTLEBOT_STACKS=hexagons
 
-Then save, exit and close the terminal.
-Open a new terminal. 
+Then save, exit and close the terminal. Open a new terminal. 
 
 Installing ROS OpenNI and OpenKinect Drivers
 --------------------------------------------
 
-First, you need to download the ROS OpenNI and OpenKinect drivers by running the following commands:
+First, you need to download the ROS OpenNI and OpenKinect (freenect) drivers by running the following commands:
 
 .. code-block:: bash
 
@@ -145,10 +161,21 @@ You should see these lines in the terminal:
 .. NOTE::
 	Do not worry about the warning appearing in the terminal after running the previous command.
 
-Testing Your Kinect Camera
---------------------------
 
-After running the previous command you can now run this command to know all the topics published by the camera:
+.. NOTE::
+
+   For more details about openni on ROS, please refer to the following ROS documentation pages:
+
+      * `libfreenect <http://wiki.ros.org/libfreenect>`_: `freenect <http://openkinect.org/wiki/Main_Page>`_ is a library for accessing the Microsoft Kinect USB camera. 
+      * `freenect_launch <http://wiki.ros.org/freenect_launch>`_: This package contains launch files for using a Microsoft Kinect using the libfreenect library. This folder replicates the API offered by openni_launch in an effort to maintain maximum compatibility with the OpenNI driver.
+      * `OpenKinect WiKi <https://openkinect.org/wiki/Getting_Started>`_: This page documents how to get started using OpenKinect.
+
+
+
+Testing Your 3D Sensor (Valid for Both Asus and Kinect)
+=======================================================
+
+After running the previous command, you can now run the following command to know all the topics published by the camera:
 
 .. code-block:: bash
 

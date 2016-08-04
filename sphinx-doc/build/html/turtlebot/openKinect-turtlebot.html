@@ -102,16 +102,19 @@
 <li class="toctree-l3"><a class="reference internal" href="#kinect-3d-sensor">Kinect 3D Sensor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#kinect-3d-sensor-configuration">Kinect 3D sensor configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#installing-ros-openni-and-openkinect-drivers">Installing ROS OpenNI and OpenKinect Drivers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#testing-your-kinect-camera">Testing Your Kinect Camera</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-your-3d-sensor-valid-for-both-asus-and-kinect">Testing Your 3D Sensor (Valid for Both Asus and Kinect)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="network-config-doc.html">Network Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="turtlebot-simulators.html">Turtlebot Simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="line-follower.html">Line Follower</a></li>
+<li class="toctree-l2"><a class="reference internal" href="navigation-stack.html">Navigation Stack</a></li>
 <li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Building a Map with a Turtlebot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send-goals-nav-stack.html">Send to a Goal Location</a></li>
 <li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="openCV-turtlebot.html">ROS OpenCV with Turtlebot</a></li>
 </ul>
@@ -189,19 +192,31 @@ In this tutorial, we will introduce how to set-up and test both sensors for ROS 
 <h2>Asus Xtion Pro Live 3D Sensor<a class="headerlink" href="#asus-xtion-pro-live-3d-sensor" title="Permalink to this headline">¶</a></h2>
 <p>The default sensor that is used with ROS Indigo is the Asus Xtion Pro Live 3D sensor. The image below is for the Asus sensor.</p>
 <img alt="../_images/asus_camera.png" class="align-center" src="../_images/asus_camera.png" />
-<p>To use this sensor with the turtlebot robot you will have to add the following lines in the <code class="docutils literal"><span class="pre">.bashrc</span></code> script file:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">TURTLEBOT_BASE</span><span class="o">=</span>create
-<span class="nb">export</span> <span class="nv">TURTLEBOT_STACKS</span><span class="o">=</span>circles
-<span class="nb">export</span> <span class="nv">TURTLEBOT_3D_SENSOR</span><span class="o">=</span>asus_xtion_pro
+<p>If Asus is not your default 3Dsensor, then, to use this sensor with the turtlebot robot you will have to add the following lines in the <code class="docutils literal"><span class="pre">.bashrc</span></code> script file:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">TURTLEBOT_3D_SENSOR</span><span class="o">=</span>asus_xtion_pro
 </pre></div>
 </div>
+<p>Remember that if you work with ROS Indigo and later version, you do not need to make the above command, as it is the default 3D sensor, unless you already changed it to another setting.</p>
 <div class="section" id="installing-the-openni-package">
 <h3>Installing the Openni Package<a class="headerlink" href="#installing-the-openni-package" title="Permalink to this headline">¶</a></h3>
-<p>If you are going to use the Asus sensor then you will need to install the <code class="docutils literal"><span class="pre">oppeni</span></code> package, so run the following command:</p>
+<p>If you are going to use the Asus sensor then you will need to install the <code class="docutils literal"><span class="pre">openni</span></code> package, so run the following command:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-indigo-openni-* ros-indigo-openni2-*
 </pre></div>
 </div>
-<p>Both the packages will be installed in the same folder and you can find this file in the following path <code class="docutils literal"><span class="pre">/opt/ros/indigo/share/openni2_camera</span></code> and <code class="docutils literal"><span class="pre">/opt/ros/indigo/share/openni_camera</span></code>. You will find more <code class="docutils literal"><span class="pre">oppeni</span></code> folders which also belongs to the same package.</p>
+<p>Both the packages will be installed in the same folder and you can find this file in the following path <code class="docutils literal"><span class="pre">/opt/ros/indigo/share/openni2_camera</span></code> and <code class="docutils literal"><span class="pre">/opt/ros/indigo/share/openni_camera</span></code>. You will find more <code class="docutils literal"><span class="pre">oppeni</span></code> folders which also belongs to the same package.
+Note that this is the package that is responsible for running the 3D sensor. Prio to ROS Indigo, this ROS package was configured to start Kinect 3D sensor by default. However, for ROS Indigo and later versions, it was configured to run Asus Live Pro 3D sensor by defaut.
+If you want to use Kinect 3D sensor with your Turtlebot on ROS Indigo and later version, refer to the next section <a class="reference internal" href="#kinect3d"><span class="std std-ref">Kinect 3D Sensor</span></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>For more details about openni on ROS, please refer to the following ROS documentation pages:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><a class="reference external" href="http://wiki.ros.org/openni_launch">openni_launch</a>: Launch files to open an OpenNI device and load all nodelets to convert raw depth/RGB/IR streams to depth images, disparity images, and (registered) point clouds</li>
+<li><a class="reference external" href="http://wiki.ros.org/openni_camera">openni_camera</a>: A ROS driver for OpenNI depth (+ RGB) cameras. These include: Microsoft Kinect, PrimeSense PSDK, ASUS Xtion Pro and Pro Live The driver publishes raw depth, RGB, and IR image streams.</li>
+<li><a class="reference external" href="http://wiki.ros.org/openni_launch/Tutorials/QuickStart">QuickStart Tutorial</a>: This tutorial demonstrates how to open a Kinect (or other OpenNI device) in ROS, introduces ROS tools for visualization and configuration, and explains how to get registered (depth + RGB) outputs like color point clouds.</li>
+</ul>
+</div></blockquote>
+</div>
 </div>
 <div class="section" id="explanning-the-3dsensor-launch-file">
 <h3>Explanning the 3dsensor.launch File<a class="headerlink" href="#explanning-the-3dsensor-launch-file" title="Permalink to this headline">¶</a></h3>
@@ -215,7 +230,8 @@ In line number 21 :</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;3d_sensor&quot;</span>   <span class="na">default=</span><span class="s">&quot;$(env TURTLEBOT_3D_SENSOR)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- kinect, asus_xtion_pro --&gt;</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">TURTLEBOT_3D_SENSOR</span></code> variable is set in the previous steps in the <code class="docutils literal"><span class="pre">.bashrc</span></code> file according your sensor type. And the same variable will affect more variables&#8217; initialization afterwards in the same <code class="docutils literal"><span class="pre">.launch</span></code> file.</p>
+<p>The <code class="docutils literal"><span class="pre">TURTLEBOT_3D_SENSOR</span></code> environment variable is set in the previous steps in the <code class="docutils literal"><span class="pre">.bashrc</span></code> file according to your sensor type.
+Note that the value of this variable will affect more setting parameters for the initialization of the 3D sensor afterwards in the same <code class="docutils literal"><span class="pre">.launch</span></code> file.</p>
 </div>
 <div class="section" id="testing-the-asus-sensor">
 <h3>Testing the Asus Sensor<a class="headerlink" href="#testing-the-asus-sensor" title="Permalink to this headline">¶</a></h3>
@@ -224,30 +240,31 @@ In line number 21 :</p>
 roslaunch turtlebot_rviz_launchers view_robot.launch
 </pre></div>
 </div>
-<p>After launching the <code class="docutils literal"><span class="pre">RViz</span></code> simulator press on the <cite>Image</cite> icon on the left list and you would be able to see something like this:</p>
+<p>After launching the <code class="docutils literal"><span class="pre">RViz</span></code> simulator (<code class="docutils literal"><span class="pre">rosrun</span> <span class="pre">rviz</span> <span class="pre">rviz</span></code>) press on the <code class="docutils literal"><span class="pre">Image</span></code> icon on the left list and you would be able to see something like this:</p>
 <img alt="../_images/rviz_camera.png" class="align-center" src="../_images/rviz_camera.png" />
+<p>You can also launch the <code class="docutils literal"><span class="pre">image_view</span></code> program to vizualize the video streams:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun image_view image_view image:<span class="o">=</span>/camera/rgb/image_raw
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="kinect-3d-sensor">
-<h2>Kinect 3D Sensor<a class="headerlink" href="#kinect-3d-sensor" title="Permalink to this headline">¶</a></h2>
+<span id="kinect3d"></span><h2>Kinect 3D Sensor<a class="headerlink" href="#kinect-3d-sensor" title="Permalink to this headline">¶</a></h2>
 <p>By default, ROS indigo supports <code class="docutils literal"><span class="pre">Asus</span> <span class="pre">Live</span> <span class="pre">Pro</span></code> 3D sensor and has no default support to <code class="docutils literal"><span class="pre">Kinect</span></code> 3D sensor.
-If you use <code class="docutils literal"><span class="pre">Asus</span> <span class="pre">Live</span> <span class="pre">Pro</span></code> 3D sensor, then skip the Kinect configuration step below.
+If you use <code class="docutils literal"><span class="pre">Asus</span> <span class="pre">Live</span> <span class="pre">Pro</span></code> 3D sensor, then skip the Kinect configuration step below. If you use <code class="docutils literal"><span class="pre">Kinect</span></code> 3D sensor, then follow the steps below to configure correctly your Turtlebot robot with it.
 The following image is for the <code class="docutils literal"><span class="pre">Kinect</span></code> 3D sensor:</p>
 <img alt="../_images/kinect_camera.jpg" class="align-center" src="../_images/kinect_camera.jpg" />
 <div class="section" id="kinect-3d-sensor-configuration">
 <h3>Kinect 3D sensor configuration<a class="headerlink" href="#kinect-3d-sensor-configuration" title="Permalink to this headline">¶</a></h3>
 <p>In order to connect the <code class="docutils literal"><span class="pre">Kinect</span></code> sensor with the ROS Indigo environment, you can type the following three commands in your <code class="docutils literal"><span class="pre">.bashrc</span></code> file:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">TURTLEBOT_3D_SENSOR</span><span class="o">=</span>kinect
-<span class="nb">export</span> <span class="nv">TURTLEBOT_BASE</span><span class="o">=</span>kobuki
-<span class="nb">export</span> <span class="nv">TURTLEBOT_STACKS</span><span class="o">=</span>hexagons
 </pre></div>
 </div>
-<p>Then save, exit and close the terminal.
-Open a new terminal.</p>
+<p>Then save, exit and close the terminal. Open a new terminal.</p>
 </div>
 <div class="section" id="installing-ros-openni-and-openkinect-drivers">
 <h3>Installing ROS OpenNI and OpenKinect Drivers<a class="headerlink" href="#installing-ros-openni-and-openkinect-drivers" title="Permalink to this headline">¶</a></h3>
-<p>First, you need to download the ROS OpenNI and OpenKinect drivers by running the following commands:</p>
+<p>First, you need to download the ROS OpenNI and OpenKinect (freenect) drivers by running the following commands:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-indigo-openni-* ros-indigo-openni2-* <span class="se">\ </span>ros-indigo-freenect-*
 rospack profile
 </pre></div>
@@ -272,10 +289,22 @@ etc.
 <p class="first admonition-title">Note</p>
 <p class="last">Do not worry about the warning appearing in the terminal after running the previous command.</p>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>For more details about openni on ROS, please refer to the following ROS documentation pages:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><a class="reference external" href="http://wiki.ros.org/libfreenect">libfreenect</a>: <a class="reference external" href="http://openkinect.org/wiki/Main_Page">freenect</a> is a library for accessing the Microsoft Kinect USB camera.</li>
+<li><a class="reference external" href="http://wiki.ros.org/freenect_launch">freenect_launch</a>: This package contains launch files for using a Microsoft Kinect using the libfreenect library. This folder replicates the API offered by openni_launch in an effort to maintain maximum compatibility with the OpenNI driver.</li>
+<li><a class="reference external" href="https://openkinect.org/wiki/Getting_Started">OpenKinect WiKi</a>: This page documents how to get started using OpenKinect.</li>
+</ul>
+</div></blockquote>
 </div>
-<div class="section" id="testing-your-kinect-camera">
-<h3>Testing Your Kinect Camera<a class="headerlink" href="#testing-your-kinect-camera" title="Permalink to this headline">¶</a></h3>
-<p>After running the previous command you can now run this command to know all the topics published by the camera:</p>
+</div>
+</div>
+<div class="section" id="testing-your-3d-sensor-valid-for-both-asus-and-kinect">
+<h2>Testing Your 3D Sensor (Valid for Both Asus and Kinect)<a class="headerlink" href="#testing-your-3d-sensor-valid-for-both-asus-and-kinect" title="Permalink to this headline">¶</a></h2>
+<p>After running the previous command, you can now run the following command to know all the topics published by the camera:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>rostopic list
 </pre></div>
 </div>
@@ -312,7 +341,6 @@ etc.
 <p class="last">The darker the object is the closer it is to the turtlebot.</p>
 </div>
 </div></blockquote>
-</div>
 </div>
 </div>
 

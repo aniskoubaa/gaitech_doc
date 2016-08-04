@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Turtlebot First Tests</title>
+    
+    <link rel="stylesheet" href="../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> 
+  </head>
+  <body role="document">
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="openKinect-turtlebot.html" title="Setting-up 3D Sensor for the Turtlebot"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="turtlebot-tutorials.html" title="Turtlebot Quick Start Tutorials"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Gaitech EDU 2.5 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="turtlebot-tutorials.html" accesskey="U">Turtlebot Quick Start Tutorials</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="turtlebot-first-tests">
+<span id="id1"></span><h1>Turtlebot First Tests</h1>
+<p>When you purchase a new Turtlebot, you would like to make sure that its sensors and actuators work as expected and behave normally.
+In this tutorial, we provide you a few steps to follow to test the functionalities of your Turtlebot.</p>
+<img alt="../_images/turtlebot.png" class="align-center" src="../_images/turtlebot.png" />
+<div class="section" id="starting-the-turtlebot">
+<h2>Starting The Turtlebot</h2>
+<p>First, connect the Kobuki base and 3D sensor camera (Kinect or Asus) to the laptop and start ROS.
+The first thing you need to do, is to turn-on turtlebot functionalities and this is performed through the bringup operation that starts all the sensors and actuators of the Turtlebot, namely, the Kobuki base and the 3D sensor.
+Open a terminal and write:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">turtlebot_bringup</span> <span class="n">minimal</span><span class="o">.</span><span class="n">launch</span>
+</pre></div>
+</div>
+<p>This command will start the Kobuki base of the Turtlebot. You should hear a sound when it is turned on.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">For more details about Turtlebot bring up refer to <a class="reference external" href="http://wiki.ros.org/turtlebot_bringup/Tutorials/indigo/TurtleBot%20Bringup">Turtlebot Bringup in ROS Wiki</a><span class="link-target"> [http://wiki.ros.org/turtlebot_bringup/Tutorials/indigo/TurtleBot%20Bringup]</span>.</p>
+</div>
+</div>
+<div class="section" id="testing-the-bumper-sensor">
+<h2>Testing the bumper sensor</h2>
+<p>There are three bumper sensors in the Kobuki base: (1) one in the middle-front, (2) one in the left front, (2) one the right front.
+The bumper sensor helps the Turtlebot detecting collision with obstacles. To test the three bumper sensor, open a new terminal and run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rostopic</span> <span class="n">echo</span> <span class="o">/</span><span class="n">mobile_base</span><span class="o">/</span><span class="n">events</span><span class="o">/</span><span class="n">bumper</span>
+</pre></div>
+</div>
+<p>You should observe the following output:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">state</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">bumper</span><span class="p">:</span> <span class="mi">0</span>
+<span class="o">---------</span>
+<span class="n">state</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">bumper</span><span class="p">:</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>This means that all bumpers are released (not pressed).</p>
+<p>The variable <code class="docutils literal"><span class="pre">state</span></code> can take the values <code class="docutils literal"><span class="pre">0</span> <span class="pre">(RELEASED)</span></code> and <code class="docutils literal"><span class="pre">1</span> <span class="pre">(PRESSED)</span></code>. The variable <code class="docutils literal"><span class="pre">bumper</span></code> takes the values <code class="docutils literal"><span class="pre">0</span> <span class="pre">(LEFT)</span></code>, <code class="docutils literal"><span class="pre">1</span> <span class="pre">(CENTER)</span></code>, and <code class="docutils literal"><span class="pre">2</span> <span class="pre">(RIGHT)</span></code>.</p>
+<p>Now, you can check the central front bumper. Press on the central front bumper. You should observe that the turtlebot moved slightly to the back and you should observe the following output in the terminal:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">state</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">bumper</span><span class="p">:</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>When you release the center bumper, you will observe</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">state</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">bumper</span><span class="p">:</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Repeat the process for the left and right bumper sensor to make sure that their correct operation.</p>
+</div>
+<div class="section" id="testing-the-cliff-sensor">
+<h2>Testing the cliff sensor</h2>
+<p>Cliff sensors are responsible for detecting cliffs and alitude changes when the robot is moving to prevent crashes when reaching stairs.
+They are located in the bottom of the Kobuki base. The behavior is very similar to the bumper sensor.
+There are three cliff sensors, one in the center, one in the left, and one in right side.
+To test the three cliff sensors, open a new terminal and run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rostopic</span> <span class="n">echo</span> <span class="o">/</span><span class="n">mobile_base</span><span class="o">/</span><span class="n">events</span><span class="o">/</span><span class="n">cliff</span>
+</pre></div>
+</div>
+<p>You should observe the following output:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">state</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">sensor</span><span class="p">:</span> <span class="mi">0</span>
+<span class="o">---------</span>
+<span class="n">state</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">sensor</span><span class="p">:</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>This means that all cliff sensors detect a normal ground (no cliff).</p>
+<p>The variable <code class="docutils literal"><span class="pre">state</span></code> can take the values <code class="docutils literal"><span class="pre">0</span> <span class="pre">(FLOOR)</span></code> and <code class="docutils literal"><span class="pre">1</span> <span class="pre">(CLIFF)</span></code>. The variable <code class="docutils literal"><span class="pre">sensor</span></code> takes the values <code class="docutils literal"><span class="pre">0</span> <span class="pre">(LEFT)</span></code>, <code class="docutils literal"><span class="pre">1</span> <span class="pre">(CENTER)</span></code>, and <code class="docutils literal"><span class="pre">2</span> <span class="pre">(RIGHT)</span></code>.</p>
+<p>Now, lift the turtlebot to the up, and you will see a similar output</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">state</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">sensor</span><span class="p">:</span> <span class="mi">0</span>
+<span class="o">---------</span>
+<span class="n">state</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">sensor</span><span class="p">:</span> <span class="mi">1</span>
+<span class="o">---------</span>
+<span class="n">state</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">sensor</span><span class="p">:</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Which means that all sensor detected a cliff as the robot is away from the ground. Put the robot back on the ground and all states should come back to 0.</p>
+</div>
+<div class="section" id="video-demonstration">
+<h2>Video Demonstration</h2>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/OguT52tAVO4" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016, Gaitech.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>

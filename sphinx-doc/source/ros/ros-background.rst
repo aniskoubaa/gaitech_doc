@@ -10,7 +10,7 @@ If you are new to ROS, it is recommended to start with taking these online tutor
 .. WARNING:: These tutorials assume that you have already installed ROS on your computer and that you have configured your environment. You still haven't done yet, follow in the `installation instructions of ROS Indigo <http://wiki.ros.org/indigo/Installation/Ubuntu>`_, then you must `configure your ROS environment <http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment>`_ and finally `create a ROS package <http://wiki.ros.org/ROS/Tutorials/CreatingPackage>`_ to create and run your programs.  
 .. NOTE:: Although some videos are shown for ROS Hydro, they are also valid for all subsquent versions including Indigo and Jade, as they deal with the basics.  
 
-.. _ros-bakground:
+
 Lecture 1: Start a ROS Master Node
 ==================================
 .. tip ::

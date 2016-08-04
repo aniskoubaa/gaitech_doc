@@ -4,11 +4,12 @@
    contain the root `toctree` directive.
 
 .. _getting-started:
+
 ===============
 Getting Started
 ===============
 Before going into the tutorials, follow the instruction below to prepare your environment. 
-
+ 
 
 .. WARNING::
 

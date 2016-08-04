@@ -10,13 +10,15 @@ The first thing you need to understand in ROS is how to subscribe to a ROS topic
 
 .. warning:: 
    It is assumed that you already know the main concepts on ROS including ROS topics, ROS nodes, ROS messages and ROS services. 
-   If not, you need to first take the first tutorial on :ref:`ROS Background <ros-bakground>`. 
+   If not, you need to first take the first tutorial on :ref:`ros-background`. 
  
 
 The code of this tutorial is available in ``src/ros_basics/talker_listener/`` of ``gaitech_doc`` package.
 
 
-.. NOTE:: The following tutorial is based on the ROS tutorial  `Writing a Simple Publisher and Subscriber (C++) <http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber(c%2B%2B)>`_ and  `Python <http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29>`_ but provides more practical programming and configuration hints. Although some videos are shown for ROS Hydro, they are also valid for all subsquent versions including Indigo and Jade, as they deal with the basics.
+.. NOTE:: 
+   The following tutorial is based on the ROS tutorial  `Writing a Simple Publisher and Subscriber (C++) <http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber(c%2B%2B)>`_ and  `Python <http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29>`_ but provides more practical programming and configuration hints. Although some videos are shown for ROS Hydro, they are also valid for all subsquent versions including Indigo and Jade, as they deal with the basics.
+
 Lecture 1: ROS Publisher and Subscribers in C++ and Python
 ==========================================================
 In this video, you will learn:

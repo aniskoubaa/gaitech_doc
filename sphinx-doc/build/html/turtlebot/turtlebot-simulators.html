@@ -102,7 +102,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Create a Map using Kinect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="line-follower.html">Line Follower</a></li>
+<li class="toctree-l2"><a class="reference internal" href="navigation-stack.html">Navigation Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Building a Map with a Turtlebot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send-goals-nav-stack.html">Send to a Goal Location</a></li>
 <li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="openCV-turtlebot.html">ROS OpenCV with Turtlebot</a></li>
 </ul>
@@ -155,8 +158,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="id1">
-<h1>Turtlebot Simulators<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="turtlebot-simulators">
+<span id="id1"></span><h1>Turtlebot Simulators<a class="headerlink" href="#turtlebot-simulators" title="Permalink to this headline">¶</a></h1>
 <p>In this page, we will learn about two different simulators to test your Turtlebot robot programs.</p>
 <p>You need to install the software:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-indigo-turtlebot-simulator
@@ -165,14 +168,13 @@
 <p>There is a couple of simulators that you can help you with your robot such as Gazebo, Stage, RViz and Stdr. The most used simulators are the Gazebo and the Stage.</p>
 <div class="section" id="stage-simulator">
 <h2>Stage Simulator<a class="headerlink" href="#stage-simulator" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>In this section you will learn about:</dt>
-<dd><ul class="first last simple">
+<p>In this section you will learn about:</p>
+<blockquote>
+<div><ul class="simple">
 <li>Stage Simulator and how to launch it.</li>
 <li>Customizing your simulator.</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>Stage is a 2D multi-robot simulator. It shows the user a world defined in a file with an extention <cite>.world</cite>. This world has everything the software needs to know from the obstacles, free space to robots and other objects.</p>
 <p>Run the following command to run the Stage simulator:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_stage turtlebot_in_stage.launch
@@ -236,7 +238,7 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>The <cite>size</cite> parameters are in meters and the <cite>gui_nose</cite> parameter is to show the direction which the obstacle is facing. Make sure to include the <code class="docutils literal"><span class="pre">.inc</span></code> you just created for the block in the <code class="docutils literal"><span class="pre">.world</span></code> file on the top and then you can specify other details for the block:</p>
+<p>The <code class="docutils literal"><span class="pre">size</span></code> parameters are in meters and the <cite>gui_nose</cite> parameter is to show the direction which the obstacle is facing. Make sure to include the <code class="docutils literal"><span class="pre">.inc</span></code> you just created for the block in the <code class="docutils literal"><span class="pre">.world</span></code> file on the top and then you can specify other details for the block:</p>
 <p>In the <code class="docutils literal"><span class="pre">.world</span></code> file:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">include</span> <span class="s2">&quot;blockFile.inc&quot;</span>
 

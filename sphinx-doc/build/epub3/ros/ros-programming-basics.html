@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ROS Programming</title>
+    
+    <link rel="stylesheet" href="../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> 
+  </head>
+  <body role="document">
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ros-programming-turtlesim.html" title="Turtlesim Cleaning Application"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ros-background.html" title="ROS Background"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Gaitech EDU 2.5 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="ros-tutorials.html" accesskey="U">ROS Quick Start Tutorials</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ros-programming">
+<span id="id1"></span><h1>ROS Programming</h1>
+<p>In this tutorial, you will learn how to start programming with ROS. It&#8217;s funny and amazing, yet quite simple.
+The first thing you need to understand in ROS is how to subscribe to a ROS topic, and how to publish a message to a ROS topic as most of ROS operations are based on publishing and subscribing to topics.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">It is assumed that you already know the main concepts on ROS including ROS topics, ROS nodes, ROS messages and ROS services.
+If not, you need to first take the first tutorial on <a class="reference internal" href="ros-background.html#ros-background"><span class="std std-ref">ROS Background</span></a>.</p>
+</div>
+<p>The code of this tutorial is available in <code class="docutils literal"><span class="pre">src/ros_basics/talker_listener/</span></code> of <code class="docutils literal"><span class="pre">gaitech_doc</span></code> package.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The following tutorial is based on the ROS tutorial  <a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber(c%2B%2B)">Writing a Simple Publisher and Subscriber (C++)</a><span class="link-target"> [http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber(c%2B%2B)]</span> and  <a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29">Python</a><span class="link-target"> [http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29]</span> but provides more practical programming and configuration hints. Although some videos are shown for ROS Hydro, they are also valid for all subsquent versions including Indigo and Jade, as they deal with the basics.</p>
+</div>
+<div class="section" id="lecture-1-ros-publisher-and-subscribers-in-c-and-python">
+<h2>Lecture 1: ROS Publisher and Subscribers in C++ and Python</h2>
+<p>In this video, you will learn:</p>
+<blockquote>
+<div><ul class="simple">
+<li>How to develop the simplest program with ROS</li>
+<li>How to publish a message to a ROS topic using C++ and Python</li>
+<li>How to subscribe a message to a ROS topic using C++ and Python</li>
+<li>How to configure <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code> and <code class="docutils literal"><span class="pre">package.xml</span></code> to add new required packages for compilation and runtime</li>
+<li>How to run a program in ROS</li>
+</ul>
+</div></blockquote>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/8bUkLNEu5Ns" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
+<div class="section" id="review-questions">
+<h2>Review Questions</h2>
+<blockquote>
+<div><ul class="simple">
+<li>Write the C++/Python instruction that creates a new topic called chatter of type String?</li>
+<li>Write the C++/Python instruction that effectively publishes a message on the chatter topic?</li>
+<li>How to add a new exectuable in <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code> and <code class="docutils literal"><span class="pre">package.xml</span></code> to be able to compile and run a C++ ROS program?</li>
+<li>How to declare a topic subscriber in C++/Python?</li>
+<li>What is the role of the subscriber callback function?</li>
+<li>in C++, what is the difference between <code class="docutils literal"><span class="pre">std_msgs::String::ConstPtr</span></code> and <code class="docutils literal"><span class="pre">std_msgs::String</span></code>?</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="lecture-2-ros-services-in-c-and-python">
+<h2>Lecture 2: ROS Services in C++ and Python</h2>
+<p>Coming soon ..</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016, Gaitech.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.
+    </div>
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>

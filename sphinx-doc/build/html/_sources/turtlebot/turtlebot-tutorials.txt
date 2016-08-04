@@ -19,7 +19,9 @@ In this page, we will provide you a quick start with Turtlebot robot.
    Turtlebot Simulators <turtlebot-simulators>
    Keyboard Teleop <teleop-doc>
    Voice Teleoperation <speech-doc>
+   Line Follower <line-follower>
+   Navigation Stack <navigation-stack>
    Building a Map with a Turtlebot <create-map-kenict>
+   Send to a Goal Location <send-goals-nav-stack>
    Turtlebot free movement in Space<free-space-navigation>
-   
    ROS OpenCV with Turtlebot<openCV-turtlebot>

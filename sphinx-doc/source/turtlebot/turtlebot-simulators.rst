@@ -1,5 +1,6 @@
 
 .. _turtlebot-simulators:
+
 ====================
 Turtlebot Simulators
 ====================
@@ -19,6 +20,7 @@ Stage Simulator
 ===============
 
 In this section you will learn about:
+
 	* Stage Simulator and how to launch it.
 	* Customizing your simulator.
 
@@ -113,7 +115,8 @@ You can also add an obstacle in any position in the map and with any size you li
 	 size [0.5 0.5 1.0]
 	 gui_nose 0
 	)
-The `size` parameters are in meters and the `gui_nose` parameter is to show the direction which the obstacle is facing. Make sure to include the ``.inc`` you just created for the block in the ``.world`` file on the top and then you can specify other details for the block:
+
+The ``size`` parameters are in meters and the `gui_nose` parameter is to show the direction which the obstacle is facing. Make sure to include the ``.inc`` you just created for the block in the ``.world`` file on the top and then you can specify other details for the block:
 
 In the ``.world`` file:
 
