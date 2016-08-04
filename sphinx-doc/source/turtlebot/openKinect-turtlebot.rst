@@ -142,7 +142,7 @@ You should see these lines in the terminal:
 	Do not worry about the warning appearing in the terminal after running the previous command.
 
 Testing Your Kinect Camera
-==========================
+--------------------------
 
 After running the previous command you can now run this command to know all the topics published by the camera:
 
