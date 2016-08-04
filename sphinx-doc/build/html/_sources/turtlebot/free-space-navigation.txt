@@ -87,14 +87,14 @@ It has to be noted that the x-axis of the linear speed is the axis that points t
 
     if (isForward):
             VelocityMessage.linear.x =abs(speed)
-        else: #else set the velocity to negative value to move backward
+    else: #else set the velocity to negative value to move backward
             VelocityMessage.linear.x =-abs(speed)
-        #all velocities of other axes must be zero.
-        VelocityMessage.linear.y =0.0
-        VelocityMessage.linear.z =0.0
-        VelocityMessage.angular.x =0.0
-        VelocityMessage.angular.y =0.0
-        VelocityMessage.angular.z =0.0
+    #all velocities of other axes must be zero.
+    VelocityMessage.linear.y =0.0
+    VelocityMessage.linear.z =0.0
+    VelocityMessage.angular.x =0.0
+    VelocityMessage.angular.y =0.0
+    VelocityMessage.angular.z =0.0
 
 
 Running the code using Stage and RViz Simulators
