@@ -7,7 +7,7 @@
 Gaitech EDU Contributors
 ========================
  
-Gaitech is pround to present the members who partecipated in the process of building this comprehensive educational framework on Robot Operating System (ROS).
+Gaitech is pround to present the members who participated in the process of building this comprehensive educational framework on Robot Operating System (ROS).
 
 
 	* `@Dr.Anis Koubaa <http://dei.isep.ipp.pt/~akoubaa/>`_
