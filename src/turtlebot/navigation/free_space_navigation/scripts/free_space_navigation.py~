@@ -292,8 +292,8 @@ class free_space_navigation():
 
         for x in range(0,10):
 
-            self.velocityPublisher.publish(rotateMessage)
-            r.sleep()            
+                self.velocityPublisher.publish(rotateMessage)
+                r.sleep()            
 
     def calculateYaw( x1, y1, x2,y2):
         bearing = atan2((y2 - y1),(x2 - x1))
