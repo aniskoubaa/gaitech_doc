@@ -19,7 +19,7 @@ In this page, we will provide you a quick start with Turtlebot robot.
    Turtlebot Simulators <turtlebot-simulators>
    Keyboard Teleop <teleop-doc>
    Voice Teleoperation <speech-doc>
-   Create a Map using Kinect <create-map-kenict>
+   Building a Map with a Turtlebot <create-map-kenict>
    Turtlebot free movement in Space<free-space-navigation>
    
    ROS OpenCV with Turtlebot<openCV-turtlebot>
