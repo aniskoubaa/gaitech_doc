@@ -93,6 +93,10 @@ Kinect 3D Sensor
 
 By default, ROS indigo supports ``Asus Live Pro`` 3D sensor and has no default support to ``Kinect`` 3D sensor. 
 If you use ``Asus Live Pro`` 3D sensor, then skip the Kinect configuration step below. 
+The following image is for the ``Kinect`` 3D sensor:
+
+.. image:: images/kinect_camera.jpg
+	:align: center 
 
 Kinect 3D sensor configuration
 ------------------------------
