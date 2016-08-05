@@ -97,4 +97,8 @@ Then run the executable file you created before:
 	
 	rosrun gaitech_doc map_navigation
 
-And you will notice your robot moving forward for 1 meter. 		
+And you will notice your robot moving forward for 1 meter. 	
+
+.. NOTE::
+
+  * For more details please refer to the following `ROS Wiki documentation page <http://wiki.ros.org/navigation/Tutorials/SendingSimpleGoals>`_ .	

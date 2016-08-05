@@ -21,7 +21,7 @@ In this page, we will provide you a quick start with Turtlebot robot.
    Voice Teleoperation <speech-doc>
    Navigation Stack <navigation-stack>
    Building a Map with a Turtlebot <create-map-kenict>
-   Send to a Goal Location <send-goals-nav-stack>
+   Sending Goals to the Navigation Stack <send-goals-nav-stack>
    Turtlebot free movement in Space<free-space-navigation>
    ROS OpenCV with Turtlebot<openCV-turtlebot>
    Line Follower <line-follower>
