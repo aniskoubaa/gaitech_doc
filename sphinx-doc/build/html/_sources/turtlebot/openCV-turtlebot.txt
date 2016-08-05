@@ -48,7 +48,19 @@ In this section you will learn how to recieve and transform images from ROS and 
 .. NOTE::
 	Make sure that you downloaded the ``gaitech_doc`` package from our GitHub `repository <https://github.com/aniskoubaa/gaitech_doc>`_
 
-You will find a launch file called ``turtlebot_openCV`` in the following path ``gaitech_doc/src/turtlebot/openCV/launch/turtlebot_openCV.launch`` , run the file in a terminal:
+You will find a launch file called ``turtlebot_openCV`` in the following path ``gaitech_doc/src/turtlebot/openCV/launch/turtlebot_openCV.launch``.
+
+.. code-block:: bash
+
+	<launch>
+  		<node pkg="gaitech_doc" name="turtlebot_openCV" type="turtlebot_openCV.py" output="screen">
+    	   	<remap from="input_rgb_image" to="/camera/rgb/image_raw" />
+    	   	<remap from="input_depth_image" to="/camera/depth/image_rect" />
+  		</node>  
+	</launch>
+
+
+Run the file in a terminal:
 
 .. code-block:: bash
 	
@@ -62,6 +74,88 @@ You will find a launch file called ``turtlebot_openCV`` in the following path ``
 	
 		roslaunch freenect_launch freenect.launch
 
+This file will run a python script called ``turtlebot_openCV.py`` and you can find the file in the following path ``gaitech_doc/src/turtlebot/openCV/scripts/turtlebot_openCV.py``. The code is well documented but we will have a look at a couple of parts of it.
+
+.. code-block:: python
+	
+	import rospy
+	import sys
+	import cv2
+	import cv2.cv as cv
+	from sensor_msgs.msg import Image, CameraInfo
+	from cv_bridge import CvBridge, CvBridgeError
+	import numpy as np
+
+All the OpenCV scripts have to import the ``cv2`` and the older version of it ``cv2.cv`` as it has some functions needed. The ``Image`` and ``CamerInfo`` are used for ROS messages. To be able to convert from ROS to OpenCV you need to import the ``CvBridge`` and ``CvBridgeError`` from the ``cv_bridge`` package. As for the last import ``numpy``, it is used because OpenCV use it to process the images. 	
+
+.. code-block:: python
+
+    # Create the OpenCV display window for the RGB image
+    self.cv_window_name = self.node_name
+    cv.NamedWindow(self.cv_window_name, cv.CV_WINDOW_NORMAL)
+    cv.MoveWindow(self.cv_window_name, 25, 75)
+        
+    # And one for the depth image
+    cv.NamedWindow("Depth Image", cv.CV_WINDOW_NORMAL)
+    cv.MoveWindow("Depth Image", 25, 350)
+
+This part is to initialize the two windows to display the images on.
+
+
+.. code-block:: python
+
+    def image_callback(self, data):
+        # Use cv_bridge() to convert the ROS image to OpenCV format
+        # Convert the ROS image to OpenCV format using a cv_bridge helper function
+        frame = self.convert_image(data)
+                
+        # Process the image to detect and track objects or features
+        processed_image = self.process_image(frame)
+        
+        # If the result is a greyscale image, convert to 3-channel for display purposes """
+        #if processed_image.channels == 1:
+            #cv.CvtColor(processed_image, self.processed_image, cv.CV_GRAY2BGR)
+               
+        # Display the image.
+        cv2.imshow(self.node_name, processed_image)
+        
+        # Process any keyboard commands
+        self.keystroke = cv2.waitKey(5)
+        if self.keystroke != -1:
+            cc = chr(self.keystroke & 255).lower()
+            if cc == 'q':
+                # The user has press the q key, so exit
+                rospy.signal_shutdown("User hit q key to quit.")
+
+    def depth_callback(self, ros_image):
+        # Use cv_bridge() to convert the ROS image to OpenCV format
+        try:
+            # Convert the depth image using the default passthrough encoding
+            depth_image = self.bridge.imgmsg_to_cv2(ros_image, "passthrough")
+        except CvBridgeError, e:
+            print e
+
+        # Convert the depth image to a Numpy array since most cv2 functions require Numpy arrays.
+        depth_array = np.array(depth_image, dtype=np.float32)
+                
+        # Normalize the depth image to fall between 0 (black) and 1 (white)
+        cv2.normalize(depth_array, depth_array, 0, 1, cv2.NORM_MINMAX)
+        
+        # Process the depth image
+        depth_display_image = self.process_depth_image(depth_array)
+    
+        # Display the result
+        cv2.imshow("Depth Image", depth_display_image)
+
+As menthioned before that this program will display two windows, one for the Image and one for the Depth Image so each methods of them is for its Image processing, converting and displaying 
+
+.. NOTE::
+
+   For more details about ``cv_bridge`` and ``OpenCV`` on ROS, please refer to the following ROS documentation pages:
+
+      * `cv_bridge <http://wiki.ros.org/cv_bridge>`_: A package that is used to convert between ROS images and OpenCV images. 
+      * `openCV <https://github.com/opencv/opencv/wiki>`_: A package of programming functions for realtime computer vision.
+      
 After a short time you will see	some thing like this:
 
 .. image:: images/openCV.png

@@ -151,7 +151,7 @@ As menthioned before that this program will display two windows, one for the Ima
 
 .. NOTE::
 
-   For more details about ``cv_bridge`` and ``OpenCV`` on ROS, please refer to the following ROS documentation pages:
+   For more details about cv_bridge and OpenCV on ROS, please refer to the following ROS documentation pages:
 
       * `cv_bridge <http://wiki.ros.org/cv_bridge>`_: A package that is used to convert between ROS images and OpenCV images. 
       * `openCV <https://github.com/opencv/opencv/wiki>`_: A package of programming functions for realtime computer vision.
