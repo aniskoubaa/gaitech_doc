@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting Started with Turtlebot Arm PhantomX Pincher with ROS &mdash; Gaitech EDU 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
+        <link rel="next" title="Drones" href="../drones/index.html"/>
+        <link rel="prev" title="Turtlebot Line Follower" href="line-follower.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech EDU
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="turtlebot-tutorials.html">Turtlebot Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-first-tests.html">First Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openKinect-turtlebot.html">Setting-up 3D Sensor for the Turtlebot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-config-doc.html">Network Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-simulators.html">Turtlebot Simulators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="navigation-stack.html">Navigation Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Building a Map with a Turtlebot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send-goals-nav-stack.html">Sending Goals to the Navigation Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openCV-turtlebot.html">ROS OpenCV with Turtlebot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="line-follower.html">Line Follower</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Getting Started with Turtlebot Arm PhantomX Pincher with ROS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#download-the-arbotix-package">Download the Arbotix Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-and-develop-the-arm-phantomx-pincher-robot">Test and Develop the Arm PhantomX Pincher robot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech EDU</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="turtlebot-tutorials.html">Turtlebot Quick Start Tutorials</a> &raquo;</li>
+      
+    <li>Getting Started with Turtlebot Arm PhantomX Pincher with ROS</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/turtlebot/turtlebot-arm-pincher.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started-with-turtlebot-arm-phantomx-pincher-with-ros">
+<span id="turtlebot-arm-pincher"></span><h1>Getting Started with Turtlebot Arm PhantomX Pincher with ROS<a class="headerlink" href="#getting-started-with-turtlebot-arm-phantomx-pincher-with-ros" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial is the step to learn about how to integrate the Turtlebot robot with the Arm PhantomX Pincher.</p>
+<p>The objective of this tutorial is to learn how to set up and work with Turtlebot Arm PhantomX Pincher with ROS using the arbotix ROS package.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>In this tutorial you will learn how to:</p>
+<blockquote class="last">
+<div><ul>
+<li><p class="first">Download the <code class="docutils literal"><span class="pre">arbotix</span></code> package</p>
+</li>
+<li><p class="first">Test and Develop the Arm PhantomX Pincher robot</p>
+<p>This tutorial was developed for ROS <a class="reference external" href="http://wiki.ros.org/hydro">Hydro</a> version.
+A complete package of turtlebot arm can be found at <a class="reference external" href="https://github.com/turtlebot/turtlebot_arm">turtlebot_arm github</a> .</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="download-the-arbotix-package">
+<h2>Download the Arbotix Package<a class="headerlink" href="#download-the-arbotix-package" title="Permalink to this headline">¶</a></h2>
+<p>First, make sure to install the arbotix package as follows:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-hydro-arbotix
+</pre></div>
+</div>
+<p>Then, you can check that you arm is effectively connected to your robot (or computer machine). Connect the PhantomX Pincher arm through USB port to your robot laptop and plug power cable to socket. make sure that you have read, write and execute access on the USP port using this command</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo chmod <span class="m">777</span> /dev/ttyUSB0
+</pre></div>
+</div>
+<p>Assuming that your arm is connected on port <code class="docutils literal"><span class="pre">ttyUSB0</span></code> to the robot laptop. Then, execute the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>arbotix_terminal
+</pre></div>
+</div>
+<p>You should see the following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>ArbotiX Terminal --- Version 0.1
+Copyright <span class="m">2011</span> Vanadium Labs LLC
+&gt;&gt;
+</pre></div>
+</div>
+<p>You can check that your servos are all active using the <code class="docutils literal"><span class="pre">ls</span></code> command</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>ArbotiX Terminal --- Version 0.1
+Copyright <span class="m">2011</span> Vanadium Labs LLC
+&gt;&gt;  ls
+<span class="m">1</span>    <span class="m">2</span>    <span class="m">3</span>    <span class="m">4</span>    <span class="m">5</span> .... .... .... ....
+.... .... .... .... .... .... .... .... ....
+</pre></div>
+</div>
+<p>This means that all the five servos are active and recognized.</p>
+</div>
+<div class="section" id="test-and-develop-the-arm-phantomx-pincher-robot">
+<h2>Test and Develop the Arm PhantomX Pincher robot<a class="headerlink" href="#test-and-develop-the-arm-phantomx-pincher-robot" title="Permalink to this headline">¶</a></h2>
+<p>Now, you want to move the robot arm. This can be done through the <code class="docutils literal"><span class="pre">arbotix_gui</span></code> interface, but some prior work is needed beforehand.
+First, you need to describe the turtlebot arm in a <code class="docutils literal"><span class="pre">yaml</span></code> description file. Here is a working description of the PhatomX Pincher arm, assuming that the arm is connected through port <code class="docutils literal"><span class="pre">ttyUSB0</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>port: /dev/ttyUSB0
+read_rate: 15
+write_rate: 25
+joints: <span class="o">{</span>
+arm_shoulder_pan_joint: <span class="o">{</span>id: 1, neutral: 205, max_angle: 180, min_angle: -60, max_speed: 90<span class="o">}</span>,
+arm_shoulder_lift_joint: <span class="o">{</span>id: 2, max_angle: 150, min_angle: -150, max_speed: 90<span class="o">}</span>,
+arm_elbow_flex_joint: <span class="o">{</span>id: 3, max_angle: 150, min_angle: -150, max_speed: 90<span class="o">}</span>,
+arm_wrist_flex_joint: <span class="o">{</span>id: 4, max_angle: 100, min_angle: -100, max_speed: 90<span class="o">}</span>,
+gripper_joint: <span class="o">{</span>id: 5, max_speed: 90<span class="o">}</span>,
+<span class="o">}</span>
+controllers: <span class="o">{</span>
+arm_controller: <span class="o">{</span>type: follow_controller, joints: <span class="o">[</span>arm_shoulder_pan_joint, arm_shoulder_lift_joint,  arm_elbow_flex_joint,
+arm_wrist_flex_joint<span class="o">]</span>, action_name: arm_controller/follow_joint_trajectory,  onboard: False <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>As it can be observed, five joints are defined, each joint related to one servo. For example, <code class="docutils literal"><span class="pre">servo</span> <span class="pre">1</span></code> is defined as <code class="docutils literal"><span class="pre">arm_shoulder_pan_joint</span></code>. Then, controllers are defined. All joints are of follow_controller type. Consult <a class="reference external" href="http://wiki.ros.org/arbotix">arbotix wiki page</a> for more details about controllers types and other information.</p>
+<p>You need to copy and paste the code above in a file with <code class="docutils literal"><span class="pre">.yaml</span></code> extension and put in a certain ROS package. let us assume that the file is called <code class="docutils literal"><span class="pre">turtlebot_arm.yaml</span></code> and is located in the <code class="docutils literal"><span class="pre">turtlebot_arm_bringup</span></code> package.</p>
+<p>Now, in your package (e.g. <code class="docutils literal"><span class="pre">turtlebot_arm_bringup</span></code>) define the following launch file to run the arbotix_driver for the PhantomX Pincher arm and call it <code class="docutils literal"><span class="pre">turtlebot_arm_bringup.launch</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
+
+&lt;node <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;arbotix&quot;</span> <span class="nv">pkg</span><span class="o">=</span><span class="s2">&quot;arbotix_python&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;arbotix_driver&quot;</span> <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span>&gt;
+&lt;rosparam <span class="nv">file</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>find turtlebot_arm_bringup<span class="k">)</span><span class="s2">/config/turtlebot_arm.yaml&quot;</span> <span class="nv">command</span><span class="o">=</span><span class="s2">&quot;load&quot;</span> /&gt;
+&lt;/node&gt;
+
+&lt;/launch&gt;
+</pre></div>
+</div>
+<p>This simple launch file will start the node <code class="docutils literal"><span class="pre">arbotix_driver</span></code> located in the <code class="docutils literal"><span class="pre">arbotix_python</span></code> and will take as argument the <code class="docutils literal"><span class="pre">yaml</span></code> description file of the PhantomX Pincher arm named <code class="docutils literal"><span class="pre">turtlebot_arm.yaml</span></code>.
+You can now start up the driver as follows:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_arm_bringup turtlebot_arm_bringup.launch
+</pre></div>
+</div>
+<p>You should see the following output:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>... logging to /home/akoubaa/.ros/log/60196d6e-27a7-11e4-98e5-080027b791fe/roslaunch-coins-3216.log
+Checking log directory <span class="k">for</span> disk usage. This may take awhile.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is &lt;1GB.
+
+started roslaunch server http://coins:40447/
+
+<span class="nv">SUMMARY</span>
+<span class="o">========</span>
+
+PARAMETERS
+* /arbotix/controllers/arm_controller/action_name
+* /arbotix/controllers/arm_controller/joints
+* /arbotix/controllers/arm_controller/onboard
+* /arbotix/controllers/arm_controller/type
+* /arbotix/joints/arm_elbow_flex_joint/id
+* /arbotix/joints/arm_elbow_flex_joint/max_angle
+* /arbotix/joints/arm_elbow_flex_joint/max_speed
+* /arbotix/joints/arm_elbow_flex_joint/min_angle
+* /arbotix/joints/arm_shoulder_lift_joint/id
+* /arbotix/joints/arm_shoulder_lift_joint/max_angle
+* /arbotix/joints/arm_shoulder_lift_joint/max_speed
+* /arbotix/joints/arm_shoulder_lift_joint/min_angle
+* /arbotix/joints/arm_shoulder_pan_joint/id
+* /arbotix/joints/arm_shoulder_pan_joint/max_angle
+* /arbotix/joints/arm_shoulder_pan_joint/max_speed
+* /arbotix/joints/arm_shoulder_pan_joint/min_angle
+* /arbotix/joints/arm_shoulder_pan_joint/neutral
+* /arbotix/joints/arm_wrist_flex_joint/id
+* /arbotix/joints/arm_wrist_flex_joint/max_angle
+* /arbotix/joints/arm_wrist_flex_joint/max_speed
+* /arbotix/joints/arm_wrist_flex_joint/min_angle
+* /arbotix/joints/gripper_joint/id
+* /arbotix/joints/gripper_joint/max_speed
+* /arbotix/port
+* /arbotix/read_rate
+* /arbotix/write_rate
+* /rosdistro
+* /rosversion
+
+NODES
+  /
+    arbotix <span class="o">(</span>arbotix_python/arbotix_driver<span class="o">)</span>
+
+<span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://localhost:11311
+
+core service <span class="o">[</span>/rosout<span class="o">]</span> found
+process<span class="o">[</span>arbotix-1<span class="o">]</span>: started with pid <span class="o">[</span>3234<span class="o">]</span>
+<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: 1408457288.608035<span class="o">]</span> Started ArbotiX connection on port /dev/ttyUSB0.
+<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: 1408457288.713417<span class="o">]</span> Started FollowController <span class="o">(</span>arm_controller<span class="o">)</span>. Joints:  <span class="o">[</span><span class="s1">&#39;arm_shoulder_pan_joint&#39;</span>, <span class="s1">&#39;arm_shoulder_lift_joint&#39;</span>, <span class="s1">&#39;arm_elbow_flex_joint&#39;</span>, <span class="s1">&#39;arm_wrist_flex_joint&#39;</span><span class="o">]</span> on  C1
+<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: 1408457288.717421<span class="o">]</span> ArbotiX connected.
+</pre></div>
+</div>
+<p>This means that your arm is not successfully connected and ready to receive motion command. The easiest way to control the servos is using the <code class="docutils literal"><span class="pre">arbotix_gui</span></code> command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>arbotix_gui
+</pre></div>
+</div>
+<p>Then, you should see the following interface of the Arbotix Simulator</p>
+<img alt="../_images/Arbotix_gui.png" class="align-center" src="../_images/Arbotix_gui.png" />
+<p>Simply check any joint and enjoy moving it.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../drones/index.html" class="btn btn-neutral float-right" title="Drones" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="line-follower.html" class="btn btn-neutral" title="Turtlebot Line Follower" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

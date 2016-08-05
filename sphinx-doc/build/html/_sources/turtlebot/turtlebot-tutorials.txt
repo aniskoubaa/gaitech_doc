@@ -25,3 +25,4 @@ In this page, we will provide you a quick start with Turtlebot robot.
    Turtlebot free movement in Space<free-space-navigation>
    ROS OpenCV with Turtlebot<openCV-turtlebot>
    Line Follower <line-follower>
+   Getting Started with Turtlebot Arm PhantomX Pincher with ROS<turtlebot-arm-pincher>
