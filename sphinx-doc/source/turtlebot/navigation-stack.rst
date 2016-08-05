@@ -5,7 +5,6 @@
 Navigation Stack
 ================
 
-http://wiki.ros.org/turtlebot_navigation/Tutorials/indigo/Setup%20the%20Navigation%20Stack%20for%20TurtleBot
 
 In this tutorial you will learn how to use the navigation stack on a robot and how to configure it on your ROS environment.
 
@@ -13,7 +12,9 @@ In this tutorial you will learn how to use the navigation stack on a robot and h
     Make sure that you completed installing all the required packages in the previous tutorials and your network set-up is working fine between the ROS Master node and the host node.
 
 .. NOTE::
-	The robot must be using ``tf`` to publish information about the coordination of the frames.
+
+	* For more details about ``navigation stack`` on ROS, please refer to the following `ROS Wiki documentation page <http://wiki.ros.org/turtlebot_navigation/Tutorials/indigo/Setup%20the%20Navigation%20Stack%20for%20TurtleBot>`_ .
+	* The robot must be using ``tf`` to publish information about the coordination of the frames.
 
 The idea behind Navigation Stack is to have a robot that can move in a world without crashing into obstacles,  drawing a map for this world or following a predefined map, send locations to the robot to go there and collect information about this world from the robot. For this to happen, Navigation stack collects different types of information from several topics and channels.
 

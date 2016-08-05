@@ -162,7 +162,6 @@
             
   <div class="section" id="navigation-stack">
 <span id="id1"></span><h1>Navigation Stack<a class="headerlink" href="#navigation-stack" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="http://wiki.ros.org/turtlebot_navigation/Tutorials/indigo/Setup%20the%20Navigation%20Stack%20for%20TurtleBot">http://wiki.ros.org/turtlebot_navigation/Tutorials/indigo/Setup%20the%20Navigation%20Stack%20for%20TurtleBot</a></p>
 <p>In this tutorial you will learn how to use the navigation stack on a robot and how to configure it on your ROS environment.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -170,7 +169,10 @@
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The robot must be using <code class="docutils literal"><span class="pre">tf</span></code> to publish information about the coordination of the frames.</p>
+<ul class="last simple">
+<li>For more details about <code class="docutils literal"><span class="pre">navigation</span> <span class="pre">stack</span></code> on ROS, please refer to the following <a class="reference external" href="http://wiki.ros.org/turtlebot_navigation/Tutorials/indigo/Setup%20the%20Navigation%20Stack%20for%20TurtleBot">ROS Wiki documentation page</a> .</li>
+<li>The robot must be using <code class="docutils literal"><span class="pre">tf</span></code> to publish information about the coordination of the frames.</li>
+</ul>
 </div>
 <p>The idea behind Navigation Stack is to have a robot that can move in a world without crashing into obstacles,  drawing a map for this world or following a predefined map, send locations to the robot to go there and collect information about this world from the robot. For this to happen, Navigation stack collects different types of information from several topics and channels.</p>
 <div class="section" id="sensor-information">
