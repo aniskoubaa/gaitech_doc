@@ -129,7 +129,10 @@ In the ``.world`` file:
 	block( pose [ 1.0 2.0 2.0 0.0 ] color "black")
 
 .. NOTE::
-	You can add default customization for the block inside the ``.inc`` file. You can refer to this `page <http:playerstage.sourceforge.net/doc/stage-cvs/group__model.html>`_ for more customization. Make sure if you changed anything in the ``.yaml`` file to adjust the ``.world`` file.
+    
+    * For more details about ``Stage`` on ROS, please refer to the `Stage <http://wiki.ros.org/stage>`_ wiki page.
+    
+    * You can add default customization for the block inside the ``.inc`` file. You can refer to this `page <http:playerstage.sourceforge.net/doc/stage-cvs/group__model.html>`_ for more customization. Make sure if you changed anything in the ``.yaml`` file to adjust the ``.world`` file.
 
 Gazebo Simulator
 ================
@@ -146,8 +149,12 @@ To run the `Gazebo` simulator run the following command:
 .. image:: images/gazebo.png
     :align: center
 
-.. NOTE:: 
-	Gazebo may need a couple of updates before running to update its database and it will take a few moments.
+.. NOTE::
+ 
+    * For more details about ``Gazebo`` on ROS, please refer to the `Gazebo <http://gazebosim.org/>`_ official page.
+    
+    * Gazebo may need a couple of updates before running to update its database and it will take a few moments.
+
 
 
 
