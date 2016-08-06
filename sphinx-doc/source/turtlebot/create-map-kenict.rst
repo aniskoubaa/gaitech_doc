@@ -171,6 +171,21 @@ It sets some parameters to their default values and specifies that the scan topi
 Then, it will start the ``gmapping.launch.xml`` that contains the specific parameters of the ``gmapping`` SLAM algorithm (parameters of the particle filter) that is responsible for building the map.
 Finally, it will start the ``move_base.launch.xml`` that will initialize the parameters of the navigation stack, including the global planner and the local planner. 
 
+Practical Considerations and Observations
+=========================================
+When building a map with a Turtlebot it is possible to get a good or bad map depending on several factors. 
+First of all, make sure that your Turtlebot robot and its laptop have full batteries before starting the mapping tasks. 
+In fact, ``gmapping`` and ``rviz`` both consume alot of power resources.
+
+The quality of the generated map greatly depends on quality of range sensors and odometry sensors. 
+For the Turtlebot, it has either the Kinect or Asus Xtion Live Pro camera with only 4 meters of range, and only 57 degree of laser beam angle, which render it not appropriate for scanning large and open space environments. 
+Thus, if you use Turtlebot to build the map for a small environment where walls are not far from each others, it is likely that you will get an accurate map. 
+
+However, if you build the map for a large and open space environment, then it is likely that your map will not be accurate at a certain point of time.
+In fact, in large and open space environment, you need to drive the robot for long distance, and thus, the odometry will play a more cruicial role in building the map.
+Considering the fact that the odometry of the Turtlebot is not reliable and is prone to errors, these errors will be cumulative over time and will quickly compromise the quality of generated maps. 
+ 
+It will interesting to try using your Turtlebot to build maps for both small environment and large environment and observe the accuracy of the map for each case. 
 
 References
 ==========
@@ -187,7 +202,9 @@ Video Demonstration
 
 Review questions
 ================
-   * Apply this tutorial to build a map of your office or room.
+   * Apply this tutorial to build a map of your office or room. Observe the map and provide comments on its accuracy.
+   * Use `The GNU Image Manipulation Program <https://www.gimp.org/>`_ to edit the generated map. Try to enhance the walls structure and remove erronous obstacle. Save the new file as PGM. 
+   * Open the new PGM file and observe its content. 
    * What is the role of the ``map_server`` package?
    * Whick package is responsible for building the map in ROS? 
    * Explain briefly the need for a range sensor and motion sensor to build the map of a moving robot. 

@@ -1,48 +1,140 @@
-	#include <ros/ros.h>
-	
-	//The following line is where we import the ``MoveBaseAction`` library which is responsible for accepting goals from users and move the robot to the specified location in its world.
-	#include <move_base_msgs/MoveBaseAction.h>
+/*
+ *  Gaitech Educational Portal
+ *
+ * Copyright (c) 2016
+ * All rights reserved.
+ *
+ * License Type: GNU GPL
+ *
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   Program: Map-Based Navigation
+ *
+ */
 
-	#include <actionlib/client/simple_action_client.h>
+#include <ros/ros.h>
+#include <move_base_msgs/MoveBaseAction.h>
+#include <actionlib/client/simple_action_client.h>
+#include "sound_play/sound_play.h"
 
-	//this line is where we create the client that will communicate with actions that adhere to the base station interface
-	typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
+std::string path_to_sounds;
 
-	int main(int argc, char** argv){
-  	ros::init(argc, argv, "map_navigation");
+/** function declarations **/
+bool moveToGoal(double xGoal, double yGoal);
+char choose();
 
-  	//tell the action client that we want to spin a thread by default
-  	MoveBaseClient ac("move_base", true);
+/*declare the coordinates of interest*/
+double xCafe = 15.50;
+double yCafe = 10.20;
+double xOffice1 = 27.70 ;
+double yOffice1 = 12.50;
+double xOffice2 = 30.44 ;
+double yOffice2 = 12.50;
+double xOffice3 = 35.20 ;
+double yOffice3 = 13.50;
 
-  	//wait for the action server to come up and then start the process
-  	while(!ac.waitForServer(ros::Duration(5.0))){
-    	ROS_INFO("Waiting for the move_base action server to come up");
-  	}
+bool goalReached = false;
 
-  	//This is where you create the goal to send to move_base using move_base_msgs::MoveBaseGoal messages to tell the robot to move one meter forward in the coordinate frame.
-  	move_base_msgs::MoveBaseGoal goal;
+int main(int argc, char** argv){
+	ros::init(argc, argv, "map_navigation_node");
+	ros::NodeHandle n;
+	sound_play::SoundClient sc;
+	ros::spinOnce();
+	path_to_sounds = "/home/ros/catkin_ws/src/gaitech_doc/src/sounds/";
+	//sc.playWave(path_to_sounds+"short_buzzer.wav");
+	//tell the action client that we want to spin a thread by default
 
-  	//we'll send a goal to the robot to move 1 meter forward
-  	goal.target_pose.header.frame_id = "base_link";
-  	goal.target_pose.header.stamp = ros::Time::now();
+	char choice = 'q';
+	do{
+		choice =choose();
+		if (choice == '0'){
+			goalReached = moveToGoal(xCafe, yCafe);
+		}else if (choice == '1'){
+			goalReached = moveToGoal(xOffice1, yOffice1);
+		}else if (choice == '2'){
+			goalReached = moveToGoal(xOffice2, yOffice2);
+		}else if (choice == '3'){
+			goalReached = moveToGoal(xOffice3, yOffice3);
+		}
+		if (choice!='q'){
+			if (goalReached){
+				ROS_INFO("Congratulations!");
+				ros::spinOnce();
+				sc.playWave(path_to_sounds+"ship_bell.wav");
+				ros::spinOnce();
 
-  	goal.target_pose.pose.position.x = 0.2;
-  	goal.target_pose.pose.orientation.w = 0.2;
+			}else{
+				ROS_INFO("Hard Luck!");
+				sc.playWave(path_to_sounds+"short_buzzer.wav");
+			}
+		}
+	}while(choice !='q');
+	return 0;
+}
 
-  	ROS_INFO("Sending goal");
+bool moveToGoal(double xGoal, double yGoal){
 
-  	//this command sends the goal to the move_base node to be processed
-  	ac.sendGoal(goal);
+	actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> ac("move_base", true);
 
-  	//After finalizing everything you have to wait for the goal to finish processing
-  	ac.waitForResult();
-
-  	//here we check for the goal if it succeded or failed and send a message according to the goal status.
-  	if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
-    	ROS_INFO("Hooray, the base moved 1 meter forward");
-  	else
-    	ROS_INFO("The base failed to move forward 1 meter for some reason");
-
-  	return 0;
+	//wait for the action server to come up
+	while(!ac.waitForServer(ros::Duration(5.0))){
+		ROS_INFO("Waiting for the move_base action server to come up");
 	}
+
+	move_base_msgs::MoveBaseGoal goal;
+
+	//we'll send a goal to the robot to move 1 meter forward
+	goal.target_pose.header.frame_id = "map";
+	goal.target_pose.header.stamp = ros::Time::now();
+
+	/* moving towards the goal*/
+
+	goal.target_pose.pose.position.x =  xGoal;
+	goal.target_pose.pose.position.y =  yGoal;
+	goal.target_pose.pose.orientation.w = 1.0;
+
+	ROS_INFO("Sending goal");
+	ac.sendGoal(goal);
+
+	ac.waitForResult();
+
+	if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED){
+		ROS_INFO("Hooray, the base moved 1 meter forward");
+		return true;
+	}
+	else{
+		ROS_INFO("The base failed to move forward 1 meter for some reason");
+		return false;
+	}
+
+}
+
+char choose(){
+	char choice='q';
+	std::cout<<"|-------------------------------|"<<std::endl;
+	std::cout<<"|PRESSE A KEY:"<<std::endl;
+	std::cout<<"|'0': Cafe "<<std::endl;
+	std::cout<<"|'1': Office 1 "<<std::endl;
+	std::cout<<"|'2': Office 2 "<<std::endl;
+	std::cout<<"|'3': Office 3 "<<std::endl;
+	std::cout<<"|'q': Quit "<<std::endl;
+	std::cout<<"|-------------------------------|"<<std::endl;
+	std::cout<<"|WHERE TO GO?";
+	std::cin>>choice;
+
+	return choice;
+
+
+}
+
 

@@ -53,5 +53,7 @@ target_link_libraries(voice_teleop_node ${catkin_LIBRARIES})
 add_executable(free_space_navigation_node src/turtlebot/navigation/free_space_navigation/free_space_navigation.cpp)
 target_link_libraries(free_space_navigation_node ${catkin_LIBRARIES})
 
+add_executable(map_navigation_node src/turtlebot/navigation/map_navigation/map_navigation.cpp)
+target_link_libraries(map_navigation_node ${catkin_LIBRARIES})
 
 
