@@ -103,17 +103,17 @@ bool moveToGoal(double xGoal, double yGoal){
 	goal.target_pose.pose.position.y =  yGoal;
 	goal.target_pose.pose.orientation.w = 1.0;
 
-	ROS_INFO("Sending goal");
+	ROS_INFO("Sending goal location ...");
 	ac.sendGoal(goal);
 
 	ac.waitForResult();
 
 	if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED){
-		ROS_INFO("Hooray, the base moved 1 meter forward");
+		ROS_INFO("You have reached the destination");
 		return true;
 	}
 	else{
-		ROS_INFO("The base failed to move forward 1 meter for some reason");
+		ROS_INFO("The robot failed to reach the destination");
 		return false;
 	}
 
