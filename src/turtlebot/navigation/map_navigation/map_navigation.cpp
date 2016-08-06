@@ -33,7 +33,7 @@ std::string path_to_sounds;
 bool moveToGoal(double xGoal, double yGoal);
 char choose();
 
-/*declare the coordinates of interest*/
+/** declare the coordinates of interest **/
 double xCafe = 15.50;
 double yCafe = 10.20;
 double xOffice1 = 27.70 ;
