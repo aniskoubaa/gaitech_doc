@@ -1,9 +1,9 @@
 
 .. _navigation-stack:
 
-================
-Navigation Stack
-================
+=======================
+Navigation Stack Review
+=======================
 
 
 In this tutorial you will learn how to use the navigation stack on a robot and how to configure it on your ROS environment.

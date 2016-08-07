@@ -1,5 +1,5 @@
 
-.. _create-map-kenict:
+.. _create-map:
 
 ===============================
 Building a Map with a Turtlebot

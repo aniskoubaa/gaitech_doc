@@ -84,6 +84,7 @@ int main(int argc, char** argv){
 
 bool moveToGoal(double xGoal, double yGoal){
 
+	//define a client for to send goal requests to the move_base server through a SimpleActionClient
 	actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> ac("move_base", true);
 
 	//wait for the action server to come up
@@ -93,7 +94,7 @@ bool moveToGoal(double xGoal, double yGoal){
 
 	move_base_msgs::MoveBaseGoal goal;
 
-	//we'll send a goal to the robot to move 1 meter forward
+	//set up the frame parameters
 	goal.target_pose.header.frame_id = "map";
 	goal.target_pose.header.stamp = ros::Time::now();
 
@@ -101,6 +102,10 @@ bool moveToGoal(double xGoal, double yGoal){
 
 	goal.target_pose.pose.position.x =  xGoal;
 	goal.target_pose.pose.position.y =  yGoal;
+	goal.target_pose.pose.position.z =  0.0;
+	goal.target_pose.pose.orientation.x = 0.0;
+	goal.target_pose.pose.orientation.y = 0.0;
+	goal.target_pose.pose.orientation.z = 0.0;
 	goal.target_pose.pose.orientation.w = 1.0;
 
 	ROS_INFO("Sending goal location ...");

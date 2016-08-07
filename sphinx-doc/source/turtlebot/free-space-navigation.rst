@@ -38,8 +38,8 @@ In this tutorial, we will use the ``tf`` package to estimate the traveled distan
 
 
 
-C++ and Python Code for the square path
-=======================================
+Tutorial Files
+==============
 
 You can find the whole ``cpp`` and ``python`` files in our `GitHub repository <https://github.com/aniskoubaa/gaitech_doc>`_ in the following `path <https://github.com/aniskoubaa/gaitech_doc/tree/master/src/turtlebot/navigation/free_space_navigation>`_. 
 They are located in ``src/turtlebot/navigation/free_space_navigation``. Go to `scripts` to find the ``python`` code.
