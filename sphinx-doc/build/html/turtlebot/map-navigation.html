@@ -107,7 +107,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#testing-the-code">Testing the code</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#testing-on-a-real-robot">Testing on a Real Robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-with-your-own-map-on-simulation-and-real-robot">Testing with Your Own Map on Simulation and Real Robot</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#running-on-a-real-robot">Running on a real robot</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
@@ -523,20 +526,130 @@ Furthermore, to be able to play sounds, it is necessary to start the ROS node, w
 <p>Then, on the terminal command, you enter the location of your choice based on the selection menu and observe how the robot navigates to the goal location.</p>
 <p>Congratulation! You now know how to program navigation mission for your simulated Turtlebot.</p>
 </div>
-<div class="section" id="testing-on-a-real-robot">
-<h2>Testing on a Real Robot<a class="headerlink" href="#testing-on-a-real-robot" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="testing-with-your-own-map-on-simulation-and-real-robot">
+<h2>Testing with Your Own Map on Simulation and Real Robot<a class="headerlink" href="#testing-with-your-own-map-on-simulation-and-real-robot" title="Permalink to this headline">¶</a></h2>
+<p>It is easy to apply the navigation code on a real robot.
+However, you should deploy it using the map of the environment where you are going to run the experiments.</p>
+<p>First, using the instructions of the <a class="reference internal" href="create-map-kenict.html#create-map"><span class="std std-ref">Building a Map with a Turtlebot</span></a> tutorial, create the map of your experimental environment.</p>
+<p>Now, you need to make changes to the launch and world files to consider the information of the map of your environment. Follow these steps:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Step 1. Put the  <code class="docutils literal"><span class="pre">.yaml</span></code> and <code class="docutils literal"><span class="pre">.pgm</span></code>  map files in the <code class="docutils literal"><span class="pre">src/maps/</span></code> folder. Let us assume they are called <code class="docutils literal"><span class="pre">mymap.yaml</span></code> and <code class="docutils literal"><span class="pre">myamap.pgm</span></code>.</li>
+<li>Step 2. In the <code class="docutils literal"><span class="pre">src/turtlebot/navigation/map_navigation/launch/</span></code> folder, make a copy of the two files <code class="docutils literal"><span class="pre">map_navigation_stage_psu.launch</span></code> and <code class="docutils literal"><span class="pre">turtlebot_stage_psu.launch</span></code> and give them other names, for example <code class="docutils literal"><span class="pre">map_navigation_maymap.launch</span></code> and <code class="docutils literal"><span class="pre">turtlebot_stage_mymap.launch</span></code>. We will use these two files to launch the simulator with your own map.</li>
+<li>Step 3. In the new file, <code class="docutils literal"><span class="pre">map_navigation_maymap.launch</span></code>, change <code class="docutils literal"><span class="pre">turtlebot_stage_psu.launch</span></code> with <code class="docutils literal"><span class="pre">turtlebot_stage_mymap.launch</span></code>. This mean you will start the Turtlebot simulator with the parameters of your map. For this, you need to make the following changes to the  <code class="docutils literal"><span class="pre">turtlebot_stage_mymap.launch</span></code></li>
+<li>Step 4. Change the name of the map and world files in <code class="docutils literal"><span class="pre">turtlebot_stage_mymap.launch</span></code> file as follow:</li>
+</ul>
+</div></blockquote>
+<div class="highlight-xml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;base&quot;</span>       <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_BASE kobuki)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- create, rhoomba --&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;stacks&quot;</span>     <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_STACKS hexagons)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- circles, hexagons --&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;3d_sensor&quot;</span>  <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_3D_SENSOR kinect)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- kinect, asus_xtion_pro --&gt;</span>
+
+  <span class="c">&lt;!-- Name of the map to use (without path nor extension) and initial position --&gt;</span>
+<span class="hll">  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;map_file&quot;</span>       <span class="na">default=</span><span class="s">&quot; $(find gaitech_doc)/src/maps/mymap.yaml&quot;</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- psu --&gt;</span>
+</span><span class="hll">  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;world_file&quot;</span>     <span class="na">default=</span><span class="s">&quot; $(find gaitech_doc)/src/maps/stage/mymap.world&quot;</span><span class="nt">/&gt;</span>
+</span><span class="hll">  .....
+</span></pre></div>
+</td></tr></table></div>
+<ul class="simple">
+<li>Step 5. Now, you need to edit the file <code class="docutils literal"><span class="pre">mymap.world</span></code> file. This file is used by <code class="docutils literal"><span class="pre">stage</span></code> to display the map. In the folder, <code class="docutils literal"><span class="pre">src/maps/stage/</span></code>, Make a copy of <code class="docutils literal"><span class="pre">psu.world</span></code>, change its name to <code class="docutils literal"><span class="pre">mymap.world</span></code> and open it with <code class="docutils literal"><span class="pre">gedit</span></code>.</li>
+</ul>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nn">...</span>
+<span class="l l-Scalar l-Scalar-Plain">floorplan</span>
+<span class="l l-Scalar l-Scalar-Plain">(</span>
+<span class="hll">  <span class="l l-Scalar l-Scalar-Plain">name &quot;mymap&quot;</span>
+</span><span class="hll">  <span class="l l-Scalar l-Scalar-Plain">bitmap &quot;../mymap.pgm&quot;</span>
+</span><span class="hll">  <span class="l l-Scalar l-Scalar-Plain">size [ map_width map_length 0.0 ]</span> <span class="c1">#the real size in meters (from yaml, resolution*pixels)</span>
+</span><span class="hll">  <span class="l l-Scalar l-Scalar-Plain">pose [ width_offset length_offset 0.0 0.0 ]</span>
+</span><span class="l l-Scalar l-Scalar-Plain">)</span>
+
+<span class="l l-Scalar l-Scalar-Plain"># throw in a robot</span>
+<span class="l l-Scalar l-Scalar-Plain">turtlebot</span>
+<span class="hll"><span class="l l-Scalar l-Scalar-Plain">(</span>
+</span>  <span class="l l-Scalar l-Scalar-Plain">pose [x_init y_init 0.0 0.0 ]</span>
+  <span class="l l-Scalar l-Scalar-Plain">name &quot;turtlebot&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">color &quot;red&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">)</span>
+ <span class="l l-Scalar l-Scalar-Plain">.....</span>
+</pre></div>
+</td></tr></table></div>
+<p>First, change <code class="docutils literal"><span class="pre">`psu</span></code> and <code class="docutils literal"><span class="pre">psu.pgm</span></code> in Lines 4 and 5 as shown. Line 4 assigns a name to the floor plan, and Line 5 refer to the map itself, in our case <code class="docutils literal"><span class="pre">mymap.pgm</span></code>.
+Finding the size is important. The size can be determined from two information from the <code class="docutils literal"><span class="pre">yaml</span></code> file, namely, the <code class="docutils literal"><span class="pre">resolution</span></code> and the <code class="docutils literal"><span class="pre">pixel</span> <span class="pre">width</span></code> and the <code class="docutils literal"><span class="pre">pixel</span> <span class="pre">length</span></code>.
+For example, in case of <code class="docutils literal"><span class="pre">psu.yaml</span></code> file, we have a <code class="docutils literal"><span class="pre">resolution</span> <span class="pre">=</span> <span class="pre">0.05</span></code> and from the <code class="docutils literal"><span class="pre">pgm</span></code> file, the image of the map has  <code class="docutils literal"><span class="pre">(837*477)</span> <span class="pre">(pixels^2)</span></code>.
+Multiplying by the resolution, we get the size of the map as <code class="docutils literal"><span class="pre">(41.85</span> <span class="pre">*</span> <span class="pre">23.85)</span> <span class="pre">m^2</span></code>. So,in the case of psu map, width_map = 41.85 m and length_map=23.85 m.</p>
+<p>For the width and length offsets, we generally set them to the half of the width and length respectively, in this case will be <code class="docutils literal"><span class="pre">(20.925,</span> <span class="pre">11.925)</span></code>.
+Then you set the initial position of the robot of your choice. For this, you can choose any position that would not conflict with an obstacle.</p>
+<p>In case of psu, we set the initial position to the center of the map <code class="docutils literal"><span class="pre">(20.925,</span> <span class="pre">11.925)</span></code> as a choice. Other choices would also work.</p>
+<ul class="simple">
+<li>Step 5. finally, make sure to put the same initial location in the file <code class="docutils literal"><span class="pre">map_navigation_maymap.launch</span></code>,</li>
+</ul>
+<div class="highlight-xml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;base&quot;</span>       <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_BASE kobuki)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- create, rhoomba --&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;stacks&quot;</span>     <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_STACKS hexagons)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- circles, hexagons --&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;3d_sensor&quot;</span>  <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_3D_SENSOR kinect)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- kinect, asus_xtion_pro --&gt;</span>
+
+  <span class="c">&lt;!-- Name of the map to use (without path nor extension) and initial position --&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;map_file&quot;</span>       <span class="na">default=</span><span class="s">&quot; $(find gaitech_doc)/src/maps/mymap.yaml&quot;</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- psu --&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;world_file&quot;</span>     <span class="na">default=</span><span class="s">&quot; $(find gaitech_doc)/src/maps/stage/mymap.world&quot;</span><span class="nt">/&gt;</span>
+<span class="hll">  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;initial_pose_x&quot;</span> <span class="na">default=</span><span class="s">&quot;x_init&quot;</span><span class="nt">/&gt;</span>
+</span><span class="hll">  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;initial_pose_y&quot;</span> <span class="na">default=</span><span class="s">&quot;y_init&quot;</span><span class="nt">/&gt;</span>
+</span><span class="hll">  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;initial_pose_a&quot;</span> <span class="na">default=</span><span class="s">&quot;0.0&quot;</span><span class="nt">/&gt;</span>
+</span></pre></div>
+</td></tr></table></div>
+<p>Now, you should be able to run the simulator with your own map.</p>
+<div class="section" id="running-on-a-real-robot">
+<h3>Running on a real robot<a class="headerlink" href="#running-on-a-real-robot" title="Permalink to this headline">¶</a></h3>
+<p>To deploy on a real robot, you simply need to bring-up your turtlebot robot, and then execute the <code class="docutils literal"><span class="pre">map_navigation_node</span></code> either on the robot machine (not recommended) or on your workstation (recommended).
+In the latter case, You must make sure to have correctly configured your network settings as explained in the <a class="reference internal" href="network-config-doc.html#network-config-doc"><span class="std std-ref">Network Configuration</span></a> tutorial.</p>
+</div>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><ul class="simple">
+<dl class="docutils">
+<dt>TODO: CREATE LINKS FOR THESE REFERENCES</dt>
+<dd><ul class="first last simple">
 <li>Map Server in ROS</li>
 <li>ROS Navigation</li>
 <li>Global Planner</li>
 <li>Local Planner</li>
 <li>ROS Navigation Tutorials</li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </div>
 </div>
 

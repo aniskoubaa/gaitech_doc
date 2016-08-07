@@ -307,13 +307,102 @@ Then, on the terminal command, you enter the location of your choice based on th
 Congratulation! You now know how to program navigation mission for your simulated Turtlebot. 
 
 
-Testing on a Real Robot
-=======================
+Testing with Your Own Map on Simulation and Real Robot
+======================================================
 
+It is easy to apply the navigation code on a real robot. 
+However, you should deploy it using the map of the environment where you are going to run the experiments.
+
+First, using the instructions of the :ref:`create-map` tutorial, create the map of your experimental environment.
+
+Now, you need to make changes to the launch and world files to consider the information of the map of your environment. Follow these steps:
+
+   * Step 1. Put the  ``.yaml`` and ``.pgm``  map files in the ``src/maps/`` folder. Let us assume they are called ``mymap.yaml`` and ``myamap.pgm``.
+   * Step 2. In the ``src/turtlebot/navigation/map_navigation/launch/`` folder, make a copy of the two files ``map_navigation_stage_psu.launch`` and ``turtlebot_stage_psu.launch`` and give them other names, for example ``map_navigation_maymap.launch`` and ``turtlebot_stage_mymap.launch``. We will use these two files to launch the simulator with your own map. 
+   * Step 3. In the new file, ``map_navigation_maymap.launch``, change ``turtlebot_stage_psu.launch`` with ``turtlebot_stage_mymap.launch``. This mean you will start the Turtlebot simulator with the parameters of your map. For this, you need to make the following changes to the  ``turtlebot_stage_mymap.launch``
+   * Step 4. Change the name of the map and world files in ``turtlebot_stage_mymap.launch`` file as follow:
+   
+.. code-block:: xml
+   :linenos:
+   :emphasize-lines: 7,8,9,10
+   
+   <launch>
+     <arg name="base"       default="$(optenv TURTLEBOT_BASE kobuki)"/>  <!-- create, rhoomba -->
+     <arg name="stacks"     default="$(optenv TURTLEBOT_STACKS hexagons)"/>  <!-- circles, hexagons -->
+     <arg name="3d_sensor"  default="$(optenv TURTLEBOT_3D_SENSOR kinect)"/>  <!-- kinect, asus_xtion_pro -->
+   
+     <!-- Name of the map to use (without path nor extension) and initial position -->
+     <arg name="map_file"       default=" $(find gaitech_doc)/src/maps/mymap.yaml"/> <!-- psu -->
+     <arg name="world_file"     default=" $(find gaitech_doc)/src/maps/stage/mymap.world"/>
+     .....
+
+    
+
+* Step 5. Now, you need to edit the file ``mymap.world`` file. This file is used by ``stage`` to display the map. In the folder, ``src/maps/stage/``, Make a copy of ``psu.world``, change its name to ``mymap.world`` and open it with ``gedit``.
+
+
+.. code-block:: yaml
+   :linenos:
+   :emphasize-lines: 4,5,6,7,12
+   
+   ...
+   floorplan
+   (
+     name "mymap"
+     bitmap "../mymap.pgm"
+     size [ map_width map_length 0.0 ] #the real size in meters (from yaml, resolution*pixels)
+     pose [ width_offset length_offset 0.0 0.0 ]
+   )
+   
+   # throw in a robot
+   turtlebot
+   (
+     pose [x_init y_init 0.0 0.0 ]
+     name "turtlebot"
+     color "red"
+   )
+    .....
+
+
+First, change ```psu`` and ``psu.pgm`` in Lines 4 and 5 as shown. Line 4 assigns a name to the floor plan, and Line 5 refer to the map itself, in our case ``mymap.pgm``.
+Finding the size is important. The size can be determined from two information from the ``yaml`` file, namely, the ``resolution`` and the ``pixel width`` and the ``pixel length``.
+For example, in case of ``psu.yaml`` file, we have a ``resolution = 0.05`` and from the ``pgm`` file, the image of the map has  ``(837*477) (pixels^2)``.
+Multiplying by the resolution, we get the size of the map as ``(41.85 * 23.85) m^2``. So,in the case of psu map, width_map = 41.85 m and length_map=23.85 m.
+
+For the width and length offsets, we generally set them to the half of the width and length respectively, in this case will be ``(20.925, 11.925)``.
+Then you set the initial position of the robot of your choice. For this, you can choose any position that would not conflict with an obstacle. 
+
+In case of psu, we set the initial position to the center of the map ``(20.925, 11.925)`` as a choice. Other choices would also work. 
+
+* Step 5. finally, make sure to put the same initial location in the file ``map_navigation_maymap.launch``,
+
+.. code-block:: xml
+   :linenos:
+   :emphasize-lines: 9,10,11
+   
+   <launch>
+     <arg name="base"       default="$(optenv TURTLEBOT_BASE kobuki)"/>  <!-- create, rhoomba -->
+     <arg name="stacks"     default="$(optenv TURTLEBOT_STACKS hexagons)"/>  <!-- circles, hexagons -->
+     <arg name="3d_sensor"  default="$(optenv TURTLEBOT_3D_SENSOR kinect)"/>  <!-- kinect, asus_xtion_pro -->
+   
+     <!-- Name of the map to use (without path nor extension) and initial position -->
+     <arg name="map_file"       default=" $(find gaitech_doc)/src/maps/mymap.yaml"/> <!-- psu -->
+     <arg name="world_file"     default=" $(find gaitech_doc)/src/maps/stage/mymap.world"/>
+     <arg name="initial_pose_x" default="x_init"/>
+     <arg name="initial_pose_y" default="y_init"/>
+     <arg name="initial_pose_a" default="0.0"/>
+
+Now, you should be able to run the simulator with your own map. 
+
+Running on a real robot
+-----------------------
+To deploy on a real robot, you simply need to bring-up your turtlebot robot, and then execute the ``map_navigation_node`` either on the robot machine (not recommended) or on your workstation (recommended).
+In the latter case, You must make sure to have correctly configured your network settings as explained in the :ref:`network-config-doc` tutorial.  
 
 References
 ==========
 
+TODO: CREATE LINKS FOR THESE REFERENCES
    * Map Server in ROS
    * ROS Navigation
    * Global Planner
