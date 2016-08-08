@@ -40,7 +40,7 @@ Remember that any robot on ROS runs the ``move_base`` navigation stack which all
 Tutorial Files
 ==============
 You can find the whole ``cpp`` and ``python`` files in our `GitHub repository <https://github.com/aniskoubaa/gaitech_doc>`_. 
-They are located in ``src/turtlebot/navigation/map_navigation_folder``. 
+They are located in ``src/turtlebot/navigation/map_navigation`` folder. 
 In particular, we will use the launch file ``map_navigation_psu.launch`` that contains all the needed ROS nodes for this tutorial. 
 Here is the content of the ``map_navigation_psu.launch`` file.
 
@@ -271,6 +271,32 @@ In other words, it is the **absolute position** on the map.
 In case where the reference frame is set with respect to the robot, namely ``goal.target_pose.header.frame_id = "base_link"``  (like in `this tutorial <http://wiki.ros.org/navigation/Tutorials/SendingSimpleGoals>`_), the coordinate will have a completely other meaning. 
 In fact, in this case the coordinate will represent the ``(x,y)`` coordinate with respect to robot base frame attached to the robot, so it is a **relative position** rather than a **absolute position** as in the case of using the ``map`` frame. 
 
+.. NOTE::
+
+   For example, if we consider the following piece of code for the goal location (changes are highlighted): 
+   
+   .. code-block:: c
+      :emphasize-lines: 4,8,9
+     
+         move_base_msgs::MoveBaseGoal goal;
+      
+         //set up the frame parameters
+         goal.target_pose.header.frame_id = "base_link"; //or "base_footprint"
+         goal.target_pose.header.stamp = ros::Time::now();
+      
+         /* moving towards the goal*/
+         goal.target_pose.pose.position.x =  1.0;
+         goal.target_pose.pose.position.y =  0;
+         goal.target_pose.pose.position.z =  0.0;
+         goal.target_pose.pose.orientation.x = 0.0;
+         goal.target_pose.pose.orientation.y = 0.0;
+         goal.target_pose.pose.orientation.z = 0.0;
+         goal.target_pose.pose.orientation.w = 1.0;
+   
+   In this case, goal location refers to the position that is one meter ahead of the robot (in front of the robot), so by executing this goal location, the robot will just move 1 meter in straight line. 
+   This is because the goal location is one meter in the x-axis (that is the front of the robot) with respect to the ``base_link`` frame attached to the robot. 
+
+
 Line 15 adds a timestamp to the goal location. 
 
 Line 28 sends the goal location request to the ``move_base`` action server, and wait for its execution as shown in line 31 (``ac.waitForResult()``).
@@ -293,6 +319,8 @@ In the program, we create a sound client with ``sound_play::SoundClient sc;`` an
 
 Then, we use the method ``sc.playWave(path_to_the_sound_file)`` to play a certain sound file. For example, in case of successul mission, the sound is played with ``sc.playWave(path_to_sounds+"ship_bell.wav");``.
 
+
+
 Testing the code
 ================
 
@@ -306,6 +334,9 @@ Then, on the terminal command, you enter the location of your choice based on th
 
 Congratulation! You now know how to program navigation mission for your simulated Turtlebot. 
 
+For a live explanation and testing of the code, watch the following video
+
+.. youtube:: r5kK9pIOcNQ
 
 Testing with Your Own Map on Simulation and Real Robot
 ======================================================
@@ -408,5 +439,58 @@ TODO: CREATE LINKS FOR THESE REFERENCES
    * Global Planner
    * Local Planner
    * ROS Navigation Tutorials
+
+
+Review Questions and Activity
+=============================
+   
+   * **Question 1.** What is the ROS topic that is used to find the location of the robot?
+   * **Question 2.** Explain the difference between these two codes:
+
+**Code 1**
+
+.. code-block:: c
+     
+         move_base_msgs::MoveBaseGoal goal;
+         goal.target_pose.header.frame_id = "base_footprint"; 
+         goal.target_pose.header.stamp = ros::Time::now();
+         goal.target_pose.pose.position.x =  2.0;
+         goal.target_pose.pose.position.y =  0;
+         goal.target_pose.pose.position.z =  0.0;
+         goal.target_pose.pose.orientation.x = 0.0;
+         goal.target_pose.pose.orientation.y = 0.0;
+         goal.target_pose.pose.orientation.z = 0.0;
+         goal.target_pose.pose.orientation.w = 1.0;   
+    
+**Code 2**
+
+.. code-block:: c
+     
+         move_base_msgs::MoveBaseGoal goal;
+         goal.target_pose.header.frame_id = "map"; 
+         goal.target_pose.header.stamp = ros::Time::now();
+         goal.target_pose.pose.position.x =  2.0;
+         goal.target_pose.pose.position.y =  0;
+         goal.target_pose.pose.position.z =  0.0;
+         goal.target_pose.pose.orientation.x = 0.0;
+         goal.target_pose.pose.orientation.y = 0.0;
+         goal.target_pose.pose.orientation.z = 0.0;
+         goal.target_pose.pose.orientation.w = 1.0;   
   
+
+
+* **Question 3.** Consider the following ``yaml`` for a map. 
+
+.. code-block:: yaml
+
+   image: /tmp/my_map.pgm
+   resolution: 0.050000
+   origin: [0.00000, 0.00000, 0.000000]
+   negate: 0
+   occupied_thresh: 0.65
+   free_thresh: 0.196
+   
+Given that ``my_map.pgm`` has the size 540x680 pixels, what is the size in meters for the environment? 
+
+
   

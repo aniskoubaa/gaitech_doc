@@ -25,9 +25,10 @@ Gaitech is pround to provide you a comprehensive educational framework on Robot 
 .. image:: images/ros/ros.png
     :align: center
 
-Subscribe to Gaitech EDU Mailing List
-=====================================
-For technical support, updates, and getting responses to queries related to Gaitech EDU website, you need to register to the mailing list ``gaitech_edu_users@lists.gaitech.coins-lab.org`` in this `subscription page <http://lists.gaitech.coins-lab.org/listinfo.cgi/gaitech_edu_users-gaitech.coins-lab.org>`_.
+Subscribe to Gaitech EDU Forum
+==============================
+For technical support, updates, and getting responses to queries related to Gaitech EDU website, 
+you need to register to the `Gaitech EDU Forum <http://ros.gaitech.hk/>`_.
  
 
 FAQs about Gaitech EDU
@@ -67,7 +68,7 @@ We will add instructors who are using Gaitech EDU website and link to their cour
 Will the current content of the Gaitech EDU website be maintaned and updated?
 -----------------------------------------------------------------------------
 Yes. Gaitech EDU strives towards updating the educational content and maintaining it. Several tutorials will be added regularly and existing tutorials would also be updated when needed and based on feedback and comment of Gaitech EDU users.
-If you are interested to stay tuned with any content update, you can subscribe to this mailing list ``gaitech_edu_users@lists.gaitech.coins-lab.org`` in this `subscription page <http://lists.gaitech.coins-lab.org/listinfo.cgi/gaitech_edu_users-gaitech.coins-lab.org>`_.
+If you are interested to stay tuned with any content update, you can subscribe to the `Gaitech EDU Forum <http://ros.gaitech.hk/>`_.
 However, there are no pre-defined periods of updates. 
  
 

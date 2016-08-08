@@ -203,6 +203,7 @@ that you need and the ``PocketSphinx`` can understand.
 
 Extract these files into the config subdirectory of the ``gaitech_doc`` package (or your package where you are working this example). These files must be provided as an input parameter to ``recognizer.py`` node. 
 To do so, you need to create a launch file as follow. 
+
    * First, create a folder and call it ``launch`` where to create launch files 
    * Then, create a file called ``recognizer.launch``, and add the following XML code: 
 
@@ -506,6 +507,7 @@ Question3: Enabling/Disabling Voice Teleopration
 
 Now, you will add a new functionality to either enable or disable the voice teleopration. 
 For this, you need to add two keywords into the vocabulary. 
+
    * ``pause``: when the user says ``pause`` the voice teleoperation should be paused. It means even if the user says more voice commands, they will not be executed
    * ``resume``: when the user says ``resume``, the voice teleopration is resumed and voice commands will be executed again.  
 

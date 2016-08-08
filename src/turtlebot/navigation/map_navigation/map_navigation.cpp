@@ -37,9 +37,9 @@ char choose();
 double xCafe = 15.50;
 double yCafe = 10.20;
 double xOffice1 = 27.70 ;
-double yOffice1 = 12.50;
+double yOffice1 = 13.50;
 double xOffice2 = 30.44 ;
-double yOffice2 = 12.50;
+double yOffice2 = 13.50;
 double xOffice3 = 35.20 ;
 double yOffice3 = 13.50;
 

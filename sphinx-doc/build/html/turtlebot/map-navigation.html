@@ -92,11 +92,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="turtlebot-tutorials.html">Turtlebot Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="turtlebot-first-tests.html">First Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="openKinect-turtlebot.html">Setting-up 3D Sensor for the Turtlebot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-config-doc.html">Network Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="turtlebot-simulators.html">Turtlebot Simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-simulators.html">Turtlebot Simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openKinect-turtlebot.html">Setting-up 3D Sensor for the Turtlebot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Building a Map with a Turtlebot</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Map Navigation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#background">Background</a></li>
@@ -112,12 +112,15 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#review-questions-and-activity">Review Questions and Activity</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="openCV-turtlebot.html">ROS OpenCV with Turtlebot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="line-follower.html">Line Follower</a></li>
-<li class="toctree-l2"><a class="reference internal" href="turtlebot-arm-pincher.html">Turtlebot Arm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-arm-pincher.html">Turtlebot Arm PhantomX Pincher with ROS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-arm-arduino.html">Controlling a Turtlebot Arm with an Arduino Board using RFID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hokuyo-turtlebot.html">Adding Hokuyo Laser Range Finder to Turtlebot</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
@@ -202,7 +205,7 @@ Remember that any robot on ROS runs the <code class="docutils literal"><span cla
 <div class="section" id="tutorial-files">
 <h2>Tutorial Files<a class="headerlink" href="#tutorial-files" title="Permalink to this headline">¶</a></h2>
 <p>You can find the whole <code class="docutils literal"><span class="pre">cpp</span></code> and <code class="docutils literal"><span class="pre">python</span></code> files in our <a class="reference external" href="https://github.com/aniskoubaa/gaitech_doc">GitHub repository</a>.
-They are located in <code class="docutils literal"><span class="pre">src/turtlebot/navigation/map_navigation_folder</span></code>.
+They are located in <code class="docutils literal"><span class="pre">src/turtlebot/navigation/map_navigation</span></code> folder.
 In particular, we will use the launch file <code class="docutils literal"><span class="pre">map_navigation_psu.launch</span></code> that contains all the needed ROS nodes for this tutorial.
 Here is the content of the <code class="docutils literal"><span class="pre">map_navigation_psu.launch</span></code> file.</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span>
@@ -501,6 +504,28 @@ Line 14  <code class="docutils literal"><span class="pre">goal.target_pose.heade
 In other words, it is the <strong>absolute position</strong> on the map.
 In case where the reference frame is set with respect to the robot, namely <code class="docutils literal"><span class="pre">goal.target_pose.header.frame_id</span> <span class="pre">=</span> <span class="pre">&quot;base_link&quot;</span></code>  (like in <a class="reference external" href="http://wiki.ros.org/navigation/Tutorials/SendingSimpleGoals">this tutorial</a>), the coordinate will have a completely other meaning.
 In fact, in this case the coordinate will represent the <code class="docutils literal"><span class="pre">(x,y)</span></code> coordinate with respect to robot base frame attached to the robot, so it is a <strong>relative position</strong> rather than a <strong>absolute position</strong> as in the case of using the <code class="docutils literal"><span class="pre">map</span></code> frame.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>For example, if we consider the following piece of code for the goal location (changes are highlighted):</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span>   <span class="n">move_base_msgs</span><span class="o">::</span><span class="n">MoveBaseGoal</span> <span class="n">goal</span><span class="p">;</span>
+
+   <span class="c1">//set up the frame parameters</span>
+<span class="hll">   <span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">&quot;base_link&quot;</span><span class="p">;</span> <span class="c1">//or &quot;base_footprint&quot;</span>
+</span>   <span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+
+   <span class="cm">/* moving towards the goal*/</span>
+<span class="hll">   <span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span>  <span class="mf">1.0</span><span class="p">;</span>
+</span><span class="hll">   <span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span>  <span class="mi">0</span><span class="p">;</span>
+</span>   <span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span>  <span class="mf">0.0</span><span class="p">;</span>
+   <span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+   <span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+   <span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+   <span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p class="last">In this case, goal location refers to the position that is one meter ahead of the robot (in front of the robot), so by executing this goal location, the robot will just move 1 meter in straight line.
+This is because the goal location is one meter in the x-axis (that is the front of the robot) with respect to the <code class="docutils literal"><span class="pre">base_link</span></code> frame attached to the robot.</p>
+</div>
 <p>Line 15 adds a timestamp to the goal location.</p>
 <p>Line 28 sends the goal location request to the <code class="docutils literal"><span class="pre">move_base</span></code> action server, and wait for its execution as shown in line 31 (<code class="docutils literal"><span class="pre">ac.waitForResult()</span></code>).
 Note that this request is <strong>sychrounous</strong>, which means it will block until the result is sent back to the requesting client object. After it finishes, we can check if the goal succeded or failed and output a message to the user accordingly.</p>
@@ -525,7 +550,8 @@ Furthermore, to be able to play sounds, it is necessary to start the ROS node, w
 </div>
 <p>Then, on the terminal command, you enter the location of your choice based on the selection menu and observe how the robot navigates to the goal location.</p>
 <p>Congratulation! You now know how to program navigation mission for your simulated Turtlebot.</p>
-</div>
+<p>For a live explanation and testing of the code, watch the following video</p>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/r5kK9pIOcNQ" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
 <div class="section" id="testing-with-your-own-map-on-simulation-and-real-robot">
 <h2>Testing with Your Own Map on Simulation and Real Robot<a class="headerlink" href="#testing-with-your-own-map-on-simulation-and-real-robot" title="Permalink to this headline">¶</a></h2>
 <p>It is easy to apply the navigation code on a real robot.
@@ -650,6 +676,53 @@ In the latter case, You must make sure to have correctly configured your network
 </ul>
 </dd>
 </dl>
+</div>
+<div class="section" id="review-questions-and-activity">
+<h2>Review Questions and Activity<a class="headerlink" href="#review-questions-and-activity" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><strong>Question 1.</strong> What is the ROS topic that is used to find the location of the robot?</li>
+<li><strong>Question 2.</strong> Explain the difference between these two codes:</li>
+</ul>
+</div></blockquote>
+<p><strong>Code 1</strong></p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="n">move_base_msgs</span><span class="o">::</span><span class="n">MoveBaseGoal</span> <span class="n">goal</span><span class="p">;</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">&quot;base_footprint&quot;</span><span class="p">;</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span>  <span class="mf">2.0</span><span class="p">;</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span>  <span class="mi">0</span><span class="p">;</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span>  <span class="mf">0.0</span><span class="p">;</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Code 2</strong></p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="n">move_base_msgs</span><span class="o">::</span><span class="n">MoveBaseGoal</span> <span class="n">goal</span><span class="p">;</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">&quot;map&quot;</span><span class="p">;</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span>  <span class="mf">2.0</span><span class="p">;</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span>  <span class="mi">0</span><span class="p">;</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span>  <span class="mf">0.0</span><span class="p">;</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>Question 3.</strong> Consider the following <code class="docutils literal"><span class="pre">yaml</span></code> for a map.</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/my_map.pgm</span>
+<span class="l l-Scalar l-Scalar-Plain">resolution</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.050000</span>
+<span class="l l-Scalar l-Scalar-Plain">origin</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">0.00000</span><span class="p p-Indicator">,</span> <span class="nv">0.00000</span><span class="p p-Indicator">,</span> <span class="nv">0.000000</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">negate</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="l l-Scalar l-Scalar-Plain">occupied_thresh</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.65</span>
+<span class="l l-Scalar l-Scalar-Plain">free_thresh</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.196</span>
+</pre></div>
+</div>
+<p>Given that <code class="docutils literal"><span class="pre">my_map.pgm</span></code> has the size 540x680 pixels, what is the size in meters for the environment?</p>
 </div>
 </div>
 

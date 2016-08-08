@@ -41,27 +41,25 @@ In this tutorial, we will use the ``tf`` package to estimate the traveled distan
 Tutorial Files
 ==============
 
-You can find the whole ``cpp`` and ``python`` files in our `GitHub repository <https://github.com/aniskoubaa/gaitech_doc>`_ in the following `path <https://github.com/aniskoubaa/gaitech_doc/tree/master/src/turtlebot/navigation/free_space_navigation>`_. 
-They are located in ``src/turtlebot/navigation/free_space_navigation``. Go to `scripts` to find the ``python`` code.
+You can find the whole ``cpp`` and ``python`` files in our `GitHub repository <https://github.com/aniskoubaa/gaitech_doc>`_. 
+They are located in ``src/turtlebot/navigation/map_navigation_folder``. 
+In particular, we will use the launch file ``map_navigation_psu.launch`` that contains all the needed ROS nodes for this tutorial. 
+Here is the content of the ``map_navigation_psu.launch`` file.
 
-In the code you will find 3 ``move`` methods and each one of them has its approach so you will be able to know 3 different ways of controlling and manipulating the turtlebot robot . The code is also well explained so you can easily understand what each line is doing in the code and what is its functionality.	
 
-After downloading the repository make sure you place it in your ``catkin_ws/src`` then run the following command:
+You can find the whole ``cpp`` and ``python`` files in our `GitHub repository <https://github.com/aniskoubaa/gaitech_doc>`_. 
+They are located in ``src/turtlebot/navigation/free_space_navigation`` folder. 
 
-.. code-block:: bash
-	
-	catkin_make
+In the code you will find 3 ``move`` amd ``rotate`` methods and each one of them has its approach so you will be able to know 3 different ways of controlling and manipulating the turtlebot robot . 
+The code is also well explained so you can easily understand what each line is doing in the code and what is its functionality.	
 
-.. NOTE::
-	
-	You may find a couple of errors due to your need to install missing packages.
    
 Anaylzing the code
 ==================
 We first analyze the ``move`` function to make the robot moves with a certain speed for a certain distance in stragight line either forward or backward. 
 
-
-The following code below sets the linear speed of the x-axis as positive value if the intention is to move forward, and negative value if the robot is to move backward, based on the value of ``isForward`` boolean variable. All other liear speeds and angular speeds must be set to zero. 
+The following code below sets the linear speed of the x-axis as positive value if the intention is to move forward, and negative value if the robot is to move backward, based on the value of ``isForward`` boolean variable. 
+All other linear speeds and angular speeds must be set to zero, because we consider only a straight motion in the x-axis direction. 
 It has to be noted that the x-axis of the linear speed is the axis that points to the front of the robot from its center. 
 
 **C++ Code**
@@ -95,6 +93,139 @@ It has to be noted that the x-axis of the linear speed is the axis that points t
     VelocityMessage.angular.x =0.0
     VelocityMessage.angular.y =0.0
     VelocityMessage.angular.z =0.0
+
+
+
+The following code waits for ``tf::TransformListener listener`` to find the transformation between the ``/base_footprint`` frame and the ``/odom`` frame, which represents the reference frame.
+Then, once the  the transformation is found between the two frames, we save its current state into the ``init_transform`` which is a ``tf::StampedTransform`` object. 
+In simple words, this object captures the relation between the two frames in terms of translation and relative orientation.  
+
+
+**C Code**
+
+.. code-block:: c
+   
+   try{
+         //wait for the transform to be found
+         listener.waitForTransform("/base_footprint", "/odom", ros::Time(0), ros::Duration(10.0) );
+         //Once the transform is found,get the initial_transform transformation.
+         listener.lookupTransform("/base_footprint", "/odom",ros::Time(0), init_transform);
+      }
+      catch (tf::TransformException & ex){
+         ROS_ERROR(" Problem %s",ex.what());
+         ros::Duration(1.0).sleep();
+      }
+
+
+**Python Code**
+
+.. code-block:: python 
+
+      try:
+         #wait for the transform to be found
+         listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0),rospy.Duration(10.0))
+         #Once the transform is found,get the initial_transform transformation.
+          listener.lookupTransform("/base_footprint", "/odom", rospy.Time(0),init_transform)
+      except Exception:
+           rospy.Duration(1.0)
+
+
+The following code estimates the traveled distance. 
+It is known that the distance is ``sqrt((x1-x0)^2 + (y1-y0)^2)``.
+``current_transform`` capture the current transformation between the ``/base_footprint`` and ``/odom`` frames. 
+Using the ``tf`` function ``getOrigin().x()`` and ``getOrigin().y()`` we can find the ``x`` and ``y`` coordinates
+of the frame ``/base_footprint`` with respect to ``/odom`` frame. 
+Appying the distance equation, we will be able to find to distance traveled by the robot, 
+considering that the ``init_transform`` was captured at the moment before starting the motion and
+that the ``current_transform`` was captured at the moment of the motion. 
+
+
+**C++ Code**
+
+.. code-block:: c
+   :emphasize-lines: 15
+   
+   do{
+       /***************************************
+       * STEP1. PUBLISH THE VELOCITY MESSAGE
+       ***************************************/
+      velocityPublisher.publish(VelocityMessage);
+      ros::spinOnce();
+      loop_rate.sleep();
+      /**************************************************
+       * STEP2. ESTIMATE THE DISTANCE MOVED BY THE ROBOT
+       *************************************************/
+      try{
+         //wait for the transform to be found
+         listener.waitForTransform("/base_footprint", "/odom", ros::Time(0), ros::Duration(10.0) );
+         //Once the transform is found,get the initial_transform transformation.
+         listener.lookupTransform("/base_footprint", "/odom",ros::Time(0), current_transform);
+      }
+      catch (tf::TransformException & ex){
+         ROS_ERROR(" Problem %s",ex.what());
+         ros::Duration(1.0).sleep();
+      }
+         
+         /*
+          * Calculate the distance moved by the robot
+          * There are two methods that give the same result
+          */
+   
+         /*
+          * Method 1: Calculate the distance between the two transformations
+          * Hint:
+          *      --> transform.getOrigin().x(): represents the x coordinate of the transformation
+          *      --> transform.getOrigin().y(): represents the y coordinate of the transformation
+          */
+         //calculate the distance moved
+         distance_moved = sqrt(pow((current_transform.getOrigin().x()-init_transform.getOrigin().x()), 2) +
+               pow((current_transform.getOrigin().y()-init_transform.getOrigin().y()), 2));
+   
+   
+      }while((distance_moved<distance)&&(ros::ok()));
+
+
+**Python Code**
+
+.. code-block:: python
+   :emphasize-lines: 16
+
+   while True :
+               
+        #/***************************************
+        # * STEP1. PUBLISH THE VELOCITY MESSAGE
+        # ***************************************/
+        self.velocityPublisher.publish(VelocityMessage)
+        loop_rate.sleep()
+        #/**************************************************
+        # * STEP2. ESTIMATE THE DISTANCE MOVED BY THE ROBOT
+        # *************************************************/
+        try:
+
+            #wait for the transform to be found
+            listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
+            #Once the transform is found,get the initial_transform transformation.
+            listener.lookupTransform("/base_footprint", "/odom",rospy.Time(0), current_transform)
+        
+        except Exception:
+            rospy.Duration(1.0)
+        
+         # Calculate the distance moved by the robot
+         # There are two methods that give the same result
+         #
+         # Method 1: Calculate the distance between the two transformations
+         # Hint:
+         #    --> transform.getOrigin().x(): represents the x coordinate of the transformation
+         #    --> transform.getOrigin().y(): represents the y coordinate of the transformation
+         #
+         # calculate the distance moved
+                    distance_moved = sqrt(pow((current_transform.getOrigin().x()-init_transform.getOrigin().x()), 2) +
+                        pow((current_transform.getOrigin().y()-init_transform.getOrigin().y()), 2));
+
+                    if not (distance_moved<distance):
+                        break
+   
+
 
 
 Running the code using Stage and RViz Simulators
