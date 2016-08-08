@@ -14,14 +14,15 @@ In this page, we will provide you a quick start with Turtlebot robot.
    :hidden:
 
    First Tests <turtlebot-first-tests>
-   Setting-up 3D Sensor for the Turtlebot<openKinect-turtlebot>
    Network Configuration <network-config-doc>
-   Turtlebot Simulators <turtlebot-simulators>
    Keyboard Teleop <teleop-doc>
+   Turtlebot Simulators <turtlebot-simulators>
    Voice Teleoperation <speech-doc>
+   Setting-up 3D Sensor for the Turtlebot<openKinect-turtlebot>
    Building a Map with a Turtlebot <create-map-kenict>
    Map Navigation <map-navigation>
    Turtlebot free movement in Space<free-space-navigation>
    ROS OpenCV with Turtlebot<openCV-turtlebot>
    Line Follower <line-follower>
    Turtlebot Arm PhantomX Pincher with ROS <turtlebot-arm-pincher>
+   Controlling a Turtlebot Arm with an Arduino Board using RFID <turtlebot-arm-arduino>
