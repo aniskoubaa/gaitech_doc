@@ -1,0 +1,396 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Adding Hokuyo Laser Range Finder to Turtlebot &mdash; Gaitech EDU 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
+        <link rel="next" title="Drones" href="../drones/index.html"/>
+        <link rel="prev" title="Controlling a Turtlebot Arm with an Arduino Board using RFID" href="turtlebot-arm-arduino.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech EDU
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="turtlebot-tutorials.html">Turtlebot Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-first-tests.html">First Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-config-doc.html">Network Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-simulators.html">Turtlebot Simulators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openKinect-turtlebot.html">Setting-up 3D Sensor for the Turtlebot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Building a Map with a Turtlebot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map-navigation.html">Map Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openCV-turtlebot.html">ROS OpenCV with Turtlebot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="line-follower.html">Line Follower</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-arm-pincher.html">Turtlebot Arm PhantomX Pincher with ROS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turtlebot-arm-arduino.html">Controlling a Turtlebot Arm with an Arduino Board using RFID</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Adding Hokuyo Laser Range Finder to Turtlebot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-the-hokuyo-related-packages">Installing the Hokuyo Related Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#copying-hokuyo-description-in-meshes-folder">Copying Hokuyo description in meshes folder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#editing-and-adding-the-hokuyo-urdf-file">Editing and adding the Hokuyo URDF file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-explanation">Code Explanation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-hokuyo-urdf-description-to-turtlebot-urdf-description">Adding Hokuyo URDF description to Turtlebot URDF description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-launch-file-for-hokuyo-node">Creating a Launch File for Hokuyo Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-slam-with-hokuyo-lidar-sensor">Using SLAM With Hokuyo LIDAR Sensor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech EDU</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="turtlebot-tutorials.html">Turtlebot Quick Start Tutorials</a> &raquo;</li>
+      
+    <li>Adding Hokuyo Laser Range Finder to Turtlebot</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/turtlebot/hokuyo-turtlebot.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="adding-hokuyo-laser-range-finder-to-turtlebot">
+<span id="hokuyo-turtlebot"></span><h1>Adding Hokuyo Laser Range Finder to Turtlebot<a class="headerlink" href="#adding-hokuyo-laser-range-finder-to-turtlebot" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial presents the steps for adding the <a class="reference external" href="http://www.hokuyo-aut.jp/02sensor/07scanner/urg_04lx_ug01.html">Hokuyo laser range finder</a> (LRF) sensor to TurtleBot, and explains how to write URDF description of the Hokuyo LRF, and how to modify the <a class="reference external" href="http://wiki.ros.org/urdf">URDF</a> of the Turtlebot robot to account for the addition of the Hokuyo sensor. Before going through this tutorial, it is highly recommended to have a background on <a class="reference external" href="http://wiki.ros.org/urdf">URDF</a>, and for this you may need to look at <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials">URDF Tutorials</a>. It is also recommended to understand the <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials/UnderstandingPR2URDFGazeboExtension">URDF Gazebo extensions</a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>In this tutorial you will learn how to:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Download the Hokuyo Related Packages</li>
+<li>Develop a Hokuyo URDF file</li>
+<li>Integrate Hokuyo with Turtlebot robot</li>
+<li>Using SLAM With Hokuyo LIDAR Sensor</li>
+</ul>
+</div></blockquote>
+<p class="last">This tutorial was developed for ROS <a class="reference external" href="http://wiki.ros.org/hydro">Hydro</a> version. However, it is expected to also work with <a class="reference external" href="http://wiki.ros.org/groovy">Groovy</a> (not tested).</p>
+</div>
+<p>The figure below shows the Hokuyo LRF added on top of the Turtlebot. It is possible to add it in other locations, provided that the laser beam do not interfere with the body of the robot.</p>
+<img alt="../_images/Hokuyo_Turtlebot.jpg" class="align-center" src="../_images/Hokuyo_Turtlebot.jpg" />
+<div class="section" id="installing-the-hokuyo-related-packages">
+<h2>Installing the Hokuyo Related Packages<a class="headerlink" href="#installing-the-hokuyo-related-packages" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://www.hokuyo-aut.jp/02sensor/07scanner/urg_04lx_ug01.html">Hokuyo Node</a> (UTM-04G) is a laser scanner that can scan with an opening up to 270 degrees with a range up to 4 meters. TurtleBot comes with the Kinect sensor that has a laser scanner with a scan opening up to 57 degrees with practical range of 3 meters. Hokuyo LRF is more accurate than the Kinect sensor and it would be more useful in making maps with gmapping and SLAM applications.
+ROS provides a driver for Hokyuo LRF, referred to as <a class="reference external" href="http://wiki.ros.org/hydro">urg_node</a> in ROS Hydro distribution. You have to install the <a class="reference external" href="http://wiki.ros.org/urg_node">urg_node</a> as follows:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-hydro-urg-*
+</pre></div>
+</div>
+<p>It is also possible to use the hokuyo_node and for this you need to install <a class="reference external" href="http://wiki.ros.org/hokuyo_node">hokuyo_node</a> as follows:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-hydro-hokuyo-node
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In this tutorial, we used <a class="reference external" href="http://wiki.ros.org/hokuyo_node">Hokuyo node</a></p>
+</div>
+</div>
+<div class="section" id="copying-hokuyo-description-in-meshes-folder">
+<h2>Copying Hokuyo description in meshes folder<a class="headerlink" href="#copying-hokuyo-description-in-meshes-folder" title="Permalink to this headline">¶</a></h2>
+<p>After the installation of above package is completed, we should now make the changes in Turtlebot URDF. First we should add the hokuyo.dae file into <code class="docutils literal"><span class="pre">/opt/ros/hydro/share/turtlebot_description/meshes</span></code> folder. Meshes file contain all the properties that are needed to define <a class="reference external" href="http://wiki.ros.org/hokuyo_node">hokuyo_node</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You need administrative and write privileges to do it</p>
+</div>
+</div>
+<div class="section" id="editing-and-adding-the-hokuyo-urdf-file">
+<h2>Editing and adding the Hokuyo URDF file<a class="headerlink" href="#editing-and-adding-the-hokuyo-urdf-file" title="Permalink to this headline">¶</a></h2>
+<p>Now go the folder <code class="docutils literal"><span class="pre">/opt/ros/hydro/share/turtlebot_description/urdf/sensors</span></code> and create a new file called as <code class="docutils literal"><span class="pre">hokuyo.urdf.xacro</span></code>. And add the following lines in the file:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;robot</span> <span class="na">name=</span><span class="s">&quot;sensor_hokuyo&quot;</span> <span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;xacro:include</span> <span class="na">filename=</span><span class="s">&quot;$(find turtlebot_description)/urdf/turtlebot_gazebo.urdf.xacro&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;xacro:include</span> <span class="na">filename=</span><span class="s">&quot;$(find turtlebot_description)/urdf/turtlebot_properties.urdf.xacro&quot;</span><span class="nt">/&gt;</span>
+
+<span class="nt">&lt;xacro:macro</span> <span class="na">name=</span><span class="s">&quot;sensor_hokuyo&quot;</span> <span class="na">params=</span><span class="s">&quot;parent&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;laser_joint&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;collision&gt;</span>
+<span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;geometry&gt;</span>
+<span class="nt">&lt;box</span> <span class="na">size=</span><span class="s">&quot;0.1 0.1 0.1&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/geometry&gt;</span>
+<span class="nt">&lt;/collision&gt;</span>
+<span class="nt">&lt;visual&gt;</span>
+<span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;geometry&gt;</span>
+<span class="nt">&lt;mesh</span> <span class="na">filename=</span><span class="s">&quot;package://turtlebot_description/meshes/sensors/hokuyo.dae&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/geometry&gt;</span>
+<span class="nt">&lt;/visual&gt;</span>
+<span class="nt">&lt;inertial&gt;</span>
+<span class="nt">&lt;mass</span> <span class="na">value=</span><span class="s">&quot;1e-5&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;inertia</span> <span class="na">ixx=</span><span class="s">&quot;1e-6&quot;</span> <span class="na">ixy=</span><span class="s">&quot;0&quot;</span> <span class="na">ixz=</span><span class="s">&quot;0&quot;</span> <span class="na">iyy=</span><span class="s">&quot;1e-6&quot;</span> <span class="na">iyz=</span><span class="s">&quot;0&quot;</span> <span class="na">izz=</span><span class="s">&quot;1e-6&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/inertial&gt;</span>
+<span class="nt">&lt;/link&gt;</span>
+<span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;hokuyo_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0 0.22 0.05&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0 0 1.570796&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;${parent}&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">&quot;laser&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/joint&gt;</span>
+<span class="nt">&lt;/xacro:macro&gt;</span>
+<span class="nt">&lt;/robot&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="code-explanation">
+<h2>Code Explanation<a class="headerlink" href="#code-explanation" title="Permalink to this headline">¶</a></h2>
+<p>The code focuses on two things one is description about <a class="reference external" href="http://www.hokuyo-aut.jp/02sensor/07scanner/urg_04lx_ug01.html">Hokuyo</a> that is in <code class="docutils literal"><span class="pre">meshes</span></code> folder, and other is the defining join with its location and its relation with parent frame (joint). For finding the location of hokuyo sensor, you may need to calculate the location that will be in meters and the representation is in <code class="docutils literal"><span class="pre">x,y,z</span></code> . Turtlebot assumes <code class="docutils literal"><span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span></code> at it base center.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;collision&gt;</span>
+<span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;geometry&gt;</span>
+<span class="nt">&lt;box</span> <span class="na">size=</span><span class="s">&quot;0.1 0.1 0.1&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/geometry&gt;</span>
+<span class="nt">&lt;/collision&gt;</span>
+</pre></div>
+</div>
+<p>Collision do provide the opportunity to take a decision before going to collide.In above code we have defined collisions for more explanation look into <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials/Adding%20Physical%20and%20Collision%20Properties%20to%20a%20URDF%20Model">Adding Collisions</a>.It is necessary to set the parameters to avoid collisions.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;hokuyo_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0 0.22 0.05&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0 0 1.570796&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;${parent}&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">&quot;laser&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/joint&gt;</span>
+</pre></div>
+</div>
+<p>In above code, first thing we did is specifying the joint name that is Hokuyo (but can be changed to any other thing), the type we select as <code class="docutils literal"><span class="pre">fixed</span></code> then we defined where the Hokuyo is attached with respect to origin, Next thing the joints are defined by parent and child, You can also specify some fixed frame like <code class="docutils literal"><span class="pre">map</span></code> or <code class="docutils literal"><span class="pre">base_footprint</span></code> or make it link to default parent</p>
+</div>
+<div class="section" id="adding-hokuyo-urdf-description-to-turtlebot-urdf-description">
+<h2>Adding Hokuyo URDF description to Turtlebot URDF description<a class="headerlink" href="#adding-hokuyo-urdf-description-to-turtlebot-urdf-description" title="Permalink to this headline">¶</a></h2>
+<p>In order to be Hokuyo a part of URDF description, we need to add Hokuyo LRF description to the Turtlebot URDF so that it can be visualized in rivz and other simulators. For that purpose, go to the folder <code class="docutils literal"><span class="pre">/opt/ros/hydro/share/turtlebot_description/urdf</span></code> and add the following line in <code class="docutils literal"><span class="pre">turtlebot_library.urdf.xacro</span></code> file:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;xacro:include</span> <span class="na">filename=</span><span class="s">&quot;$(find turtlebot_description)/urdf/sensors/hokuyo.urdf.xacro&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>This will call the hokuyo description created in urdf. In order to launch the description , it is just required to launch <code class="docutils literal"><span class="pre">mininal.launch</span></code> and it will work, in order to see a hokuyo sensor in rviz we need to add its definition in gazebo that is not covered in this tutorial but can be borrowed from <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials/Building%20a%20Visual%20Robot%20Model%20with%20URDF%20from%20Scratch">Building Visual Robot</a></p>
+</div>
+<div class="section" id="creating-a-launch-file-for-hokuyo-node">
+<h2>Creating a Launch File for Hokuyo Node<a class="headerlink" href="#creating-a-launch-file-for-hokuyo-node" title="Permalink to this headline">¶</a></h2>
+<p>Its is better to create a Hokuyo Launch file in order to launch the Hokuyo node. It will also allow Hokuyo node dynamic re-configuration of Hokuyo node. Create a launch file in any package and call it as <code class="docutils literal"><span class="pre">hokuyo.launch</span></code>. Copy and paste the following code in <code class="docutils literal"><span class="pre">hokuyo.launch</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
+&lt;node <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;hokuyo&quot;</span> <span class="nv">pkg</span><span class="o">=</span><span class="s2">&quot;hokuyo_node&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;hokuyo_node&quot;</span> <span class="nv">respawn</span><span class="o">=</span><span class="s2">&quot;false&quot;</span> <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span>&gt;
+&lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;calibrate_time&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;bool&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>/&gt;
+&lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;port&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;string&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;/dev/ttyACM0&quot;</span>/&gt;
+&lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;intensity&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;bool&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;false&quot;</span>/&gt;
+&lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;min_ang&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;-2.356194437&quot;</span>/&gt;
+&lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;max_ang&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;2.35619443&quot;</span>/&gt;
+&lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;cluster&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;1&quot;</span>/&gt;
+&lt;/node&gt;
+&lt;/launch&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-slam-with-hokuyo-lidar-sensor">
+<h2>Using SLAM With Hokuyo LIDAR Sensor<a class="headerlink" href="#using-slam-with-hokuyo-lidar-sensor" title="Permalink to this headline">¶</a></h2>
+<p>In order to use Hokuyo for SLAM as described in tutorial <a href="#id6"><span class="problematic" id="id7">`</span></a>Building SLAM &lt;<a class="reference external" href="http://wiki.ros.org/turtlebot_navigation/Tutorials/Build%20a%20map%20with%20SLAM">http://wiki.ros.org/turtlebot_navigation/Tutorials/Build%20a%20map%20with%20SLAM</a>&gt;`_hokuyo-turtlebot. Following are the steps to be done at turtlebot Launch the Turtlebot</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_bringup minimal.launch
+</pre></div>
+</div>
+<p>run the Hokuyo node:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_test_launch hokuyo.launch
+</pre></div>
+</div>
+<p>Launch the <code class="docutils literal"><span class="pre">gmapping</span></code> for map building</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_navigation gmapping_demo.launch
+</pre></div>
+</div>
+<p>You can view the map at workstation using <code class="docutils literal"><span class="pre">rviz</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_rviz_launchers view_navigation.launch
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../drones/index.html" class="btn btn-neutral float-right" title="Drones" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="turtlebot-arm-arduino.html" class="btn btn-neutral" title="Controlling a Turtlebot Arm with an Arduino Board using RFID" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

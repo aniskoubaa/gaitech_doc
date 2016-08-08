@@ -26,3 +26,4 @@ In this page, we will provide you a quick start with Turtlebot robot.
    Line Follower <line-follower>
    Turtlebot Arm PhantomX Pincher with ROS <turtlebot-arm-pincher>
    Controlling a Turtlebot Arm with an Arduino Board using RFID <turtlebot-arm-arduino>
+   Adding Hokuyo Laser Range Finder to Turtlebot <hokuyo-turtlebot>

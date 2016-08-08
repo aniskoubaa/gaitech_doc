@@ -214,3 +214,5 @@ Try putting the tag you define in front of the RFID.
 .. NOTE::
 
 	Do not give a close gripper command if the gripper is closed or the program might stop!!!
+
+.. youtube:: -34TNkw9W24
