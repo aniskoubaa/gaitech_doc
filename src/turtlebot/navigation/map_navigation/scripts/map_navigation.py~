@@ -19,13 +19,28 @@ class map_navigation():
 
 	goalReached = False
 
+	def choose():
+
+		choice='q'
+		
+		rospy.loginfo("|-------------------------------|")
+		rospy.loginfo("|PRESSE A KEY:")
+		rospy.loginfo("|'0': Cafe ")
+		rospy.loginfo("|'1': Office 1 ")
+		rospy.loginfo("|'2': Office 2 ")
+		rospy.loginfo("|'3': Office 3 ")
+		rospy.loginfo("|'q': Quit ")
+		rospy.loginfo("|-------------------------------|")
+		rospy.loginfo("|WHERE TO GO?")
+		
+		return choice
+
 	def __init__(self):
 
 		# initiliaze
         	rospy.init_node('map_navigation', anonymous=False)
 		
-		choice = 'q'
-		choice = choose()
+		choice = self.choose()
 		if (choice == '0'):
 
 			goalReached = moveToGoal(xCafe, yCafe)
@@ -46,11 +61,11 @@ class map_navigation():
 
 			if (goalReached):
 				rospy.loginfo("Congratulations!")
-				rospy.spin()
+				#rospy.spin()
 
 				#sc.playWave(path_to_sounds+"ship_bell.wav");
 				
-				rospy.spin()
+				#rospy.spin()
 
 			else:
 				rospy.loginfo("Hard Luck!")
@@ -88,21 +103,6 @@ class map_navigation():
 
 		return 0
 
-	def choose():
-
-		choice='q'
-		
-		rospy.loginfo("|-------------------------------|")
-		rospy.loginfo("|PRESSE A KEY:")
-		rospy.loginfo("|'0': Cafe ")
-		rospy.loginfo("|'1': Office 1 ")
-		rospy.loginfo("|'2': Office 2 ")
-		rospy.loginfo("|'3': Office 3 ")
-		rospy.loginfo("|'q': Quit ")
-		rospy.loginfo("|-------------------------------|")
-		rospy.loginfo("|WHERE TO GO?")
-		
-		return choice
 
 	def moveToGoal(xGoal,yGoal):
 
@@ -110,7 +110,7 @@ class map_navigation():
 		ac = actionlib.SimpleActionClient("move_base", MoveBaseAction)
 
 		#wait for the action server to come up
-		while(not ac.wait_for_server(rospy.Duration.from_sec(5.0)))
+		while(not ac.wait_for_server(rospy.Duration.from_sec(5.0))):
 			rospy.loginfo("Waiting for the move_base action server to come up")
 		
 
@@ -141,3 +141,11 @@ class map_navigation():
 			rospy.loginfo("The robot failed to reach the destination")
 			return False
 
+if __name__ == '__main__':
+    try:
+	
+	rospy.loginfo("You have reached the destination")
+        map_navigation()
+        rospy.spin()
+    except rospy.ROSInterruptException:
+        rospy.loginfo("map_navigation node terminated.")
