@@ -46,10 +46,6 @@ They are located in ``src/turtlebot/navigation/map_navigation_folder``.
 In particular, we will use the launch file ``map_navigation_psu.launch`` that contains all the needed ROS nodes for this tutorial. 
 Here is the content of the ``map_navigation_psu.launch`` file.
 
-
-You can find the whole ``cpp`` and ``python`` files in our `GitHub repository <https://github.com/aniskoubaa/gaitech_doc>`_. 
-They are located in ``src/turtlebot/navigation/free_space_navigation`` folder. 
-
 In the code you will find 3 ``move`` amd ``rotate`` methods and each one of them has its approach so you will be able to know 3 different ways of controlling and manipulating the turtlebot robot . 
 The code is also well explained so you can easily understand what each line is doing in the code and what is its functionality.	
 
