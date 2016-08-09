@@ -8,14 +8,7 @@ from math import radians, degrees
 class map_navigation():
 	
 	# declare the coordinates of interest 
-	xCafe = 15.50
-	yCafe = 10.20
-	xOffice1 = 27.70
-	yOffice1 = 12.50
-	xOffice2 = 30.44
-	yOffice2 = 12.50
-	xOffice3 = 35.20
-	yOffice3 = 13.50
+	
 
 	goalReached = False
 
@@ -35,31 +28,43 @@ class map_navigation():
 		choice = input()
 		return choice
 
-	def __init__(self):
-
+	def __init__(self): 
+		self.xCafe = 15.50
+		self.yCafe = 10.20
+		self.xOffice1 = 27.70
+		self.yOffice1 = 12.50
+		self.xOffice2 = 30.44
+		self.yOffice2 = 12.50
+		self.xOffice3 = 35.20
+		self.yOffice3 = 13.50
 		# initiliaze
         	rospy.init_node('map_navigation', anonymous=False)
-		
 		choice = self.choose()
-		if (choice == '0'):
-
-			goalReached = moveToGoal(xCafe, yCafe)
+		rospy.loginfo(type(choice))
 		
-		elif (choice == '1'):
+		if (choice == 0):
 
-			goalReached = moveToGoal(xOffice1, yOffice1)
-
-		elif (choice == '2'):
+			rospy.loginfo(choice)
+			self.goalReached = self.moveToGoal(self.xCafe, self.yCafe)
 		
-			goalReached = moveToGoal(xOffice2, yOffice2)
-		
-		elif (choice == '3'):
+		elif (choice == 1):
+			rospy.loginfo(choice)
 
-			goalReached = moveToGoal(xOffice3, yOffice3)
+			self.goalReached = self.moveToGoal(self.xOffice1, self.yOffice1)
+
+		elif (choice == 2):
+			rospy.loginfo(choice)
+			
+			self.goalReached = self.moveToGoal(self.xOffice2, self.yOffice2)
+		
+		elif (choice == 3):
+			rospy.loginfo(choice)
+
+			self.goalReached = self.moveToGoal(self.xOffice3, self.yOffice3)
 
 		if (choice!='q'):
 
-			if (goalReached):
+			if (self.goalReached):
 				rospy.loginfo("Congratulations!")
 				#rospy.spin()
 
@@ -70,24 +75,24 @@ class map_navigation():
 			else:
 				rospy.loginfo("Hard Luck!")
 				#sc.playWave(path_to_sounds+"short_buzzer.wav");
-			
-		while True:
+		
+		while choice != 'q':
 			choice = self.choose()
 			if (choice == '0'):
 
-				goalReached = moveToGoal(xCafe, yCafe)
+				goalReached = self.moveToGoal(xCafe, yCafe)
 		
 			elif (choice == '1'):
 
-				goalReached = moveToGoal(xOffice1, yOffice1)
+				goalReached = self.moveToGoal(xOffice1, yOffice1)
 
 			elif (choice == '2'):
 		
-				goalReached = moveToGoal(xOffice2, yOffice2)
+				goalReached = self.moveToGoal(xOffice2, yOffice2)
 		
 			elif (choice == '3'):
 
-				goalReached = moveToGoal(xOffice3, yOffice3)
+				goalReached = self.moveToGoal(xOffice3, yOffice3)
 
 			if (choice!='q'):
 
@@ -101,10 +106,13 @@ class map_navigation():
 					rospy.loginfo("Hard Luck!")
 					#sc.playWave(path_to_sounds+"short_buzzer.wav");
 
-		return 0
 
+	def shutdown(self):
+        # stop turtlebot
+        	rospy.loginfo("Quit program")
+        	rospy.sleep()
 
-	def moveToGoal(xGoal,yGoal):
+	def moveToGoal(self,xGoal,yGoal):
 
 		#define a client for to send goal requests to the move_base server through a SimpleActionClient
 		ac = actionlib.SimpleActionClient("move_base", MoveBaseAction)
@@ -122,7 +130,7 @@ class map_navigation():
 
 		# moving towards the goal*/
 
-		goal.target_pose.pose.position =  Point(xGoal,yGoal,0)
+		goal.target_pose.pose.position =  Point(self.xGoal,self.yGoal,0)
 		goal.target_pose.pose.orientation.x = 0.0
 		goal.target_pose.pose.orientation.y = 0.0
 		goal.target_pose.pose.orientation.z = 0.0
@@ -147,5 +155,5 @@ if __name__ == '__main__':
 	rospy.loginfo("You have reached the destination")
         map_navigation()
         rospy.spin()
-    except rospy.ROSInterruptException:
+    except:
         rospy.loginfo("map_navigation node terminated.")

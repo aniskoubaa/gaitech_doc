@@ -19,7 +19,7 @@ class map_navigation():
 
 	goalReached = False
 
-	def choose():
+	def choose(self):
 
 		choice='q'
 		
@@ -32,14 +32,14 @@ class map_navigation():
 		rospy.loginfo("|'q': Quit ")
 		rospy.loginfo("|-------------------------------|")
 		rospy.loginfo("|WHERE TO GO?")
-		
+		choice = input()
 		return choice
 
 	def __init__(self):
 
 		# initiliaze
         	rospy.init_node('map_navigation', anonymous=False)
-		
+		goalReached = False
 		choice = self.choose()
 		if (choice == '0'):
 
@@ -70,9 +70,12 @@ class map_navigation():
 			else:
 				rospy.loginfo("Hard Luck!")
 				#sc.playWave(path_to_sounds+"short_buzzer.wav");
-			
-		while True:
-			choice = choose()
+		
+		else:
+			self.shutdown()
+
+		while choice != 'q':
+			choice = self.choose()
 			if (choice == '0'):
 
 				goalReached = moveToGoal(xCafe, yCafe)
@@ -100,9 +103,15 @@ class map_navigation():
 				else:
 					rospy.loginfo("Hard Luck!")
 					#sc.playWave(path_to_sounds+"short_buzzer.wav");
+			else:
+				self.shutdown()
+			
 
-		return 0
 
+	def shutdown(self):
+        # stop turtlebot
+        rospy.loginfo("Quit program")
+        rospy.sleep(1)
 
 	def moveToGoal(xGoal,yGoal):
 
