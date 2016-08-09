@@ -105,6 +105,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#introducing-the-opencv">Introducing the OpenCV</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#draw-a-line-in-gazebo">Draw a line in Gazebo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#follow-the-line">Follow the line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-explanation">Code Explanation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test-on-your-turtlebot">Test on your Turtlebot</a></li>
 </ul>
 </li>
@@ -321,6 +322,53 @@ Run the following commands:</p>
 </div>
 <p>Open <cite>Gazebo</cite> and then run the <code class="docutils literal"><span class="pre">python</span></code> script:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>python your_path/line_follower.py
+</pre></div>
+</div>
+</div>
+<div class="section" id="code-explanation">
+<h2>Code Explanation<a class="headerlink" href="#code-explanation" title="Permalink to this headline">¶</a></h2>
+<p>The following code initialise the <code class="docutils literal"><span class="pre">Publisher</span></code> and <code class="docutils literal"><span class="pre">Subscriber</span></code> topics for the line_follower`` node.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>     <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span> <span class="o">=</span> <span class="n">cv_bridge</span><span class="o">.</span><span class="n">CvBridge</span><span class="p">()</span>
+     <span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s2">&quot;window&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+     <span class="bp">self</span><span class="o">.</span><span class="n">image_sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;camera/rgb/image_raw&#39;</span><span class="p">,</span> <span class="n">Image</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_callback</span><span class="p">)</span>
+
+     <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;cmd_vel_mux/input/teleop&#39;</span><span class="p">,</span> <span class="n">Twist</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+     <span class="bp">self</span><span class="o">.</span><span class="n">twist</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The following code is for the image transformation, convertion and then analysing the data coming from the camera sensor. The first part works on converting the image from <code class="docutils literal"><span class="pre">BGR</span></code> (Blue, Green, Red) to <code class="docutils literal"><span class="pre">HSV</span></code> (Hue, Saturation, Value) using the <code class="docutils literal"><span class="pre">cv2</span></code> library and defining the lower and upper limit for the yellow color degrees and use a <code class="docutils literal"><span class="pre">mask</span></code> to make sure of that using the <code class="docutils literal"><span class="pre">inRange()</span></code> function to produce a binary image.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>     <span class="k">def</span> <span class="nf">image_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+
+             <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span><span class="o">.</span><span class="n">imgmsg_to_cv2</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="n">desired_encoding</span><span class="o">=</span><span class="s1">&#39;bgr8&#39;</span><span class="p">)</span>
+             <span class="n">hsv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HSV</span><span class="p">)</span>
+             <span class="n">lower_yellow</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+             <span class="n">upper_yellow</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">250</span><span class="p">])</span>
+             <span class="n">mask</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">inRange</span><span class="p">(</span><span class="n">hsv</span><span class="p">,</span> <span class="n">lower_yellow</span><span class="p">,</span> <span class="n">upper_yellow</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Using the <code class="docutils literal"><span class="pre">OpenCV</span></code> and <code class="docutils literal"><span class="pre">numpy</span></code> libraries we will erase all the pixels that was not in the range we defined before.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>             <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
+             <span class="n">search_top</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">h</span><span class="o">/</span><span class="mi">4</span>
+             <span class="n">search_bot</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">h</span><span class="o">/</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">20</span>
+             <span class="n">mask</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">search_top</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+             <span class="n">mask</span><span class="p">[</span><span class="n">search_bot</span><span class="p">:</span><span class="n">h</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>After that we will use the <code class="docutils literal"><span class="pre">moments()</span></code> function in the <code class="docutils literal"><span class="pre">OpenCV</span></code> library to determind the center point of the rest of the binary image that was inside the range we defined above. To make it easier for you to debug it is better to draw a red circle in the middle/origin point of your image. Then you display the image that is produced during all this process.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>             <span class="n">M</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">moments</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+             <span class="k">if</span> <span class="n">M</span><span class="p">[</span><span class="s1">&#39;m00&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                     <span class="n">cx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">M</span><span class="p">[</span><span class="s1">&#39;m10&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">M</span><span class="p">[</span><span class="s1">&#39;m00&#39;</span><span class="p">])</span>
+                     <span class="n">cy</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">M</span><span class="p">[</span><span class="s1">&#39;m01&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">M</span><span class="p">[</span><span class="s1">&#39;m00&#39;</span><span class="p">])</span>
+                     <span class="n">cv2</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">),</span> <span class="mi">20</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                     <span class="c1">#The proportional controller is implemented in the following four lines which is reposible of linear scaling of an error to drive the control output</span>
+                     <span class="n">err</span> <span class="o">=</span> <span class="n">cx</span> <span class="o">-</span> <span class="n">w</span><span class="o">/</span><span class="mi">2</span>
+                     <span class="bp">self</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.2</span>
+                     <span class="bp">self</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+                     <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">twist</span><span class="p">)</span>
+             <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;window&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+             <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
