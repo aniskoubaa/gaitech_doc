@@ -101,7 +101,7 @@ Then, once the  the transformation is found between the two frames, we save its 
 In simple words, this object captures the relation between the two frames in terms of translation and relative orientation.  
 
 
-**C Code**
+**C++ Code**
 
 .. code-block:: c
    
@@ -226,7 +226,118 @@ that the ``current_transform`` was captured at the moment of the motion.
                         break
    
 
+The following code defines the ``rotate`` function that gives the robot the ability to turn. It starts by delcaring a ``Twist`` message to send velocity commands and a declartion of ``tf`` transform listener to listen and capture the transformation between the ``odom`` frame and the ``base_footprint`` frame. Then change the angles to ``radians`` and then start publishing topics according to the right angles until the robot reaches a certain angle. The ``python`` code is a little different than the ``C++`` code but it does the same functionality.
 
+
+**C++ Code**
+
+.. code-block:: c
+   :emphasize-lines: 15
+
+   double rotate(double angular_velocity, double radians,  bool clockwise)
+    {
+
+    //delcare a Twist message to send velocity commands
+    geometry_msgs::Twist VelocityMessage;
+    //declare tf transform listener: this transform listener will be used to listen and capture the transformation between
+    // the odom frame (that represent the reference frame) and the base_footprint frame the represent moving frame
+    tf::TransformListener TFListener;
+    //declare tf transform
+    //init_transform: is the transformation before starting the motion
+    tf::StampedTransform init_transform;
+    //current_transformation: is the transformation while the robot is moving
+    tf::StampedTransform current_transform;
+    //initial coordinates (for method 3)
+    nav_msgs::Odometry initial_turtlebot_odom_pose;
+
+    double angle_turned =0.0;
+
+    //validate angular velocity; ANGULAR_VELOCITY_MINIMUM_THRESHOLD is the minimum allowed
+    angular_velocity=((angular_velocity>ANGULAR_VELOCITY_MINIMUM_THRESHOLD)?angular_velocity:ANGULAR_VELOCITY_MINIMUM_THRESHOLD);
+
+    while(radians < 0) radians += 2*M_PI;
+    while(radians > 2*M_PI) radians -= 2*M_PI;
+
+    //wait for the listener to get the first message
+    TFListener.waitForTransform("base_footprint", "odom", ros::Time(0), ros::Duration(1.0));
+
+
+    //record the starting transform from the odometry to the base frame
+    TFListener.lookupTransform("base_footprint", "odom", ros::Time(0), init_transform);
+
+
+    //the command will be to turn at 0.75 rad/s
+    VelocityMessage.linear.x = VelocityMessage.linear.y = 0.0;
+    VelocityMessage.angular.z = angular_velocity;
+    if (clockwise) VelocityMessage.angular.z = -VelocityMessage.angular.z;
+
+    //the axis we want to be rotating by
+    tf::Vector3 desired_turn_axis(0,0,1);
+    if (!clockwise) desired_turn_axis = -desired_turn_axis;
+
+    ros::Rate rate(10.0);
+    bool done = false;
+    while (!done )
+    {
+    //send the drive command
+    velocityPublisher.publish(VelocityMessage);
+    rate.sleep();
+    //get the current transform
+    try
+    {
+      TFListener.waitForTransform("base_footprint", "odom", ros::Time(0), ros::Duration(1.0));
+      TFListener.lookupTransform("base_footprint", "odom", ros::Time(0), current_transform);
+      }
+      catch (tf::TransformException ex)
+      {
+      ROS_ERROR("%s",ex.what());
+      break;
+    }
+    tf::Transform relative_transform = init_transform.inverse() * current_transform;
+    tf::Vector3 actual_turn_axis = relative_transform.getRotation().getAxis();
+    angle_turned = relative_transform.getRotation().getAngle();
+
+    if (fabs(angle_turned) < 1.0e-2) continue;
+    if (actual_turn_axis.dot(desired_turn_axis ) < 0 )
+      angle_turned = 2 * M_PI - angle_turned;
+
+    if (!clockwise)
+      VelocityMessage.angular.z = (angular_velocity-ANGULAR_VELOCITY_MINIMUM_THRESHOLD) * (fabs(radian2degree(radians-angle_turned)/radian2degree(radians)))+ANGULAR_VELOCITY_MINIMUM_THRESHOLD;
+    else
+      if (clockwise)
+        VelocityMessage.angular.z = (-angular_velocity+ANGULAR_VELOCITY_MINIMUM_THRESHOLD) * (fabs(radian2degree(radians-angle_turned)/radian2degree(radians)))-ANGULAR_VELOCITY_MINIMUM_THRESHOLD;
+
+    if (angle_turned > radians) {
+      done = true;
+      VelocityMessage.linear.x = VelocityMessage.linear.y = VelocityMessage.angular.z = 0;
+      velocityPublisher.publish(VelocityMessage);
+    }
+
+
+    }
+    if (done) return angle_turned;
+    return angle_turned;
+    }
+
+**Python Code**
+
+.. code-block:: python
+   :emphasize-lines: 16
+
+    def rotate(self):
+        
+        rotateMessage = Twist()
+        
+        rotateMessage.linear.x = 0
+        rotateMessage.angular.z = radians(45); #45 deg/s in radians/s
+        
+        rospy.loginfo("Turtlebot is Turning")
+        r = rospy.Rate(5)
+
+        for x in range(0,10):
+
+            self.velocityPublisher.publish(rotateMessage)
+            r.sleep()            
 
 Running the code using Stage and RViz Simulators
 ================================================
