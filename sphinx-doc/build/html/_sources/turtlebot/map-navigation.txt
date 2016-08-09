@@ -433,12 +433,12 @@ In the latter case, You must make sure to have correctly configured your network
 References
 ==========
 
-TODO: CREATE LINKS FOR THESE REFERENCES
-   * Map Server in ROS
-   * ROS Navigation
-   * Global Planner
-   * Local Planner
-   * ROS Navigation Tutorials
+The following links are for more information about:
+   * `Map Server in ROS <http://wiki.ros.org/map_server>`_
+   * `ROS Navigation <http://wiki.ros.org/navigation>`_
+   * `Global Planner <http://wiki.ros.org/global_planner>`_
+   * `Local Planner <http://wiki.ros.org/base_local_planner>`_
+   * `ROS Navigation Tutorials <http://wiki.ros.org/navigation/Tutorials>`_
 
 
 Review Questions and Activity
