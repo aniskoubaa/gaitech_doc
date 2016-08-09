@@ -25,7 +25,7 @@ class map_navigation():
 		rospy.loginfo("|'q': Quit ")
 		rospy.loginfo("|-------------------------------|")
 		rospy.loginfo("|WHERE TO GO?")
-		choice = input()
+		choice = eval(input())
 		return choice
 
 	def __init__(self): 
