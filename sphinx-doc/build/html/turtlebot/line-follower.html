@@ -185,7 +185,7 @@
 <h2>Introducing the OpenCV<a class="headerlink" href="#introducing-the-opencv" title="Permalink to this headline">¶</a></h2>
 <p>OpenCV is a popular open source computer vision library. We will use this library to view images and stream from the turtlbot robot so it can follow a line on the ground. In order to do that we will need to see the line, define the centre of this line and finally move the robot to follow the robot.
 Messages from the camera are published on the <code class="docutils literal"><span class="pre">sensor_msgs/Image</span></code> topic so we will need to write a node that subscribe to the same topic.</p>
-<p>Open any text editor you like and type the following in a file called <code class="docutils literal"><span class="pre">follower.py</span></code>:</p>
+<p>Open a file called <code class="docutils literal"><span class="pre">follower.py</span></code> in the following path <code class="docutils literal"><span class="pre">gaitech_doc/src/turtlebot/navigation/line_follower/scripts/</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="kn">import</span> <span class="nn">rospy</span>
 <span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">Image</span>
@@ -223,7 +223,7 @@ Run the following commands:</p>
 </pre></div>
 </div>
 <p>This will give you a list of all the active nodes on your ROS environment and you will find your <code class="docutils literal"><span class="pre">follower</span></code> node between them.</p>
-<p>Now you need to create a <code class="docutils literal"><span class="pre">python</span></code> script to view the images from the turtlebot. Save the following <code class="docutils literal"><span class="pre">python</span></code> script in a file called <code class="docutils literal"><span class="pre">follower_opencv.py</span></code> :</p>
+<p>Now you need to create a <code class="docutils literal"><span class="pre">python</span></code> script to view the images from the turtlebot. Open a file called <code class="docutils literal"><span class="pre">follower_opencv.py</span></code> in the following path <code class="docutils literal"><span class="pre">gaitech_doc/src/turtlebot/navigation/line_follower/scripts/</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 
 <span class="c1">#This script uses the cv_bridge package to convert images coming on the topic</span>
@@ -248,7 +248,7 @@ Run the following commands:</p>
 <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Run the <code class="docutils literal"><span class="pre">python</span></code> script after saving the changes. You will be able to see an image of whatever infront of the robot.</p>
+<p>Run the <code class="docutils literal"><span class="pre">python</span></code> script. You will be able to see an image of whatever infront of the robot.</p>
 </div>
 <div class="section" id="draw-a-line-in-gazebo">
 <h2>Draw a line in Gazebo<a class="headerlink" href="#draw-a-line-in-gazebo" title="Permalink to this headline">¶</a></h2>
@@ -257,7 +257,7 @@ Run the following commands:</p>
 <div class="section" id="follow-the-line">
 <h2>Follow the line<a class="headerlink" href="#follow-the-line" title="Permalink to this headline">¶</a></h2>
 <p>After drawing the yellow line we need to make the robot follow this line. The apprach that is used here is for the robot the follow the line after defining the center of the line and draw a red dot at the center point of the line and keep this dot at 1 meter distance from the robot. Then move the robot according to the line path.</p>
-<p>Open a new file and call it <code class="docutils literal"><span class="pre">line_follower.py</span></code> and write the following script:</p>
+<p>Open a file called <code class="docutils literal"><span class="pre">line_follower.py</span></code> in the same path <code class="docutils literal"><span class="pre">gaitech_doc/src/turtlebot/navigation/line_follower/scripts/</span></code> :</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 
 
@@ -348,7 +348,7 @@ Run the following commands:</p>
              <span class="n">mask</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">inRange</span><span class="p">(</span><span class="n">hsv</span><span class="p">,</span> <span class="n">lower_yellow</span><span class="p">,</span> <span class="n">upper_yellow</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Using the <code class="docutils literal"><span class="pre">OpenCV</span></code> and <code class="docutils literal"><span class="pre">numpy</span></code> libraries we will erase all the pixels that was not in the range we defined before.</p>
+<p>Using the <code class="docutils literal"><span class="pre">OpenCV</span></code> and <code class="docutils literal"><span class="pre">numpy</span></code> libraries we will erase all the pixels that was not in the range we defined before. You can see this in the following code.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span>             <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
              <span class="n">search_top</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">h</span><span class="o">/</span><span class="mi">4</span>
              <span class="n">search_bot</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">h</span><span class="o">/</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">20</span>

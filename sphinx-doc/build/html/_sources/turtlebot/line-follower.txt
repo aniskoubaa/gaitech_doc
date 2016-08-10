@@ -26,7 +26,7 @@ Introducing the OpenCV
 OpenCV is a popular open source computer vision library. We will use this library to view images and stream from the turtlbot robot so it can follow a line on the ground. In order to do that we will need to see the line, define the centre of this line and finally move the robot to follow the robot.
 Messages from the camera are published on the ``sensor_msgs/Image`` topic so we will need to write a node that subscribe to the same topic.
 
-Open any text editor you like and type the following in a file called ``follower.py``:
+Open a file called ``follower.py`` in the following path ``gaitech_doc/src/turtlebot/navigation/line_follower/scripts/``:
 
 .. code-block:: python
 
@@ -81,7 +81,7 @@ To be able to make sure that it is working run the following command:
 
 This will give you a list of all the active nodes on your ROS environment and you will find your ``follower`` node between them.
 
-Now you need to create a ``python`` script to view the images from the turtlebot. Save the following ``python`` script in a file called ``follower_opencv.py`` :
+Now you need to create a ``python`` script to view the images from the turtlebot. Open a file called ``follower_opencv.py`` in the following path ``gaitech_doc/src/turtlebot/navigation/line_follower/scripts/``:
 
 .. code-block:: python
 	
@@ -108,7 +108,7 @@ Now you need to create a ``python`` script to view the images from the turtlebot
 	follower = Follower()
 	rospy.spin()
 
-Run the ``python`` script after saving the changes. You will be able to see an image of whatever infront of the robot.
+Run the ``python`` script. You will be able to see an image of whatever infront of the robot.
 
 
 Draw a line in Gazebo
@@ -121,7 +121,7 @@ Follow the line
 
 After drawing the yellow line we need to make the robot follow this line. The apprach that is used here is for the robot the follow the line after defining the center of the line and draw a red dot at the center point of the line and keep this dot at 1 meter distance from the robot. Then move the robot according to the line path.
 
-Open a new file and call it ``line_follower.py`` and write the following script:
+Open a file called ``line_follower.py`` in the same path ``gaitech_doc/src/turtlebot/navigation/line_follower/scripts/`` :
 
 .. code-block:: python
 
@@ -222,7 +222,7 @@ The following code is for the image transformation, convertion and then analysin
 		upper_yellow = numpy.array([255, 255, 250])
 		mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
 		
-Using the ``OpenCV`` and ``numpy`` libraries we will erase all the pixels that was not in the range we defined before.
+Using the ``OpenCV`` and ``numpy`` libraries we will erase all the pixels that was not in the range we defined before. You can see this in the following code.
 
 .. code-block:: python
    :emphasize-lines: 15
