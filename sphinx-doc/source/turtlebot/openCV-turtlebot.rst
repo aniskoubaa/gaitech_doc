@@ -5,10 +5,68 @@
 ROS OpenCV with Turtlebot
 =========================
 
-In this tutorial you will learn how to configure your turtlebot robot with OpenCV to stream videos from ``Microsoft Kinect``. 
+In this tutorial you will learn how to configure your turtlebot robot with OpenCV to stream videos from ``Microsoft Kinect`` or ``Asus`` cameras. 
 
 .. WARNING::
     * Make sure that you completed installing all the required packages in the previous tutorials :ref:`openKinect-turtlebot` and :ref:`network-config-doc` and your network set-up is working fine between the ROS Master node and the host node.
+
+Installing and Testing Camera Drivers
+=====================================
+
+In this section you will learn how to install all the camera drivers either it is ``Asus`` or ``Kinect`` camera. After that you will learn how to test the camera and make sure if it works.
+
+Installing the Camera Drivers
+-----------------------------
+
+All you need to do is to install the ROS ``openni`` and ``freenect`` drivers by running the following command:
+
+.. code-block:: bash
+    
+    sudo apt-get install ros-indigo-openni-* ros-indigo-openni2-* \ ros-indigo-freenect-*
+    rospack profile
+
+Testing your Camera
+-------------------
+
+To be able to see the video stream coming from your camera we need to use the ``image_view`` `package <http://wiki.ros.org/image_view>`_ .
+
+For ``Microsoft Kinect`` camera run the following command:
+
+.. code-block:: bash
+    
+    roslaunch freenect_launch freenect.launch
+
+For ``Asus`` camera run the following command:
+
+.. code-block:: bash
+    
+    roslaunch openni2_launch openni2.launch
+
+If there is no problem with your installation you will see some thing like this:
+
+.. code-block:: bash
+
+    process[camera/camera_nodelet_manager-1]: started with pid [18070]
+    [INFO] [1420555647.969035762]: Initializing nodelet with 4 worker
+    threads.
+    process[camera/driver-2]: started with pid [18078]
+    Warning: USB events thread - failed to set priority. This might cause
+    loss of data...
+    process[camera/rectify_color-3]: started with pid [18112]
+    process[camera/depth_rectify_depth-4]: started with pid [18126]
+    etc.
+
+.. NOTE::
+    
+    You will see a couple of warnings about USB event threads, you can ignore them.
+
+The color video stream uses the following topic to publish on ``/camera/rgb/image_raw`` which uses the ``image_view`` package. Run the following command:
+
+.. code-block:: bash
+    
+    rosrun image_view image_view image:=/camera/rgb/image_raw
+
+After a few seconds you will see the video stream from your camera on a small window.
 
 Installing OpenCV packages
 ==========================
@@ -67,11 +125,20 @@ Run the file in a terminal:
 
 .. NOTE::
 
-	Make sure that your camera driver is running.
+    Make sure that your camera driver is running.
+
+    For ``Microsoft Kinect`` camera:
 	
 	.. code-block:: bash
 	
 		roslaunch freenect_launch freenect.launch
+
+    For ``Asus`` camera:
+
+    .. code-block:: bash
+    
+        roslaunch openni2_launch openni2.launch
+
 
 This file will run a python script called ``turtlebot_openCV.py`` and you can find the file in the following path ``gaitech_doc/src/turtlebot/openCV/scripts/turtlebot_openCV.py``. The code is well documented but we will have a look at a couple of parts of it.
 

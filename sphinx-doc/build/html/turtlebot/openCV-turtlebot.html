@@ -101,6 +101,11 @@
 <li class="toctree-l2"><a class="reference internal" href="map-navigation.html">Map Navigation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">ROS OpenCV with Turtlebot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-and-testing-camera-drivers">Installing and Testing Camera Drivers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installing-the-camera-drivers">Installing the Camera Drivers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#testing-your-camera">Testing your Camera</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#installing-opencv-packages">Installing OpenCV packages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#transform-image-from-ros-to-opencv">Transform Image from ROS to OpenCV</a></li>
 </ul>
@@ -161,12 +166,57 @@
             
   <div class="section" id="ros-opencv-with-turtlebot">
 <span id="opencv-turtlebot"></span><h1>ROS OpenCV with Turtlebot<a class="headerlink" href="#ros-opencv-with-turtlebot" title="Permalink to this headline">¶</a></h1>
-<p>In this tutorial you will learn how to configure your turtlebot robot with OpenCV to stream videos from <code class="docutils literal"><span class="pre">Microsoft</span> <span class="pre">Kinect</span></code>.</p>
+<p>In this tutorial you will learn how to configure your turtlebot robot with OpenCV to stream videos from <code class="docutils literal"><span class="pre">Microsoft</span> <span class="pre">Kinect</span></code> or <code class="docutils literal"><span class="pre">Asus</span></code> cameras.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <ul class="last simple">
 <li>Make sure that you completed installing all the required packages in the previous tutorials <a class="reference internal" href="openKinect-turtlebot.html#openkinect-turtlebot"><span class="std std-ref">Setting-up 3D Sensor for the Turtlebot</span></a> and <a class="reference internal" href="network-config-doc.html#network-config-doc"><span class="std std-ref">Network Configuration</span></a> and your network set-up is working fine between the ROS Master node and the host node.</li>
 </ul>
+</div>
+<div class="section" id="installing-and-testing-camera-drivers">
+<h2>Installing and Testing Camera Drivers<a class="headerlink" href="#installing-and-testing-camera-drivers" title="Permalink to this headline">¶</a></h2>
+<p>In this section you will learn how to install all the camera drivers either it is <code class="docutils literal"><span class="pre">Asus</span></code> or <code class="docutils literal"><span class="pre">Kinect</span></code> camera. After that you will learn how to test the camera and make sure if it works.</p>
+<div class="section" id="installing-the-camera-drivers">
+<h3>Installing the Camera Drivers<a class="headerlink" href="#installing-the-camera-drivers" title="Permalink to this headline">¶</a></h3>
+<p>All you need to do is to install the ROS <code class="docutils literal"><span class="pre">openni</span></code> and <code class="docutils literal"><span class="pre">freenect</span></code> drivers by running the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-indigo-openni-* ros-indigo-openni2-* <span class="se">\ </span>ros-indigo-freenect-*
+rospack profile
+</pre></div>
+</div>
+</div>
+<div class="section" id="testing-your-camera">
+<h3>Testing your Camera<a class="headerlink" href="#testing-your-camera" title="Permalink to this headline">¶</a></h3>
+<p>To be able to see the video stream coming from your camera we need to use the <code class="docutils literal"><span class="pre">image_view</span></code> <a class="reference external" href="http://wiki.ros.org/image_view">package</a> .</p>
+<p>For <code class="docutils literal"><span class="pre">Microsoft</span> <span class="pre">Kinect</span></code> camera run the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch freenect_launch freenect.launch
+</pre></div>
+</div>
+<p>For <code class="docutils literal"><span class="pre">Asus</span></code> camera run the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch openni2_launch openni2.launch
+</pre></div>
+</div>
+<p>If there is no problem with your installation you will see some thing like this:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>process<span class="o">[</span>camera/camera_nodelet_manager-1<span class="o">]</span>: started with pid <span class="o">[</span>18070<span class="o">]</span>
+<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>1420555647.969035762<span class="o">]</span>: Initializing nodelet with <span class="m">4</span> worker
+threads.
+process<span class="o">[</span>camera/driver-2<span class="o">]</span>: started with pid <span class="o">[</span>18078<span class="o">]</span>
+Warning: USB events thread - failed to <span class="nb">set</span> priority. This might cause
+loss of data...
+process<span class="o">[</span>camera/rectify_color-3<span class="o">]</span>: started with pid <span class="o">[</span>18112<span class="o">]</span>
+process<span class="o">[</span>camera/depth_rectify_depth-4<span class="o">]</span>: started with pid <span class="o">[</span>18126<span class="o">]</span>
+etc.
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You will see a couple of warnings about USB event threads, you can ignore them.</p>
+</div>
+<p>The color video stream uses the following topic to publish on <code class="docutils literal"><span class="pre">/camera/rgb/image_raw</span></code> which uses the <code class="docutils literal"><span class="pre">image_view</span></code> package. Run the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun image_view image_view image:<span class="o">=</span>/camera/rgb/image_raw
+</pre></div>
+</div>
+<p>After a few seconds you will see the video stream from your camera on a small window.</p>
+</div>
 </div>
 <div class="section" id="installing-opencv-packages">
 <h2>Installing OpenCV packages<a class="headerlink" href="#installing-opencv-packages" title="Permalink to this headline">¶</a></h2>
@@ -211,7 +261,14 @@ rospack profile
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>Make sure that your camera driver is running.</p>
-<div class="last highlight-bash"><div class="highlight"><pre><span></span>roslaunch freenect_launch freenect.launch
+<p>For <code class="docutils literal"><span class="pre">Microsoft</span> <span class="pre">Kinect</span></code> camera:</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch freenect_launch freenect.launch
+</pre></div>
+</div>
+</div></blockquote>
+<p>For <code class="docutils literal"><span class="pre">Asus</span></code> camera:</p>
+<div class="last highlight-bash"><div class="highlight"><pre><span></span>roslaunch openni2_launch openni2.launch
 </pre></div>
 </div>
 </div>
