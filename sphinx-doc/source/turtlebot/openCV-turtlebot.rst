@@ -5,11 +5,10 @@
 ROS OpenCV with Turtlebot
 =========================
 
-In this tutorial you will learn how to configure your turtlebot robot with OpenCV to stream videos from Microsoft Kinect. 
+In this tutorial you will learn how to configure your turtlebot robot with OpenCV to stream videos from ``Microsoft Kinect``. 
 
 .. WARNING::
-    * Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node.
-    * Make sure to complete the ROS OpenKinect with Turtlebot tutorial. 
+    * Make sure that you completed installing all the required packages in the previous tutorials :ref:`openKinect-turtlebot` and :ref:`network-config-doc` and your network set-up is working fine between the ROS Master node and the host node.
 
 Installing OpenCV packages
 ==========================
@@ -18,7 +17,7 @@ You need to download the OpenCV packages by running the following commands:
 
 .. code-block:: bash
 
-	sudo apt-get install ros-indigo-vision-opencv libopencv-dev \ python-opencv
+	sudo apt-get install ros-indigo-vision-opencv libopencv-dev python-opencv
 	rospack profile
 
 After installation type this command to make sure that you have successfully installed the packages:
@@ -76,6 +75,8 @@ Run the file in a terminal:
 
 This file will run a python script called ``turtlebot_openCV.py`` and you can find the file in the following path ``gaitech_doc/src/turtlebot/openCV/scripts/turtlebot_openCV.py``. The code is well documented but we will have a look at a couple of parts of it.
 
+All the OpenCV scripts have to import the ``cv2`` and the older version of it ``cv2.cv`` as it has some functions needed. The ``Image`` and ``CamerInfo`` are used for ROS messages. To be able to convert from ROS to OpenCV you need to import the ``CvBridge`` and ``CvBridgeError`` from the ``cv_bridge`` package. As for the last import ``numpy``, it is used because OpenCV use it to process the images.   
+
 .. code-block:: python
 	
 	import rospy
@@ -86,7 +87,7 @@ This file will run a python script called ``turtlebot_openCV.py`` and you can fi
 	from cv_bridge import CvBridge, CvBridgeError
 	import numpy as np
 
-All the OpenCV scripts have to import the ``cv2`` and the older version of it ``cv2.cv`` as it has some functions needed. The ``Image`` and ``CamerInfo`` are used for ROS messages. To be able to convert from ROS to OpenCV you need to import the ``CvBridge`` and ``CvBridgeError`` from the ``cv_bridge`` package. As for the last import ``numpy``, it is used because OpenCV use it to process the images. 	
+This part is to initialize the two windows to display the images on.
 
 .. code-block:: python
 
@@ -99,8 +100,10 @@ All the OpenCV scripts have to import the ``cv2`` and the older version of it ``
     cv.NamedWindow("Depth Image", cv.CV_WINDOW_NORMAL)
     cv.MoveWindow("Depth Image", 25, 350)
 
-This part is to initialize the two windows to display the images on.
 
+As menthioned before that this program will display two windows, one for the Image and one for the Depth Image so each methods of them is for its Image processing, converting and displaying. 
+
+The code is well explained for the Image function and the Depth Image.
 
 .. code-block:: python
 
@@ -147,7 +150,7 @@ This part is to initialize the two windows to display the images on.
         # Display the result
         cv2.imshow("Depth Image", depth_display_image)
 
-As menthioned before that this program will display two windows, one for the Image and one for the Depth Image so each methods of them is for its Image processing, converting and displaying 
+ 
 
 .. NOTE::
 

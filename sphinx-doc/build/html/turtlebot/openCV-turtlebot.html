@@ -161,18 +161,17 @@
             
   <div class="section" id="ros-opencv-with-turtlebot">
 <span id="opencv-turtlebot"></span><h1>ROS OpenCV with Turtlebot<a class="headerlink" href="#ros-opencv-with-turtlebot" title="Permalink to this headline">¶</a></h1>
-<p>In this tutorial you will learn how to configure your turtlebot robot with OpenCV to stream videos from Microsoft Kinect.</p>
+<p>In this tutorial you will learn how to configure your turtlebot robot with OpenCV to stream videos from <code class="docutils literal"><span class="pre">Microsoft</span> <span class="pre">Kinect</span></code>.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <ul class="last simple">
-<li>Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node.</li>
-<li>Make sure to complete the ROS OpenKinect with Turtlebot tutorial.</li>
+<li>Make sure that you completed installing all the required packages in the previous tutorials <a class="reference internal" href="openKinect-turtlebot.html#openkinect-turtlebot"><span class="std std-ref">Setting-up 3D Sensor for the Turtlebot</span></a> and <a class="reference internal" href="network-config-doc.html#network-config-doc"><span class="std std-ref">Network Configuration</span></a> and your network set-up is working fine between the ROS Master node and the host node.</li>
 </ul>
 </div>
 <div class="section" id="installing-opencv-packages">
 <h2>Installing OpenCV packages<a class="headerlink" href="#installing-opencv-packages" title="Permalink to this headline">¶</a></h2>
 <p>You need to download the OpenCV packages by running the following commands:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-indigo-vision-opencv libopencv-dev <span class="se">\ </span>python-opencv
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-indigo-vision-opencv libopencv-dev python-opencv
 rospack profile
 </pre></div>
 </div>
@@ -217,6 +216,7 @@ rospack profile
 </div>
 </div>
 <p>This file will run a python script called <code class="docutils literal"><span class="pre">turtlebot_openCV.py</span></code> and you can find the file in the following path <code class="docutils literal"><span class="pre">gaitech_doc/src/turtlebot/openCV/scripts/turtlebot_openCV.py</span></code>. The code is well documented but we will have a look at a couple of parts of it.</p>
+<p>All the OpenCV scripts have to import the <code class="docutils literal"><span class="pre">cv2</span></code> and the older version of it <code class="docutils literal"><span class="pre">cv2.cv</span></code> as it has some functions needed. The <code class="docutils literal"><span class="pre">Image</span></code> and <code class="docutils literal"><span class="pre">CamerInfo</span></code> are used for ROS messages. To be able to convert from ROS to OpenCV you need to import the <code class="docutils literal"><span class="pre">CvBridge</span></code> and <code class="docutils literal"><span class="pre">CvBridgeError</span></code> from the <code class="docutils literal"><span class="pre">cv_bridge</span></code> package. As for the last import <code class="docutils literal"><span class="pre">numpy</span></code>, it is used because OpenCV use it to process the images.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rospy</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
@@ -226,7 +226,7 @@ rospack profile
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
-<p>All the OpenCV scripts have to import the <code class="docutils literal"><span class="pre">cv2</span></code> and the older version of it <code class="docutils literal"><span class="pre">cv2.cv</span></code> as it has some functions needed. The <code class="docutils literal"><span class="pre">Image</span></code> and <code class="docutils literal"><span class="pre">CamerInfo</span></code> are used for ROS messages. To be able to convert from ROS to OpenCV you need to import the <code class="docutils literal"><span class="pre">CvBridge</span></code> and <code class="docutils literal"><span class="pre">CvBridgeError</span></code> from the <code class="docutils literal"><span class="pre">cv_bridge</span></code> package. As for the last import <code class="docutils literal"><span class="pre">numpy</span></code>, it is used because OpenCV use it to process the images.</p>
+<p>This part is to initialize the two windows to display the images on.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Create the OpenCV display window for the RGB image</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">cv_window_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_name</span>
 <span class="n">cv</span><span class="o">.</span><span class="n">NamedWindow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cv_window_name</span><span class="p">,</span> <span class="n">cv</span><span class="o">.</span><span class="n">CV_WINDOW_NORMAL</span><span class="p">)</span>
@@ -237,7 +237,8 @@ rospack profile
 <span class="n">cv</span><span class="o">.</span><span class="n">MoveWindow</span><span class="p">(</span><span class="s2">&quot;Depth Image&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">350</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This part is to initialize the two windows to display the images on.</p>
+<p>As menthioned before that this program will display two windows, one for the Image and one for the Depth Image so each methods of them is for its Image processing, converting and displaying.</p>
+<p>The code is well explained for the Image function and the Depth Image.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">image_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
     <span class="c1"># Use cv_bridge() to convert the ROS image to OpenCV format</span>
     <span class="c1"># Convert the ROS image to OpenCV format using a cv_bridge helper function</span>
@@ -282,7 +283,6 @@ rospack profile
     <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Depth Image&quot;</span><span class="p">,</span> <span class="n">depth_display_image</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>As menthioned before that this program will display two windows, one for the Image and one for the Depth Image so each methods of them is for its Image processing, converting and displaying</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>For more details about <code class="docutils literal"><span class="pre">cv_bridge</span></code> and <code class="docutils literal"><span class="pre">OpenCV</span></code> on ROS, please refer to the following ROS documentation pages:</p>
