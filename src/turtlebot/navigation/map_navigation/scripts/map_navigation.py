@@ -3,11 +3,10 @@ import rospy
 import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from math import radians, degrees
-
+from geometry_msgs.msg import Point 
 
 class map_navigation():
 	
-	# declare the coordinates of interest 
 	
 
 	def choose(self):
@@ -27,6 +26,7 @@ class map_navigation():
 		return choice
 
 	def __init__(self): 
+		# declare the coordinates of interest 
 		self.xCafe = 15.50
 		self.yCafe = 10.20
 		self.xOffice1 = 27.70
@@ -121,7 +121,7 @@ class map_navigation():
 			rospy.loginfo("Waiting for the move_base action server to come up")
 		
 
-		goal = MoveBaseGoal
+		goal = MoveBaseGoal()
 
 		#set up the frame parameters
 		goal.target_pose.header.frame_id = "map"
@@ -129,14 +129,14 @@ class map_navigation():
 
 		# moving towards the goal*/
 
-		goal.target_pose.pose.position =  Point(self.xGoal,self.yGoal,0)
+		goal.target_pose.pose.position =  Point(xGoal,yGoal,0)
 		goal.target_pose.pose.orientation.x = 0.0
 		goal.target_pose.pose.orientation.y = 0.0
 		goal.target_pose.pose.orientation.z = 0.0
 		goal.target_pose.pose.orientation.w = 1.0
 
 		rospy.loginfo("Sending goal location ...")
-		ac.sendGoal(goal)
+		ac.send_goal(goal)
 
 		ac.wait_for_result()
 
@@ -154,5 +154,5 @@ if __name__ == '__main__':
 	rospy.loginfo("You have reached the destination")
         map_navigation()
         rospy.spin()
-    except:
+    except rospy.ROSInterruptException:
         rospy.loginfo("map_navigation node terminated.")
