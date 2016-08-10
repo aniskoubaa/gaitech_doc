@@ -10,8 +10,6 @@ class map_navigation():
 	# declare the coordinates of interest 
 	
 
-	goalReached = False
-
 	def choose(self):
 
 		choice='q'
@@ -37,6 +35,7 @@ class map_navigation():
 		self.yOffice2 = 12.50
 		self.xOffice3 = 35.20
 		self.yOffice3 = 13.50
+		self.goalReached = False
 		# initiliaze
         	rospy.init_node('map_navigation', anonymous=False)
 		choice = self.choose()
@@ -80,23 +79,23 @@ class map_navigation():
 			choice = self.choose()
 			if (choice == '0'):
 
-				goalReached = self.moveToGoal(xCafe, yCafe)
+				self.goalReached = self.moveToGoal(xCafe, yCafe)
 		
 			elif (choice == '1'):
 
-				goalReached = self.moveToGoal(xOffice1, yOffice1)
+				self.goalReached = self.moveToGoal(xOffice1, yOffice1)
 
 			elif (choice == '2'):
 		
-				goalReached = self.moveToGoal(xOffice2, yOffice2)
+				self.goalReached = self.moveToGoal(xOffice2, yOffice2)
 		
 			elif (choice == '3'):
 
-				goalReached = self.moveToGoal(xOffice3, yOffice3)
+				self.goalReached = self.moveToGoal(xOffice3, yOffice3)
 
 			if (choice!='q'):
 
-				if (goalReached):
+				if (self.goalReached):
 					rospy.loginfo("Congratulations!")
 					rospy.spin()
 
