@@ -350,7 +350,7 @@ In what follow, we present the equivalent code in Python, which does exactly the
       self.yOffice3 = 13.50
       self.goalReached = False
       # initiliaze
-            rospy.init_node('map_navigation', anonymous=False)
+      rospy.init_node('map_navigation', anonymous=False)
       choice = self.choose()
     
       if (choice == 0):
