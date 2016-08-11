@@ -400,7 +400,7 @@ Here is the snapshot of the code in C++:</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
-<p>The program strucure is very simple.
+<p>The program structure is very simple.
 The user is requested to press a key, and based on his selection, the defined method <code class="docutils literal"><span class="pre">moveToGoal(x,y)</span></code> will be executed,
 where <code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">y</span></code> define the coordinates of the locations of interest.
 Lines 13-20 define the location of points of interest that we determined in the last section <a class="reference internal" href="#find-locations"><span class="std std-ref">Finding the Coordinates for Locations of Interest</span></a>.
@@ -530,9 +530,166 @@ This is because the goal location is one meter in the x-axis (that is the front 
 <p>Line 28 sends the goal location request to the <code class="docutils literal"><span class="pre">move_base</span></code> action server, and wait for its execution as shown in line 31 (<code class="docutils literal"><span class="pre">ac.waitForResult()</span></code>).
 Note that this request is <strong>sychrounous</strong>, which means it will block until the result is sent back to the requesting client object. After it finishes, we can check if the goal succeded or failed and output a message to the user accordingly.</p>
 <p>In what follow, we present the equivalent code in Python, which does exactly the same thing:</p>
-<div class="highlight-c"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">ADD</span> <span class="n">PYTHON</span> <span class="n">CODE</span> <span class="n">HERE</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">linenos</span><span class="p">:</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">actionlib</span>
+<span class="kn">from</span> <span class="nn">move_base_msgs.msg</span> <span class="kn">import</span> <span class="n">MoveBaseAction</span><span class="p">,</span> <span class="n">MoveBaseGoal</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">radians</span><span class="p">,</span> <span class="n">degrees</span>
+<span class="kn">from</span> <span class="nn">actionlib_msgs.msg</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Point</span>
+<span class="kn">from</span> <span class="nn">sound_play.libsoundplay</span> <span class="kn">import</span> <span class="n">SoundClient</span>
+
+<span class="k">class</span> <span class="nc">map_navigation</span><span class="p">():</span>
+
+  <span class="k">def</span> <span class="nf">choose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+    <span class="n">choice</span><span class="o">=</span><span class="s1">&#39;q&#39;</span>
+
+    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;|-------------------------------|&quot;</span><span class="p">)</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;|PRESSE A KEY:&quot;</span><span class="p">)</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;|&#39;0&#39;: Cafe &quot;</span><span class="p">)</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;|&#39;1&#39;: Office 1 &quot;</span><span class="p">)</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;|&#39;2&#39;: Office 2 &quot;</span><span class="p">)</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;|&#39;3&#39;: Office 3 &quot;</span><span class="p">)</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;|&#39;q&#39;: Quit &quot;</span><span class="p">)</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;|-------------------------------|&quot;</span><span class="p">)</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;|WHERE TO GO?&quot;</span><span class="p">)</span>
+    <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">choice</span>
+
+  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+    <span class="n">sc</span> <span class="o">=</span> <span class="n">SoundClient</span><span class="p">()</span>
+    <span class="n">path_to_sounds</span> <span class="o">=</span> <span class="s2">&quot;/home/ros/catkin_ws/src/gaitech_doc/src/sounds/&quot;</span>
+
+    <span class="c1"># declare the coordinates of interest</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">xCafe</span> <span class="o">=</span> <span class="mf">15.50</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">yCafe</span> <span class="o">=</span> <span class="mf">10.20</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">xOffice1</span> <span class="o">=</span> <span class="mf">27.70</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">yOffice1</span> <span class="o">=</span> <span class="mf">12.50</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">xOffice2</span> <span class="o">=</span> <span class="mf">30.44</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">yOffice2</span> <span class="o">=</span> <span class="mf">12.50</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">xOffice3</span> <span class="o">=</span> <span class="mf">35.20</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">yOffice3</span> <span class="o">=</span> <span class="mf">13.50</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">goalReached</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="c1"># initiliaze</span>
+          <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;map_navigation&#39;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">choice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">choose</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">choice</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+
+      <span class="bp">self</span><span class="o">.</span><span class="n">goalReached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">moveToGoal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xCafe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yCafe</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="p">(</span><span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+
+      <span class="bp">self</span><span class="o">.</span><span class="n">goalReached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">moveToGoal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xOffice1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yOffice1</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="p">(</span><span class="n">choice</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+
+      <span class="bp">self</span><span class="o">.</span><span class="n">goalReached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">moveToGoal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xOffice2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yOffice2</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="p">(</span><span class="n">choice</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span>
+
+      <span class="bp">self</span><span class="o">.</span><span class="n">goalReached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">moveToGoal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xOffice3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yOffice3</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">choice</span><span class="o">!=</span><span class="s1">&#39;q&#39;</span><span class="p">):</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">goalReached</span><span class="p">):</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Congratulations!&quot;</span><span class="p">)</span>
+        <span class="c1">#rospy.spin()</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="n">playWave</span><span class="p">(</span><span class="n">path_to_sounds</span><span class="o">+</span><span class="s2">&quot;ship_bell.wav&quot;</span><span class="p">)</span>
+
+
+       <span class="k">else</span><span class="p">:</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Hard Luck!&quot;</span><span class="p">)</span>
+        <span class="n">sc</span><span class="o">.</span><span class="n">playWave</span><span class="p">(</span><span class="n">path_to_sounds</span><span class="o">+</span><span class="s2">&quot;short_buzzer.wav&quot;</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">choice</span> <span class="o">!=</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+      <span class="n">choice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">choose</span><span class="p">()</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">choice</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">goalReached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">moveToGoal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xCafe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yCafe</span><span class="p">)</span>
+
+      <span class="k">elif</span> <span class="p">(</span><span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">goalReached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">moveToGoal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xOffice1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yOffice1</span><span class="p">)</span>
+
+      <span class="k">elif</span> <span class="p">(</span><span class="n">choice</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">goalReached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">moveToGoal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xOffice2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yOffice2</span><span class="p">)</span>
+
+      <span class="k">elif</span> <span class="p">(</span><span class="n">choice</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">goalReached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">moveToGoal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xOffice3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yOffice3</span><span class="p">)</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">choice</span><span class="o">!=</span><span class="s1">&#39;q&#39;</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">goalReached</span><span class="p">):</span>
+          <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Congratulations!&quot;</span><span class="p">)</span>
+          <span class="c1">#rospy.spin()</span>
+
+          <span class="n">sc</span><span class="o">.</span><span class="n">playWave</span><span class="p">(</span><span class="n">path_to_sounds</span><span class="o">+</span><span class="s2">&quot;ship_bell.wav&quot;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+          <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Hard Luck!&quot;</span><span class="p">)</span>
+          <span class="n">sc</span><span class="o">.</span><span class="n">playWave</span><span class="p">(</span><span class="n">path_to_sounds</span><span class="o">+</span><span class="s2">&quot;short_buzzer.wav&quot;</span><span class="p">)</span>
+
+
+  <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># stop turtlebot</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Quit program&quot;</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
+
+  <span class="k">def</span> <span class="nf">moveToGoal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">xGoal</span><span class="p">,</span><span class="n">yGoal</span><span class="p">):</span>
+
+      <span class="c1">#define a client for to send goal requests to the move_base server through a SimpleActionClient</span>
+      <span class="n">ac</span> <span class="o">=</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">SimpleActionClient</span><span class="p">(</span><span class="s2">&quot;move_base&quot;</span><span class="p">,</span> <span class="n">MoveBaseAction</span><span class="p">)</span>
+
+      <span class="c1">#wait for the action server to come up</span>
+      <span class="k">while</span><span class="p">(</span><span class="ow">not</span> <span class="n">ac</span><span class="o">.</span><span class="n">wait_for_server</span><span class="p">(</span><span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="o">.</span><span class="n">from_sec</span><span class="p">(</span><span class="mf">5.0</span><span class="p">))):</span>
+              <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Waiting for the move_base action server to come up&quot;</span><span class="p">)</span>
+
+
+      <span class="n">goal</span> <span class="o">=</span> <span class="n">MoveBaseGoal</span><span class="p">()</span>
+
+      <span class="c1">#set up the frame parameters</span>
+      <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s2">&quot;map&quot;</span>
+      <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+
+      <span class="c1"># moving towards the goal*/</span>
+
+      <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span>  <span class="n">Point</span><span class="p">(</span><span class="n">xGoal</span><span class="p">,</span><span class="n">yGoal</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+      <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span>
+      <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span>
+      <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+      <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+      <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Sending goal location ...&quot;</span><span class="p">)</span>
+      <span class="n">ac</span><span class="o">.</span><span class="n">send_goal</span><span class="p">(</span><span class="n">goal</span><span class="p">)</span>
+
+      <span class="n">ac</span><span class="o">.</span><span class="n">wait_for_result</span><span class="p">(</span><span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">60</span><span class="p">))</span>
+
+      <span class="k">if</span><span class="p">(</span><span class="n">ac</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span> <span class="o">==</span>  <span class="n">GoalStatus</span><span class="o">.</span><span class="n">SUCCEEDED</span><span class="p">):</span>
+              <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;You have reached the destination&quot;</span><span class="p">)</span>
+              <span class="k">return</span> <span class="bp">True</span>
+
+      <span class="k">else</span><span class="p">:</span>
+              <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;The robot failed to reach the destination&quot;</span><span class="p">)</span>
+              <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;You have reached the destination&quot;</span><span class="p">)</span>
+        <span class="n">map_navigation</span><span class="p">()</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+
+    <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ROSInterruptException</span><span class="p">:</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;map_navigation node terminated.&quot;</span><span class="p">)</span>
 </pre></div>
-</td></tr></table></div>
+</div>
 <div class="section" id="playing-sounds">
 <h3>Playing sounds<a class="headerlink" href="#playing-sounds" title="Permalink to this headline">¶</a></h3>
 <p>To add some animation to this example, we used the ROS package <code class="docutils literal"><span class="pre">sound_play</span></code> which allows to play sound files.
