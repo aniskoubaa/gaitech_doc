@@ -609,7 +609,37 @@ Now, you should be able to run the simulator with your own map.
 
 Running on a real robot
 -----------------------
-To deploy on a real robot, you simply need to bring-up your turtlebot robot, and then execute the ``map_navigation_node`` either on the robot machine (not recommended) or on your workstation (recommended).
+
+To deploy on a real robot, you simply need to build a map as mentioned in the :ref:`create-map` tutorial and after saving the map on your Turtlebot's PC bring-up your turtlebot robot, and then follow the previous steps to save some locations of interest. After that execute the following commands:
+
+On your Turtlebot's PC
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: bash
+
+  roscore
+  roslaunch turtlebot_bringup minimal.launch
+  roslaunch turtlebot_navigation amcl_demo.launch map_file:=/your_path/your_map.yaml
+
+On your Workstation
+^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+  roslaunch turtlebot_rviz_launchers view_navigation.launch
+  rosrun sound_play soundplay_node.py
+
+For ``Python`` run:
+
+.. code-block:: bash
+  
+  python your_path/gaitech_doc/src/turtlebot/navigation/map_navigation/scripts/map_navigation.py
+
+For ``C++`` run:
+
+.. code-block:: bash
+  
+  rosrun gaitech_doc map_navigation_node
+
 In the latter case, You must make sure to have correctly configured your network settings as explained in the :ref:`network-config-doc` tutorial.  
 
 References
