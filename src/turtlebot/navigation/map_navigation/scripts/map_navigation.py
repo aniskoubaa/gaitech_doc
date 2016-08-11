@@ -3,6 +3,7 @@ import rospy
 import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from math import radians, degrees
+from actionlib_msgs.msg import *
 from geometry_msgs.msg import Point 
 
 class map_navigation():
@@ -77,27 +78,27 @@ class map_navigation():
 		
 		while choice != 'q':
 			choice = self.choose()
-			if (choice == '0'):
+			if (choice == 0):
 
-				self.goalReached = self.moveToGoal(xCafe, yCafe)
+				self.goalReached = self.moveToGoal(self.xCafe, self.yCafe)
 		
-			elif (choice == '1'):
+			elif (choice == 1):
 
-				self.goalReached = self.moveToGoal(xOffice1, yOffice1)
+				self.goalReached = self.moveToGoal(self.xOffice1, self.yOffice1)
 
-			elif (choice == '2'):
+			elif (choice == 2):
 		
-				self.goalReached = self.moveToGoal(xOffice2, yOffice2)
+				self.goalReached = self.moveToGoal(self.xOffice2, self.yOffice2)
 		
-			elif (choice == '3'):
+			elif (choice == 3):
 
-				self.goalReached = self.moveToGoal(xOffice3, yOffice3)
+				self.goalReached = self.moveToGoal(self.xOffice3, self.yOffice3)
 
 			if (choice!='q'):
 
 				if (self.goalReached):
 					rospy.loginfo("Congratulations!")
-					rospy.spin()
+					#rospy.spin()
 
 					#sc.playWave(path_to_sounds+"ship_bell.wav");
 
@@ -138,10 +139,10 @@ class map_navigation():
 		rospy.loginfo("Sending goal location ...")
 		ac.send_goal(goal)
 
-		ac.wait_for_result()
+		ac.wait_for_result(rospy.Duration(60))
 
-		if(ac.get_result() != None):
-			rospy.loginfo("You have reached the destination")
+		if(ac.get_state() ==  GoalStatus.SUCCEEDED):
+			rospy.loginfo("You have reached the destination")	
 			return True
 	
 		else:
