@@ -31,12 +31,12 @@ class map_navigation():
 		path_to_sounds = "/home/ros/catkin_ws/src/gaitech_doc/src/sounds/"
 
 		# declare the coordinates of interest 
-		self.xCafe = 15.50
-		self.yCafe = 10.20
-		self.xOffice1 = 27.70
-		self.yOffice1 = 12.50
-		self.xOffice2 = 30.44
-		self.yOffice2 = 12.50
+		self.xCafe =  7.31
+		self.yCafe = 1.46
+		self.xOffice1 = 5.10
+		self.yOffice1 = -3.82
+		self.xOffice2 = -2.35
+		self.yOffice2 = -0.95
 		self.xOffice3 = 35.20
 		self.yOffice3 = 13.50
 		self.goalReached = False
