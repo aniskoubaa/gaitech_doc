@@ -491,6 +491,29 @@ To test the above example, you simply need to execute the command
 
 Then, on the terminal command, you enter the location of your choice based on the selection menu and observe how the robot navigates to the goal location.
 
+OR
+^^
+
+You can run the nodes separately as follows:
+
+.. code-block:: bash
+
+  roslaunch gaitech_doc turtlebot_stage_psu.launch
+  rosrun sound_play soundplay_node.py
+
+Then for ``C++`` run the following:
+
+.. code-block:: bash
+  
+  rosrun gaitech_doc map_navigation_node
+
+For ``Python`` run the following:
+
+.. code-block:: bash
+
+  python your_path/gaitech_doc/src/turtlebot/navigation/map_navigation/scripts/map_navigation.py
+
+
 Congratulation! You now know how to program navigation mission for your simulated Turtlebot. 
 
 For a live explanation and testing of the code, watch the following video

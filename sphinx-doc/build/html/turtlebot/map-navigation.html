@@ -706,6 +706,19 @@ Furthermore, to be able to play sounds, it is necessary to start the ROS node, w
 </pre></div>
 </div>
 <p>Then, on the terminal command, you enter the location of your choice based on the selection menu and observe how the robot navigates to the goal location.</p>
+<p>You can run the nodes separately as follows:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_doc turtlebot_stage_psu.launch
+rosrun sound_play soundplay_node.py
+</pre></div>
+</div>
+<p>Then for <code class="docutils literal"><span class="pre">C++</span></code> run the following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun gaitech_doc map_navigation_node
+</pre></div>
+</div>
+<p>For <code class="docutils literal"><span class="pre">Python</span></code> run the following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_path/gaitech_doc/src/turtlebot/navigation/map_navigation/scripts/map_navigation.py
+</pre></div>
+</div>
 <p>Congratulation! You now know how to program navigation mission for your simulated Turtlebot.</p>
 <p>For a live explanation and testing of the code, watch the following video</p>
 <iframe width="640" height="360" src="http://www.youtube.com/embed/r5kK9pIOcNQ" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
