@@ -5,11 +5,10 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from math import radians, degrees
 from actionlib_msgs.msg import *
 from geometry_msgs.msg import Point 
+from sound_play.libsoundplay import SoundClient
 
 class map_navigation():
 	
-	
-
 	def choose(self):
 
 		choice='q'
@@ -27,6 +26,10 @@ class map_navigation():
 		return choice
 
 	def __init__(self): 
+
+		sc = SoundClient()
+		path_to_sounds = "/home/ros/catkin_ws/src/gaitech_doc/src/sounds/"
+
 		# declare the coordinates of interest 
 		self.xCafe = 15.50
 		self.yCafe = 10.20
@@ -40,25 +43,20 @@ class map_navigation():
 		# initiliaze
         	rospy.init_node('map_navigation', anonymous=False)
 		choice = self.choose()
-		rospy.loginfo(type(choice))
 		
 		if (choice == 0):
 
-			rospy.loginfo(choice)
 			self.goalReached = self.moveToGoal(self.xCafe, self.yCafe)
 		
 		elif (choice == 1):
-			rospy.loginfo(choice)
 
 			self.goalReached = self.moveToGoal(self.xOffice1, self.yOffice1)
 
 		elif (choice == 2):
-			rospy.loginfo(choice)
 			
 			self.goalReached = self.moveToGoal(self.xOffice2, self.yOffice2)
 		
 		elif (choice == 3):
-			rospy.loginfo(choice)
 
 			self.goalReached = self.moveToGoal(self.xOffice3, self.yOffice3)
 
@@ -68,13 +66,13 @@ class map_navigation():
 				rospy.loginfo("Congratulations!")
 				#rospy.spin()
 
-				#sc.playWave(path_to_sounds+"ship_bell.wav");
+				sc.playWave(path_to_sounds+"ship_bell.wav")
 				
 				#rospy.spin()
 
 			else:
 				rospy.loginfo("Hard Luck!")
-				#sc.playWave(path_to_sounds+"short_buzzer.wav");
+				sc.playWave(path_to_sounds+"short_buzzer.wav")
 		
 		while choice != 'q':
 			choice = self.choose()
@@ -100,11 +98,11 @@ class map_navigation():
 					rospy.loginfo("Congratulations!")
 					#rospy.spin()
 
-					#sc.playWave(path_to_sounds+"ship_bell.wav");
+					sc.playWave(path_to_sounds+"ship_bell.wav")
 
 				else:
 					rospy.loginfo("Hard Luck!")
-					#sc.playWave(path_to_sounds+"short_buzzer.wav");
+					sc.playWave(path_to_sounds+"short_buzzer.wav")
 
 
 	def shutdown(self):
