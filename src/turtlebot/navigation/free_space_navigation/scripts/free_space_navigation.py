@@ -5,7 +5,6 @@ import tf
 import numpy
 import geometry_msgs.msg
 from geometry_msgs.msg import Twist
-from math import radians,degrees
 from math import *
 from nav_msgs.msg import Odometry
 from std_msgs.msg import String
@@ -33,7 +32,7 @@ class free_space_navigation():
  #
  # Method 1: using tf and Calculate the distance between the two transformations
 
-    def move(self, speed, distance, isForward):
+    def move_v1(self, speed, distance, isForward):
         #declare a Twist message to send velocity commands
             VelocityMessage = Twist()
         # declare tf transform listener: this transform listener will be used to listen and capture the transformation between
@@ -81,7 +80,7 @@ class free_space_navigation():
         #/***************************************
         # * STEP1. PUBLISH THE VELOCITY MESSAGE
         # ***************************************/
-                    self.velocityPublisher.publish(VelocityMessage)
+                    #self.velocityPublisher.publish(VelocityMessage)
                     loop_rate.sleep()
         #/**************************************************
         # * STEP2. ESTIMATE THE DISTANCE MOVED BY THE ROBOT
@@ -105,8 +104,14 @@ class free_space_navigation():
          #    --> transform.getOrigin().y(): represents the y coordinate of the transformation
          #
          # calculate the distance moved
-                    distance_moved = sqrt(pow((current_transform.getOrigin().x()-init_transform.getOrigin().x()), 2) +
-                        pow((current_transform.getOrigin().y()-init_transform.getOrigin().y()), 2));
+                    distance_moved = sqrt(pow((current_transform.transform.translation.x-init_transform.transform.translation.x), 2) +
+                        pow((current_transform.transform.translation.y-init_transform.transform.translation.y), 2));
+                    
+                    rospy.loginfo(current_transform)
+                
+                    rospy.loginfo(current_transform.transform.translation.x)
+                    rospy.loginfo(init_transform.transform.translation.x)
+                    rospy.loginfo(distance_moved)
 
                     if not (distance_moved<distance):
                         break
@@ -122,9 +127,8 @@ class free_space_navigation():
         VelocityMessage = Twist()
         # declare tf transform listener: this transform listener will be used to listen and capture the transformation between
         # the odom frame (that represent the reference frame) and the base_footprint frame the represent moving frame
-        listener = tf.TransformListener()
-        
         # set the linear velocity to a positive value if isFoward is True
+
         if (isForward):
             VelocityMessage.linear.x =abs(speed)
         else: #else set the velocity to negative value to move backward
@@ -142,15 +146,6 @@ class free_space_navigation():
      # we call this transformation "init_transform"
      # It is important to "waitForTransform" otherwise, it might not be captured.
      
-        try:
-            #wait for the transform to be found
-
-            listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0),rospy.Duration(10.0))
-            #Once the transform is found,get the initial_transform transformation.
-            listener.lookupTransform("/base_footprint", "/odom", rospy.Time(0),init_transform)
-        except Exception:
-            rospy.Duration(1.0)
-    
         for x in range(0,15) :
             
         #/***************************************
@@ -159,15 +154,6 @@ class free_space_navigation():
             self.velocityPublisher.publish(VelocityMessage)
             loop_rate.sleep()
 
-            try:
-
-                #wait for the transform to be found
-                listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
-                #Once the transform is found,get the initial_transform transformation.
-                listener.lookupTransform("/base_footprint", "/odom",rospy.Time(0), current_transform)
-        
-            except Exception:
-                rospy.Duration(1.0)
 
     #finally, stop the robot when the distance is moved
         VelocityMessage.linear.x =0
@@ -210,7 +196,7 @@ class free_space_navigation():
      #  First, we capture the initial transformation before starting the motion.
      # we call this transformation "init_transform"
      # It is important to "waitForTransform" otherwise, it might not be captured.
-     
+
         try:
             #wait for the transform to be found
 
@@ -285,7 +271,7 @@ class free_space_navigation():
 
     def moveSquare(self,sideLength):
         for i in range(0, 4):
-            self.move_v2(0.3, sideLength, True)
+            self.move_v1(0.3, sideLength, True)
             self.rotate ()
    
     def __init__(self):
