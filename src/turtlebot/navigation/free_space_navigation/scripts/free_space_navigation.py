@@ -288,7 +288,7 @@ class free_space_navigation():
         rotateMessage.angular.z = radians(45); #45 deg/s in radians/s
         
         rospy.loginfo("Turtlebot is Turning")
-        r = rospy.Rate(5)
+        r = rospy.Rate(5.5)
 
         for x in range(0,10):
 
@@ -323,7 +323,7 @@ class free_space_navigation():
         r.sleep()
 
         while not rospy.is_shutdown():
-            sideLength=0.3
+            sideLength=3
             self.moveSquare(sideLength)       
 
         
