@@ -205,6 +205,8 @@ void move(double speed, double distance, bool isForward){
 		 * 	  --> transform.getOrigin().y(): represents the y coordinate of the transformation
 		 */
 		//calculate the distance moved
+		cout<<"Initial Transform: "<<init_transform <<" , "<<"Current Transform: "<<current_transform<<endl;
+
 		distance_moved = sqrt(pow((current_transform.getOrigin().x()-init_transform.getOrigin().x()), 2) +
 				pow((current_transform.getOrigin().y()-init_transform.getOrigin().y()), 2));
 

@@ -8,6 +8,8 @@ from geometry_msgs.msg import Twist
 from math import *
 from nav_msgs.msg import Odometry
 from std_msgs.msg import String
+import tf2_ros
+
 LINEAR_VELOCITY_MINIMUM_THRESHOLD  = 0.2
 ANGULAR_VELOCITY_MINIMUM_THRESHOLD = 0.4
 class free_space_navigation():
@@ -39,6 +41,7 @@ class free_space_navigation():
         # the odom frame (that represent the reference frame) and the base_footprint frame the represent moving frame
             listener = tf.TransformListener()
         #declare tf transform
+            initial_turtlebot_odom_pose = Odometry()
         #init_transform: is the transformation before starting the motion
             init_transform = geometry_msgs.msg.TransformStamped()
         #current_transformation: is the transformation while the robot is moving
@@ -56,45 +59,17 @@ class free_space_navigation():
         #The angular velocity of all axes must be zero because we want  a straight motion
             VelocityMessage.angular.x = 0
             VelocityMessage.angular.y = 0
-            VelocityMessage.angular.z =0
+            VelocityMessage.angular.z = 0
 
             distance_moved = 0.0
             loop_rate = rospy.Rate(10) # we publish the velocity at 10 Hz (10 times a second)    
+            initial_turtlebot_odom_pose = self.turtlebot_odom_pose
 
-
-     #  First, we capture the initial transformation before starting the motion.
-     # we call this transformation "init_transform"
-     # It is important to "waitForTransform" otherwise, it might not be captured.
-     
-            try:
-            #wait for the transform to be found
-
-                    listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0),rospy.Duration(10.0))
-            #Once the transform is found,get the initial_transform transformation.
-                    listener.lookupTransform("/base_footprint", "/odom", rospy.Time(0),init_transform)
-            except Exception:
-                    rospy.Duration(1.0)
     
             while True :
-            
-        #/***************************************
-        # * STEP1. PUBLISH THE VELOCITY MESSAGE
-        # ***************************************/
-                    #self.velocityPublisher.publish(VelocityMessage)
-                    loop_rate.sleep()
-        #/**************************************************
-        # * STEP2. ESTIMATE THE DISTANCE MOVED BY THE ROBOT
-        # *************************************************/
-                    try:
-
-                #wait for the transform to be found
-                        listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
-                #Once the transform is found,get the initial_transform transformation.
-                        listener.lookupTransform("/base_footprint", "/odom",rospy.Time(0), current_transform)
-        
-                    except Exception:
-                        rospy.Duration(1.0)
-        
+                    rospy.Duration(0.5)
+                    self.velocityPublisher.publish(VelocityMessage)
+                    rospy.spin()
          # Calculate the distance moved by the robot
          # There are two methods that give the same result
          #
@@ -104,13 +79,13 @@ class free_space_navigation():
          #    --> transform.getOrigin().y(): represents the y coordinate of the transformation
          #
          # calculate the distance moved
-                    distance_moved = sqrt(pow((current_transform.transform.translation.x-init_transform.transform.translation.x), 2) +
-                        pow((current_transform.transform.translation.y-init_transform.transform.translation.y), 2));
                     
-                    rospy.loginfo(current_transform)
-                
-                    rospy.loginfo(current_transform.transform.translation.x)
-                    rospy.loginfo(init_transform.transform.translation.x)
+                    distance_moved = abs(0.5 * sqrt(((self.turtlebot_odom_pose.pose.pose.position.x-initial_turtlebot_odom_pose.pose.pose.position.x) ** 2) +
+                        ((self.turtlebot_odom_pose.pose.pose.position.x-initial_turtlebot_odom_pose.pose.pose.position.x) ** 2)))
+                    #end = 0.5 * sqrt(trans[0] ** 2 + trans[1] ** 2)
+                    
+                    rospy.loginfo(self.turtlebot_odom_pose.pose.pose.position.x)
+                    rospy.loginfo(initial_turtlebot_odom_pose.pose.pose.position.x)
                     rospy.loginfo(distance_moved)
 
                     if not (distance_moved<distance):
@@ -208,7 +183,9 @@ class free_space_navigation():
 
         except Exception:
             rospy.Duration(1.0)
+
         distance_moved = 0
+        
         while True :
             rospy.loginfo("Turtlebot moves forwards") 
         #/***************************************
