@@ -9,6 +9,7 @@ from math import *
 from nav_msgs.msg import Odometry
 from std_msgs.msg import String
 import tf2_ros
+import copy
 
 LINEAR_VELOCITY_MINIMUM_THRESHOLD  = 0.2
 ANGULAR_VELOCITY_MINIMUM_THRESHOLD = 0.4
@@ -64,13 +65,10 @@ class free_space_navigation():
             distance_moved = 0.0
             loop_rate = rospy.Rate(10) # we publish the velocity at 10 Hz (10 times a second)    
             
-            initial_turtlebot_odom_pose = self.turtlebot_odom_pose
+            initial_turtlebot_odom_pose = copy.deepcopy(self.turtlebot_odom_pose)
 
-    
             while True :
-                    rospy.Duration(1.0)
                     self.velocityPublisher.publish(VelocityMessage)
-                    #rospy.spin()
          # Calculate the distance moved by the robot
          # There are two methods that give the same result
          #
@@ -80,15 +78,17 @@ class free_space_navigation():
          #    --> transform.getOrigin().y(): represents the y coordinate of the transformation
          #
          # calculate the distance moved
+                    loop_rate.sleep()
                     
-                    distance_moved = abs(0.5 * sqrt(((self.turtlebot_odom_pose.pose.pose.position.x-initial_turtlebot_odom_pose.pose.pose.position.x) ** 2) +
+                    rospy.Duration(1.0)
+                    
+                    distance_moved = distance_moved+abs(0.5 * sqrt(((self.turtlebot_odom_pose.pose.pose.position.x-initial_turtlebot_odom_pose.pose.pose.position.x) ** 2) +
                         ((self.turtlebot_odom_pose.pose.pose.position.x-initial_turtlebot_odom_pose.pose.pose.position.x) ** 2)))
-                    #end = 0.5 * sqrt(trans[0] ** 2 + trans[1] ** 2)
                     
                     rospy.loginfo(self.turtlebot_odom_pose.pose.pose.position.x)
                     rospy.loginfo(initial_turtlebot_odom_pose.pose.pose.position.x)
                     rospy.loginfo(distance_moved)
-                    loop_rate.sleep()
+                    
                     if not (distance_moved<distance):
                         break
             
