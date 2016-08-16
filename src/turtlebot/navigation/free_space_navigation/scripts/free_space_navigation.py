@@ -35,7 +35,7 @@ class free_space_navigation():
  #
  # Method 1: using tf and Calculate the distance between the two transformations
 
-    def move_v1(self, speed, distance, isForward):
+    def move_v3(self, speed, distance, isForward):
         #declare a Twist message to send velocity commands
             VelocityMessage = Twist()
         # declare tf transform listener: this transform listener will be used to listen and capture the transformation between
@@ -64,20 +64,13 @@ class free_space_navigation():
 
             distance_moved = 0.0
             loop_rate = rospy.Rate(10) # we publish the velocity at 10 Hz (10 times a second)    
-            
+            #we update the initial_turtlebot_odom_pose using the turtlebot_odom_pose global variable updated in the callback function poseCallback
+            #we will use deepcopy() to avoid pointers confusion
             initial_turtlebot_odom_pose = copy.deepcopy(self.turtlebot_odom_pose)
 
             while True :
                     self.velocityPublisher.publish(VelocityMessage)
-         # Calculate the distance moved by the robot
-         # There are two methods that give the same result
-         #
-         # Method 1: Calculate the distance between the two transformations
-         # Hint:
-         #    --> transform.getOrigin().x(): represents the x coordinate of the transformation
-         #    --> transform.getOrigin().y(): represents the y coordinate of the transformation
-         #
-         # calculate the distance moved
+         
                     loop_rate.sleep()
                     
                     rospy.Duration(1.0)
@@ -144,7 +137,7 @@ class free_space_navigation():
     #
     # Method 3: we use coordinates of the robot to estimate the distance
 
-    def move_v3(self, speed, distance, isForward):
+    def move(self, speed, distance, isForward):
         #declare a Twist message to send velocity commands
         VelocityMessage = Twist()
         # declare tf transform listener: this transform listener will be used to listen and capture the transformation between
@@ -249,7 +242,7 @@ class free_space_navigation():
 
     def moveSquare(self,sideLength):
         for i in range(0, 4):
-            self.move_v1(0.3, sideLength, True)
+            self.move_v3(0.3, sideLength, True)
             self.rotate ()
    
     def __init__(self):
