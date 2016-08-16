@@ -69,6 +69,7 @@ class free_space_navigation():
             initial_turtlebot_odom_pose = copy.deepcopy(self.turtlebot_odom_pose)
 
             while True :
+                    rospy.loginfo("Turtlebot moves forwards")
                     self.velocityPublisher.publish(VelocityMessage)
          
                     loop_rate.sleep()
@@ -78,9 +79,9 @@ class free_space_navigation():
                     distance_moved = distance_moved+abs(0.5 * sqrt(((self.turtlebot_odom_pose.pose.pose.position.x-initial_turtlebot_odom_pose.pose.pose.position.x) ** 2) +
                         ((self.turtlebot_odom_pose.pose.pose.position.x-initial_turtlebot_odom_pose.pose.pose.position.x) ** 2)))
                     
-                    rospy.loginfo(self.turtlebot_odom_pose.pose.pose.position.x)
-                    rospy.loginfo(initial_turtlebot_odom_pose.pose.pose.position.x)
-                    rospy.loginfo(distance_moved)
+                    #rospy.loginfo(self.turtlebot_odom_pose.pose.pose.position.x)
+                    #rospy.loginfo(initial_turtlebot_odom_pose.pose.pose.position.x)
+                    #rospy.loginfo(distance_moved)
                     
                     if not (distance_moved<distance):
                         break
@@ -120,6 +121,7 @@ class free_space_navigation():
         #/***************************************
         # * STEP1. PUBLISH THE VELOCITY MESSAGE
         # ***************************************/
+            rospy.loginfo("Turtlebot moves forwards")
             self.velocityPublisher.publish(VelocityMessage)
             loop_rate.sleep()
 
