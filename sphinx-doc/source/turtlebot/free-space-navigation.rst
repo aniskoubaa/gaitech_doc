@@ -42,17 +42,24 @@ Tutorial Files
 ==============
 
 You can find the whole ``cpp`` and ``python`` files in our `GitHub repository <https://github.com/aniskoubaa/gaitech_doc>`_. 
-They are located in ``src/turtlebot/navigation/map_navigation_folder``. 
-In particular, we will use the launch file ``map_navigation_psu.launch`` that contains all the needed ROS nodes for this tutorial. 
-Here is the content of the ``map_navigation_psu.launch`` file.
+They are located in ``src/turtlebot/navigation/free_space_navigation``. 
+In particular, we will use the launch file ``free_space_navigation_stage.launch`` that contains all the needed ROS nodes for this tutorial. 
+Here is the content of the ``free_space_navigation_stage.launch`` file.
 
-In the code you will find 3 ``move`` amd ``rotate`` methods and each one of them has its approach so you will be able to know 3 different ways of controlling and manipulating the turtlebot robot . 
+.. code-block:: bash
+  
+    <launch>
+      <include file="$(find turtlebot_stage)/launch/turtlebot_in_stage.launch"/> 
+      <node name="free_space_navigation" pkg="gaitech_doc" type="free_space_navigation_node" output="screen"/>
+    </launch>
+
+In the code you will find 3 ``move`` functions and a ``rotate`` function and each one of them has its own approach so you will be able to know 3 different ways of controlling and manipulating the turtlebot robot . 
 The code is also well explained so you can easily understand what each line is doing in the code and what is its functionality.	
 
    
 Anaylzing the code
 ==================
-We first analyze the ``move`` function to make the robot moves with a certain speed for a certain distance in stragight line either forward or backward. 
+We first analyze the ``move_v1`` function to make the robot moves with a certain speed for a certain distance in stragight line either forward or backward. 
 
 The following code below sets the linear speed of the x-axis as positive value if the intention is to move forward, and negative value if the robot is to move backward, based on the value of ``isForward`` boolean variable. 
 All other linear speeds and angular speeds must be set to zero, because we consider only a straight motion in the x-axis direction. 
@@ -184,10 +191,10 @@ that the ``current_transform`` was captured at the moment of the motion.
 **Python Code**
 
 .. code-block:: python
-   :emphasize-lines: 16
-
-   while True :
-               
+   :emphasize-lines: 17
+  
+    while True :
+        rospy.loginfo("Turtlebot moves forwards") 
         #/***************************************
         # * STEP1. PUBLISH THE VELOCITY MESSAGE
         # ***************************************/
@@ -201,25 +208,17 @@ that the ``current_transform`` was captured at the moment of the motion.
             #wait for the transform to be found
             listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
             #Once the transform is found,get the initial_transform transformation.
-            listener.lookupTransform("/base_footprint", "/odom",rospy.Time(0), current_transform)
-        
-        except Exception:
+            #listener.lookupTransform("/base_footprint", "/odom",rospy.Time(0))
+            (trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))
+        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
             rospy.Duration(1.0)
-        
-         # Calculate the distance moved by the robot
-         # There are two methods that give the same result
-         #
-         # Method 1: Calculate the distance between the two transformations
-         # Hint:
-         #    --> transform.getOrigin().x(): represents the x coordinate of the transformation
-         #    --> transform.getOrigin().y(): represents the y coordinate of the transformation
-         #
-         # calculate the distance moved
-                    distance_moved = sqrt(pow((current_transform.getOrigin().x()-init_transform.getOrigin().x()), 2) +
-                        pow((current_transform.getOrigin().y()-init_transform.getOrigin().y()), 2));
 
-                    if not (distance_moved<distance):
-                        break
+        # calculate the distance moved
+        end = 0.5 * sqrt(trans[0] ** 2 + trans[1] ** 2)
+        distance_moved = distance_moved+abs(abs(float(end)) - abs(float(start)))
+        if not (distance_moved<distance):
+            break
+
    
 
 The following code defines the ``rotate`` function that gives the robot the ability to turn. It starts by delcaring a ``Twist`` message to send velocity commands and a declartion of ``tf`` transform listener to listen and capture the transformation between the ``odom`` frame and the ``base_footprint`` frame. Then change the angles to ``radians`` and then start publishing topics according to the right angles until the robot reaches a certain angle. The ``python`` code is a little different than the ``C++`` code but it does the same functionality.

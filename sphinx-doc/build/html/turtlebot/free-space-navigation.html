@@ -196,15 +196,21 @@ In this tutorial, we will use the <code class="docutils literal"><span class="pr
 <div class="section" id="tutorial-files">
 <h2>Tutorial Files<a class="headerlink" href="#tutorial-files" title="Permalink to this headline">¶</a></h2>
 <p>You can find the whole <code class="docutils literal"><span class="pre">cpp</span></code> and <code class="docutils literal"><span class="pre">python</span></code> files in our <a class="reference external" href="https://github.com/aniskoubaa/gaitech_doc">GitHub repository</a>.
-They are located in <code class="docutils literal"><span class="pre">src/turtlebot/navigation/map_navigation_folder</span></code>.
-In particular, we will use the launch file <code class="docutils literal"><span class="pre">map_navigation_psu.launch</span></code> that contains all the needed ROS nodes for this tutorial.
-Here is the content of the <code class="docutils literal"><span class="pre">map_navigation_psu.launch</span></code> file.</p>
-<p>In the code you will find 3 <code class="docutils literal"><span class="pre">move</span></code> amd <code class="docutils literal"><span class="pre">rotate</span></code> methods and each one of them has its approach so you will be able to know 3 different ways of controlling and manipulating the turtlebot robot .
+They are located in <code class="docutils literal"><span class="pre">src/turtlebot/navigation/free_space_navigation</span></code>.
+In particular, we will use the launch file <code class="docutils literal"><span class="pre">free_space_navigation_stage.launch</span></code> that contains all the needed ROS nodes for this tutorial.
+Here is the content of the <code class="docutils literal"><span class="pre">free_space_navigation_stage.launch</span></code> file.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
+  &lt;include <span class="nv">file</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>find turtlebot_stage<span class="k">)</span><span class="s2">/launch/turtlebot_in_stage.launch&quot;</span>/&gt;
+  &lt;node <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;free_space_navigation&quot;</span> <span class="nv">pkg</span><span class="o">=</span><span class="s2">&quot;gaitech_doc&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;free_space_navigation_node&quot;</span> <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span>/&gt;
+&lt;/launch&gt;
+</pre></div>
+</div>
+<p>In the code you will find 3 <code class="docutils literal"><span class="pre">move</span></code> functions and a <code class="docutils literal"><span class="pre">rotate</span></code> function and each one of them has its own approach so you will be able to know 3 different ways of controlling and manipulating the turtlebot robot .
 The code is also well explained so you can easily understand what each line is doing in the code and what is its functionality.</p>
 </div>
 <div class="section" id="anaylzing-the-code">
 <h2>Anaylzing the code<a class="headerlink" href="#anaylzing-the-code" title="Permalink to this headline">¶</a></h2>
-<p>We first analyze the <code class="docutils literal"><span class="pre">move</span></code> function to make the robot moves with a certain speed for a certain distance in stragight line either forward or backward.</p>
+<p>We first analyze the <code class="docutils literal"><span class="pre">move_v1</span></code> function to make the robot moves with a certain speed for a certain distance in stragight line either forward or backward.</p>
 <p>The following code below sets the linear speed of the x-axis as positive value if the intention is to move forward, and negative value if the robot is to move backward, based on the value of <code class="docutils literal"><span class="pre">isForward</span></code> boolean variable.
 All other linear speeds and angular speeds must be set to zero, because we consider only a straight motion in the x-axis direction.
 It has to be noted that the x-axis of the linear speed is the axis that points to the front of the robot from its center.</p>
@@ -312,8 +318,8 @@ that the <code class="docutils literal"><span class="pre">current_transform</spa
 </pre></div>
 </div>
 <p><strong>Python Code</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="bp">True</span> <span class="p">:</span>
-
+<div class="highlight-python"><div class="highlight"><pre><span></span> <span class="k">while</span> <span class="bp">True</span> <span class="p">:</span>
+     <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Turtlebot moves forwards&quot;</span><span class="p">)</span>
      <span class="c1">#/***************************************</span>
      <span class="c1"># * STEP1. PUBLISH THE VELOCITY MESSAGE</span>
      <span class="c1"># ***************************************/</span>
@@ -327,25 +333,16 @@ that the <code class="docutils literal"><span class="pre">current_transform</spa
          <span class="c1">#wait for the transform to be found</span>
          <span class="n">listener</span><span class="o">.</span><span class="n">waitForTransform</span><span class="p">(</span><span class="s2">&quot;/base_footprint&quot;</span><span class="p">,</span> <span class="s2">&quot;/odom&quot;</span><span class="p">,</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span> <span class="p">)</span>
          <span class="c1">#Once the transform is found,get the initial_transform transformation.</span>
-<span class="hll">         <span class="n">listener</span><span class="o">.</span><span class="n">lookupTransform</span><span class="p">(</span><span class="s2">&quot;/base_footprint&quot;</span><span class="p">,</span> <span class="s2">&quot;/odom&quot;</span><span class="p">,</span><span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">current_transform</span><span class="p">)</span>
-</span>
-     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+         <span class="c1">#listener.lookupTransform(&quot;/base_footprint&quot;, &quot;/odom&quot;,rospy.Time(0))</span>
+<span class="hll">         <span class="p">(</span><span class="n">trans</span><span class="p">,</span><span class="n">rot</span><span class="p">)</span> <span class="o">=</span> <span class="n">listener</span><span class="o">.</span><span class="n">lookupTransform</span><span class="p">(</span><span class="s1">&#39;/base_footprint&#39;</span><span class="p">,</span> <span class="s1">&#39;/odom&#39;</span><span class="p">,</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</span>     <span class="k">except</span> <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">LookupException</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">ConnectivityException</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">ExtrapolationException</span><span class="p">):</span>
          <span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
 
-      <span class="c1"># Calculate the distance moved by the robot</span>
-      <span class="c1"># There are two methods that give the same result</span>
-      <span class="c1">#</span>
-      <span class="c1"># Method 1: Calculate the distance between the two transformations</span>
-      <span class="c1"># Hint:</span>
-      <span class="c1">#    --&gt; transform.getOrigin().x(): represents the x coordinate of the transformation</span>
-      <span class="c1">#    --&gt; transform.getOrigin().y(): represents the y coordinate of the transformation</span>
-      <span class="c1">#</span>
-      <span class="c1"># calculate the distance moved</span>
-                 <span class="n">distance_moved</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="nb">pow</span><span class="p">((</span><span class="n">current_transform</span><span class="o">.</span><span class="n">getOrigin</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">()</span><span class="o">-</span><span class="n">init_transform</span><span class="o">.</span><span class="n">getOrigin</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">()),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span>
-                     <span class="nb">pow</span><span class="p">((</span><span class="n">current_transform</span><span class="o">.</span><span class="n">getOrigin</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">()</span><span class="o">-</span><span class="n">init_transform</span><span class="o">.</span><span class="n">getOrigin</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">()),</span> <span class="mi">2</span><span class="p">));</span>
-
-                 <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">distance_moved</span><span class="o">&lt;</span><span class="n">distance</span><span class="p">):</span>
-                     <span class="k">break</span>
+     <span class="c1"># calculate the distance moved</span>
+     <span class="n">end</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">trans</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">trans</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+     <span class="n">distance_moved</span> <span class="o">=</span> <span class="n">distance_moved</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">end</span><span class="p">))</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">start</span><span class="p">)))</span>
+     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">distance_moved</span><span class="o">&lt;</span><span class="n">distance</span><span class="p">):</span>
+         <span class="k">break</span>
 </pre></div>
 </div>
 <p>The following code defines the <code class="docutils literal"><span class="pre">rotate</span></code> function that gives the robot the ability to turn. It starts by delcaring a <code class="docutils literal"><span class="pre">Twist</span></code> message to send velocity commands and a declartion of <code class="docutils literal"><span class="pre">tf</span></code> transform listener to listen and capture the transformation between the <code class="docutils literal"><span class="pre">odom</span></code> frame and the <code class="docutils literal"><span class="pre">base_footprint</span></code> frame. Then change the angles to <code class="docutils literal"><span class="pre">radians</span></code> and then start publishing topics according to the right angles until the robot reaches a certain angle. The <code class="docutils literal"><span class="pre">python</span></code> code is a little different than the <code class="docutils literal"><span class="pre">C++</span></code> code but it does the same functionality.</p>
