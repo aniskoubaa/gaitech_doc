@@ -59,6 +59,11 @@ The code is also well explained so you can easily understand what each line is d
    
 Anaylzing the code
 ==================
+
+First Approach
+--------------
+
+
 We first analyze the ``move_v1`` function to make the robot moves with a certain speed for a certain distance in stragight line either forward or backward. 
 
 The following code below sets the linear speed of the x-axis as positive value if the intention is to move forward, and negative value if the robot is to move backward, based on the value of ``isForward`` boolean variable. 
@@ -219,7 +224,126 @@ that the ``current_transform`` was captured at the moment of the motion.
         if not (distance_moved<distance):
             break
 
+
+Second Approach
+---------------
+
+
+Now we will analyze the ``move_v2`` function to make the robot moves with a certain speed for a certain distance in stragight line either forward or backward. 
+
+The following code below uses ``tf`` transform listener to calculate the relative transform, then we determine its length. After declaring the variable in the beginning of the function, you will find the following:
+
+**C++ Code**
+
+.. code-block:: c
+   :emphasize-lines: 27,28
    
+    do{
+    /***************************************
+     * STEP1. PUBLISH THE VELOCITY MESSAGE
+     ***************************************/
+    velocityPublisher.publish(VelocityMessage);
+    ros::spinOnce();
+    loop_rate.sleep();
+    /**************************************************
+     * STEP2. ESTIMATE THE DISTANCE MOVED BY THE ROBOT
+     *************************************************/
+    try{
+      //wait for the transform to be found
+      listener.waitForTransform("/base_footprint", "/odom", ros::Time(0), ros::Duration(10.0) );
+      //Once the transform is found,get the initial_transform transformation.
+      listener.lookupTransform("/base_footprint", "/odom",ros::Time(0), current_transform);
+    }
+    catch (tf::TransformException & ex){
+      ROS_ERROR(" Problem %s",ex.what());
+      ros::Duration(1.0).sleep();
+    }
+
+    /*
+     * Method 2: using transform composition. We calculate the relative transform, then we determine its length
+     * Hint:
+     *    --> transform.getOrigin().length(): return the displacement of the origin of the transformation
+     */
+    tf::Transform relative_transform = init_transform.inverse() * current_transform;
+    distance_moved= relative_transform.getOrigin().length();
+
+    cout<<"Method 2: distance moved: "<<distance_moved <<", "<<distance<<endl;
+
+    }while((distance_moved<distance)&&(ros::ok()));
+
+As for the python code, the easiest way to solve this problem is to publish the ``twist`` messages in a normal ``for`` loop to avoid similarity between the other two functions.
+
+**Python Code**
+
+.. code-block:: python
+
+  for x in range(0,15) :
+            
+        #/***************************************
+        # * STEP1. PUBLISH THE VELOCITY MESSAGE
+        # ***************************************/
+            rospy.loginfo("Turtlebot moves forwards")
+            self.velocityPublisher.publish(VelocityMessage)
+            loop_rate.sleep()
+
+
+Third Approach
+--------------
+
+The last function we are going to analyze is the ``move_v3`` function to make the robot moves with a certain speed for a certain distance in stragight line either forward or backward. 
+
+The following code below uses the ``pose`` coordinates of the robot to estimate the distance. After declaring the variable in the beginning of the function and equate the initial pose of the turtlebot before start moving with the ``turtlebot_odom_pose`` global variable, you will find the following:
+
+**C++ Code**
+
+.. code-block:: c
+   :emphasize-lines: 2,8,9
+
+      //we update the initial_turtlebot_odom_pose using the turtlebot_odom_pose global variable updated in the callback function poseCallback
+      initial_turtlebot_odom_pose = turtlebot_odom_pose;
+
+      do{
+      velocityPublisher.publish(VelocityMessage);
+      ros::spinOnce();
+      loop_rate.sleep();
+      distance_moved = sqrt(pow((turtlebot_odom_pose.pose.pose.position.x-initial_turtlebot_odom_pose.pose.pose.position.x), 2) +
+        pow((turtlebot_odom_pose.pose.pose.position.y-initial_turtlebot_odom_pose.pose.pose.position.y), 2));
+
+      }while((distance_moved<distance)&&(ros::ok()));
+      //finally, stop the robot when the distance is moved
+      VelocityMessage.linear.x =0;
+      velocityPublisher.publish(VelocityMessage);
+      }
+
+**Python Code**
+
+.. code-block:: python
+   :emphasize-lines: 3,13,14
+
+    #we update the initial_turtlebot_odom_pose using the turtlebot_odom_pose global variable updated in the callback function poseCallback
+    #we will use deepcopy() to avoid pointers confusion
+    initial_turtlebot_odom_pose = copy.deepcopy(self.turtlebot_odom_pose)
+
+    while True :
+        rospy.loginfo("Turtlebot moves forwards")
+        self.velocityPublisher.publish(VelocityMessage)
+         
+        loop_rate.sleep()
+                    
+        rospy.Duration(1.0)
+                    
+        distance_moved = distance_moved+abs(0.5 * sqrt(((self.turtlebot_odom_pose.pose.pose.position.x-initial_turtlebot_odom_pose.pose.pose.position.x) ** 2) +
+        ((self.turtlebot_odom_pose.pose.pose.position.x-initial_turtlebot_odom_pose.pose.pose.position.x) ** 2)))
+                    
+        #rospy.loginfo(self.turtlebot_odom_pose.pose.pose.position.x)
+        #rospy.loginfo(initial_turtlebot_odom_pose.pose.pose.position.x)
+        #rospy.loginfo(distance_moved)
+                    
+        if not (distance_moved<distance):
+            break
+
+Rotate Function
+---------------
 
 The following code defines the ``rotate`` function that gives the robot the ability to turn. It starts by delcaring a ``Twist`` message to send velocity commands and a declartion of ``tf`` transform listener to listen and capture the transformation between the ``odom`` frame and the ``base_footprint`` frame. Then change the angles to ``radians`` and then start publishing topics according to the right angles until the robot reaches a certain angle. The ``python`` code is a little different than the ``C++`` code but it does the same functionality.
 
