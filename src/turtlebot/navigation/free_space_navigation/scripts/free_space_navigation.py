@@ -63,13 +63,14 @@ class free_space_navigation():
 
             distance_moved = 0.0
             loop_rate = rospy.Rate(10) # we publish the velocity at 10 Hz (10 times a second)    
+            
             initial_turtlebot_odom_pose = self.turtlebot_odom_pose
 
     
             while True :
-                    rospy.Duration(0.5)
+                    rospy.Duration(1.0)
                     self.velocityPublisher.publish(VelocityMessage)
-                    rospy.spin()
+                    #rospy.spin()
          # Calculate the distance moved by the robot
          # There are two methods that give the same result
          #
@@ -87,7 +88,7 @@ class free_space_navigation():
                     rospy.loginfo(self.turtlebot_odom_pose.pose.pose.position.x)
                     rospy.loginfo(initial_turtlebot_odom_pose.pose.pose.position.x)
                     rospy.loginfo(distance_moved)
-
+                    loop_rate.sleep()
                     if not (distance_moved<distance):
                         break
             
