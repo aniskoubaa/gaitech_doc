@@ -112,7 +112,7 @@ void poseCallback(const nav_msgs::Odometry::ConstPtr & pose_message){
 
 void moveSquare(double sideLength){
 	for (int i=0;i<4;i++){
-		move(0.3, sideLength, true);
+		move_v1(0.3, sideLength, true);
 		rotate (0.3, degree2radian(85), true);
 	}
 }
@@ -126,7 +126,7 @@ void moveSquare(double sideLength){
  *
  * Method 1: using tf and Calculate the distance between the two transformations
  */
-void move(double speed, double distance, bool isForward){
+void move_v1(double speed, double distance, bool isForward){
 	//declare a Twist message to send velocity commands
 	geometry_msgs::Twist VelocityMessage;
 	//declare tf transform listener: this transform listener will be used to listen and capture the transformation between

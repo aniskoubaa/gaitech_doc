@@ -137,7 +137,7 @@ class free_space_navigation():
     #
     # Method 3: we use coordinates of the robot to estimate the distance
 
-    def move(self, speed, distance, isForward):
+    def move_v1(self, speed, distance, isForward):
         #declare a Twist message to send velocity commands
         VelocityMessage = Twist()
         # declare tf transform listener: this transform listener will be used to listen and capture the transformation between
