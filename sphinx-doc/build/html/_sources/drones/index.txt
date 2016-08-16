@@ -6,7 +6,10 @@ Drones
 Contents:
 
 
-This page is for drones
+In this page, we will provide you a quick start with Ar Parrot 2 drone.
+
+.. image:: ar_parrot_2/images/parrot-ar-drone-2.jpg
+	:align: center
 
 .. toctree::
    :hidden:
