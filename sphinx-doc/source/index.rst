@@ -28,7 +28,12 @@ Gaitech is pround to provide you a comprehensive educational framework on Robot 
 Subscribe to Gaitech EDU Forum
 ==============================
 For technical support, updates, and getting responses to queries related to Gaitech EDU website, 
-you need to register to the `Gaitech EDU Forum <http://ros.gaitech.hk/>`_.
+you need to register to the `Gaitech EDU Forum <http://edu-forum.gaitech.hk/>`_.
+
+Subscribe to Gaitech EDU Mailing List
+=====================================
+To stay updated with any news about Gaitech EDU and receive new tutorials when posted
+you need to register to the `Gaitech EDU Mailing List <http://lists.gaitech.coins-lab.org/listinfo.cgi/gaitech_edu_users-gaitech.coins-lab.org>`_..
  
 
 FAQs about Gaitech EDU
@@ -68,9 +73,12 @@ We will add instructors who are using Gaitech EDU website and link to their cour
 Will the current content of the Gaitech EDU website be maintaned and updated?
 -----------------------------------------------------------------------------
 Yes. Gaitech EDU strives towards updating the educational content and maintaining it. Several tutorials will be added regularly and existing tutorials would also be updated when needed and based on feedback and comment of Gaitech EDU users.
-If you are interested to stay tuned with any content update, you can subscribe to the `Gaitech EDU Forum <http://ros.gaitech.hk/>`_.
+If you are interested to stay tuned with any content update, you can subscribe to the `Gaitech EDU Mailing List <http://lists.gaitech.coins-lab.org/listinfo.cgi/gaitech_edu_users-gaitech.coins-lab.org>`_.
 However, there are no pre-defined periods of updates. 
- 
+
+What to do if some of the examples in the tutorials do not work?
+----------------------------------------------------------------
+In this case, the best way to proceed is to post a question in the the `Gaitech EDU Forum <http://ros.gaitech.hk/>`_. The Gaitech team will respond to you at earliest convinience and make updates to tutorials or code if any is necessary. 
 
 
 
