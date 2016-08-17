@@ -48,7 +48,7 @@ nav_msgs::Odometry turtlebot_odom_pose;
 //callback function for the /odom topic to update the pose
 void poseCallback(const nav_msgs::Odometry::ConstPtr & pose_message);
 //the function that makes the robot moves forward and backward
-void move(double speed, double distance, bool isForward);
+void move_v1(double speed, double distance, bool isForward);
 void move_v2(double speed, double distance, bool isForward);
 void move_v3(double speed, double distance, bool isForward);
 //the function that makes the robot rotates left and right
@@ -205,7 +205,7 @@ void move_v1(double speed, double distance, bool isForward){
 		 * 	  --> transform.getOrigin().y(): represents the y coordinate of the transformation
 		 */
 		//calculate the distance moved
-		cout<<"Initial Transform: "<<init_transform <<" , "<<"Current Transform: "<<current_transform<<endl;
+		//cout<<"Initial Transform: "<<init_transform <<" , "<<"Current Transform: "<<current_transform<<endl;
 
 		distance_moved = sqrt(pow((current_transform.getOrigin().x()-init_transform.getOrigin().x()), 2) +
 				pow((current_transform.getOrigin().y()-init_transform.getOrigin().y()), 2));
@@ -297,7 +297,7 @@ void move_v2(double speed, double distance, bool isForward){
 		tf::Transform relative_transform = init_transform.inverse() * current_transform;
 		distance_moved= relative_transform.getOrigin().length();
 
-		cout<<"Method 2: distance moved: "<<distance_moved <<", "<<distance<<endl;
+		//cout<<"Method 2: distance moved: "<<distance_moved <<", "<<distance<<endl;
 
 	}while((distance_moved<distance)&&(ros::ok()));
 	//finally, stop the robot when the distance is moved
