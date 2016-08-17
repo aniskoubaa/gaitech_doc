@@ -123,6 +123,13 @@ class free_space_navigation():
         # declare tf transform listener: this transform listener will be used to listen and capture the transformation between
         # the odom frame (that represent the reference frame) and the base_footprint frame the represent moving frame
         # set the linear velocity to a positive value if isFoward is True
+        listener = tf.TransformListener()
+        #declare tf transform
+        initial_turtlebot_odom_pose = Odometry()
+        #init_transform: is the transformation before starting the motion
+        init_transform = geometry_msgs.msg.TransformStamped()
+        #current_transformation: is the transformation while the robot is moving
+        current_transform = geometry_msgs.msg.TransformStamped()
 
         if (isForward):
             VelocityMessage.linear.x =abs(speed)
@@ -135,20 +142,65 @@ class free_space_navigation():
         VelocityMessage.angular.y =0.0
         VelocityMessage.angular.z =0.0
 
+        distance_moved = 0.0
+
         loop_rate = rospy.Rate(10) # we publish the velocity at 10 Hz (10 times a second)
 
      # First, we capture the initial transformation before starting the motion.
      # we call this transformation "init_transform"
      # It is important to "waitForTransform" otherwise, it might not be captured.
+        try:
+            #wait for the transform to be found
+
+            listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0),rospy.Duration(10.0))
+            #Once the transform is found,get the initial_transform transformation.
+            (trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))
+            #listener.lookupTransform("/base_footprint", "/odom", rospy.Time(0),init_transform)
+            init_transform.transform.translation = trans
+            init_transform.transform.rotation =rot
+
+        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
+            rospy.Duration(1.0)
      
-        for x in range(0,15) :
-            
+        while True :
+            rospy.loginfo("Turtlebot moves forwards") 
         #/***************************************
         # * STEP1. PUBLISH THE VELOCITY MESSAGE
         # ***************************************/
-            rospy.loginfo("Turtlebot moves forwards")
             self.velocityPublisher.publish(VelocityMessage)
             loop_rate.sleep()
+        #/**************************************************
+        # * STEP2. ESTIMATE THE DISTANCE MOVED BY THE ROBOT
+        # *************************************************/
+            try:
+
+                #wait for the transform to be found
+                listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
+                #Once the transform is found,get the initial_transform transformation.
+                #listener.lookupTransform("/base_footprint", "/odom",rospy.Time(0))
+                (trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))
+            except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
+                rospy.Duration(1.0)
+
+            current_transform.transform.translation = trans
+            current_transform.transform.rotation =rot
+            
+            #the next step gets the length of the translation vector
+            print(numpy.linalg.norm(current_transform.transform.translation))
+            print(numpy.linalg.norm(init_transform.transform.translation)- numpy.linalg.norm(current_transform.transform.translation))
+            #print(type(init_transform.transform.translation))
+            print(numpy.linalg.norm(init_transform.transform.translation))
+            
+            #relative_transform = init_transform.transform.translation[::-1] * current_transform.transform.translation 
+            #distance_moved = distance_moved+abs(abs(float(end)) - abs(float(start)))
+            #distance_moved = relative_transform.getOrigin().length();
+            
+            if not (distance_moved<distance):
+                break
+            
+            #finally, stop the robot when the distance is moved
+        VelocityMessage.linear.x =0 
+        self.velocityPublisher.publish(VelocityMessage)
 
 
     #finally, stop the robot when the distance is moved
@@ -245,7 +297,7 @@ class free_space_navigation():
 
     def moveSquare(self,sideLength):
         for i in range(0, 4):
-            self.move_v3(0.3, sideLength, True)
+            self.move_v2(0.3, sideLength, True)
             self.rotate ()
    
     def __init__(self):
