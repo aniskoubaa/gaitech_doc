@@ -156,7 +156,7 @@ Its is better to create a Hokuyo Launch file in order to launch the Hokuyo node.
 Using SLAM With Hokuyo LIDAR Sensor
 ===================================
 
-In order to use Hokuyo for SLAM as described in tutorial `Building SLAM <http://wiki.ros.org/turtlebot_navigation/Tutorials/Build%20a%20map%20with%20SLAM>`_hokuyo-turtlebot. Following are the steps to be done at turtlebot Launch the Turtlebot
+In order to use Hokuyo for SLAM as described in tutorial `Building SLAM <http://wiki.ros.org/turtlebot_navigation/Tutorials/Build%20a%20map%20with%20SLAM>`_ hokuyo-turtlebot. Following are the steps to be done at turtlebot Launch the Turtlebot
 
 .. code-block:: bash
 
