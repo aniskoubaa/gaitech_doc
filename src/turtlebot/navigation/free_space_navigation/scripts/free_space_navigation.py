@@ -274,19 +274,96 @@ class free_space_navigation():
 
     
     def rotate(self):
+        VelocityMessage = Twist()
         
-        rotateMessage = Twist()
+        listener = tf.TransformListener()
+        #declare tf transform
+        initial_turtlebot_odom_pose = Odometry()
+        #init_transform: is the transformation before starting the motion
+        init_transform = geometry_msgs.msg.TransformStamped()
+        #current_transformation: is the transformation while the robot is moving
+        current_transform = geometry_msgs.msg.TransformStamped()
         
-        rotateMessage.linear.x = 0
-        rotateMessage.angular.z = radians(45); #45 deg/s in radians/s
-        
-        rospy.loginfo("Turtlebot is Turning")
-        r = rospy.Rate(5.5)
+        angle_turned = 0.0
 
-        for x in range(0,10):
+        angular_velocity = (-angular_velocity, ANGULAR_VELOCITY_MINIMUM_THRESHOLD)[angular_velocity > ANGULAR_VELOCITY_MINIMUM_THRESHOLD]
 
-            self.velocityPublisher.publish(rotateMessage)
-            r.sleep()            
+        while(radians < 0):
+            radians += 2*math.pi
+
+        while(radians > 2*math.pi):
+            radians -= 2*math.pi
+        
+        listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
+        (trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))
+        #listener.lookupTransform("/base_footprint", "/odom", rospy.Time(0),init_transform)
+        
+        init_transform.transform.translation = trans
+        init_transform.transform.rotation =rot
+        
+        VelocityMessage.linear.x = VelocityMessage.linear.y = 0.0
+        VelocityMessage.angular.z = angular_velocity
+        if (clockwise):
+            VelocityMessage.angular.z = -VelocityMessage.angular.z
+        
+        desired_turn_axis=(0,0,1)
+
+        if (not clockwise):
+            desired_turn_axis = -desired_turn_axis
+        
+        loop_rate = rospy.Rate(10)
+        done = False
+
+        while not done:
+            rospy.loginfo("Turtlebot moves forwards")
+            self.velocityPublisher.publish(VelocityMessage)
+         
+            loop_rate.sleep()
+                    
+            rospy.Duration(1.0)
+
+            try:
+
+                #wait for the transform to be found
+                listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
+                #Once the transform is found,get the initial_transform transformation.
+                #listener.lookupTransform("/base_footprint", "/odom",rospy.Time(0))
+                (trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))
+            except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
+                rospy.Duration(1.0)
+
+            current_transform.transform.translation = trans
+            current_transform.transform.rotation =rot
+            
+            #the next step gets the length of the translation vector
+            print(numpy.linalg.norm(current_transform.transform.translation))
+            print(numpy.linalg.norm(init_transform.transform.translation)- numpy.linalg.norm(current_transform.transform.translation))
+            #print(type(init_transform.transform.translation))
+            print(numpy.linalg.norm(init_transform.transform.translation))
+            
+            #relative_transform = init_transform.transform.translation[::-1] * current_transform.transform.translation 
+            
+            #tf::Transform relative_transform = init_transform.inverse() * current_transform;
+            #tf::Vector3 actual_turn_axis = relative_transform.getRotation().getAxis();
+            #angle_turned = relative_transform.getRotation().getAngle();
+
+            #if (fabs(angle_turned) < 1.0e-2) continue;
+            #if (actual_turn_axis.dot(desired_turn_axis ) < 0 )
+            #    angle_turned = 2 * M_PI - angle_turned;
+
+            #if (!clockwise)
+             #   VelocityMessage.angular.z = (angular_velocity-ANGULAR_VELOCITY_MINIMUM_THRESHOLD) * (fabs(radian2degree(radians-angle_turned)/radian2degree(radians)))+ANGULAR_VELOCITY_MINIMUM_THRESHOLD;
+            #else
+              #  if (clockwise)
+             #       VelocityMessage.angular.z = (-angular_velocity+ANGULAR_VELOCITY_MINIMUM_THRESHOLD) * (fabs(radian2degree(radians-angle_turned)/radian2degree(radians)))-ANGULAR_VELOCITY_MINIMUM_THRESHOLD;
+
+            #if (angle_turned > radians) {
+                #done = true;
+                #VelocityMessage.linear.x = VelocityMessage.linear.y = VelocityMessage.angular.z = 0;
+                #velocityPublisher.publish(VelocityMessage)
+
+        self.velocityPublisher.publish(rotateMessage)
+        r.sleep()            
 
     def calculateYaw( x1, y1, x2,y2):
         bearing = atan2((y2 - y1),(x2 - x1))
