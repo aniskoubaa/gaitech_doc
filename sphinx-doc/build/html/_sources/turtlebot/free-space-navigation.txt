@@ -271,20 +271,64 @@ The following code below uses ``tf`` transform listener to calculate the relativ
 
     }while((distance_moved<distance)&&(ros::ok()));
 
-As for the python code, the easiest way to solve this problem is to publish the ``twist`` messages in a normal ``for`` loop to avoid similarity between the other two functions.
+As for the python code, because it doesn't allow operator overloading that is defining the logic of operators for objects. The approach that was applied here is to multiply the ``tf::Transform`` and convert the result to a matrix and then extract the information from this matrix as highlighted below.
 
 **Python Code**
 
 .. code-block:: python
+    :emphasize-lines: 8,9,10,37,38,39,40,41,43,47
+    
+    try:
+      #wait for the transform to be found
 
-  for x in range(0,15) :
-            
+      listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0),rospy.Duration(10.0))
+      #Once the transform is found,get the initial_transform transformation.
+      (trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))
+      #listener.lookupTransform("/base_footprint", "/odom", rospy.Time(0),init_transform)
+      trans1_mat = tf.transformations.translation_matrix(trans)
+      rot1_mat   = tf.transformations.quaternion_matrix(rot)
+      mat1 = numpy.dot(trans1_mat, rot1_mat)
+      init_transform.transform.translation = trans
+      init_transform.transform.rotation =rot
+
+      except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
+            rospy.Duration(1.0)
+     
+      while True :
+        rospy.loginfo("Turtlebot moves forwards") 
         #/***************************************
         # * STEP1. PUBLISH THE VELOCITY MESSAGE
         # ***************************************/
-            rospy.loginfo("Turtlebot moves forwards")
-            self.velocityPublisher.publish(VelocityMessage)
-            loop_rate.sleep()
+        self.velocityPublisher.publish(VelocityMessage)
+        loop_rate.sleep()
+        #/**************************************************
+        # * STEP2. ESTIMATE THE DISTANCE MOVED BY THE ROBOT
+        # *************************************************/
+        try:
+
+          #wait for the transform to be found
+          listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
+          #Once the transform is found,get the initial_transform transformation.
+          #listener.lookupTransform("/base_footprint", "/odom",rospy.Time(0))
+          (trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))
+        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
+          rospy.Duration(1.0)
+            
+        trans1_mat = tf.transformations.translation_matrix(trans)
+        rot1_mat   = tf.transformations.quaternion_matrix(rot)
+        mat2 = numpy.dot(trans1_mat, rot1_mat)
+        mat3 = numpy.dot(mat1, mat2)
+        trans3 = tf.transformations.translation_from_matrix(mat3)
+            
+        rot3 = tf.transformations.quaternion_from_matrix(mat3)   
+
+        current_transform.transform.translation = trans
+        current_transform.transform.rotation =rot
+        distance_moved = distance_moved + (0.5 * sqrt(trans3[0] ** 2 + trans3[1] ** 2))
+            
+        if not (distance_moved<distance):
+          break
+
 
 
 Third Approach
@@ -438,25 +482,82 @@ The following code defines the ``rotate`` function that gives the robot the abil
     return angle_turned;
     }
 
+As for the python, we had the same problem as the second approach of the ``move`` functions, so the closest approach was to use the 
 **Python Code**
 
 .. code-block:: python
-   :emphasize-lines: 16
+   :emphasize-lines: 29
 
-    def rotate(self):
-        
+    def rotate(self,angular_velocity,radians,clockwise):
         rotateMessage = Twist()
         
-        rotateMessage.linear.x = 0
-        rotateMessage.angular.z = radians(45); #45 deg/s in radians/s
+        #declare tf transform
+        listener = tf.TransformListener()
+        #init_transform: is the transformation before starting the motion
+        init_transform = geometry_msgs.msg.TransformStamped()
+        #current_transformation: is the transformation while the robot is moving
+        current_transform = geometry_msgs.msg.TransformStamped()
         
-        rospy.loginfo("Turtlebot is Turning")
-        r = rospy.Rate(5)
+        angle_turned = 0.0
 
-        for x in range(0,10):
+        angular_velocity = (-angular_velocity, ANGULAR_VELOCITY_MINIMUM_THRESHOLD)[angular_velocity > ANGULAR_VELOCITY_MINIMUM_THRESHOLD]
+
+        while(radians < 0):
+            radians += 2* pi
+
+        while(radians > 2* pi):
+            radians -= 2* pi
+        
+        listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
+        (trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))
+        #listener.lookupTransform("/base_footprint", "/odom", rospy.Time(0),init_transform)
+        
+        init_transform.transform.translation = trans
+        init_transform.transform.rotation =rot
+
+        #since the rotation is only in the Z-axes 
+        start_angle = 0.5 * sqrt(rot[2] ** 2)
+
+        rotateMessage.linear.x = rotateMessage.linear.y = 0.0
+        rotateMessage.angular.z = angular_velocity
+
+        if (clockwise):
+            rotateMessage.angular.z = -rotateMessage.angular.z
+        
+        
+        loop_rate = rospy.Rate(10)
+        
+        while True:
+            rospy.loginfo("Turtlebot is Rotating")
 
             self.velocityPublisher.publish(rotateMessage)
-            r.sleep()            
+         
+            loop_rate.sleep()
+                    
+            rospy.Duration(1.0)
+
+            try:
+
+                #wait for the transform to be found
+                listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
+                #Once the transform is found,get the initial_transform transformation.
+                #listener.lookupTransform("/base_footprint", "/odom",rospy.Time(0))
+                (trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))
+            except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
+                rospy.Duration(1.0)
+
+            current_transform.transform.translation = trans
+            current_transform.transform.rotation =rot
+            
+            #since the rotation is only in the Z-axes 
+            end_angle = 0.5 * sqrt( rot[2] ** 2)
+            
+            angle_turned = angle_turned+abs(abs(float(end_angle)) - abs(float(start_angle)))
+            
+            if (angle_turned > radians):
+                break
+
+
 
 Running the code using Stage and RViz Simulators
 ================================================
@@ -479,7 +580,7 @@ After that run the ``cpp`` node by typing the following command:
 	
 	roslaunch gaitech_doc free_space_navigation
 
-or launch the ``free_space_navigation_stage.launch`` file to launch both simulators and the ``cpp`` node.
+or launch the ``free_space_navigation_stage.launch`` file to launch the simulators and the ``cpp`` node.
 
 .. image:: images/stage-square-move-cpp.png
 	:align: center
@@ -490,6 +591,12 @@ You can also choose to run the ``python`` script by running this command:
 .. code-block:: bash
 	
 	python your_workspace/src/gaitech_doc/src/turtlebot/navigation/free_space_navigation/script/free_space_navigation.py
+
+Or you can launch the ``free_space_navigation_stage_python_node.launch`` file to run the simulators and the ``python`` node.
+
+.. code-block:: bash
+
+    roslaunch gaitech_doc free_space_navigation_stage_python_node.launch
 
 .. image:: images/stage-square-move-python.png
 	:align: center
