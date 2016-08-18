@@ -156,9 +156,12 @@ class free_space_navigation():
             #Once the transform is found,get the initial_transform transformation.
             (trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))
             #listener.lookupTransform("/base_footprint", "/odom", rospy.Time(0),init_transform)
+            trans1_mat = tf.transformations.translation_matrix(trans)
+            rot1_mat   = tf.transformations.quaternion_matrix(rot)
+            mat1 = numpy.dot(trans1_mat, rot1_mat)
             init_transform.transform.translation = trans
             init_transform.transform.rotation =rot
-
+            print(mat1)
         except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
             rospy.Duration(1.0)
      
@@ -181,15 +184,29 @@ class free_space_navigation():
                 (trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))
             except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
                 rospy.Duration(1.0)
+            
+            trans1_mat = tf.transformations.translation_matrix(trans)
+            rot1_mat   = tf.transformations.quaternion_matrix(rot)
+            mat2 = numpy.dot(trans1_mat, rot1_mat)
+            print(mat2)
+            mat3 = numpy.dot(mat1, mat2)
+            print(mat3)
 
+            trans3 = tf.transformations.translation_from_matrix(mat3)
+            print(trans3)
+            rot3 = tf.transformations.quaternion_from_matrix(mat3)
+            print(rot3)
+            
             current_transform.transform.translation = trans
             current_transform.transform.rotation =rot
-            
+            distance_moved = distance_moved + (0.5 * sqrt(trans3[0] ** 2 + trans3[1] ** 2))
+            print(distance_moved)
+            print (numpy.linalg.norm(trans3))
             #the next step gets the length of the translation vector
-            print(numpy.linalg.norm(current_transform.transform.translation))
-            print(numpy.linalg.norm(init_transform.transform.translation)- numpy.linalg.norm(current_transform.transform.translation))
+            #print(numpy.linalg.norm(current_transform.transform.translation))
+            #print(numpy.linalg.norm(init_transform.transform.translation)- numpy.linalg.norm(current_transform.transform.translation))
             #print(type(init_transform.transform.translation))
-            print(numpy.linalg.norm(init_transform.transform.translation))
+            #print(numpy.linalg.norm(init_transform.transform.translation))
             
             #relative_transform = init_transform.transform.translation[::-1] * current_transform.transform.translation 
             #distance_moved = distance_moved+abs(abs(float(end)) - abs(float(start)))
@@ -375,7 +392,8 @@ class free_space_navigation():
     def moveSquare(self,sideLength):
         for i in range(0, 4):
             self.move_v2(0.3, sideLength, True)
-            self.rotate ()
+            self.shutdown()
+            #self.rotate()
    
     def __init__(self):
         # initiliaze
