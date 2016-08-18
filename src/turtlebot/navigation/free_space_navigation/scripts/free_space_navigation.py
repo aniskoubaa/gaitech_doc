@@ -204,14 +204,9 @@ class free_space_navigation():
             #print(distance_moved)
             #print (numpy.linalg.norm(trans3))
             
-            if not (distance_moved<(distance)):
+            if not (distance_moved<distance):
                 break
             
-            #finally, stop the robot when the distance is moved
-        VelocityMessage.linear.x =0 
-        self.velocityPublisher.publish(VelocityMessage)
-
-
     #finally, stop the robot when the distance is moved
         VelocityMessage.linear.x =0
         self.velocityPublisher.publish(VelocityMessage)
@@ -280,10 +275,9 @@ class free_space_navigation():
     
     def rotate(self,angular_velocity,radians,clockwise):
         rotateMessage = Twist()
-        
+       
+        #declare tf transform 
         listener = tf.TransformListener()
-        #declare tf transform
-        initial_turtlebot_odom_pose = Odometry()
         #init_transform: is the transformation before starting the motion
         init_transform = geometry_msgs.msg.TransformStamped()
         #current_transformation: is the transformation while the robot is moving
@@ -305,7 +299,9 @@ class free_space_navigation():
         
         init_transform.transform.translation = trans
         init_transform.transform.rotation =rot
-        start = 0.5 * sqrt(rot[0] ** 2 + rot[1] ** 2 + rot[2] ** 2)
+
+        #since the rotation is only in the Z-axes 
+        start_angle = 0.5 * sqrt(rot[2] ** 2)
 
         rotateMessage.linear.x = rotateMessage.linear.y = 0.0
         rotateMessage.angular.z = angular_velocity
@@ -337,10 +333,11 @@ class free_space_navigation():
 
             current_transform.transform.translation = trans
             current_transform.transform.rotation =rot
+
+            #since the rotation is only in the Z-axes 
+            end_angle = 0.5 * sqrt( rot[2] ** 2)
             
-            end = 0.5 * sqrt(rot[0] ** 2 + rot[1] ** 2 + rot[2] ** 2)
-            
-            angle_turned = angle_turned+abs(abs(float(end)) - abs(float(start)))
+            angle_turned = angle_turned+abs(abs(float(end_angle)) - abs(float(start_angle)))
             
             if (angle_turned > radians):
                 break
