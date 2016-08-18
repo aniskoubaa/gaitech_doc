@@ -161,7 +161,7 @@ class free_space_navigation():
             mat1 = numpy.dot(trans1_mat, rot1_mat)
             init_transform.transform.translation = trans
             init_transform.transform.rotation =rot
-            print(mat1)
+            #print(mat1)
         except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
             rospy.Duration(1.0)
      
@@ -188,31 +188,23 @@ class free_space_navigation():
             trans1_mat = tf.transformations.translation_matrix(trans)
             rot1_mat   = tf.transformations.quaternion_matrix(rot)
             mat2 = numpy.dot(trans1_mat, rot1_mat)
-            print(mat2)
+            #print(mat2)
             mat3 = numpy.dot(mat1, mat2)
-            print(mat3)
+            #print(mat3)
 
             trans3 = tf.transformations.translation_from_matrix(mat3)
-            print(trans3)
+            
+            #print(trans3)
             rot3 = tf.transformations.quaternion_from_matrix(mat3)
-            print(rot3)
+            #print(rot3)
             
             current_transform.transform.translation = trans
             current_transform.transform.rotation =rot
             distance_moved = distance_moved + (0.5 * sqrt(trans3[0] ** 2 + trans3[1] ** 2))
-            print(distance_moved)
-            print (numpy.linalg.norm(trans3))
-            #the next step gets the length of the translation vector
-            #print(numpy.linalg.norm(current_transform.transform.translation))
-            #print(numpy.linalg.norm(init_transform.transform.translation)- numpy.linalg.norm(current_transform.transform.translation))
-            #print(type(init_transform.transform.translation))
-            #print(numpy.linalg.norm(init_transform.transform.translation))
+            #print(distance_moved)
+            #print (numpy.linalg.norm(trans3))
             
-            #relative_transform = init_transform.transform.translation[::-1] * current_transform.transform.translation 
-            #distance_moved = distance_moved+abs(abs(float(end)) - abs(float(start)))
-            #distance_moved = relative_transform.getOrigin().length();
-            
-            if not (distance_moved<distance):
+            if not (distance_moved<(distance)):
                 break
             
             #finally, stop the robot when the distance is moved
@@ -276,11 +268,7 @@ class free_space_navigation():
                     
                     distance_moved = distance_moved+abs(0.5 * sqrt(((self.turtlebot_odom_pose.pose.pose.position.x-initial_turtlebot_odom_pose.pose.pose.position.x) ** 2) +
                         ((self.turtlebot_odom_pose.pose.pose.position.x-initial_turtlebot_odom_pose.pose.pose.position.x) ** 2)))
-                    
-                    #rospy.loginfo(self.turtlebot_odom_pose.pose.pose.position.x)
-                    #rospy.loginfo(initial_turtlebot_odom_pose.pose.pose.position.x)
-                    #rospy.loginfo(distance_moved)
-                    
+                                        
                     if not (distance_moved<distance):
                         break
             
@@ -290,8 +278,8 @@ class free_space_navigation():
 
 
     
-    def rotate(self):
-        VelocityMessage = Twist()
+    def rotate(self,angular_velocity,radians,clockwise):
+        rotateMessage = Twist()
         
         listener = tf.TransformListener()
         #declare tf transform
@@ -306,10 +294,10 @@ class free_space_navigation():
         angular_velocity = (-angular_velocity, ANGULAR_VELOCITY_MINIMUM_THRESHOLD)[angular_velocity > ANGULAR_VELOCITY_MINIMUM_THRESHOLD]
 
         while(radians < 0):
-            radians += 2*math.pi
+            radians += 2* pi
 
-        while(radians > 2*math.pi):
-            radians -= 2*math.pi
+        while(radians > 2* pi):
+            radians -= 2* pi
         
         listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
         (trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))
@@ -317,23 +305,21 @@ class free_space_navigation():
         
         init_transform.transform.translation = trans
         init_transform.transform.rotation =rot
-        
-        VelocityMessage.linear.x = VelocityMessage.linear.y = 0.0
-        VelocityMessage.angular.z = angular_velocity
-        if (clockwise):
-            VelocityMessage.angular.z = -VelocityMessage.angular.z
-        
-        desired_turn_axis=(0,0,1)
+        start = 0.5 * sqrt(rot[0] ** 2 + rot[1] ** 2 + rot[2] ** 2)
 
-        if (not clockwise):
-            desired_turn_axis = -desired_turn_axis
+        rotateMessage.linear.x = rotateMessage.linear.y = 0.0
+        rotateMessage.angular.z = angular_velocity
+
+        if (clockwise):
+            rotateMessage.angular.z = -rotateMessage.angular.z
+        
         
         loop_rate = rospy.Rate(10)
-        done = False
+        
+        while True:
+            rospy.loginfo("Turtlebot is Rotating")
 
-        while not done:
-            rospy.loginfo("Turtlebot moves forwards")
-            self.velocityPublisher.publish(VelocityMessage)
+            self.velocityPublisher.publish(rotateMessage)
          
             loop_rate.sleep()
                     
@@ -352,35 +338,15 @@ class free_space_navigation():
             current_transform.transform.translation = trans
             current_transform.transform.rotation =rot
             
-            #the next step gets the length of the translation vector
-            print(numpy.linalg.norm(current_transform.transform.translation))
-            print(numpy.linalg.norm(init_transform.transform.translation)- numpy.linalg.norm(current_transform.transform.translation))
-            #print(type(init_transform.transform.translation))
-            print(numpy.linalg.norm(init_transform.transform.translation))
+            end = 0.5 * sqrt(rot[0] ** 2 + rot[1] ** 2 + rot[2] ** 2)
             
-            #relative_transform = init_transform.transform.translation[::-1] * current_transform.transform.translation 
+            angle_turned = angle_turned+abs(abs(float(end)) - abs(float(start)))
             
-            #tf::Transform relative_transform = init_transform.inverse() * current_transform;
-            #tf::Vector3 actual_turn_axis = relative_transform.getRotation().getAxis();
-            #angle_turned = relative_transform.getRotation().getAngle();
-
-            #if (fabs(angle_turned) < 1.0e-2) continue;
-            #if (actual_turn_axis.dot(desired_turn_axis ) < 0 )
-            #    angle_turned = 2 * M_PI - angle_turned;
-
-            #if (!clockwise)
-             #   VelocityMessage.angular.z = (angular_velocity-ANGULAR_VELOCITY_MINIMUM_THRESHOLD) * (fabs(radian2degree(radians-angle_turned)/radian2degree(radians)))+ANGULAR_VELOCITY_MINIMUM_THRESHOLD;
-            #else
-              #  if (clockwise)
-             #       VelocityMessage.angular.z = (-angular_velocity+ANGULAR_VELOCITY_MINIMUM_THRESHOLD) * (fabs(radian2degree(radians-angle_turned)/radian2degree(radians)))-ANGULAR_VELOCITY_MINIMUM_THRESHOLD;
-
-            #if (angle_turned > radians) {
-                #done = true;
-                #VelocityMessage.linear.x = VelocityMessage.linear.y = VelocityMessage.angular.z = 0;
-                #velocityPublisher.publish(VelocityMessage)
+            if (angle_turned > radians):
+                break
 
         self.velocityPublisher.publish(rotateMessage)
-        r.sleep()            
+        loop_rate.sleep()
 
     def calculateYaw( x1, y1, x2,y2):
         bearing = atan2((y2 - y1),(x2 - x1))
@@ -391,9 +357,9 @@ class free_space_navigation():
 
     def moveSquare(self,sideLength):
         for i in range(0, 4):
-            self.move_v2(0.3, sideLength, True)
-            self.shutdown()
-            #self.rotate()
+            self.move_v1(0.3, sideLength, True)
+            #self.shutdown()
+            self.rotate(0.3,47,True)
    
     def __init__(self):
         # initiliaze
