@@ -20,7 +20,7 @@ Welcome to Gaitech's Education Portal!
    Contributors<contributors/index>
 
 
-Gaitech is pround to provide you a comprehensive educational framework on Robot Operating System (ROS). We provide a series of online tutorials on ROS that will help you getting familiar with ROS.
+Gaitech is proud to provide you a comprehensive educational framework on Robot Operating System (ROS). We provide a series of online tutorials on ROS that will help you getting familiar with ROS.
 
 .. image:: images/ros/ros.png
     :align: center
