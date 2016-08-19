@@ -492,7 +492,6 @@ To test the above example, you simply need to execute the command
 Then, on the terminal command, you enter the location of your choice based on the selection menu and observe how the robot navigates to the goal location.
 
 OR
-^^
 
 You can run the nodes separately as follows:
 

@@ -248,7 +248,7 @@ class free_space_navigation():
             VelocityMessage.angular.z = 0
 
             distance_moved = 0.0
-            loop_rate = rospy.Rate(10) # we publish the velocity at 10 Hz (10 times a second)    
+            loop_rate = rospy.Rate(20) # we publish the velocity at 10 Hz (10 times a second)    
             #we update the initial_turtlebot_odom_pose using the turtlebot_odom_pose global variable updated in the callback function poseCallback
             #we will use deepcopy() to avoid pointers confusion
             initial_turtlebot_odom_pose = copy.deepcopy(self.turtlebot_odom_pose)
@@ -259,7 +259,7 @@ class free_space_navigation():
          
                     loop_rate.sleep()
                     
-                    rospy.Duration(1.0)
+                    #rospy.Duration(1.0)
                     
                     distance_moved = distance_moved+abs(0.5 * sqrt(((self.turtlebot_odom_pose.pose.pose.position.x-initial_turtlebot_odom_pose.pose.pose.position.x) ** 2) +
                         ((self.turtlebot_odom_pose.pose.pose.position.x-initial_turtlebot_odom_pose.pose.pose.position.x) ** 2)))
@@ -271,7 +271,8 @@ class free_space_navigation():
             VelocityMessage.linear.x =0
             self.velocityPublisher.publish(VelocityMessage)
 
-
+    def degree2radian(self, degreeAngle):
+        return (degreeAngle/57.2957795)
     
     def rotate(self,angular_velocity,radians,clockwise):
         rotateMessage = Twist()
@@ -301,7 +302,11 @@ class free_space_navigation():
         init_transform.transform.rotation =rot
 
         #since the rotation is only in the Z-axes 
-        start_angle = 0.5 * sqrt(rot[2] ** 2)
+        #start_angle = tf.transformations.#0.5 * sqrt(rot[2] ** 2)
+        euler = tf.transformations.euler_from_quaternion(rot)
+        roll = euler[0]
+        pitch = euler[1]
+        start_angle = euler[2]
 
         rotateMessage.linear.x = rotateMessage.linear.y = 0.0
         rotateMessage.angular.z = angular_velocity
@@ -310,7 +315,7 @@ class free_space_navigation():
             rotateMessage.angular.z = -rotateMessage.angular.z
         
         
-        loop_rate = rospy.Rate(10)
+        loop_rate = rospy.Rate(20)
         
         while True:
             rospy.loginfo("Turtlebot is Rotating")
@@ -319,7 +324,7 @@ class free_space_navigation():
          
             loop_rate.sleep()
                     
-            rospy.Duration(1.0)
+            #rospy.Duration(1.0)
 
             try:
 
@@ -335,10 +340,14 @@ class free_space_navigation():
             current_transform.transform.rotation =rot
 
             #since the rotation is only in the Z-axes 
-            end_angle = 0.5 * sqrt( rot[2] ** 2)
+            #end_angle = 0.5 * sqrt( rot[2] ** 2)
+            euler = tf.transformations.euler_from_quaternion(rot)
+            roll = euler[0]
+            pitch = euler[1]
+            end_angle = euler[2]
             
-            angle_turned = angle_turned+abs(abs(float(end_angle)) - abs(float(start_angle)))
-            
+            angle_turned = abs(end_angle - start_angle)
+            print "angle_turned: %s" %angle_turned
             if (angle_turned > radians):
                 break
 
@@ -356,7 +365,7 @@ class free_space_navigation():
         for i in range(0, 4):
             self.move_v1(0.3, sideLength, True)
             #self.shutdown()
-            self.rotate(0.3,47,True)
+            self.rotate(0.2, self.degree2radian(90.0),True)
    
     def __init__(self):
         # initiliaze
@@ -369,13 +378,15 @@ class free_space_navigation():
         self.velocityPublisher = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size=10)
         self.pose_subscriber = rospy.Subscriber("/odom", Odometry, self.poseCallback)     
         # 2 HZ
-        r = rospy.Rate(2)
+        r = rospy.Rate(20)
         
         r.sleep()
 
         while not rospy.is_shutdown():
-            sideLength=3
-            self.moveSquare(sideLength)       
+            sideLength=1
+            self.moveSquare(sideLength)
+            #self.rotate(0.3, self.degree2radian(90.0), True);
+            #self.rotate(0.3, self.degree2radian(90.0), False);       
 
         
     def shutdown(self):
