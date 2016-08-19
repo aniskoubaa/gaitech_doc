@@ -7,8 +7,11 @@ Turtlebot Quick Start Tutorials
 
 In this page, we will provide you a quick start with Turtlebot robot.
 
+If you do not have a Turtlebot robot and want to get one, you can order online (Click on Turtlebot image below to order). 
+
 .. image:: images/turtlebot.png
     :align: center
+    :target: http://www.gaitech.hk/?wpsc-product=turtlebot-shop
 
 .. toctree::
    :hidden:

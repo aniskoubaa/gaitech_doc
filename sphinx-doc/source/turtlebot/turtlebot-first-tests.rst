@@ -9,6 +9,7 @@ In this tutorial, we provide you a few steps to follow to test the functionaliti
 
 .. image:: images/turtlebot.png
     :align: center
+    :target: http://www.gaitech.hk/?wpsc-product=turtlebot-shop
 
 
 Starting The Turtlebot

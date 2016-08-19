@@ -80,5 +80,11 @@ What to do if some of the examples in the tutorials do not work?
 ----------------------------------------------------------------
 In this case, the best way to proceed is to post a question in the the `Gaitech EDU Forum <http://ros.gaitech.hk/>`_. The Gaitech team will respond to you at earliest convinience and make updates to tutorials or code if any is necessary. 
 
-
+Want to buy a robot?
+====================
+Order your Turtlebot by clicking on the Turtlebot image below.
+ 
+.. image:: turtlebot/images/turtlebot.png
+    :align: center
+    :target: http://www.gaitech.hk/?wpsc-product=turtlebot-shop
 

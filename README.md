@@ -23,8 +23,9 @@ Gaitech EDU can be helpful in diffent ways. First, it can be used by self-learne
 
 Will the current content of the Gaitech EDU website be maintaned and updated?
 -----------------------------------------------------------------------------
-Yes. Gaitech EDU strives towards updating the educational content and maintaining it. Several tutorials will be added regularly and existing tutorials would also be updated when needed and based on feedback and comment of Gaitech EDU users. If you are interested to stay tuned with any content update, you can subscribe to this forum edu-forum.gaitech.hk. However, there are no pre-defined periods of updates.
+Yes. Gaitech EDU strives towards updating the educational content and maintaining it. Several tutorials will be added regularly and existing tutorials would also be updated when needed and based on feedback and comment of Gaitech EDU users. If you are interested to stay tuned with any content update, you can subscribe to this forum forum.gaitech.hk. However, there are no pre-defined periods of updates.
 
 Subscribe to Gaitech EDU Mailing List
 =====================================
-For technical support and getting responses to queries related to Gaitech EDU website, you need to register to the forum edu-forum.gaitech.hk.
+For technical support and getting responses to queries related to Gaitech EDU website, you need to register to the forum forum.gaitech.hk.
+You can also subscribe to Gaitech EDU Mailing List to receive latest news http://lists.gaitech.coins-lab.org/listinfo.cgi/gaitech_edu_users-gaitech.coins-lab.org
