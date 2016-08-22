@@ -614,7 +614,11 @@ that the <code class="docutils literal"><span class="pre">current_transform</spa
      <span class="n">init_transform</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span><span class="n">rot</span>
 
      <span class="c1">#since the rotation is only in the Z-axes</span>
-<span class="hll">     <span class="n">start_angle</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">rot</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+     <span class="c1">#start_angle = tf.transformations.#0.5 * sqrt(rot[2] ** 2)</span>
+<span class="hll">     <span class="n">euler</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transformations</span><span class="o">.</span><span class="n">euler_from_quaternion</span><span class="p">(</span><span class="n">rot</span><span class="p">)</span>
+</span><span class="hll">     <span class="n">roll</span> <span class="o">=</span> <span class="n">euler</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class="hll">     <span class="n">pitch</span> <span class="o">=</span> <span class="n">euler</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class="hll">     <span class="n">start_angle</span> <span class="o">=</span> <span class="n">euler</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 </span>
      <span class="n">rotateMessage</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">rotateMessage</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span>
      <span class="n">rotateMessage</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">angular_velocity</span>
@@ -623,7 +627,7 @@ that the <code class="docutils literal"><span class="pre">current_transform</spa
          <span class="n">rotateMessage</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="o">-</span><span class="n">rotateMessage</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span>
 
 
-     <span class="n">loop_rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+     <span class="n">loop_rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 
      <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
          <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Turtlebot is Rotating&quot;</span><span class="p">)</span>
@@ -632,7 +636,7 @@ that the <code class="docutils literal"><span class="pre">current_transform</spa
 
          <span class="n">loop_rate</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
 
-         <span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+         <span class="c1">#rospy.Duration(1.0)</span>
 
          <span class="k">try</span><span class="p">:</span>
 
@@ -648,10 +652,14 @@ that the <code class="docutils literal"><span class="pre">current_transform</spa
          <span class="n">current_transform</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span><span class="n">rot</span>
 
          <span class="c1">#since the rotation is only in the Z-axes</span>
-         <span class="n">end_angle</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span> <span class="n">rot</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-
-         <span class="n">angle_turned</span> <span class="o">=</span> <span class="n">angle_turned</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">end_angle</span><span class="p">))</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">start_angle</span><span class="p">)))</span>
-
+         <span class="c1">#end_angle = 0.5 * sqrt( rot[2] ** 2)</span>
+<span class="hll">         <span class="n">euler</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transformations</span><span class="o">.</span><span class="n">euler_from_quaternion</span><span class="p">(</span><span class="n">rot</span><span class="p">)</span>
+</span><span class="hll">         <span class="n">roll</span> <span class="o">=</span> <span class="n">euler</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class="hll">         <span class="n">pitch</span> <span class="o">=</span> <span class="n">euler</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span>         <span class="n">end_angle</span> <span class="o">=</span> <span class="n">euler</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="hll">
+</span>         <span class="n">angle_turned</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">end_angle</span> <span class="o">-</span> <span class="n">start_angle</span><span class="p">)</span>
+         <span class="k">print</span> <span class="s2">&quot;angle_turned: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">angle_turned</span>
          <span class="k">if</span> <span class="p">(</span><span class="n">angle_turned</span> <span class="o">&gt;</span> <span class="n">radians</span><span class="p">):</span>
              <span class="k">break</span>
 </pre></div>

@@ -486,12 +486,12 @@ As for the python, we had the same problem as the second approach of the ``move`
 **Python Code**
 
 .. code-block:: python
-   :emphasize-lines: 29
+   :emphasize-lines: 30,31,32,33,68,69,70,72
 
     def rotate(self,angular_velocity,radians,clockwise):
         rotateMessage = Twist()
-        
-        #declare tf transform
+       
+        #declare tf transform 
         listener = tf.TransformListener()
         #init_transform: is the transformation before starting the motion
         init_transform = geometry_msgs.msg.TransformStamped()
@@ -516,7 +516,11 @@ As for the python, we had the same problem as the second approach of the ``move`
         init_transform.transform.rotation =rot
 
         #since the rotation is only in the Z-axes 
-        start_angle = 0.5 * sqrt(rot[2] ** 2)
+        #start_angle = tf.transformations.#0.5 * sqrt(rot[2] ** 2)
+        euler = tf.transformations.euler_from_quaternion(rot)
+        roll = euler[0]
+        pitch = euler[1]
+        start_angle = euler[2]
 
         rotateMessage.linear.x = rotateMessage.linear.y = 0.0
         rotateMessage.angular.z = angular_velocity
@@ -525,7 +529,7 @@ As for the python, we had the same problem as the second approach of the ``move`
             rotateMessage.angular.z = -rotateMessage.angular.z
         
         
-        loop_rate = rospy.Rate(10)
+        loop_rate = rospy.Rate(20)
         
         while True:
             rospy.loginfo("Turtlebot is Rotating")
@@ -534,7 +538,7 @@ As for the python, we had the same problem as the second approach of the ``move`
          
             loop_rate.sleep()
                     
-            rospy.Duration(1.0)
+            #rospy.Duration(1.0)
 
             try:
 
@@ -548,12 +552,16 @@ As for the python, we had the same problem as the second approach of the ``move`
 
             current_transform.transform.translation = trans
             current_transform.transform.rotation =rot
-            
+
             #since the rotation is only in the Z-axes 
-            end_angle = 0.5 * sqrt( rot[2] ** 2)
+            #end_angle = 0.5 * sqrt( rot[2] ** 2)
+            euler = tf.transformations.euler_from_quaternion(rot)
+            roll = euler[0]
+            pitch = euler[1]
+            end_angle = euler[2]
             
-            angle_turned = angle_turned+abs(abs(float(end_angle)) - abs(float(start_angle)))
-            
+            angle_turned = abs(end_angle - start_angle)
+            print "angle_turned: %s" %angle_turned
             if (angle_turned > radians):
                 break
 
