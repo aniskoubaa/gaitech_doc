@@ -19,7 +19,6 @@ Welcome to Gaitech's Education Portal!
    Drones Tutorials <drones/index>
    Contributors<contributors/index>
 
-
 Gaitech is proud to provide you a comprehensive educational framework on Robot Operating System (ROS). We provide a series of online tutorials on ROS that will help you getting familiar with ROS.
 
 .. image:: images/ros/ros.png
