@@ -202,13 +202,13 @@ Remember that any robot on ROS runs the <code class="docutils literal"><span cla
 </div>
 <div class="section" id="tutorial-files">
 <h2>Tutorial Files<a class="headerlink" href="#tutorial-files" title="Permalink to this headline">¶</a></h2>
-<p>You can find the whole <code class="docutils literal"><span class="pre">cpp</span></code> and <code class="docutils literal"><span class="pre">python</span></code> files in our <a class="reference external" href="https://github.com/aniskoubaa/gaitech_doc">GitHub repository</a>.
+<p>You can find the whole <code class="docutils literal"><span class="pre">cpp</span></code> and <code class="docutils literal"><span class="pre">python</span></code> files in our <a class="reference external" href="https://github.com/aniskoubaa/gaitech_edu">GitHub repository</a>.
 They are located in <code class="docutils literal"><span class="pre">src/turtlebot/navigation/map_navigation</span></code> folder.
 In particular, we will use the launch file <code class="docutils literal"><span class="pre">map_navigation_psu.launch</span></code> that contains all the needed ROS nodes for this tutorial.
 Here is the content of the <code class="docutils literal"><span class="pre">map_navigation_psu.launch</span></code> file.</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span>
-      <span class="nt">&lt;include</span> <span class="na">file=</span><span class="s">&quot;$(find gaitech_doc)/src/turtlebot/navigation/map_navigation/launch/turtlebot_stage_psu.launch&quot;</span><span class="nt">/&gt;</span>
-     <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;map_navigation&quot;</span> <span class="na">pkg=</span><span class="s">&quot;gaitech_doc&quot;</span> <span class="na">type=</span><span class="s">&quot;map_navigation_node&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;include</span> <span class="na">file=</span><span class="s">&quot;$(find gaitech_edu)/src/turtlebot/navigation/map_navigation/launch/turtlebot_stage_psu.launch&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;map_navigation&quot;</span> <span class="na">pkg=</span><span class="s">&quot;gaitech_edu&quot;</span> <span class="na">type=</span><span class="s">&quot;map_navigation_node&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
      <span class="nt">&lt;/node&gt;</span>
      <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;playing_sound_node&quot;</span> <span class="na">pkg=</span><span class="s">&quot;sound_play&quot;</span> <span class="na">type=</span><span class="s">&quot;soundplay_node.py&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
      <span class="nt">&lt;/node&gt;</span>
@@ -227,8 +227,8 @@ Here is the content of the <code class="docutils literal"><span class="pre">map_
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;3d_sensor&quot;</span>  <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_3D_SENSOR kinect)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- kinect, asus_xtion_pro --&gt;</span>
 
   <span class="c">&lt;!-- Name of the map to use (without path nor extension) and initial position --&gt;</span>
-  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;map_file&quot;</span>       <span class="na">default=</span><span class="s">&quot; $(find gaitech_doc)/src/maps/psu.yaml&quot;</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- psu --&gt;</span>
-  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;world_file&quot;</span>     <span class="na">default=</span><span class="s">&quot; $(find gaitech_doc)/src/maps/stage/psu.world&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;map_file&quot;</span>       <span class="na">default=</span><span class="s">&quot; $(find gaitech_edu)/src/maps/psu.yaml&quot;</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- psu --&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;world_file&quot;</span>     <span class="na">default=</span><span class="s">&quot; $(find gaitech_edu)/src/maps/stage/psu.world&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;initial_pose_x&quot;</span> <span class="na">default=</span><span class="s">&quot;20.925&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;initial_pose_y&quot;</span> <span class="na">default=</span><span class="s">&quot;11.925&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;initial_pose_a&quot;</span> <span class="na">default=</span><span class="s">&quot;0.0&quot;</span><span class="nt">/&gt;</span>
@@ -253,7 +253,7 @@ How to determine this initale location and locations of interest will be describ
 These locations depends on the map size and resolutions.
 The easiest way to do so is to use <code class="docutils literal"><span class="pre">rviz</span></code> to visualize the map and then getting the coordinate using the <code class="docutils literal"><span class="pre">2D</span> <span class="pre">Pose</span> <span class="pre">Estimate</span></code> button.
 Let us start the Turtlebot simulator with the University floor map as follow:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_doc map_navigation_stage_psu.launch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_edu map_navigation_stage_psu.launch
 </pre></div>
 </div>
 <p>The simulator will open. Try to arrange the <code class="docutils literal"><span class="pre">stage</span></code> simulation, <code class="docutils literal"><span class="pre">rviz</span></code> and the command terminal as in the following picture for better visibility:</p>
@@ -367,7 +367,7 @@ Here is the snapshot of the code in C++:</p>
    <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">n</span><span class="p">;</span>
    <span class="n">sound_play</span><span class="o">::</span><span class="n">SoundClient</span> <span class="n">sc</span><span class="p">;</span>
    <span class="n">ros</span><span class="o">::</span><span class="n">spinOnce</span><span class="p">();</span>
-   <span class="n">path_to_sounds</span> <span class="o">=</span> <span class="s">&quot;/home/ros/catkin_ws/src/gaitech_doc/src/sounds/&quot;</span><span class="p">;</span>
+   <span class="n">path_to_sounds</span> <span class="o">=</span> <span class="s">&quot;/home/ros/catkin_ws/src/gaitech_edu/src/sounds/&quot;</span><span class="p">;</span>
 
    <span class="kt">char</span> <span class="n">choice</span> <span class="o">=</span> <span class="sc">&#39;q&#39;</span><span class="p">;</span>
    <span class="k">do</span><span class="p">{</span>
@@ -559,7 +559,7 @@ Note that this request is <strong>sychrounous</strong>, which means it will bloc
   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
     <span class="n">sc</span> <span class="o">=</span> <span class="n">SoundClient</span><span class="p">()</span>
-    <span class="n">path_to_sounds</span> <span class="o">=</span> <span class="s2">&quot;/home/ros/catkin_ws/src/gaitech_doc/src/sounds/&quot;</span>
+    <span class="n">path_to_sounds</span> <span class="o">=</span> <span class="s2">&quot;/home/ros/catkin_ws/src/gaitech_edu/src/sounds/&quot;</span>
 
     <span class="c1"># declare the coordinates of interest</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">xCafe</span> <span class="o">=</span> <span class="mf">15.50</span>
@@ -693,29 +693,29 @@ Note that this request is <strong>sychrounous</strong>, which means it will bloc
 <p>To add some animation to this example, we used the ROS package <code class="docutils literal"><span class="pre">sound_play</span></code> which allows to play sound files.
 Observe that we included the C library for the sound plan in line 4 of the first code above.
 Furthermore, to be able to play sounds, it is necessary to start the ROS node, which was already done in the <code class="docutils literal"><span class="pre">map_navigation_psu.launch</span></code>. Without this node, no sound can be played.</p>
-<p>In the program, we create a sound client with <code class="docutils literal"><span class="pre">sound_play::SoundClient</span> <span class="pre">sc;</span></code> and also we defined the absolute path to sound files with <code class="docutils literal"><span class="pre">path_to_sounds</span> <span class="pre">=</span> <span class="pre">&quot;/home/ros/catkin_ws/src/gaitech_doc/src/sounds/&quot;</span></code>.</p>
+<p>In the program, we create a sound client with <code class="docutils literal"><span class="pre">sound_play::SoundClient</span> <span class="pre">sc;</span></code> and also we defined the absolute path to sound files with <code class="docutils literal"><span class="pre">path_to_sounds</span> <span class="pre">=</span> <span class="pre">&quot;/home/ros/catkin_ws/src/gaitech_edu/src/sounds/&quot;</span></code>.</p>
 <p>Then, we use the method <code class="docutils literal"><span class="pre">sc.playWave(path_to_the_sound_file)</span></code> to play a certain sound file. For example, in case of successul mission, the sound is played with <code class="docutils literal"><span class="pre">sc.playWave(path_to_sounds+&quot;ship_bell.wav&quot;);</span></code>.</p>
 </div>
 </div>
 <div class="section" id="testing-the-code">
 <h2>Testing the code<a class="headerlink" href="#testing-the-code" title="Permalink to this headline">¶</a></h2>
 <p>To test the above example, you simply need to execute the command</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_doc map_navigation_stage_psu.launch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_edu map_navigation_stage_psu.launch
 </pre></div>
 </div>
 <p>Then, on the terminal command, you enter the location of your choice based on the selection menu and observe how the robot navigates to the goal location.</p>
 <p>OR</p>
 <p>You can run the nodes separately as follows:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_doc turtlebot_stage_psu.launch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_edu turtlebot_stage_psu.launch
 rosrun sound_play soundplay_node.py
 </pre></div>
 </div>
 <p>Then for <code class="docutils literal"><span class="pre">C++</span></code> run the following:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun gaitech_doc map_navigation_node
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun gaitech_edu map_navigation_node
 </pre></div>
 </div>
 <p>For <code class="docutils literal"><span class="pre">Python</span></code> run the following:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_path/gaitech_doc/src/turtlebot/navigation/map_navigation/scripts/map_navigation.py
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_path/gaitech_edu/src/turtlebot/navigation/map_navigation/scripts/map_navigation.py
 </pre></div>
 </div>
 <p>Congratulation! You now know how to program navigation mission for your simulated Turtlebot.</p>
@@ -749,8 +749,8 @@ However, you should deploy it using the map of the environment where you are goi
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;3d_sensor&quot;</span>  <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_3D_SENSOR kinect)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- kinect, asus_xtion_pro --&gt;</span>
 
   <span class="c">&lt;!-- Name of the map to use (without path nor extension) and initial position --&gt;</span>
-<span class="hll">  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;map_file&quot;</span>       <span class="na">default=</span><span class="s">&quot; $(find gaitech_doc)/src/maps/mymap.yaml&quot;</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- psu --&gt;</span>
-</span><span class="hll">  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;world_file&quot;</span>     <span class="na">default=</span><span class="s">&quot; $(find gaitech_doc)/src/maps/stage/mymap.world&quot;</span><span class="nt">/&gt;</span>
+<span class="hll">  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;map_file&quot;</span>       <span class="na">default=</span><span class="s">&quot; $(find gaitech_edu)/src/maps/mymap.yaml&quot;</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- psu --&gt;</span>
+</span><span class="hll">  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;world_file&quot;</span>     <span class="na">default=</span><span class="s">&quot; $(find gaitech_edu)/src/maps/stage/mymap.world&quot;</span><span class="nt">/&gt;</span>
 </span><span class="hll">  .....
 </span></pre></div>
 </td></tr></table></div>
@@ -818,8 +818,8 @@ Then you set the initial position of the robot of your choice. For this, you can
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;3d_sensor&quot;</span>  <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_3D_SENSOR kinect)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- kinect, asus_xtion_pro --&gt;</span>
 
   <span class="c">&lt;!-- Name of the map to use (without path nor extension) and initial position --&gt;</span>
-  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;map_file&quot;</span>       <span class="na">default=</span><span class="s">&quot; $(find gaitech_doc)/src/maps/mymap.yaml&quot;</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- psu --&gt;</span>
-  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;world_file&quot;</span>     <span class="na">default=</span><span class="s">&quot; $(find gaitech_doc)/src/maps/stage/mymap.world&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;map_file&quot;</span>       <span class="na">default=</span><span class="s">&quot; $(find gaitech_edu)/src/maps/mymap.yaml&quot;</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- psu --&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;world_file&quot;</span>     <span class="na">default=</span><span class="s">&quot; $(find gaitech_edu)/src/maps/stage/mymap.world&quot;</span><span class="nt">/&gt;</span>
 <span class="hll">  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;initial_pose_x&quot;</span> <span class="na">default=</span><span class="s">&quot;x_init&quot;</span><span class="nt">/&gt;</span>
 </span><span class="hll">  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;initial_pose_y&quot;</span> <span class="na">default=</span><span class="s">&quot;y_init&quot;</span><span class="nt">/&gt;</span>
 </span><span class="hll">  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;initial_pose_a&quot;</span> <span class="na">default=</span><span class="s">&quot;0.0&quot;</span><span class="nt">/&gt;</span>
@@ -844,11 +844,11 @@ rosrun sound_play soundplay_node.py
 </pre></div>
 </div>
 <p>For <code class="docutils literal"><span class="pre">Python</span></code> run:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_path/gaitech_doc/src/turtlebot/navigation/map_navigation/scripts/map_navigation.py
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_path/gaitech_edu/src/turtlebot/navigation/map_navigation/scripts/map_navigation.py
 </pre></div>
 </div>
 <p>For <code class="docutils literal"><span class="pre">C++</span></code> run:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun gaitech_doc map_navigation_node
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun gaitech_edu map_navigation_node
 </pre></div>
 </div>
 <p>In the latter case, You must make sure to have correctly configured your network settings as explained in the <a class="reference internal" href="network-config-doc.html#network-config-doc"><span class="std std-ref">Network Configuration</span></a> tutorial.</p>

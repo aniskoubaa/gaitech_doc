@@ -157,7 +157,7 @@
 <h2>Introducing the OpenCV<a class="headerlink" href="#introducing-the-opencv" title="Permalink to this headline">¶</a></h2>
 <p>OpenCV is a popular open source computer vision library. We will use this library to view images and stream from the turtlbot robot so it can follow a line on the ground. In order to do that we will need to see the line, define the centre of this line and finally move the robot to follow the robot.
 Messages from the camera are published on the <code class="docutils literal"><span class="pre">sensor_msgs/Image</span></code> topic so we will need to write a node that subscribe to the same topic.</p>
-<p>Open a file called <code class="docutils literal"><span class="pre">follower.py</span></code> in the following path <code class="docutils literal"><span class="pre">gaitech_doc/src/turtlebot/navigation/line_follower/scripts/</span></code>:</p>
+<p>Open a file called <code class="docutils literal"><span class="pre">follower.py</span></code> in the following path <code class="docutils literal"><span class="pre">gaitech_edu/src/turtlebot/navigation/line_follower/scripts/</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="kn">import</span> <span class="nn">rospy</span>
 <span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">Image</span>
@@ -195,7 +195,7 @@ Run the following commands:</p>
 </pre></div>
 </div>
 <p>This will give you a list of all the active nodes on your ROS environment and you will find your <code class="docutils literal"><span class="pre">follower</span></code> node between them.</p>
-<p>Now you need to create a <code class="docutils literal"><span class="pre">python</span></code> script to view the images from the turtlebot. Open a file called <code class="docutils literal"><span class="pre">follower_opencv.py</span></code> in the following path <code class="docutils literal"><span class="pre">gaitech_doc/src/turtlebot/navigation/line_follower/scripts/</span></code>:</p>
+<p>Now you need to create a <code class="docutils literal"><span class="pre">python</span></code> script to view the images from the turtlebot. Open a file called <code class="docutils literal"><span class="pre">follower_opencv.py</span></code> in the following path <code class="docutils literal"><span class="pre">gaitech_edu/src/turtlebot/navigation/line_follower/scripts/</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 
 <span class="c1">#This script uses the cv_bridge package to convert images coming on the topic</span>
@@ -229,7 +229,7 @@ Run the following commands:</p>
 <div class="section" id="follow-the-line">
 <h2>Follow the line<a class="headerlink" href="#follow-the-line" title="Permalink to this headline">¶</a></h2>
 <p>After drawing the yellow line we need to make the robot follow this line. The apprach that is used here is for the robot the follow the line after defining the center of the line and draw a red dot at the center point of the line and keep this dot at 1 meter distance from the robot. Then move the robot according to the line path.</p>
-<p>Open a file called <code class="docutils literal"><span class="pre">line_follower.py</span></code> in the same path <code class="docutils literal"><span class="pre">gaitech_doc/src/turtlebot/navigation/line_follower/scripts/</span></code> :</p>
+<p>Open a file called <code class="docutils literal"><span class="pre">line_follower.py</span></code> in the same path <code class="docutils literal"><span class="pre">gaitech_edu/src/turtlebot/navigation/line_follower/scripts/</span></code> :</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 
 

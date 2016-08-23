@@ -41,7 +41,7 @@ In this tutorial, we will use the ``tf`` package to estimate the traveled distan
 Tutorial Files
 ==============
 
-You can find the whole ``cpp`` and ``python`` files in our `GitHub repository <https://github.com/aniskoubaa/gaitech_doc>`_. 
+You can find the whole ``cpp`` and ``python`` files in our `GitHub repository <https://github.com/aniskoubaa/gaitech_edu>`_. 
 They are located in ``src/turtlebot/navigation/free_space_navigation``. 
 In particular, we will use the launch file ``free_space_navigation_stage.launch`` that contains all the needed ROS nodes for this tutorial. 
 Here is the content of the ``free_space_navigation_stage.launch`` file.
@@ -50,7 +50,7 @@ Here is the content of the ``free_space_navigation_stage.launch`` file.
   
     <launch>
       <include file="$(find turtlebot_stage)/launch/turtlebot_in_stage.launch"/> 
-      <node name="free_space_navigation" pkg="gaitech_doc" type="free_space_navigation_node" output="screen"/>
+      <node name="free_space_navigation" pkg="gaitech_edu" type="free_space_navigation_node" output="screen"/>
     </launch>
 
 In the code you will find 3 ``move`` functions and a ``rotate`` function and each one of them has its own approach so you will be able to know 3 different ways of controlling and manipulating the turtlebot robot . 
@@ -540,7 +540,7 @@ After that run the ``cpp`` node by typing the following command:
 
 .. code-block:: bash
 	
-	roslaunch gaitech_doc free_space_navigation
+	roslaunch gaitech_edu free_space_navigation
 
 or launch the ``free_space_navigation_stage.launch`` file to launch the simulators and the ``cpp`` node.
 
@@ -552,13 +552,13 @@ You can also choose to run the ``python`` script by running this command:
 
 .. code-block:: bash
 	
-	python your_workspace/src/gaitech_doc/src/turtlebot/navigation/free_space_navigation/script/free_space_navigation.py
+	python your_workspace/src/gaitech_edu/src/turtlebot/navigation/free_space_navigation/script/free_space_navigation.py
 
 Or you can launch the ``free_space_navigation_stage_python_node.launch`` file to run the simulators and the ``python`` node.
 
 .. code-block:: bash
 
-    roslaunch gaitech_doc free_space_navigation_stage_python_node.launch
+    roslaunch gaitech_edu free_space_navigation_stage_python_node.launch
 
 .. image:: images/stage-square-move-python.png
 	:align: center

@@ -271,17 +271,17 @@ more robocup.corpus
 </div>
 <div class="section" id="code-and-dependencies">
 <h2>Code and dependencies<a class="headerlink" href="#code-and-dependencies" title="Permalink to this headline">¶</a></h2>
-<p>The scripts of voice teleoperation can be found in <code class="docutils literal"><span class="pre">gaitech_doc/src/turtlebot/voice_teleop/</span></code> that you imported from GITHUB. Make sure that you imported the code from GITHUB.
+<p>The scripts of voice teleoperation can be found in <code class="docutils literal"><span class="pre">gaitech_edu/src/turtlebot/voice_teleop/</span></code> that you imported from GITHUB. Make sure that you imported the code from GITHUB.
 If you did not import the code from GITHUB, you can still create a new ROS package as follow:
 * Go to your catkin workspace and then go to <code class="docutils literal"><span class="pre">~/catkin_ws/src/</span></code>
-* Create new a ROS package called <code class="docutils literal"><span class="pre">gaitech_doc</span></code> (or choose any other name) which depends on <code class="docutils literal"><span class="pre">pocketsphinx</span></code>, <code class="docutils literal"><span class="pre">roscpp</span></code>, <code class="docutils literal"><span class="pre">rospy</span></code>, <code class="docutils literal"><span class="pre">sound_play</span></code> and <code class="docutils literal"><span class="pre">std_msgs</span></code> as follow:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_create_pkg gaitech_doc roscpp rospy pocketsphinx sound_play std_msgs
+* Create new a ROS package called <code class="docutils literal"><span class="pre">gaitech_edu</span></code> (or choose any other name) which depends on <code class="docutils literal"><span class="pre">pocketsphinx</span></code>, <code class="docutils literal"><span class="pre">roscpp</span></code>, <code class="docutils literal"><span class="pre">rospy</span></code>, <code class="docutils literal"><span class="pre">sound_play</span></code> and <code class="docutils literal"><span class="pre">std_msgs</span></code> as follow:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_create_pkg gaitech_edu roscpp rospy pocketsphinx sound_play std_msgs
 </pre></div>
 </div>
 <ul class="simple">
 <li>In the <code class="docutils literal"><span class="pre">~/catkin_ws/src/</span></code>, write the following command to see all the files and folders created:</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>tree gaitech_doc
+<div class="highlight-bash"><div class="highlight"><pre><span></span>tree gaitech_edu
 </pre></div>
 </div>
 <ul class="simple">
@@ -296,9 +296,9 @@ If you did not import the code from GITHUB, you can still create a new ROS packa
 </ul>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Remove the commented parts --&gt;</span>
 <span class="nt">&lt;package&gt;</span>
- <span class="nt">&lt;name&gt;</span>gaitech_doc<span class="nt">&lt;/name&gt;</span>
+ <span class="nt">&lt;name&gt;</span>gaitech_edu<span class="nt">&lt;/name&gt;</span>
  <span class="nt">&lt;version&gt;</span>0.0.1<span class="nt">&lt;/version&gt;</span>
- <span class="nt">&lt;description&gt;</span>gaitech_doc<span class="nt">&lt;/description&gt;</span>
+ <span class="nt">&lt;description&gt;</span>gaitech_edu<span class="nt">&lt;/description&gt;</span>
  <span class="nt">&lt;maintainer</span> <span class="na">email=</span><span class="s">&quot;ros@todo.todo&quot;</span><span class="nt">&gt;</span>ros<span class="nt">&lt;/maintainer&gt;</span>
  <span class="nt">&lt;license&gt;</span>TODO<span class="nt">&lt;/license&gt;</span>
  <span class="nt">&lt;buildtool_depend&gt;</span>catkin<span class="nt">&lt;/buildtool_depend&gt;</span>
@@ -339,7 +339,7 @@ If you want to add a number you will have to spell it so you can not write 1, 55
 The online CMU language model (lm) tool is very useful in this case, visit their <a class="reference external" href="http://www.speech.cs.cmu.edu/tools/lmtool-new.html">website</a>  and  upload your file.
 Click on the Compile Knowledge Base button, then download the file labeled <code class="docutils literal"><span class="pre">COMPRESSED</span> <span class="pre">TARBALL</span></code> that contains all the language model files
 that you need and the <code class="docutils literal"><span class="pre">PocketSphinx</span></code> can understand.</p>
-<p>Extract these files into the config subdirectory of the <code class="docutils literal"><span class="pre">gaitech_doc</span></code> package (or your package where you are working this example). These files must be provided as an input parameter to <code class="docutils literal"><span class="pre">recognizer.py</span></code> node.
+<p>Extract these files into the config subdirectory of the <code class="docutils literal"><span class="pre">gaitech_edu</span></code> package (or your package where you are working this example). These files must be provided as an input parameter to <code class="docutils literal"><span class="pre">recognizer.py</span></code> node.
 To do so, you need to create a launch file as follow.</p>
 <blockquote>
 <div><ul class="simple">
@@ -349,21 +349,21 @@ To do so, you need to create a launch file as follow.</p>
 </div></blockquote>
 <div class="highlight-xml"><div class="highlight"><pre><span></span> <span class="nt">&lt;launch&gt;</span>
      <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;recognizer&quot;</span> <span class="na">pkg=</span><span class="s">&quot;pocketsphinx&quot;</span> <span class="na">type=</span><span class="s">&quot;recognizer.py&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;lm&quot;</span> <span class="na">value=</span><span class="s">&quot;$(find gaitech_doc)/turtlebot/voice_teleop/config/motion_commands.lm&quot;</span><span class="nt">/&gt;</span>
-       <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;dict&quot;</span> <span class="na">value=</span><span class="s">&quot;$(find gaitech_doc)/turtlebot/voice_teleop/config/motion_commands.dic&quot;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;lm&quot;</span> <span class="na">value=</span><span class="s">&quot;$(find gaitech_edu)/turtlebot/voice_teleop/config/motion_commands.lm&quot;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;dict&quot;</span> <span class="na">value=</span><span class="s">&quot;$(find gaitech_edu)/turtlebot/voice_teleop/config/motion_commands.dic&quot;</span><span class="nt">/&gt;</span>
      <span class="nt">&lt;/node&gt;</span>
 <span class="nt">&lt;/launch&gt;</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If your package name is different from <code class="docutils literal"><span class="pre">gaitech_doc</span></code> make sure to consider this in the instruction <code class="docutils literal"><span class="pre">value=&quot;$(find</span> <span class="pre">gaitech_doc)</span></code> of the launch file. Otherwise, ROS will not be able to find the parameters.
+<p class="last">If your package name is different from <code class="docutils literal"><span class="pre">gaitech_edu</span></code> make sure to consider this in the instruction <code class="docutils literal"><span class="pre">value=&quot;$(find</span> <span class="pre">gaitech_edu)</span></code> of the launch file. Otherwise, ROS will not be able to find the parameters.
 Make sure that you put the correct path for the <code class="docutils literal"><span class="pre">lm</span></code> and <code class="docutils literal"><span class="pre">dic</span></code> files.</p>
 </div>
 <p>This file runs the <code class="docutils literal"><span class="pre">recognizer.py</span></code> node from the <code class="docutils literal"><span class="pre">pocketsphinx</span></code> package mentioned before in this tutorial.
 The last parameter which is <code class="docutils literal"><span class="pre">output=&quot;screen&quot;</span></code> is used to let us see in real-time the recognition results in the launch window.</p>
 <p>Launch the <code class="docutils literal"><span class="pre">recognizer.launch</span></code> file:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_doc recognizer.launch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_edu recognizer.launch
 </pre></div>
 </div>
 <p>and in another terminal run the following command to see the published topics after giving the robot a couple of commands:</p>
@@ -468,11 +468,11 @@ Once a command is received, the callback function of the subscribed topic <code 
 <p>To execute the code, we create the following launch file called <code class="docutils literal"><span class="pre">turtlebot_voice_teleop_stage.launch</span></code> that will run the <code class="docutils literal"><span class="pre">recognizer.py</span></code> node, <code class="docutils literal"><span class="pre">voice_teleop.py</span></code> node and <code class="docutils literal"><span class="pre">turtlebot_stage</span></code> simulator.</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span> <span class="nt">&lt;launch&gt;</span>
     <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;recognizer&quot;</span> <span class="na">pkg=</span><span class="s">&quot;pocketsphinx&quot;</span> <span class="na">type=</span><span class="s">&quot;recognizer.py&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;lm&quot;</span> <span class="na">value=</span><span class="s">&quot;$(find gaitech_doc)/src/turtlebot/voice_teleop/config/motion_commands.lm&quot;</span><span class="nt">/&gt;</span>
-       <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;dict&quot;</span> <span class="na">value=</span><span class="s">&quot;$(find gaitech_doc)/src/turtlebot/voice_teleop/config/motion_commands.dic&quot;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;lm&quot;</span> <span class="na">value=</span><span class="s">&quot;$(find gaitech_edu)/src/turtlebot/voice_teleop/config/motion_commands.lm&quot;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;dict&quot;</span> <span class="na">value=</span><span class="s">&quot;$(find gaitech_edu)/src/turtlebot/voice_teleop/config/motion_commands.dic&quot;</span><span class="nt">/&gt;</span>
    <span class="nt">&lt;/node&gt;</span>
 
-   <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;voice_teleop&quot;</span> <span class="na">pkg=</span><span class="s">&quot;gaitech_doc&quot;</span> <span class="na">type=</span><span class="s">&quot;voice_teleop.py&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;voice_teleop&quot;</span> <span class="na">pkg=</span><span class="s">&quot;gaitech_edu&quot;</span> <span class="na">type=</span><span class="s">&quot;voice_teleop.py&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
       <span class="nt">&lt;remap</span> <span class="na">from=</span><span class="s">&quot;/cmd_vel&quot;</span> <span class="na">to=</span><span class="s">&quot;/cmd_vel_mux/input/teleop&quot;</span><span class="nt">/&gt;</span>
    <span class="nt">&lt;/node&gt;</span>
 
@@ -499,18 +499,18 @@ This is the reason why we need to remap  the topic <code class="docutils literal
 <div class="section" id="testing-the-voice-control-in-the-gazebo-and-stage-simulators">
 <h2>Testing the Voice-Control in the Gazebo and Stage Simulators<a class="headerlink" href="#testing-the-voice-control-in-the-gazebo-and-stage-simulators" title="Permalink to this headline">¶</a></h2>
 <p>To test the voice teleopration using <code class="docutils literal"><span class="pre">Turtlebot</span> <span class="pre">Stage</span> <span class="pre">simulator</span></code>, simply launch the launch file specified above as follows:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_doc turtlebot_voice_teleop_stage.launch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_edu turtlebot_voice_teleop_stage.launch
 </pre></div>
 </div>
 <img alt="../_images/voice_teleop_stage.png" class="align-center" src="../_images/voice_teleop_stage.png" />
 <p>Or, if you want to test with <code class="docutils literal"><span class="pre">Turtlebot</span> <span class="pre">Gazebo</span> <span class="pre">Simulator</span></code>, simply run the following:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_doc turtlebot_voice_teleop_gazebo.launch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_edu turtlebot_voice_teleop_gazebo.launch
 </pre></div>
 </div>
 <img alt="../_images/voice_teleop_gazebo.png" class="align-center" src="../_images/voice_teleop_gazebo.png" />
 <p>This is equivalent to running the following three commands in three terminals:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_doc recognizer.launch
-rosrun gaitech_doc voice_teleop.py
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_edu recognizer.launch
+rosrun gaitech_edu voice_teleop.py
 roslaunch turtlebot_stage turtlebot_in_stage.launch
 </pre></div>
 </div>
@@ -541,7 +541,7 @@ Make sure to check your Mic settings as described above. If you got an error run
 <p class="last">Before you test the robot make sure that your robot is in an open space with no obstacles or edges next to it.
 Also, make sure that your computer machine is correctly configured to work with the Turtlebot laptop as in the <a class="reference internal" href="network-config-doc.html#network-config-doc"><span class="std std-ref">Network Configuration</span></a>.</p>
 </div>
-<p>From the ROS Master gaitech_doc laptop run the following commands:</p>
+<p>From the ROS Master gaitech_edu laptop run the following commands:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_bringup minimal.launch
 </pre></div>
 </div>
@@ -550,7 +550,7 @@ Also, make sure that your computer machine is correctly configured to work with 
 </pre></div>
 </div>
 <p>On the host node(the user PC) run the <code class="docutils literal"><span class="pre">voice_teleop.launch</span></code> file:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_doc voice_teleop.launch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_edu voice_teleop.launch
 </pre></div>
 </div>
 <div class="admonition tip">

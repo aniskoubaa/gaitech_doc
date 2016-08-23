@@ -199,13 +199,13 @@ In this tutorial, we will use the <code class="docutils literal"><span class="pr
 </div>
 <div class="section" id="tutorial-files">
 <h2>Tutorial Files<a class="headerlink" href="#tutorial-files" title="Permalink to this headline">¶</a></h2>
-<p>You can find the whole <code class="docutils literal"><span class="pre">cpp</span></code> and <code class="docutils literal"><span class="pre">python</span></code> files in our <a class="reference external" href="https://github.com/aniskoubaa/gaitech_doc">GitHub repository</a>.
+<p>You can find the whole <code class="docutils literal"><span class="pre">cpp</span></code> and <code class="docutils literal"><span class="pre">python</span></code> files in our <a class="reference external" href="https://github.com/aniskoubaa/gaitech_edu">GitHub repository</a>.
 They are located in <code class="docutils literal"><span class="pre">src/turtlebot/navigation/free_space_navigation</span></code>.
 In particular, we will use the launch file <code class="docutils literal"><span class="pre">free_space_navigation_stage.launch</span></code> that contains all the needed ROS nodes for this tutorial.
 Here is the content of the <code class="docutils literal"><span class="pre">free_space_navigation_stage.launch</span></code> file.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
   &lt;include <span class="nv">file</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>find turtlebot_stage<span class="k">)</span><span class="s2">/launch/turtlebot_in_stage.launch&quot;</span>/&gt;
-  &lt;node <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;free_space_navigation&quot;</span> <span class="nv">pkg</span><span class="o">=</span><span class="s2">&quot;gaitech_doc&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;free_space_navigation_node&quot;</span> <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span>/&gt;
+  &lt;node <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;free_space_navigation&quot;</span> <span class="nv">pkg</span><span class="o">=</span><span class="s2">&quot;gaitech_edu&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;free_space_navigation_node&quot;</span> <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span>/&gt;
 &lt;/launch&gt;
 </pre></div>
 </div>
@@ -632,17 +632,17 @@ The <code class="docutils literal"><span class="pre">yaw</span></code> is at ind
 </pre></div>
 </div>
 <p>After that run the <code class="docutils literal"><span class="pre">cpp</span></code> node by typing the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_doc free_space_navigation
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_edu free_space_navigation
 </pre></div>
 </div>
 <p>or launch the <code class="docutils literal"><span class="pre">free_space_navigation_stage.launch</span></code> file to launch the simulators and the <code class="docutils literal"><span class="pre">cpp</span></code> node.</p>
 <img alt="../_images/stage-square-move-cpp.png" class="align-center" src="../_images/stage-square-move-cpp.png" />
 <p>You can also choose to run the <code class="docutils literal"><span class="pre">python</span></code> script by running this command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_workspace/src/gaitech_doc/src/turtlebot/navigation/free_space_navigation/script/free_space_navigation.py
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_workspace/src/gaitech_edu/src/turtlebot/navigation/free_space_navigation/script/free_space_navigation.py
 </pre></div>
 </div>
 <p>Or you can launch the <code class="docutils literal"><span class="pre">free_space_navigation_stage_python_node.launch</span></code> file to run the simulators and the <code class="docutils literal"><span class="pre">python</span></code> node.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_doc free_space_navigation_stage_python_node.launch
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_edu free_space_navigation_stage_python_node.launch
 </pre></div>
 </div>
 <img alt="../_images/stage-square-move-python.png" class="align-center" src="../_images/stage-square-move-python.png" />

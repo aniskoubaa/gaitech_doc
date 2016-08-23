@@ -123,14 +123,14 @@ Try saying a word that is not in the list such as "the food is hot" and see the 
 
 Code and dependencies
 =====================
-The scripts of voice teleoperation can be found in ``gaitech_doc/src/turtlebot/voice_teleop/`` that you imported from GITHUB. Make sure that you imported the code from GITHUB. 
+The scripts of voice teleoperation can be found in ``gaitech_edu/src/turtlebot/voice_teleop/`` that you imported from GITHUB. Make sure that you imported the code from GITHUB. 
 If you did not import the code from GITHUB, you can still create a new ROS package as follow:
 * Go to your catkin workspace and then go to ``~/catkin_ws/src/`` 
-* Create new a ROS package called ``gaitech_doc`` (or choose any other name) which depends on ``pocketsphinx``, ``roscpp``, ``rospy``, ``sound_play`` and ``std_msgs`` as follow:
+* Create new a ROS package called ``gaitech_edu`` (or choose any other name) which depends on ``pocketsphinx``, ``roscpp``, ``rospy``, ``sound_play`` and ``std_msgs`` as follow:
 
 .. code-block:: bash
 
-      catkin_create_pkg gaitech_doc roscpp rospy pocketsphinx sound_play std_msgs
+      catkin_create_pkg gaitech_edu roscpp rospy pocketsphinx sound_play std_msgs
 
  
  
@@ -138,7 +138,7 @@ If you did not import the code from GITHUB, you can still create a new ROS packa
 
 .. code-block:: bash
 
-      tree gaitech_doc
+      tree gaitech_edu
 
 *  Now, compile your newly added package:
 
@@ -153,9 +153,9 @@ If you did not import the code from GITHUB, you can still create a new ROS packa
 
     <!-- Remove the commented parts -->
     <package>
-     <name>gaitech_doc</name>
+     <name>gaitech_edu</name>
      <version>0.0.1</version>
-     <description>gaitech_doc</description>
+     <description>gaitech_edu</description>
      <maintainer email="ros@todo.todo">ros</maintainer>
      <license>TODO</license>
      <buildtool_depend>catkin</buildtool_depend>
@@ -201,7 +201,7 @@ The online CMU language model (lm) tool is very useful in this case, visit their
 Click on the Compile Knowledge Base button, then download the file labeled ``COMPRESSED TARBALL`` that contains all the language model files 
 that you need and the ``PocketSphinx`` can understand.
 
-Extract these files into the config subdirectory of the ``gaitech_doc`` package (or your package where you are working this example). These files must be provided as an input parameter to ``recognizer.py`` node. 
+Extract these files into the config subdirectory of the ``gaitech_edu`` package (or your package where you are working this example). These files must be provided as an input parameter to ``recognizer.py`` node. 
 To do so, you need to create a launch file as follow. 
 
    * First, create a folder and call it ``launch`` where to create launch files 
@@ -211,13 +211,13 @@ To do so, you need to create a launch file as follow.
 
     <launch>
         <node name="recognizer" pkg="pocketsphinx" type="recognizer.py" output="screen">
-          <param name="lm" value="$(find gaitech_doc)/turtlebot/voice_teleop/config/motion_commands.lm"/>
-          <param name="dict" value="$(find gaitech_doc)/turtlebot/voice_teleop/config/motion_commands.dic"/>
+          <param name="lm" value="$(find gaitech_edu)/turtlebot/voice_teleop/config/motion_commands.lm"/>
+          <param name="dict" value="$(find gaitech_edu)/turtlebot/voice_teleop/config/motion_commands.dic"/>
         </node>
    </launch>
 
 .. NOTE::
-      If your package name is different from ``gaitech_doc`` make sure to consider this in the instruction ``value="$(find gaitech_doc)`` of the launch file. Otherwise, ROS will not be able to find the parameters.
+      If your package name is different from ``gaitech_edu`` make sure to consider this in the instruction ``value="$(find gaitech_edu)`` of the launch file. Otherwise, ROS will not be able to find the parameters.
       Make sure that you put the correct path for the ``lm`` and ``dic`` files. 
 
 This file runs the ``recognizer.py`` node from the ``pocketsphinx`` package mentioned before in this tutorial. 
@@ -227,7 +227,7 @@ Launch the ``recognizer.launch`` file:
 
 .. code-block:: bash
    
-   roslaunch gaitech_doc recognizer.launch
+   roslaunch gaitech_edu recognizer.launch
 
 and in another terminal run the following command to see the published topics after giving the robot a couple of commands:
 
@@ -341,11 +341,11 @@ To execute the code, we create the following launch file called ``turtlebot_voic
     
     <launch>
        <node name="recognizer" pkg="pocketsphinx" type="recognizer.py" output="screen">
-          <param name="lm" value="$(find gaitech_doc)/src/turtlebot/voice_teleop/config/motion_commands.lm"/>
-          <param name="dict" value="$(find gaitech_doc)/src/turtlebot/voice_teleop/config/motion_commands.dic"/>
+          <param name="lm" value="$(find gaitech_edu)/src/turtlebot/voice_teleop/config/motion_commands.lm"/>
+          <param name="dict" value="$(find gaitech_edu)/src/turtlebot/voice_teleop/config/motion_commands.dic"/>
       </node>
    
-      <node name="voice_teleop" pkg="gaitech_doc" type="voice_teleop.py" output="screen">
+      <node name="voice_teleop" pkg="gaitech_edu" type="voice_teleop.py" output="screen">
          <remap from="/cmd_vel" to="/cmd_vel_mux/input/teleop"/>
       </node>
       
@@ -376,7 +376,7 @@ To test the voice teleopration using ``Turtlebot Stage simulator``, simply launc
 
 .. code-block:: bash
 
-   roslaunch gaitech_doc turtlebot_voice_teleop_stage.launch
+   roslaunch gaitech_edu turtlebot_voice_teleop_stage.launch
 
 .. image:: images/voice_teleop_stage.png
     :align: center
@@ -385,7 +385,7 @@ Or, if you want to test with ``Turtlebot Gazebo Simulator``, simply run the foll
 
 .. code-block:: bash
 
-   roslaunch gaitech_doc turtlebot_voice_teleop_gazebo.launch
+   roslaunch gaitech_edu turtlebot_voice_teleop_gazebo.launch
 
 .. image:: images/voice_teleop_gazebo.png
     :align: center
@@ -394,8 +394,8 @@ This is equivalent to running the following three commands in three terminals:
 
 .. code-block:: bash
 
-   roslaunch gaitech_doc recognizer.launch
-   rosrun gaitech_doc voice_teleop.py
+   roslaunch gaitech_edu recognizer.launch
+   rosrun gaitech_edu voice_teleop.py
    roslaunch turtlebot_stage turtlebot_in_stage.launch 
 
 .. NOTE::
@@ -431,7 +431,7 @@ Now, you will test the voice teleoperation with a real turtlebot robot.
     Before you test the robot make sure that your robot is in an open space with no obstacles or edges next to it.
     Also, make sure that your computer machine is correctly configured to work with the Turtlebot laptop as in the :ref:`network-config-doc`.
 
-From the ROS Master gaitech_doc laptop run the following commands:
+From the ROS Master gaitech_edu laptop run the following commands:
 
 .. code-block:: bash
 
@@ -447,7 +447,7 @@ On the host node(the user PC) run the ``voice_teleop.launch`` file:
 
 .. code-block:: bash
 
-   roslaunch gaitech_doc voice_teleop.launch
+   roslaunch gaitech_edu voice_teleop.launch
 
 .. TIP::
     Try a simple command at first like the rotate right to avoid any accidents. 
