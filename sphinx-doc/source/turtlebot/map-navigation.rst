@@ -39,7 +39,7 @@ Remember that any robot on ROS runs the ``move_base`` navigation stack which all
 
 Tutorial Files
 ==============
-You can find the whole ``cpp`` and ``python`` files in our `GitHub repository <https://github.com/aniskoubaa/gaitech_doc>`_. 
+You can find the whole ``cpp`` and ``python`` files in our `GitHub repository <https://github.com/aniskoubaa/gaitech_edu>`_. 
 They are located in ``src/turtlebot/navigation/map_navigation`` folder. 
 In particular, we will use the launch file ``map_navigation_psu.launch`` that contains all the needed ROS nodes for this tutorial. 
 Here is the content of the ``map_navigation_psu.launch`` file.
@@ -48,8 +48,8 @@ Here is the content of the ``map_navigation_psu.launch`` file.
 .. code-block:: xml
    
    <launch>
-         <include file="$(find gaitech_doc)/src/turtlebot/navigation/map_navigation/launch/turtlebot_stage_psu.launch"/>
-        <node name="map_navigation" pkg="gaitech_doc" type="map_navigation_node" output="screen">
+         <include file="$(find gaitech_edu)/src/turtlebot/navigation/map_navigation/launch/turtlebot_stage_psu.launch"/>
+        <node name="map_navigation" pkg="gaitech_edu" type="map_navigation_node" output="screen">
         </node>
         <node name="playing_sound_node" pkg="sound_play" type="soundplay_node.py" output="screen">
         </node>
@@ -67,8 +67,8 @@ We observe that there are three nodes:
      <arg name="3d_sensor"  default="$(optenv TURTLEBOT_3D_SENSOR kinect)"/>  <!-- kinect, asus_xtion_pro -->
    
      <!-- Name of the map to use (without path nor extension) and initial position -->
-     <arg name="map_file"       default=" $(find gaitech_doc)/src/maps/psu.yaml"/> <!-- psu -->
-     <arg name="world_file"     default=" $(find gaitech_doc)/src/maps/stage/psu.world"/>
+     <arg name="map_file"       default=" $(find gaitech_edu)/src/maps/psu.yaml"/> <!-- psu -->
+     <arg name="world_file"     default=" $(find gaitech_edu)/src/maps/stage/psu.world"/>
      <arg name="initial_pose_x" default="20.925"/>
      <arg name="initial_pose_y" default="11.925"/>
      <arg name="initial_pose_a" default="0.0"/>
@@ -95,7 +95,7 @@ Let us start the Turtlebot simulator with the University floor map as follow:
 
 .. code-block:: bash
 
-   roslaunch gaitech_doc map_navigation_stage_psu.launch
+   roslaunch gaitech_edu map_navigation_stage_psu.launch
    
 The simulator will open. Try to arrange the ``stage`` simulation, ``rviz`` and the command terminal as in the following picture for better visibility:
 
@@ -168,7 +168,7 @@ Here is the snapshot of the code in C++:
       ros::NodeHandle n;
       sound_play::SoundClient sc;
       ros::spinOnce();
-      path_to_sounds = "/home/ros/catkin_ws/src/gaitech_doc/src/sounds/";
+      path_to_sounds = "/home/ros/catkin_ws/src/gaitech_edu/src/sounds/";
    
       char choice = 'q';
       do{
@@ -337,7 +337,7 @@ In what follow, we present the equivalent code in Python, which does exactly the
     def __init__(self): 
 
       sc = SoundClient()
-      path_to_sounds = "/home/ros/catkin_ws/src/gaitech_doc/src/sounds/"
+      path_to_sounds = "/home/ros/catkin_ws/src/gaitech_edu/src/sounds/"
 
       # declare the coordinates of interest 
       self.xCafe = 15.50
@@ -474,7 +474,7 @@ To add some animation to this example, we used the ROS package ``sound_play`` wh
 Observe that we included the C library for the sound plan in line 4 of the first code above.
 Furthermore, to be able to play sounds, it is necessary to start the ROS node, which was already done in the ``map_navigation_psu.launch``. Without this node, no sound can be played.
 
-In the program, we create a sound client with ``sound_play::SoundClient sc;`` and also we defined the absolute path to sound files with ``path_to_sounds = "/home/ros/catkin_ws/src/gaitech_doc/src/sounds/"``.
+In the program, we create a sound client with ``sound_play::SoundClient sc;`` and also we defined the absolute path to sound files with ``path_to_sounds = "/home/ros/catkin_ws/src/gaitech_edu/src/sounds/"``.
 
 Then, we use the method ``sc.playWave(path_to_the_sound_file)`` to play a certain sound file. For example, in case of successul mission, the sound is played with ``sc.playWave(path_to_sounds+"ship_bell.wav");``.
 
@@ -487,7 +487,7 @@ To test the above example, you simply need to execute the command
 
 .. code-block:: bash
    
-   roslaunch gaitech_doc map_navigation_stage_psu.launch
+   roslaunch gaitech_edu map_navigation_stage_psu.launch
 
 Then, on the terminal command, you enter the location of your choice based on the selection menu and observe how the robot navigates to the goal location.
 
@@ -497,20 +497,20 @@ You can run the nodes separately as follows:
 
 .. code-block:: bash
 
-  roslaunch gaitech_doc turtlebot_stage_psu.launch
+  roslaunch gaitech_edu turtlebot_stage_psu.launch
   rosrun sound_play soundplay_node.py
 
 Then for ``C++`` run the following:
 
 .. code-block:: bash
   
-  rosrun gaitech_doc map_navigation_node
+  rosrun gaitech_edu map_navigation_node
 
 For ``Python`` run the following:
 
 .. code-block:: bash
 
-  python your_path/gaitech_doc/src/turtlebot/navigation/map_navigation/scripts/map_navigation.py
+  python your_path/gaitech_edu/src/turtlebot/navigation/map_navigation/scripts/map_navigation.py
 
 
 Congratulation! You now know how to program navigation mission for your simulated Turtlebot. 
@@ -544,8 +544,8 @@ Now, you need to make changes to the launch and world files to consider the info
      <arg name="3d_sensor"  default="$(optenv TURTLEBOT_3D_SENSOR kinect)"/>  <!-- kinect, asus_xtion_pro -->
    
      <!-- Name of the map to use (without path nor extension) and initial position -->
-     <arg name="map_file"       default=" $(find gaitech_doc)/src/maps/mymap.yaml"/> <!-- psu -->
-     <arg name="world_file"     default=" $(find gaitech_doc)/src/maps/stage/mymap.world"/>
+     <arg name="map_file"       default=" $(find gaitech_edu)/src/maps/mymap.yaml"/> <!-- psu -->
+     <arg name="world_file"     default=" $(find gaitech_edu)/src/maps/stage/mymap.world"/>
      .....
 
     
@@ -598,8 +598,8 @@ In case of psu, we set the initial position to the center of the map ``(20.925, 
      <arg name="3d_sensor"  default="$(optenv TURTLEBOT_3D_SENSOR kinect)"/>  <!-- kinect, asus_xtion_pro -->
    
      <!-- Name of the map to use (without path nor extension) and initial position -->
-     <arg name="map_file"       default=" $(find gaitech_doc)/src/maps/mymap.yaml"/> <!-- psu -->
-     <arg name="world_file"     default=" $(find gaitech_doc)/src/maps/stage/mymap.world"/>
+     <arg name="map_file"       default=" $(find gaitech_edu)/src/maps/mymap.yaml"/> <!-- psu -->
+     <arg name="world_file"     default=" $(find gaitech_edu)/src/maps/stage/mymap.world"/>
      <arg name="initial_pose_x" default="x_init"/>
      <arg name="initial_pose_y" default="y_init"/>
      <arg name="initial_pose_a" default="0.0"/>
@@ -631,13 +631,13 @@ For ``Python`` run:
 
 .. code-block:: bash
   
-  python your_path/gaitech_doc/src/turtlebot/navigation/map_navigation/scripts/map_navigation.py
+  python your_path/gaitech_edu/src/turtlebot/navigation/map_navigation/scripts/map_navigation.py
 
 For ``C++`` run:
 
 .. code-block:: bash
   
-  rosrun gaitech_doc map_navigation_node
+  rosrun gaitech_edu map_navigation_node
 
 In the latter case, You must make sure to have correctly configured your network settings as explained in the :ref:`network-config-doc` tutorial.  
 

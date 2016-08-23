@@ -103,14 +103,14 @@ Transform Image from ROS to OpenCV
 In this section you will learn how to recieve and transform images from ROS and transform them to OpenCV.
 
 .. NOTE::
-	Make sure that you downloaded the ``gaitech_doc`` package from our GitHub `repository <https://github.com/aniskoubaa/gaitech_doc>`_
+	Make sure that you downloaded the ``gaitech_edu`` package from our GitHub `repository <https://github.com/aniskoubaa/gaitech_edu>`_
 
-You will find a launch file called ``turtlebot_openCV`` in the following path ``gaitech_doc/src/turtlebot/openCV/launch/turtlebot_openCV.launch``.
+You will find a launch file called ``turtlebot_openCV`` in the following path ``gaitech_edu/src/turtlebot/openCV/launch/turtlebot_openCV.launch``.
 
 .. code-block:: bash
 
 	<launch>
-  		<node pkg="gaitech_doc" name="turtlebot_openCV" type="turtlebot_openCV.py" output="screen">
+  		<node pkg="gaitech_edu" name="turtlebot_openCV" type="turtlebot_openCV.py" output="screen">
     	   	<remap from="input_rgb_image" to="/camera/rgb/image_raw" />
     	   	<remap from="input_depth_image" to="/camera/depth/image_rect" />
   		</node>  
@@ -121,7 +121,7 @@ Run the file in a terminal:
 
 .. code-block:: bash
 	
-	roslaunch gaitech_doc turtlebot_openCV.launch
+	roslaunch gaitech_edu turtlebot_openCV.launch
 
 .. NOTE::
 
@@ -140,7 +140,7 @@ Run the file in a terminal:
         roslaunch openni2_launch openni2.launch
 
 
-This file will run a python script called ``turtlebot_openCV.py`` and you can find the file in the following path ``gaitech_doc/src/turtlebot/openCV/scripts/turtlebot_openCV.py``. The code is well documented but we will have a look at a couple of parts of it.
+This file will run a python script called ``turtlebot_openCV.py`` and you can find the file in the following path ``gaitech_edu/src/turtlebot/openCV/scripts/turtlebot_openCV.py``. The code is well documented but we will have a look at a couple of parts of it.
 
 All the OpenCV scripts have to import the ``cv2`` and the older version of it ``cv2.cv`` as it has some functions needed. The ``Image`` and ``CamerInfo`` are used for ROS messages. To be able to convert from ROS to OpenCV you need to import the ``CvBridge`` and ``CvBridgeError`` from the ``cv_bridge`` package. As for the last import ``numpy``, it is used because OpenCV use it to process the images.   
 
@@ -231,7 +231,7 @@ After a short time you will see	some thing like this:
 .. image:: images/openCV.png
 	:align: center
 
-To understand the whole process of transformation you can open the ``python`` script in the following path ``gaitech_doc/src/turtlebot/openCV/scripts/turtlebot_openCV.py`` , the file is well documented so you will be able to understand everything written inside the code.
+To understand the whole process of transformation you can open the ``python`` script in the following path ``gaitech_edu/src/turtlebot/openCV/scripts/turtlebot_openCV.py`` , the file is well documented so you will be able to understand everything written inside the code.
 
 .. NOTE::
 	This code is originally from the ``cv_bridge_opencv.py`` file in the ``rbx1_vision`` package but with some other modifications.

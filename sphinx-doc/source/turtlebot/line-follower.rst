@@ -26,7 +26,7 @@ Introducing the OpenCV
 OpenCV is a popular open source computer vision library. We will use this library to view images and stream from the turtlbot robot so it can follow a line on the ground. In order to do that we will need to see the line, define the centre of this line and finally move the robot to follow the robot.
 Messages from the camera are published on the ``sensor_msgs/Image`` topic so we will need to write a node that subscribe to the same topic.
 
-Open a file called ``follower.py`` in the following path ``gaitech_doc/src/turtlebot/navigation/line_follower/scripts/``:
+Open a file called ``follower.py`` in the following path ``gaitech_edu/src/turtlebot/navigation/line_follower/scripts/``:
 
 .. code-block:: python
 
@@ -81,7 +81,7 @@ To be able to make sure that it is working run the following command:
 
 This will give you a list of all the active nodes on your ROS environment and you will find your ``follower`` node between them.
 
-Now you need to create a ``python`` script to view the images from the turtlebot. Open a file called ``follower_opencv.py`` in the following path ``gaitech_doc/src/turtlebot/navigation/line_follower/scripts/``:
+Now you need to create a ``python`` script to view the images from the turtlebot. Open a file called ``follower_opencv.py`` in the following path ``gaitech_edu/src/turtlebot/navigation/line_follower/scripts/``:
 
 .. code-block:: python
 	
@@ -121,7 +121,7 @@ Follow the line
 
 After drawing the yellow line we need to make the robot follow this line. The apprach that is used here is for the robot the follow the line after defining the center of the line and draw a red dot at the center point of the line and keep this dot at 1 meter distance from the robot. Then move the robot according to the line path.
 
-Open a file called ``line_follower.py`` in the same path ``gaitech_doc/src/turtlebot/navigation/line_follower/scripts/`` :
+Open a file called ``line_follower.py`` in the same path ``gaitech_edu/src/turtlebot/navigation/line_follower/scripts/`` :
 
 .. code-block:: python
 

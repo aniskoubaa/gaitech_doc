@@ -32,7 +32,7 @@ You can move your turtlebot robot according to the instructions below:
 
 Code Explanation
 ================
-The source code of the keyboard teleop could be found in ``src/tutlebot/keyboard_teleop`` folder of the ``gaitech_doc`` package.
+The source code of the keyboard teleop could be found in ``src/tutlebot/keyboard_teleop`` folder of the `gaitech_edu <https://github.com/aniskoubaa/gaitech_edu>`_ package.
 Note that by default the keyboard teleop application is in the folder ``/opt/ros/indigo/share/turtlebot_teleop`` of the ROS distribution. 
 We explain the following script of the ``keyboard_teleop.launch`` file:
 

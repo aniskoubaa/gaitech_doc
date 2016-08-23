@@ -13,7 +13,7 @@ The first thing you need to understand in ROS is how to subscribe to a ROS topic
    If not, you need to first take the first tutorial on :ref:`ros-background`. 
  
 
-The code of this tutorial is available in ``src/ros_basics/talker_listener/`` of ``gaitech_doc`` package.
+The code of this tutorial is available in ``src/ros_basics/talker_listener/`` of `gaitech_edu <https://github.com/aniskoubaa/gaitech_edu>`_ package.
 
 
 .. NOTE:: 
