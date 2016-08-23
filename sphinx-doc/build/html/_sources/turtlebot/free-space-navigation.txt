@@ -140,7 +140,7 @@ In simple words, this object captures the relation between the two frames in ter
 
 The following code estimates the traveled distance. 
 It is known that the distance is ``sqrt((x1-x0)^2 + (y1-y0)^2)``.
-``current_transform`` capture the current transformation between the ``/base_footprint`` and ``/odom`` frames. 
+``current_transform`` captures the current transformation between the ``/base_footprint`` and ``/odom`` frames. 
 Using the ``tf`` function ``getOrigin().x()`` and ``getOrigin().y()`` we can find the ``x`` and ``y`` coordinates
 of the frame ``/base_footprint`` with respect to ``/odom`` frame. 
 Appying the distance equation, we will be able to find to distance traveled by the robot, 
@@ -192,6 +192,11 @@ that the ``current_transform`` was captured at the moment of the motion.
    
       }while((distance_moved<distance)&&(ros::ok()));
 
+Note that in Python,  the ``listener.lookupTransform`` is used differently. 
+In fact, ``listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))`` returns the transformation 
+from the source frame ``/base_footprint`` to the target frame ``/odom`` at ``rospy.Time(0))rospy.Time(0))``, which means the latest transofmration. 
+The transform is returned as a position ``(x,y,z)`` denoted as ``trans``, and an orientation quaternion ``(x,y,z,w)``, denoted as ``rot``.
+So, as observed in the code below, ``trans[0]`` represents ``x`` and ``trans[1]`` represents ``y``.
 
 **Python Code**
 
@@ -225,13 +230,16 @@ that the ``current_transform`` was captured at the moment of the motion.
             break
 
 
+
 Second Approach
 ---------------
 
 
-Now we will analyze the ``move_v2`` function to make the robot moves with a certain speed for a certain distance in stragight line either forward or backward. 
+Now we will analyze the second approach ``move_v2`` function to make the robot moves with a certain speed for a certain distance in straight line either forward or backward. 
 
-The following code below uses ``tf`` transform listener to calculate the relative transform, then we determine its length. After declaring the variable in the beginning of the function, you will find the following:
+The second method is based on transformation composition, which is possible in C++.
+The idea consists in calculating the relative transform, by multiplying the inverse of the initial transform by the current transform. This is known as transform composition property of coordinate systems. 
+Then, we use the relative transform to find the displacement of its origin, which represents the traveled distance of the robot. 
 
 **C++ Code**
 
@@ -271,64 +279,7 @@ The following code below uses ``tf`` transform listener to calculate the relativ
 
     }while((distance_moved<distance)&&(ros::ok()));
 
-As for the python code, because it doesn't allow operator overloading that is defining the logic of operators for objects. The approach that was applied here is to multiply the ``tf::Transform`` and convert the result to a matrix and then extract the information from this matrix as highlighted below.
-
-**Python Code**
-
-.. code-block:: python
-    :emphasize-lines: 8,9,10,37,38,39,40,41,43,47
-    
-    try:
-      #wait for the transform to be found
-
-      listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0),rospy.Duration(10.0))
-      #Once the transform is found,get the initial_transform transformation.
-      (trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))
-      #listener.lookupTransform("/base_footprint", "/odom", rospy.Time(0),init_transform)
-      trans1_mat = tf.transformations.translation_matrix(trans)
-      rot1_mat   = tf.transformations.quaternion_matrix(rot)
-      mat1 = numpy.dot(trans1_mat, rot1_mat)
-      init_transform.transform.translation = trans
-      init_transform.transform.rotation =rot
-
-      except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
-            rospy.Duration(1.0)
-     
-      while True :
-        rospy.loginfo("Turtlebot moves forwards") 
-        #/***************************************
-        # * STEP1. PUBLISH THE VELOCITY MESSAGE
-        # ***************************************/
-        self.velocityPublisher.publish(VelocityMessage)
-        loop_rate.sleep()
-        #/**************************************************
-        # * STEP2. ESTIMATE THE DISTANCE MOVED BY THE ROBOT
-        # *************************************************/
-        try:
-
-          #wait for the transform to be found
-          listener.waitForTransform("/base_footprint", "/odom", rospy.Time(0), rospy.Duration(10.0) )
-          #Once the transform is found,get the initial_transform transformation.
-          #listener.lookupTransform("/base_footprint", "/odom",rospy.Time(0))
-          (trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))
-        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
-          rospy.Duration(1.0)
-            
-        trans1_mat = tf.transformations.translation_matrix(trans)
-        rot1_mat   = tf.transformations.quaternion_matrix(rot)
-        mat2 = numpy.dot(trans1_mat, rot1_mat)
-        mat3 = numpy.dot(mat1, mat2)
-        trans3 = tf.transformations.translation_from_matrix(mat3)
-            
-        rot3 = tf.transformations.quaternion_from_matrix(mat3)   
-
-        current_transform.transform.translation = trans
-        current_transform.transform.rotation =rot
-        distance_moved = distance_moved + (0.5 * sqrt(trans3[0] ** 2 + trans3[1] ** 2))
-            
-        if not (distance_moved<distance):
-          break
-
+As for the python code, for now, we did not provide an equivalent function to the second approach in python. 
 
 
 Third Approach
@@ -482,11 +433,14 @@ The following code defines the ``rotate`` function that gives the robot the abil
     return angle_turned;
     }
 
-As for the python, we had the same problem as the second approach of the ``move`` functions, so the closest approach was to use the 
+As for the python, we use ``(trans,rot) = listener.lookupTransform('/base_footprint', '/odom', rospy.Time(0))`` to get the rotation component in the ``rot`` variable as quaterion. 
+Then, we extract the yaw component using ``tf.transformations.euler_from_quaternion(rot)`` that converts the quaternion into a RPY Euler notation, which will be used to get the yaw value as it represents the orientation of the robot. 
+The ``yaw`` is at index ``2`` of the ``euler`` array. 
+
 **Python Code**
 
 .. code-block:: python
-   :emphasize-lines: 30,31,32,33,68,69,70,72
+   :emphasize-lines: 30,31,32,33,68,69,70,71
 
     def rotate(self,angular_velocity,radians,clockwise):
         rotateMessage = Twist()

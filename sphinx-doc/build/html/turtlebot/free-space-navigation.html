@@ -34,7 +34,7 @@
   
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
-        <link rel="next" title="ROS OpenCV with Turtlebot" href="openCV-turtlebot.html"/>
+        <link rel="next" title="Getting Started with Turtlebot Arm PhantomX Pincher with ROS" href="turtlebot-arm-pincher.html"/>
         <link rel="prev" title="Map-Based Navigation" href="map-navigation.html"/> 
 
   
@@ -112,7 +112,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#running-the-code-using-stage-and-rviz-simulators">Running the code using Stage and RViz Simulators</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="openCV-turtlebot.html">ROS OpenCV with Turtlebot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="turtlebot-arm-pincher.html">Turtlebot Arm PhantomX Pincher with ROS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="turtlebot-arm-arduino.html">Controlling a Turtlebot Arm with an Arduino Board using RFID</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hokuyo-turtlebot.html">Adding Hokuyo Laser Range Finder to Turtlebot</a></li>
@@ -277,7 +276,7 @@ In simple words, this object captures the relation between the two frames in ter
 </div>
 <p>The following code estimates the traveled distance.
 It is known that the distance is <code class="docutils literal"><span class="pre">sqrt((x1-x0)^2</span> <span class="pre">+</span> <span class="pre">(y1-y0)^2)</span></code>.
-<code class="docutils literal"><span class="pre">current_transform</span></code> capture the current transformation between the <code class="docutils literal"><span class="pre">/base_footprint</span></code> and <code class="docutils literal"><span class="pre">/odom</span></code> frames.
+<code class="docutils literal"><span class="pre">current_transform</span></code> captures the current transformation between the <code class="docutils literal"><span class="pre">/base_footprint</span></code> and <code class="docutils literal"><span class="pre">/odom</span></code> frames.
 Using the <code class="docutils literal"><span class="pre">tf</span></code> function <code class="docutils literal"><span class="pre">getOrigin().x()</span></code> and <code class="docutils literal"><span class="pre">getOrigin().y()</span></code> we can find the <code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">y</span></code> coordinates
 of the frame <code class="docutils literal"><span class="pre">/base_footprint</span></code> with respect to <code class="docutils literal"><span class="pre">/odom</span></code> frame.
 Appying the distance equation, we will be able to find to distance traveled by the robot,
@@ -324,6 +323,11 @@ that the <code class="docutils literal"><span class="pre">current_transform</spa
    <span class="p">}</span><span class="k">while</span><span class="p">((</span><span class="n">distance_moved</span><span class="o">&lt;</span><span class="n">distance</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">ok</span><span class="p">()));</span>
 </pre></div>
 </div>
+<p>Note that in Python,  the <code class="docutils literal"><span class="pre">listener.lookupTransform</span></code> is used differently.
+In fact, <code class="docutils literal"><span class="pre">listener.lookupTransform('/base_footprint',</span> <span class="pre">'/odom',</span> <span class="pre">rospy.Time(0))</span></code> returns the transformation
+from the source frame <code class="docutils literal"><span class="pre">/base_footprint</span></code> to the target frame <code class="docutils literal"><span class="pre">/odom</span></code> at <code class="docutils literal"><span class="pre">rospy.Time(0))rospy.Time(0))</span></code>, which means the latest transofmration.
+The transform is returned as a position <code class="docutils literal"><span class="pre">(x,y,z)</span></code> denoted as <code class="docutils literal"><span class="pre">trans</span></code>, and an orientation quaternion <code class="docutils literal"><span class="pre">(x,y,z,w)</span></code>, denoted as <code class="docutils literal"><span class="pre">rot</span></code>.
+So, as observed in the code below, <code class="docutils literal"><span class="pre">trans[0]</span></code> represents <code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">trans[1]</span></code> represents <code class="docutils literal"><span class="pre">y</span></code>.</p>
 <p><strong>Python Code</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span></span> <span class="k">while</span> <span class="bp">True</span> <span class="p">:</span>
      <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Turtlebot moves forwards&quot;</span><span class="p">)</span>
@@ -355,8 +359,10 @@ that the <code class="docutils literal"><span class="pre">current_transform</spa
 </div>
 <div class="section" id="second-approach">
 <h3>Second Approach<a class="headerlink" href="#second-approach" title="Permalink to this headline">¶</a></h3>
-<p>Now we will analyze the <code class="docutils literal"><span class="pre">move_v2</span></code> function to make the robot moves with a certain speed for a certain distance in stragight line either forward or backward.</p>
-<p>The following code below uses <code class="docutils literal"><span class="pre">tf</span></code> transform listener to calculate the relative transform, then we determine its length. After declaring the variable in the beginning of the function, you will find the following:</p>
+<p>Now we will analyze the second approach <code class="docutils literal"><span class="pre">move_v2</span></code> function to make the robot moves with a certain speed for a certain distance in straight line either forward or backward.</p>
+<p>The second method is based on transformation composition, which is possible in C++.
+The idea consists in calculating the relative transform, by multiplying the inverse of the initial transform by the current transform. This is known as transform composition property of coordinate systems.
+Then, we use the relative transform to find the displacement of its origin, which represents the traveled distance of the robot.</p>
 <p><strong>C++ Code</strong></p>
 <div class="highlight-c"><div class="highlight"><pre><span></span> <span class="k">do</span><span class="p">{</span>
  <span class="cm">/***************************************</span>
@@ -392,60 +398,7 @@ that the <code class="docutils literal"><span class="pre">current_transform</spa
  <span class="p">}</span><span class="k">while</span><span class="p">((</span><span class="n">distance_moved</span><span class="o">&lt;</span><span class="n">distance</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">ok</span><span class="p">()));</span>
 </pre></div>
 </div>
-<p>As for the python code, because it doesn&#8217;t allow operator overloading that is defining the logic of operators for objects. The approach that was applied here is to multiply the <code class="docutils literal"><span class="pre">tf::Transform</span></code> and convert the result to a matrix and then extract the information from this matrix as highlighted below.</p>
-<p><strong>Python Code</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
-  <span class="c1">#wait for the transform to be found</span>
-
-  <span class="n">listener</span><span class="o">.</span><span class="n">waitForTransform</span><span class="p">(</span><span class="s2">&quot;/base_footprint&quot;</span><span class="p">,</span> <span class="s2">&quot;/odom&quot;</span><span class="p">,</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">10.0</span><span class="p">))</span>
-  <span class="c1">#Once the transform is found,get the initial_transform transformation.</span>
-  <span class="p">(</span><span class="n">trans</span><span class="p">,</span><span class="n">rot</span><span class="p">)</span> <span class="o">=</span> <span class="n">listener</span><span class="o">.</span><span class="n">lookupTransform</span><span class="p">(</span><span class="s1">&#39;/base_footprint&#39;</span><span class="p">,</span> <span class="s1">&#39;/odom&#39;</span><span class="p">,</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-  <span class="c1">#listener.lookupTransform(&quot;/base_footprint&quot;, &quot;/odom&quot;, rospy.Time(0),init_transform)</span>
-<span class="hll">  <span class="n">trans1_mat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transformations</span><span class="o">.</span><span class="n">translation_matrix</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
-</span><span class="hll">  <span class="n">rot1_mat</span>   <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transformations</span><span class="o">.</span><span class="n">quaternion_matrix</span><span class="p">(</span><span class="n">rot</span><span class="p">)</span>
-</span><span class="hll">  <span class="n">mat1</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">trans1_mat</span><span class="p">,</span> <span class="n">rot1_mat</span><span class="p">)</span>
-</span>  <span class="n">init_transform</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">translation</span> <span class="o">=</span> <span class="n">trans</span>
-  <span class="n">init_transform</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span><span class="n">rot</span>
-
-  <span class="k">except</span> <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">LookupException</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">ConnectivityException</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">ExtrapolationException</span><span class="p">):</span>
-        <span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
-
-  <span class="k">while</span> <span class="bp">True</span> <span class="p">:</span>
-    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Turtlebot moves forwards&quot;</span><span class="p">)</span>
-    <span class="c1">#/***************************************</span>
-    <span class="c1"># * STEP1. PUBLISH THE VELOCITY MESSAGE</span>
-    <span class="c1"># ***************************************/</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">velocityPublisher</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">VelocityMessage</span><span class="p">)</span>
-    <span class="n">loop_rate</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
-    <span class="c1">#/**************************************************</span>
-    <span class="c1"># * STEP2. ESTIMATE THE DISTANCE MOVED BY THE ROBOT</span>
-    <span class="c1"># *************************************************/</span>
-    <span class="k">try</span><span class="p">:</span>
-
-      <span class="c1">#wait for the transform to be found</span>
-      <span class="n">listener</span><span class="o">.</span><span class="n">waitForTransform</span><span class="p">(</span><span class="s2">&quot;/base_footprint&quot;</span><span class="p">,</span> <span class="s2">&quot;/odom&quot;</span><span class="p">,</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span> <span class="p">)</span>
-      <span class="c1">#Once the transform is found,get the initial_transform transformation.</span>
-      <span class="c1">#listener.lookupTransform(&quot;/base_footprint&quot;, &quot;/odom&quot;,rospy.Time(0))</span>
-      <span class="p">(</span><span class="n">trans</span><span class="p">,</span><span class="n">rot</span><span class="p">)</span> <span class="o">=</span> <span class="n">listener</span><span class="o">.</span><span class="n">lookupTransform</span><span class="p">(</span><span class="s1">&#39;/base_footprint&#39;</span><span class="p">,</span> <span class="s1">&#39;/odom&#39;</span><span class="p">,</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-    <span class="k">except</span> <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">LookupException</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">ConnectivityException</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">ExtrapolationException</span><span class="p">):</span>
-      <span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
-
-<span class="hll">    <span class="n">trans1_mat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transformations</span><span class="o">.</span><span class="n">translation_matrix</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
-</span><span class="hll">    <span class="n">rot1_mat</span>   <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transformations</span><span class="o">.</span><span class="n">quaternion_matrix</span><span class="p">(</span><span class="n">rot</span><span class="p">)</span>
-</span><span class="hll">    <span class="n">mat2</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">trans1_mat</span><span class="p">,</span> <span class="n">rot1_mat</span><span class="p">)</span>
-</span><span class="hll">    <span class="n">mat3</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mat1</span><span class="p">,</span> <span class="n">mat2</span><span class="p">)</span>
-</span><span class="hll">    <span class="n">trans3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transformations</span><span class="o">.</span><span class="n">translation_from_matrix</span><span class="p">(</span><span class="n">mat3</span><span class="p">)</span>
-</span>
-<span class="hll">    <span class="n">rot3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transformations</span><span class="o">.</span><span class="n">quaternion_from_matrix</span><span class="p">(</span><span class="n">mat3</span><span class="p">)</span>
-</span>
-    <span class="n">current_transform</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">translation</span> <span class="o">=</span> <span class="n">trans</span>
-    <span class="n">current_transform</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span><span class="n">rot</span>
-<span class="hll">    <span class="n">distance_moved</span> <span class="o">=</span> <span class="n">distance_moved</span> <span class="o">+</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">trans3</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">trans3</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
-</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">distance_moved</span><span class="o">&lt;</span><span class="n">distance</span><span class="p">):</span>
-      <span class="k">break</span>
-</pre></div>
-</div>
+<p>As for the python code, for now, we did not provide an equivalent function to the second approach in python.</p>
 </div>
 <div class="section" id="third-approach">
 <h3>Third Approach<a class="headerlink" href="#third-approach" title="Permalink to this headline">¶</a></h3>
@@ -584,8 +537,10 @@ that the <code class="docutils literal"><span class="pre">current_transform</spa
  <span class="p">}</span>
 </pre></div>
 </div>
-<p>As for the python, we had the same problem as the second approach of the <code class="docutils literal"><span class="pre">move</span></code> functions, so the closest approach was to use the
-<strong>Python Code</strong></p>
+<p>As for the python, we use <code class="docutils literal"><span class="pre">(trans,rot)</span> <span class="pre">=</span> <span class="pre">listener.lookupTransform('/base_footprint',</span> <span class="pre">'/odom',</span> <span class="pre">rospy.Time(0))</span></code> to get the rotation component in the <code class="docutils literal"><span class="pre">rot</span></code> variable as quaterion.
+Then, we extract the yaw component using <code class="docutils literal"><span class="pre">tf.transformations.euler_from_quaternion(rot)</span></code> that converts the quaternion into a RPY Euler notation, which will be used to get the yaw value as it represents the orientation of the robot.
+The <code class="docutils literal"><span class="pre">yaw</span></code> is at index <code class="docutils literal"><span class="pre">2</span></code> of the <code class="docutils literal"><span class="pre">euler</span></code> array.</p>
+<p><strong>Python Code</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span></span> <span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">angular_velocity</span><span class="p">,</span><span class="n">radians</span><span class="p">,</span><span class="n">clockwise</span><span class="p">):</span>
      <span class="n">rotateMessage</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
 
@@ -656,9 +611,9 @@ that the <code class="docutils literal"><span class="pre">current_transform</spa
 <span class="hll">         <span class="n">euler</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transformations</span><span class="o">.</span><span class="n">euler_from_quaternion</span><span class="p">(</span><span class="n">rot</span><span class="p">)</span>
 </span><span class="hll">         <span class="n">roll</span> <span class="o">=</span> <span class="n">euler</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </span><span class="hll">         <span class="n">pitch</span> <span class="o">=</span> <span class="n">euler</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span>         <span class="n">end_angle</span> <span class="o">=</span> <span class="n">euler</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<span class="hll">
-</span>         <span class="n">angle_turned</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">end_angle</span> <span class="o">-</span> <span class="n">start_angle</span><span class="p">)</span>
+</span><span class="hll">         <span class="n">end_angle</span> <span class="o">=</span> <span class="n">euler</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span>
+         <span class="n">angle_turned</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">end_angle</span> <span class="o">-</span> <span class="n">start_angle</span><span class="p">)</span>
          <span class="k">print</span> <span class="s2">&quot;angle_turned: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">angle_turned</span>
          <span class="k">if</span> <span class="p">(</span><span class="n">angle_turned</span> <span class="o">&gt;</span> <span class="n">radians</span><span class="p">):</span>
              <span class="k">break</span>
@@ -710,7 +665,7 @@ You can try the same codes with <cite>Gazebo</cite> simulator but you need to ha
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="openCV-turtlebot.html" class="btn btn-neutral float-right" title="ROS OpenCV with Turtlebot" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="turtlebot-arm-pincher.html" class="btn btn-neutral float-right" title="Getting Started with Turtlebot Arm PhantomX Pincher with ROS" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="map-navigation.html" class="btn btn-neutral" title="Map-Based Navigation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

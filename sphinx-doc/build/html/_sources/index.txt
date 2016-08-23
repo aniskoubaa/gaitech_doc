@@ -24,6 +24,7 @@ Gaitech is proud to provide you a comprehensive educational framework on Robot O
 
 .. image:: images/ros/ros.png
     :align: center
+    :target: http://wiki.ros.org
 
 Subscribe to Gaitech EDU Forum
 ==============================
@@ -79,6 +80,8 @@ However, there are no pre-defined periods of updates.
 What to do if some of the examples in the tutorials do not work?
 ----------------------------------------------------------------
 In this case, the best way to proceed is to post a question in the the `Gaitech EDU Forum <http://ros.gaitech.hk/>`_. The Gaitech team will respond to you at earliest convinience and make updates to tutorials or code if any is necessary. 
+Also, if you noticed any error to fix either in the codes or tutorials, please report the error using this `Error Report Form <http://goo.gl/HSCuKg>`_
+
 
 Want to buy a robot?
 ====================

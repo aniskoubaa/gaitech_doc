@@ -25,7 +25,6 @@ If you do not have a Turtlebot robot and want to get one, you can order online (
    Building a Map with a Turtlebot <create-map-kenict>
    Map Navigation <map-navigation>
    Turtlebot free movement in Space<free-space-navigation>
-   ROS OpenCV with Turtlebot<openCV-turtlebot>
    Turtlebot Arm PhantomX Pincher with ROS <turtlebot-arm-pincher>
    Controlling a Turtlebot Arm with an Arduino Board using RFID <turtlebot-arm-arduino>
    Adding Hokuyo Laser Range Finder to Turtlebot <hokuyo-turtlebot>
