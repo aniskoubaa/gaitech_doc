@@ -9,7 +9,7 @@
 Getting Started
 ===============
 
-Before going into the tutorials, follow the instruction below to prepare your environment. 
+Before going into the tutorials, follow the instructions below to prepare your environment. 
  
 
 .. WARNING::
@@ -25,6 +25,6 @@ Before going into the tutorials, follow the instruction below to prepare your en
 Setup gaitech_doc ROS Package
 -----------------------------
 
-First, download the lastest version of the ``gaitech_doc`` package from `this github link <https://github.com/aniskoubaa/gaitech_doc>`_. 
+First, download the lastest version of the ``gaitech_edu`` package from `this github link <https://github.com/aniskoubaa/gaitech_edu>`_. 
 Then, unzip the package into your catkin workspace. Compile the package to make sure that all is running as expected.
 If you have compilation errors, check if it is related to some missing dependencies. In such a case, download them and compile again. 
