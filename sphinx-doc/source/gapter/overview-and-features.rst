@@ -72,6 +72,8 @@ Mechanical Features
 ===================
 We need to have symbolic picture, and a table providing the description of the drone including
 
+adding some new text
+
 * dimensions
 * weight
 * payload
