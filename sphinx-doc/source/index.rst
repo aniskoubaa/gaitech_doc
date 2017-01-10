@@ -17,6 +17,7 @@ Welcome to Gaitech's Education Portal!
    ROS Quick Start <ros/ros-tutorials>
    Turtlebot Tutorials <turtlebot/turtlebot-tutorials>
    Drones Tutorials <drones/index>
+   Gapter Tutorials <gapter/index>
    Contributors<contributors/index>
 
 Gaitech is proud to provide you a comprehensive educational framework on Robot Operating System (ROS). 
