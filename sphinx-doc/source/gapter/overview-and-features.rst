@@ -68,21 +68,36 @@ Gapter has several features, when combined together, makes it a unique and diffe
     
 **Software and Educational Tools**: Gapter EDU was designed with research and education in mind. Gapter comes with a comprehensive documentation and software packages that allows a user to easily start working and developing with Gapter. Software packages including both ROS and MAVLink in addtion to MAVROS. Gaitech EDU portal provides an technical resources to start developing applications with Gapter, user manual and guides. Furthemore, Gaitech Forum provides customers with continuous technical support and responses to their queries.
 
-Mechanical Features
-===================
-We need to have symbolic picture, and a table providing the description of the drone including
+Mechanical Specification
+========================
 
-adding some new text
+.. image:: images/gapter07.jpg
+    :align: center
+    :width: 200pt
 
-* dimensions
-* weight
-* payload
-* Drone type: quadcopter (X or + config)
-* Propellers Type
-* Color
-* 3D sensor
-* Battery type
+Hardware
+________
 
-...
+* **Dimensions:**
+* **Weight:**  
+* **Payload:**
+* **Type:** X-Quad
+* **Propellers:** 
+* **Color:** Black
+* **3D sensor:** Asus Live Pro Camera, view angle: 58° H, 45° V, 70° D (Horizontal, Vertical, Diagonal)
+* **Battery type:** Lipo Battery (3S, 4S and 6S)
+
+Autopilot Platform
+__________________
+
+* **Flight Controller:** Pixhawk 2
+* **Flight Stack:** Adrupilot APM  
+* **Onboard Computer:** : Odroid XU4 with 2 GHz and Octa core CPUs
+* **RAM:** 2GB
+* **Internal Sensors:** Gyroscope, Barometer, 3D accelerometer 
+* **External Sensors:** GPS, Optical Flow
+* **Operating System:** Ubuntu 14.04 LTS
+* **Connectors:** 2x USB 3.0, HDMI 1.4a for display, Gigabit Ethernet port
+* **Communication with PC:** WiFi, Telemetry
 
 
