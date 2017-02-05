@@ -144,7 +144,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/drones/ar_parrot_2/simulation-ar-parrot-2.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/drones/ar_parrot_2/simulation-ar-parrot-2.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -258,7 +258,7 @@ roslaunch cvg_sim_test demo_tool.launch
 <span class="n">pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">Empty</span><span class="p">())</span>
 <span class="n">rate</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
   <span class="k">try</span><span class="p">:</span>
    <span class="n">takeoff</span><span class="p">()</span>
   <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ROSInterruptException</span><span class="p">:</span>
@@ -408,14 +408,14 @@ Connection closed.
 </pre></div>
 </div>
 <p>This message will appear if it works fine</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: 1455515889.569402<span class="o">]</span> Rosbridge WebSocket server started on port 9090
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: <span class="m">1455515889</span>.569402<span class="o">]</span> Rosbridge WebSocket server started on port <span class="m">9090</span>
 </pre></div>
 </div>
 <img alt="../../_images/Ardrone_tutorial_rosbridge.png" class="align-center" src="../../_images/Ardrone_tutorial_rosbridge.png" />
 <p>Then open your html file, here it tested using firefox</p>
 <img alt="../../_images/Ardrone_tutorial_webinterface.png" class="align-center" src="../../_images/Ardrone_tutorial_webinterface.png" />
 <p>If you connected correctly, you will see message look like</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: 1455516444.565463<span class="o">]</span> Client connected.  <span class="m">1</span> clients total.
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: <span class="m">1455516444</span>.565463<span class="o">]</span> Client connected.  <span class="m">1</span> clients total.
 </pre></div>
 </div>
 <img alt="../../_images/Ardrone_tutorial_rosbridge_client.png" class="align-center" src="../../_images/Ardrone_tutorial_rosbridge_client.png" />

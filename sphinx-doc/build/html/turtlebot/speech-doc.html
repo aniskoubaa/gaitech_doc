@@ -164,7 +164,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/speech-doc.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/speech-doc.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -231,10 +231,10 @@ Then, run the following command:</p>
 </div>
 <p>This command will run the <code class="docutils literal"><span class="pre">recognizer.py</span></code> script with loading the dictionary <code class="docutils literal"><span class="pre">robocup.dic</span></code>.
 A list of INFO messages will appear showing the loading of the recognition model. The last few messages will look like this:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>INFO: ngram_search_fwdtree.c<span class="o">(</span>186<span class="o">)</span>: Creating search tree
-INFO: ngram_search_fwdtree.c<span class="o">(</span>191<span class="o">)</span>: before: <span class="m">0</span> root, <span class="m">0</span> non-root channels, <span class="m">12</span> single-phone words
-INFO: ngram_search_fwdtree.c<span class="o">(</span>326<span class="o">)</span>: after: max nonroot chan increased to 328
-INFO: ngram_search_fwdtree.c<span class="o">(</span>338<span class="o">)</span>: after: <span class="m">77</span> root, <span class="m">200</span> non-root channels, <span class="m">11</span> single-phone words
+<div class="highlight-bash"><div class="highlight"><pre><span></span>INFO: ngram_search_fwdtree.c<span class="o">(</span><span class="m">186</span><span class="o">)</span>: Creating search tree
+INFO: ngram_search_fwdtree.c<span class="o">(</span><span class="m">191</span><span class="o">)</span>: before: <span class="m">0</span> root, <span class="m">0</span> non-root channels, <span class="m">12</span> single-phone words
+INFO: ngram_search_fwdtree.c<span class="o">(</span><span class="m">326</span><span class="o">)</span>: after: max nonroot chan increased to <span class="m">328</span>
+INFO: ngram_search_fwdtree.c<span class="o">(</span><span class="m">338</span><span class="o">)</span>: after: <span class="m">77</span> root, <span class="m">200</span> non-root channels, <span class="m">11</span> single-phone words
 </pre></div>
 </div>
 <p>Now, you can start saying some words to check if the recognizer will be able to understand what you are saying. For example, try to say the following words:</p>
@@ -396,7 +396,7 @@ Once a command is received, the callback function of the subscribed topic <code 
 
 <span class="k">class</span> <span class="nc">RobotVoiceTeleop</span><span class="p">:</span>
     <span class="c1">#define the constructor of the class</span>
-    <span class="k">def</span>  <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span>  <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1">#initialize the ROS node with a name voice_teleop</span>
         <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;voice_teleop&#39;</span><span class="p">)</span>
 
@@ -461,7 +461,7 @@ Once a command is received, the callback function of the subscribed topic <code 
 
 
 
-<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
       <span class="n">RobotVoiceTeleop</span><span class="p">()</span>
       <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
@@ -566,7 +566,8 @@ However, you will have to add the commands as mentioned previously in the <code 
 </div>
 <div class="section" id="video-demonstration">
 <h2>Video Demonstration<a class="headerlink" href="#video-demonstration" title="Permalink to this headline">¶</a></h2>
-<iframe width="640" height="360" src="http://www.youtube.com/embed/mZ4-HIYWWOI" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
+<iframe src="http://www.youtube.com/embed/mZ4-HIYWWOI" style="border: 0; height: 345px; width: 560px">
+</iframe></div>
 <div class="section" id="hands-on-activities">
 <h2>Hands-on Activities<a class="headerlink" href="#hands-on-activities" title="Permalink to this headline">¶</a></h2>
 <p>In this section, you will extend the example above and implement a smarter version of the voice teleoperation application.</p>
