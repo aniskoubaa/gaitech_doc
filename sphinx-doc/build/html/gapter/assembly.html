@@ -97,7 +97,36 @@
 <li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Gapter Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="overview-and-features.html">Gapter Overview</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Gapter Assembly</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Gapter Assembly</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#assembly-the-box-of-px4flow">Assembly the box of PX4FLOW</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#px4flow-sensor-wiring">PX4FLOW sensor wiring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#switch-reduced-voltage-module-and-xt60-female-wiring">Switch, reduced voltage module and XT60 female wiring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fix-the-isolation-column">Fix the isolation column</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fix-switch-reduced-voltage-module-and-xt60">Fix switch, reduced voltage module and XT60</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fix-px4flow-sensor">Fix PX4FLOW Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#assembly-the-box-of-3dsensor">Assembly the box of 3Dsensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#assembly-the-middle-lawyer">Assembly the middle lawyer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fix-the-frame">FIX the frame</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fix-the-foots-and-isolation-columns-to-the-below-lawyer">Fix the foots and Isolation columns to the below lawyer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fix-the-box-of-px4flow">Fix the box of PX4FLOW</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fix-the-pm-moudle-and-esc">Fix the PM moudle and ESC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fix-the-box-of-the-battery">Fix the box of the battery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wiring">Wiring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fix-xu4">Fix XU4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fix-pixhawk">Fix PIXHAWK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fix-parts">Fix parts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#connection">Connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fix-layer">Fix layer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fix-the-top-layer">Fix the top layer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fix-3dsensor">Fix 3Dsensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fix-motors">Fix motors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fix-propeller">Fix propeller</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="building-and-configuring-autopilot.html">Building and Configuring the Autopilot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-configuration.html">Network Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="preflight-configurations.html">Pre-Flight Configurations</a></li>
@@ -160,6 +189,275 @@
 <li>How to assemble these components</li>
 <li>A video illustrating the assembly should be done. (Important)</li>
 </ul>
+<div class="section" id="assembly-the-box-of-px4flow">
+<h2>Assembly the box of PX4FLOW<a class="headerlink" href="#assembly-the-box-of-px4flow" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="px4flow-sensor-wiring">
+<h3>PX4FLOW sensor wiring<a class="headerlink" href="#px4flow-sensor-wiring" title="Permalink to this headline">¶</a></h3>
+<p>As shown in Figure 1, use a 4-wire cable to connect to the PX1FLOW&#8217;s I2C1 interface and 2-wire to the ULTRASOUND interface.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The white wire is welded to the first contact point, the black wire is welded to the fifth contact point.</p>
+</div>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/assembly_fig_1.jpg"><img alt="../_images/assembly_fig_1.jpg" src="../_images/assembly_fig_1.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 1</span></p>
+</div>
+</div>
+<div class="section" id="switch-reduced-voltage-module-and-xt60-female-wiring">
+<h3>Switch, reduced voltage module and XT60 female wiring<a class="headerlink" href="#switch-reduced-voltage-module-and-xt60-female-wiring" title="Permalink to this headline">¶</a></h3>
+<p>Connect the device as shown in Figure 2. The connectors that are output as shown in Figure 3 are the connector +, connector-, XU4 +, XU4-, and battery monitor.</p>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/assembly_fig_2.png"><img alt="../_images/assembly_fig_2.png" src="../_images/assembly_fig_2.png" style="width: 300pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 2</span></p>
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/assembly_fig_3.jpg"><img alt="../_images/assembly_fig_3.jpg" src="../_images/assembly_fig_3.jpg" style="width: 300pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 3</span></p>
+</div>
+</div>
+<div class="section" id="fix-the-isolation-column">
+<h3>Fix the isolation column<a class="headerlink" href="#fix-the-isolation-column" title="Permalink to this headline">¶</a></h3>
+<p>Use M2.5X6 screws to secure the spacers 4 M2.5X15 and 2 M2.5X20 as shown in Figure 4.</p>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="../_images/assembly_fig_4.png"><img alt="../_images/assembly_fig_4.png" src="../_images/assembly_fig_4.png" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 4</span></p>
+</div>
+</div>
+<div class="section" id="fix-switch-reduced-voltage-module-and-xt60">
+<h3>Fix switch, reduced voltage module and XT60<a class="headerlink" href="#fix-switch-reduced-voltage-module-and-xt60" title="Permalink to this headline">¶</a></h3>
+<p>The overall layout of the parts is shown in Figure 5</p>
+<ol class="arabic simple">
+<li>Use the XT60 holder to fasten the XT60 female connector</li>
+<li>Using 3M adhesive fixed reduced voltage module</li>
+<li>fixed two switches</li>
+</ol>
+<div class="figure align-center" id="id5">
+<a class="reference internal image-reference" href="../_images/assembly_fig_5.jpg"><img alt="../_images/assembly_fig_5.jpg" src="../_images/assembly_fig_5.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 5</span></p>
+</div>
+</div>
+<div class="section" id="fix-px4flow-sensor">
+<h3>Fix PX4FLOW Sensor<a class="headerlink" href="#fix-px4flow-sensor" title="Permalink to this headline">¶</a></h3>
+<p>Fix the PX4FLOW sensor using the M2.5X10 + 6 Isolation columns as shown in Figure 6.</p>
+<div class="figure align-center" id="id6">
+<a class="reference internal image-reference" href="../_images/assembly_fig_6.jpg"><img alt="../_images/assembly_fig_6.jpg" src="../_images/assembly_fig_6.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 6</span></p>
+</div>
+</div>
+</div>
+<div class="section" id="assembly-the-box-of-3dsensor">
+<h2>Assembly the box of 3Dsensor<a class="headerlink" href="#assembly-the-box-of-3dsensor" title="Permalink to this headline">¶</a></h2>
+<p>Place the Xtion PRO LIVE in the 3Dsensor box, as shown in Figure 7</p>
+<div class="figure align-center" id="id7">
+<a class="reference internal image-reference" href="../_images/assembly_fig_7.jpg"><img alt="../_images/assembly_fig_7.jpg" src="../_images/assembly_fig_7.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 7</span></p>
+</div>
+</div>
+<div class="section" id="assembly-the-middle-lawyer">
+<h2>Assembly the middle lawyer<a class="headerlink" href="#assembly-the-middle-lawyer" title="Permalink to this headline">¶</a></h2>
+<p>Fix the battery monitor to the middle layer, as shown in Figure 8.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The monitor fast plug is facing up</p>
+</div>
+<div class="figure align-center" id="id8">
+<a class="reference internal image-reference" href="../_images/assembly_fig_8.jpg"><img alt="../_images/assembly_fig_8.jpg" src="../_images/assembly_fig_8.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 8</span></p>
+</div>
+</div>
+<div class="section" id="fix-the-frame">
+<h2>FIX the frame<a class="headerlink" href="#fix-the-frame" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fix-the-foots-and-isolation-columns-to-the-below-lawyer">
+<h3>Fix the foots and Isolation columns to the below lawyer<a class="headerlink" href="#fix-the-foots-and-isolation-columns-to-the-below-lawyer" title="Permalink to this headline">¶</a></h3>
+<p>As shown in Figure 9, fix some parts to below lawyer</p>
+<ol class="arabic simple">
+<li>Fix the M3X30 isolation column through the 19-M3X6 screw</li>
+<li>Fix M2.5X11 + 6 isolation column through 4-M2.5X6 screws</li>
+<li>Fix M2X15 isolation column through 4-M2X6 screws</li>
+<li>Fix the foot through the 8-M2.5X8 and M2.5 nut</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Put model 5-2 apron on M3X30 isolation column and M2.5X11 +6 isolation column.</p>
+</div>
+<div class="figure align-center" id="id9">
+<a class="reference internal image-reference" href="../_images/assembly_fig_9.jpg"><img alt="../_images/assembly_fig_9.jpg" src="../_images/assembly_fig_9.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 9</span></p>
+</div>
+</div>
+<div class="section" id="fix-the-box-of-px4flow">
+<h3>Fix the box of PX4FLOW<a class="headerlink" href="#fix-the-box-of-px4flow" title="Permalink to this headline">¶</a></h3>
+<p>Fix the box of PX4FLOW through the 6-M2.5X6 screws, as shown in Figure 10.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Note: All output connectors are routed through the via hole.</p>
+</div>
+<div class="figure align-center" id="id10">
+<a class="reference internal image-reference" href="../_images/assembly_fig_10.jpg"><img alt="../_images/assembly_fig_10.jpg" src="../_images/assembly_fig_10.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 10</span></p>
+</div>
+</div>
+<div class="section" id="fix-the-pm-moudle-and-esc">
+<h3>Fix the PM moudle and ESC<a class="headerlink" href="#fix-the-pm-moudle-and-esc" title="Permalink to this headline">¶</a></h3>
+<p>Fix the PM moudle and ESC, as shown in Figure 11.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The four ESC sequences are shown in the label.</p>
+</div>
+<div class="figure align-center" id="id11">
+<a class="reference internal image-reference" href="../_images/assembly_fig_11.jpg"><img alt="../_images/assembly_fig_11.jpg" src="../_images/assembly_fig_11.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 11</span></p>
+</div>
+<ol class="arabic simple">
+<li>Fix PM through 3M glue.</li>
+<li>layout 4 ESC to the wing</li>
+</ol>
+</div>
+<div class="section" id="fix-the-box-of-the-battery">
+<h3>Fix the box of the battery<a class="headerlink" href="#fix-the-box-of-the-battery" title="Permalink to this headline">¶</a></h3>
+<p>Fix the box of the battery through the 4-M3X8 screws and 4-M3 nuts, as the shown in figure 12.</p>
+<div class="figure align-center" id="id12">
+<a class="reference internal image-reference" href="../_images/assembly_fig_12.jpg"><img alt="../_images/assembly_fig_12.jpg" src="../_images/assembly_fig_12.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 12</span></p>
+</div>
+</div>
+<div class="section" id="wiring">
+<h3>Wiring<a class="headerlink" href="#wiring" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Connect XU4</li>
+<li>Connect the PM</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">positive and negative must not be reversed.</p>
+</div>
+</div>
+<div class="section" id="fix-xu4">
+<h3>Fix XU4<a class="headerlink" href="#fix-xu4" title="Permalink to this headline">¶</a></h3>
+<p>Fix XU4 through 4-M2.5X18 Isolation columns, as the shown in figure 13.</p>
+<div class="figure align-center" id="id13">
+<a class="reference internal image-reference" href="../_images/assembly_fig_13.jpg"><img alt="../_images/assembly_fig_13.jpg" src="../_images/assembly_fig_13.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 13</span></p>
+</div>
+</div>
+<div class="section" id="fix-pixhawk">
+<h3>Fix PIXHAWK<a class="headerlink" href="#fix-pixhawk" title="Permalink to this headline">¶</a></h3>
+<p>Fix PIXHAWK through 4-M2X6 screws, as the shown in figure 14.</p>
+<div class="figure align-center" id="id14">
+<a class="reference internal image-reference" href="../_images/assembly_fig_14.jpg"><img alt="../_images/assembly_fig_14.jpg" src="../_images/assembly_fig_14.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 14</span></p>
+</div>
+</div>
+<div class="section" id="fix-parts">
+<h3>Fix parts<a class="headerlink" href="#fix-parts" title="Permalink to this headline">¶</a></h3>
+<p>Fix parts as the shown in figure 15:</p>
+<ol class="arabic simple">
+<li>Fix PPM board and RC through 3M glue</li>
+<li>Fix I2C through 3M glue</li>
+<li>Fix buzzer through 3M glue</li>
+</ol>
+<div class="figure align-center" id="id15">
+<a class="reference internal image-reference" href="../_images/assembly_fig_15.jpg"><img alt="../_images/assembly_fig_15.jpg" src="../_images/assembly_fig_15.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 15</span></p>
+</div>
+</div>
+<div class="section" id="connection">
+<h3>Connection<a class="headerlink" href="#connection" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Connect PPM wire to the RC interface</li>
+<li>Connect ESC signal wire to MAIN OUT port 1,2,3,4</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The black wire indicates the negative pole, corresponding to the negative terminal on the flight control interface.</p>
+</div>
+<ol class="arabic simple" start="3">
+<li>Connect buzzer to BUZZER interface</li>
+<li>Connect XU4 to TELEM1 interface</li>
+<li>Connect PX4FLOW to I2C and ADC6.6V interface</li>
+<li>Connect PM to POWER interface</li>
+</ol>
+<p>The connection is as shown in Figure 16.</p>
+<div class="figure align-center" id="id16">
+<a class="reference internal image-reference" href="../_images/assembly_fig_16.jpg"><img alt="../_images/assembly_fig_16.jpg" src="../_images/assembly_fig_16.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 16</span></p>
+</div>
+</div>
+<div class="section" id="fix-layer">
+<h3>Fix layer<a class="headerlink" href="#fix-layer" title="Permalink to this headline">¶</a></h3>
+<p>Place the middle layer above the frame and connect the interface of the battery monitor, as shown in Figure 17.</p>
+<div class="figure align-center" id="id17">
+<a class="reference internal image-reference" href="../_images/assembly_fig_17.jpg"><img alt="../_images/assembly_fig_17.jpg" src="../_images/assembly_fig_17.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 17</span></p>
+</div>
+</div>
+<div class="section" id="fix-the-top-layer">
+<h3>Fix the top layer<a class="headerlink" href="#fix-the-top-layer" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Fix GPS, safety switch, RGB to top layer,as the shown in figure 18.</li>
+</ol>
+<div class="figure align-center" id="id18">
+<a class="reference internal image-reference" href="../_images/assembly_fig_18.jpg"><img alt="../_images/assembly_fig_18.jpg" src="../_images/assembly_fig_18.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 18</span></p>
+</div>
+<ol class="arabic simple" start="2">
+<li>Fix the top layer to frame,as the shown in figure 19.</li>
+</ol>
+<div class="figure align-center" id="id19">
+<a class="reference internal image-reference" href="../_images/assembly_fig_19.jpg"><img alt="../_images/assembly_fig_19.jpg" src="../_images/assembly_fig_19.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 19</span></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Before fixing, connect the interface.</p>
+</div>
+</div>
+<div class="section" id="fix-3dsensor">
+<h3>Fix 3Dsensor<a class="headerlink" href="#fix-3dsensor" title="Permalink to this headline">¶</a></h3>
+<p>Fix the box of the 3Dsensor to frame through 4-M2.5X8 screws and 4-M2.5 nuts, and tie the wires ,as the shown in figure 20.</p>
+<div class="figure align-center" id="id20">
+<a class="reference internal image-reference" href="../_images/assembly_fig_20.jpg"><img alt="../_images/assembly_fig_20.jpg" src="../_images/assembly_fig_20.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 20</span></p>
+</div>
+</div>
+<div class="section" id="fix-motors">
+<h3>Fix motors<a class="headerlink" href="#fix-motors" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Fix every motor through 4-M3X6 screws，as the shown in figure 21.</li>
+</ol>
+<div class="figure align-center" id="id21">
+<a class="reference internal image-reference" href="../_images/assembly_fig_21.jpg"><img alt="../_images/assembly_fig_21.jpg" src="../_images/assembly_fig_21.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 21</span></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For motors 1 and 2, use a motor with a black nut, For motors 3 and 4, use a motor with a gray nut.</p>
+</div>
+<ol class="arabic simple" start="2">
+<li>Connect each motor to the ESC</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The direction of rotation of the motor is shown in Figure 22, 1,2 for the anti-clockwise, 3,4 clockwise. If you don&#8217;t find motor rotation as in picture mentioned, alter wires connected between ESC and Motor accordingly to get desired rotation.</p>
+</div>
+<div class="figure align-center" id="id22">
+<a class="reference internal image-reference" href="../_images/assembly_fig_22.png"><img alt="../_images/assembly_fig_22.png" src="../_images/assembly_fig_22.png" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 22</span></p>
+</div>
+</div>
+<div class="section" id="fix-propeller">
+<h3>Fix propeller<a class="headerlink" href="#fix-propeller" title="Permalink to this headline">¶</a></h3>
+<p>Fix propeller to motor, as the shown in figure 23.</p>
+<div class="figure align-center" id="id23">
+<a class="reference internal image-reference" href="../_images/assembly_fig_23.jpg"><img alt="../_images/assembly_fig_23.jpg" src="../_images/assembly_fig_23.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 23</span></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The positive propeller is fixed on motor 1 and 2,&nbsp;&nbsp;the reverse propeller is fixed on motor.</p>
+</div>
+</div>
+</div>
 </div>
 
 

@@ -158,14 +158,14 @@ Fix the PM moudle and ESC, as shown in Figure 11.
 .. NOTE::
     The four ESC sequences are shown in the label.
 
+1. Fix PM through 3M glue.
+2. layout 4 ESC to the wing
+
 .. figure:: images/assembly_fig_11.jpg
     :align: center
     :width: 200pt
 
     Figure 11
-
-1. Fix PM through 3M glue.
-2. layout 4 ESC to the wing
 
 
 Fix the box of the battery
