@@ -101,7 +101,16 @@
 <li class="toctree-l2"><a class="reference internal" href="building-and-configuring-autopilot.html">Building and Configuring the Autopilot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-configuration.html">Network Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="preflight-configurations.html">Pre-Flight Configurations</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">First Flight Test</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">First Flight Test</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#testing-with-rc">TESTING WITH RC.</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#things-to-know">Things to know</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#positions-in-rc">Positions in RC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controllers">Controllers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#testing-gapter">Testing Gapter</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="software-tutorials.html">Software Tutorials</a></li>
 </ul>
 </li>
@@ -160,6 +169,81 @@
 <li>Test using MAVLink ground station</li>
 <li>Test using ROS</li>
 </ul>
+<div class="section" id="testing-with-rc">
+<h2>TESTING WITH RC.<a class="headerlink" href="#testing-with-rc" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="things-to-know">
+<h3>Things to know<a class="headerlink" href="#things-to-know" title="Permalink to this headline">¶</a></h3>
+<p>Before controlling Gapter in any mode you must know the flight modes and its respective positions in RC. We have configured 6 modes to control Gapter. Two modes are dedicated for manual mode and land mode. Rest of them is used for automatic positioning and guiding Gapter. Flight modes are as follows</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>POSHOLD Mode     position <span class="m">1</span>
+Alt_Hold Mode    position <span class="m">2</span>
+GUIDED Mode      position <span class="m">3</span>
+STABILIZE Mode   position <span class="m">4</span>
+LOITER Mode      position <span class="m">5</span>
+Land Mode        position <span class="m">6</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="positions-in-rc">
+<h3>Positions in RC<a class="headerlink" href="#positions-in-rc" title="Permalink to this headline">¶</a></h3>
+<p>The 6 positions of flight modes can be attained by the combination of two switches on top right corner of RC where we can name the last switch as “a” which has only two positions (up &amp; down) before to last switch as “b” which  has three positions (up, middle and down). Now positions are as follows:</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/First_Flight_Tests_RC_fig_1.jpg"><img alt="../_images/First_Flight_Tests_RC_fig_1.jpg" src="../_images/First_Flight_Tests_RC_fig_1.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">position1: a(down) &amp; b(up) <strong>POSHOLD Mode</strong></span></p>
+</div>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/First_Flight_Tests_RC_fig_2.jpg"><img alt="../_images/First_Flight_Tests_RC_fig_2.jpg" src="../_images/First_Flight_Tests_RC_fig_2.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">position2: a(up) &amp; b(up) <strong>Alt_Hold Mode</strong></span></p>
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/First_Flight_Tests_RC_fig_3.jpg"><img alt="../_images/First_Flight_Tests_RC_fig_3.jpg" src="../_images/First_Flight_Tests_RC_fig_3.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">position3: a(down)&amp; b(middle) <strong>GUIDED Mode</strong></span></p>
+</div>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="../_images/First_Flight_Tests_RC_fig_4.jpg"><img alt="../_images/First_Flight_Tests_RC_fig_4.jpg" src="../_images/First_Flight_Tests_RC_fig_4.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">position4: a(up) &amp; b(middle) <strong>STABILIZE Mode</strong></span></p>
+</div>
+<div class="figure align-center" id="id5">
+<a class="reference internal image-reference" href="../_images/First_Flight_Tests_RC_fig_5.jpg"><img alt="../_images/First_Flight_Tests_RC_fig_5.jpg" src="../_images/First_Flight_Tests_RC_fig_5.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">position5: a(down)&amp; b(down) <strong>LOITER Mode</strong></span></p>
+</div>
+<div class="figure align-center" id="id6">
+<a class="reference internal image-reference" href="../_images/First_Flight_Tests_RC_fig_6.jpg"><img alt="../_images/First_Flight_Tests_RC_fig_6.jpg" src="../_images/First_Flight_Tests_RC_fig_6.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">position6: a(up) &amp; b(down) <strong>Land Mode</strong></span></p>
+</div>
+</div>
+<div class="section" id="controllers">
+<h3>Controllers<a class="headerlink" href="#controllers" title="Permalink to this headline">¶</a></h3>
+<p>You can find two joystick controllers on RC, one is left “J1”and the other is on right “J2”. “J1” is to control throttle of motors &amp; yaw moment of Gapter. Where as “J2” is used to control pitch(forward&amp;backward) and roll(left and right) of Gapter</p>
+</div>
+<div class="section" id="testing-gapter">
+<h3>Testing Gapter<a class="headerlink" href="#testing-gapter" title="Permalink to this headline">¶</a></h3>
+<p>To control Gapter follow these steps:</p>
+<p>After turning ON Gapter you can find a safety switch in red color which starts blinking with beep sounds.</p>
+<p>Press and hold safety switch until it stops blinking which turns to solid red and stops beep sound.</p>
+<p>You can notice notification LED either in solid blue or green in color. Solid green states Gapter is positioned with gps.</p>
+<p>Turn on RC. Make sure throttle must be completely down and all the switches must be in up position. You have to notice Tx and Rx signal on RC screen. It even shows the battery level of Gapter at Rx and RC at Tx respectively.</p>
+<div class="figure align-center" id="id7">
+<a class="reference internal image-reference" href="../_images/First_Flight_Tests_RC_fig_7.jpg"><img alt="../_images/First_Flight_Tests_RC_fig_7.jpg" src="../_images/First_Flight_Tests_RC_fig_7.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">RC initial position</span></p>
+</div>
+<div class="figure align-center" id="id8">
+<a class="reference internal image-reference" href="../_images/First_Flight_Tests_RC_fig_8.jpg"><img alt="../_images/First_Flight_Tests_RC_fig_8.jpg" src="../_images/First_Flight_Tests_RC_fig_8.jpg" style="width: 200pt;" /></a>
+<p class="caption"><span class="caption-text">TX=RC&#8217;s battery level</span></p>
+<div class="legend">
+RX=Gapter&#8217;s battery level</div>
+</div>
+<p>When you set RC switches , you might have noticed switches “a” &amp; “b” are in up position which Gapter is in Alt_Hold mode.</p>
+<p>Now to initialize Gapter, hold J1 stick down right corner. You can notice propellers must be running.</p>
+<p>Slowly rise throttle upwards. While doing so Gapter will be flying now. Depending on rise of throttle, Gapter&#8217;s altitude will be increasing.</p>
+<p>Hold at one position and control J2 stick up, down, left and right for Gapter&#8217;s forward, backward, left and right movements respectively</p>
+<p>To control yaw movement of Gapter, move J1 stick left and right at its position.
+Now to land Gapter Keep switches in position 6 (land mode). Gapter will land automatically to its current position.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">While changing modes from Alt_hold to stabilize be careful as throttle rises suddenly and Gapter will fly at a huge altitude.While operating throttle (J1 stick) be very careful as single point increment tends to change altitude at high rate.</p>
+</div>
+</div>
+</div>
 </div>
 
 

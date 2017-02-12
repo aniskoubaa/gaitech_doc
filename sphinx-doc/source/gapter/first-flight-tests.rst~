@@ -81,12 +81,16 @@ Testing Gapter
 
 To control Gapter follow these steps:
 
+|
 After turning ON Gapter you can find a safety switch in red color which starts blinking with beep sounds.
 
+|
 Press and hold safety switch until it stops blinking which turns to solid red and stops beep sound.
 
+|
 You can notice notification LED either in solid blue or green in color. Solid green states Gapter is positioned with gps. 
 
+|
 Turn on RC. Make sure throttle must be completely down and all the switches must be in up position. You have to notice Tx and Rx signal on RC screen. It even shows the battery level of Gapter at Rx and RC at Tx respectively. 
 
 .. figure:: images/First_Flight_Tests_RC_fig_7.jpg
