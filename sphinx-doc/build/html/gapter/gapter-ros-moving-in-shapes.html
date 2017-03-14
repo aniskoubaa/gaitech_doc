@@ -104,9 +104,11 @@
 <li class="toctree-l2"><a class="reference internal" href="first-flight-tests.html">First Flight Test</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="software-tutorials.html">Software Tutorials</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="gapter-ros-tutorials.html">ROS Tutorials</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="mavros-basics.html">MAVROS Basics</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-ros-teleop.html">Teleoperation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-ros-obstacle-avoidance.html">Obstacle Avoidance</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Moving in Shapes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gapter-ros-tutorials.html#controlling-gapter-from-desktop-using-mavros">Controlling Gapter from desktop using mavros:</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="gapter-mavlink-tutorials.html">MAVLink Tutorials</a></li>
@@ -155,7 +157,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/gapter/gapter-ros-moving-in-shapes.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/gapter/gapter-ros-moving-in-shapes.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -168,6 +170,96 @@
   <div class="section" id="gapter-moving-in-shapes">
 <span id="gapter-ros-moving-in-shapes"></span><h1>GAPTER: Moving in Shapes<a class="headerlink" href="#gapter-moving-in-shapes" title="Permalink to this headline">¶</a></h1>
 <p>This tutorial ...</p>
+<p>First launch the simulation, see following links for further details:</p>
+<p><a class="reference external" href="http://docs.erlerobotics.com/simulation/vehicles/erle_copter/tutorial_1">erlerobotics.com</a></p>
+<p><a class="reference external" href="http://wiki.coins-lab.org/index.php?title=Simulation_of_Erle_Copter">coins-lab.org</a></p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/gapter_ros_teleop_fig_1.png"><img alt="../_images/gapter_ros_teleop_fig_1.png" src="../_images/gapter_ros_teleop_fig_1.png" style="width: 400pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 1: Launch the simulator</span></p>
+</div>
+<p>After launching the simulator, Take off the drone:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># in the MAVProxy prompt:</span>
+mode GUIDED
+arm throttle
+takeoff 2
+</pre></div>
+</div>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/gapter_ros_teleop_fig_2.png"><img alt="../_images/gapter_ros_teleop_fig_2.png" src="../_images/gapter_ros_teleop_fig_2.png" style="width: 400pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 2: Drone taking off</span></p>
+</div>
+<p>Then, in new terminal, launch the ROS node:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun gapter_py move_shapes.py
+</pre></div>
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/gapter_ros_moving_in_shapes_fig_1.png"><img alt="../_images/gapter_ros_moving_in_shapes_fig_1.png" src="../_images/gapter_ros_moving_in_shapes_fig_1.png" style="width: 400pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 3: Moving in shapes</span></p>
+</div>
+<div class="section" id="code-explanation">
+<h2>Code Explanation<a class="headerlink" href="#code-explanation" title="Permalink to this headline">¶</a></h2>
+<p>The source code could be found in <a class="reference external" href="https://github.com/">github_link</a>.</p>
+<p>To move the drone, a <code class="docutils literal"><span class="pre">TwistStamped</span></code> message with appropriate velocities must sent to the <code class="docutils literal"><span class="pre">/mavros/setpoint_velocity/cmd_vel</span></code> topic.</p>
+<p><code class="docutils literal"><span class="pre">moveSquare()</span></code> is used to allow the drone to move on square, we just specify the side length.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">moveSquare</span><span class="p">():</span>
+   <span class="n">square_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;/mavros/setpoint_velocity/cmd_vel&#39;</span><span class="p">,</span> <span class="n">TwistStamped</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+   <span class="n">square</span> <span class="o">=</span> <span class="n">TwistStamped</span><span class="p">()</span>
+   <span class="n">side_length</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="n">side_length</span>
+   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+   <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
+   <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+   <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">);</span>
+   <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="n">side_length</span><span class="p">;</span>
+   <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">);</span>
+   <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+
+   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+   <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">);</span>
+   <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span> <span class="o">-</span> <span class="n">side_length</span><span class="p">;</span>
+   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+   <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">);</span>
+   <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+
+   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+   <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">);</span>
+   <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span> <span class="o">-</span> <span class="n">side_length</span><span class="p">;</span>
+   <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">);</span>
+   <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+
+   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+   <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">);</span>
+   <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To move on circle:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">moveCircle</span><span class="p">():</span>
+
+   <span class="n">circle_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;/mavros/setpoint_velocity/cmd_vel&#39;</span><span class="p">,</span> <span class="n">TwistStamped</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+   <span class="n">circle</span> <span class="o">=</span> <span class="n">TwistStamped</span><span class="p">()</span>
+
+
+   <span class="n">circle</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span>
+   <span class="n">circle</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">z</span><span class="o">=</span><span class="mf">0.5</span>
+   <span class="n">circle_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 

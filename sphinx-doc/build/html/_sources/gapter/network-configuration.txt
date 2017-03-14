@@ -102,7 +102,7 @@ You will the following configuration that corresponds to the default hotspot mod
    #for ethernet
    auto eth0 
    iface eth0 inet dhcp
-   
+    
    #for wifi in hotspot mode
    auto wlan0
    iface wlan0 inet static

@@ -151,7 +151,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/turtlebot-arm-pincher.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/turtlebot-arm-pincher.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -194,13 +194,13 @@ A complete package of turtlebot arm can be found at <a class="reference external
 </pre></div>
 </div>
 <p>You should see the following:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>ArbotiX Terminal --- Version <span class="m">0</span>.1
+<div class="highlight-bash"><div class="highlight"><pre><span></span>ArbotiX Terminal --- Version 0.1
 Copyright <span class="m">2011</span> Vanadium Labs LLC
 &gt;&gt;
 </pre></div>
 </div>
 <p>You can check that your servos are all active using the <code class="docutils literal"><span class="pre">ls</span></code> command</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>ArbotiX Terminal --- Version <span class="m">0</span>.1
+<div class="highlight-bash"><div class="highlight"><pre><span></span>ArbotiX Terminal --- Version 0.1
 Copyright <span class="m">2011</span> Vanadium Labs LLC
 &gt;&gt;  ls
 <span class="m">1</span>    <span class="m">2</span>    <span class="m">3</span>    <span class="m">4</span>    <span class="m">5</span> .... .... .... ....
@@ -214,14 +214,14 @@ Copyright <span class="m">2011</span> Vanadium Labs LLC
 <p>Now, you want to move the robot arm. This can be done through the <code class="docutils literal"><span class="pre">arbotix_gui</span></code> interface, but some prior work is needed beforehand.
 First, you need to describe the turtlebot arm in a <code class="docutils literal"><span class="pre">yaml</span></code> description file. Here is a working description of the PhatomX Pincher arm, assuming that the arm is connected through port <code class="docutils literal"><span class="pre">ttyUSB0</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>port: /dev/ttyUSB0
-read_rate: <span class="m">15</span>
-write_rate: <span class="m">25</span>
+read_rate: 15
+write_rate: 25
 joints: <span class="o">{</span>
-arm_shoulder_pan_joint: <span class="o">{</span>id: <span class="m">1</span>, neutral: <span class="m">205</span>, max_angle: <span class="m">180</span>, min_angle: -60, max_speed: <span class="m">90</span><span class="o">}</span>,
-arm_shoulder_lift_joint: <span class="o">{</span>id: <span class="m">2</span>, max_angle: <span class="m">150</span>, min_angle: -150, max_speed: <span class="m">90</span><span class="o">}</span>,
-arm_elbow_flex_joint: <span class="o">{</span>id: <span class="m">3</span>, max_angle: <span class="m">150</span>, min_angle: -150, max_speed: <span class="m">90</span><span class="o">}</span>,
-arm_wrist_flex_joint: <span class="o">{</span>id: <span class="m">4</span>, max_angle: <span class="m">100</span>, min_angle: -100, max_speed: <span class="m">90</span><span class="o">}</span>,
-gripper_joint: <span class="o">{</span>id: <span class="m">5</span>, max_speed: <span class="m">90</span><span class="o">}</span>,
+arm_shoulder_pan_joint: <span class="o">{</span>id: 1, neutral: 205, max_angle: 180, min_angle: -60, max_speed: 90<span class="o">}</span>,
+arm_shoulder_lift_joint: <span class="o">{</span>id: 2, max_angle: 150, min_angle: -150, max_speed: 90<span class="o">}</span>,
+arm_elbow_flex_joint: <span class="o">{</span>id: 3, max_angle: 150, min_angle: -150, max_speed: 90<span class="o">}</span>,
+arm_wrist_flex_joint: <span class="o">{</span>id: 4, max_angle: 100, min_angle: -100, max_speed: 90<span class="o">}</span>,
+gripper_joint: <span class="o">{</span>id: 5, max_speed: 90<span class="o">}</span>,
 <span class="o">}</span>
 controllers: <span class="o">{</span>
 arm_controller: <span class="o">{</span>type: follow_controller, joints: <span class="o">[</span>arm_shoulder_pan_joint, arm_shoulder_lift_joint,  arm_elbow_flex_joint,
@@ -294,10 +294,10 @@ NODES
 <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://localhost:11311
 
 core service <span class="o">[</span>/rosout<span class="o">]</span> found
-process<span class="o">[</span>arbotix-1<span class="o">]</span>: started with pid <span class="o">[</span><span class="m">3234</span><span class="o">]</span>
-<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: <span class="m">1408457288</span>.608035<span class="o">]</span> Started ArbotiX connection on port /dev/ttyUSB0.
-<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: <span class="m">1408457288</span>.713417<span class="o">]</span> Started FollowController <span class="o">(</span>arm_controller<span class="o">)</span>. Joints:  <span class="o">[</span><span class="s1">&#39;arm_shoulder_pan_joint&#39;</span>, <span class="s1">&#39;arm_shoulder_lift_joint&#39;</span>, <span class="s1">&#39;arm_elbow_flex_joint&#39;</span>, <span class="s1">&#39;arm_wrist_flex_joint&#39;</span><span class="o">]</span> on  C1
-<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: <span class="m">1408457288</span>.717421<span class="o">]</span> ArbotiX connected.
+process<span class="o">[</span>arbotix-1<span class="o">]</span>: started with pid <span class="o">[</span>3234<span class="o">]</span>
+<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: 1408457288.608035<span class="o">]</span> Started ArbotiX connection on port /dev/ttyUSB0.
+<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: 1408457288.713417<span class="o">]</span> Started FollowController <span class="o">(</span>arm_controller<span class="o">)</span>. Joints:  <span class="o">[</span><span class="s1">&#39;arm_shoulder_pan_joint&#39;</span>, <span class="s1">&#39;arm_shoulder_lift_joint&#39;</span>, <span class="s1">&#39;arm_elbow_flex_joint&#39;</span>, <span class="s1">&#39;arm_wrist_flex_joint&#39;</span><span class="o">]</span> on  C1
+<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: 1408457288.717421<span class="o">]</span> ArbotiX connected.
 </pre></div>
 </div>
 <p>This means that your arm is not successfully connected and ready to receive motion command. The easiest way to control the servos is using the <code class="docutils literal"><span class="pre">arbotix_gui</span></code> command:</p>

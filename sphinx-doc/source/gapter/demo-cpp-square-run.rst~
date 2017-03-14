@@ -1,0 +1,11 @@
+.. _gapter-cpp-square-run-demos:
+
+=======================
+Square run - C++
+=======================
+
+This demo illustrate how to make Gapter moves on squares
+
+.. code-block:: c
+
+

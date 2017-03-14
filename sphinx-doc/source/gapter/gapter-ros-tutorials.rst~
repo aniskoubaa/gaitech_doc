@@ -148,6 +148,7 @@ You can see Gapter's propellers are rotating
         * ``odroid $: rosrun mavros mavcm takeoffcur 0 0 3``
 
   * For landing Gapter 
+
         * ``odroid $: rosrun mavros mavsys mode -c Land``
 
 

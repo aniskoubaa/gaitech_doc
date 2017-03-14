@@ -155,7 +155,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/network-config-doc.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/network-config-doc.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -179,8 +179,7 @@ To allow this, it is needed to configure the laptop of your robot and your machi
 <div class="section" id="video-tutorial">
 <h2>Video Tutorial<a class="headerlink" href="#video-tutorial" title="Permalink to this headline">¶</a></h2>
 <p>The following video tutorial illustrates in 10 minutes the steps to follow for network configuration in ROS and demonstrates it through an example.</p>
-<iframe src="http://www.youtube.com/embed/1KOrXSEDQ3k" style="border: 0; height: 345px; width: 560px">
-</iframe></div>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/1KOrXSEDQ3k" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
 <div class="section" id="getting-your-ip-address">
 <h2>Getting your IP address<a class="headerlink" href="#getting-your-ip-address" title="Permalink to this headline">¶</a></h2>
 <p>ROS offers the ability to have a two-way communication network between different ROS nodes. All what you have to do is to know the IP address for the ROS master node and the IPs for other ROS nodes.</p>
@@ -195,16 +194,16 @@ To allow this, it is needed to configure the laptop of your robot and your machi
        RX packets:6658055 errors:0 dropped:0 overruns:0 frame:0
        TX packets:6658055 errors:0 dropped:0 overruns:0 carrier:0
        collisions:0 txqueuelen:0
-       RX bytes:587372914 <span class="o">(</span><span class="m">587</span>.3 MB<span class="o">)</span>  TX bytes:587372914 <span class="o">(</span><span class="m">587</span>.3 MB<span class="o">)</span>
+       RX bytes:587372914 <span class="o">(</span>587.3 MB<span class="o">)</span>  TX bytes:587372914 <span class="o">(</span>587.3 MB<span class="o">)</span>
 
-wlan1  Link encap:Ethernet  HWaddr <span class="m">48</span>:5d:60:75:58:90
+wlan1  Link encap:Ethernet  HWaddr 48:5d:60:75:58:90
        inet addr:10.0.129.17  Bcast:10.0.129.255  Mask:255.255.254.0
        inet6 addr: fe80::4a5d:60ff:fe75:5890/64 Scope:Link
        UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
        RX packets:101983 errors:0 dropped:0 overruns:0 frame:0
        TX packets:37244 errors:0 dropped:0 overruns:0 carrier:0
        collisions:0 txqueuelen:1000
-       RX bytes:49326141 <span class="o">(</span><span class="m">49</span>.3 MB<span class="o">)</span>  TX bytes:7588044 <span class="o">(</span><span class="m">7</span>.5 MB<span class="o">)</span>
+       RX bytes:49326141 <span class="o">(</span>49.3 MB<span class="o">)</span>  TX bytes:7588044 <span class="o">(</span>7.5 MB<span class="o">)</span>
 </pre></div>
 </div>
 <p>In the example above, the IP address of the machine is <code class="docutils literal"><span class="pre">10.0.129.17</span></code> with respect to the WiFi network interface <code class="docutils literal"><span class="pre">wlan1</span></code>. It may happen to have a different WiFi interface like <code class="docutils literal"><span class="pre">wlan0</span></code> or others depending on network configuration of your local machine.</p>
@@ -239,7 +238,7 @@ All you have to do is to specify in the <code class="docutils literal"><span cla
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1">#The localhost IP address = IP address for the Master node</span>
 <span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://localhost:11311
 <span class="c1">#The IP address for the Master node</span>
-<span class="nb">export</span> <span class="nv">ROS_HOSTNAME</span><span class="o">=</span><span class="m">192</span>.168.8.100
+<span class="nb">export</span> <span class="nv">ROS_HOSTNAME</span><span class="o">=</span>192.168.8.100
 </pre></div>
 </div>
 <p>replace <code class="docutils literal"><span class="pre">192.168.8.101</span></code>  with the correct IP address of the robot machine (see above for getting the IP address).
@@ -250,7 +249,7 @@ The line <code class="docutils literal"><span class="pre">export</span> <span cl
 <span class="c1">#The IP address for the Master node</span>
 <span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://192.168.8.100:11311
 <span class="c1">#The IP address for your device/host IP address</span>
-<span class="nb">export</span> <span class="nv">ROS_HOSTNAME</span><span class="o">=</span><span class="m">192</span>.168.8.101
+<span class="nb">export</span> <span class="nv">ROS_HOSTNAME</span><span class="o">=</span>192.168.8.101
 </pre></div>
 </div>
 <p>The line <code class="docutils literal"><span class="pre">export</span> <span class="pre">ROS_MASTER_URI=http://192.168.8.100:11311</span></code> means that the ROS master runs in the machine with IP address <code class="docutils literal"><span class="pre">192.168.8.100</span></code> which must correspond to the robot machine IP address.

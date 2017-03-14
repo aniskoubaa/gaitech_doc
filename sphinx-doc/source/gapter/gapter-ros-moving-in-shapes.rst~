@@ -1,0 +1,63 @@
+.. _gapter-ros-moving-in-shapes:
+
+========================
+GAPTER: Moving in Shapes
+========================
+
+This tutorial ...
+
+
+First launch the simulation, see following links for further details: 
+
+`erlerobotics.com`_
+
+`coins-lab.org`_
+
+.. _erlerobotics.com: http://docs.erlerobotics.com/simulation/vehicles/erle_copter/tutorial_1 
+
+.. _coins-lab.org: http://wiki.coins-lab.org/index.php?title=Simulation_of_Erle_Copter
+
+.. figure:: images/gapter_ros_teleop_fig_1.png
+    :align: center
+    :width: 400pt
+
+    Figure 1: Launch the simulator
+
+After launching the simulator, Take off the drone:
+
+.. code-block:: bash
+
+	# in the MAVProxy prompt:
+	mode GUIDED
+	arm throttle
+	takeoff 2
+
+.. figure:: images/gapter_ros_teleop_fig_2.png
+    :align: center
+    :width: 400pt
+
+    Figure 2: Drone taking off
+
+Then, in new terminal, launch the ROS node:
+
+.. code-block:: bash
+
+	rosrun gapter_py move_shapes.py 
+
+.. figure:: images/gapter_ros_moving_in_shapes_fig_1.png
+    :align: center
+    :width: 400pt
+
+    Figure 3: Moving in shapes
+
+Code Explanation
+================
+
+The source code could be found in `github_link`_.
+
+.. _github_link: https://github.com/
+
+
+
+
+

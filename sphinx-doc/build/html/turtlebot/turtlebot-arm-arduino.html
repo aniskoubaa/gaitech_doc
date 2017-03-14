@@ -158,7 +158,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/turtlebot-arm-arduino.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/turtlebot-arm-arduino.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -238,7 +238,7 @@ A complete package of turtlebot arm can be found at <a class="reference external
 
     <span class="c1">//Create the node handler and the message type</span>
     <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
-    <span class="n">std_msgs</span><span class="o">::</span><span class="kr">String</span> <span class="n">str_msg</span><span class="p">;</span>
+    <span class="n">std_msgs</span><span class="o">::</span><span class="kt">String</span> <span class="n">str_msg</span><span class="p">;</span>
 
     <span class="c1">//Create a publisher for the message</span>
     <span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span> <span class="n">pub_tag</span><span class="p">(</span><span class="s">&quot;/tagRead&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">str_msg</span><span class="p">);</span>
@@ -246,15 +246,15 @@ A complete package of turtlebot arm can be found at <a class="reference external
     <span class="c1">//initialize an RFIDuino object for hardware version 1.1</span>
     <span class="n">RFIDuino</span> <span class="nf">myRFIDuino</span><span class="p">(</span><span class="mf">1.1</span><span class="p">);</span>    <span class="c1">//you can use RFIDuino myRFIDuino(1.2) for the other version</span>
 
-    <span class="kr">char</span> <span class="n">tagWord</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
-    <span class="kr">String</span> <span class="n">tagStr</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">tagWord</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+    <span class="kt">String</span> <span class="n">tagStr</span><span class="p">;</span>
 
     <span class="c1">//enter your ID numbers below as a &#39;key&#39; tag</span>
-    <span class="kr">byte</span> <span class="n">keyTag</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span><span class="p">{</span><span class="mi">37</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">161</span><span class="p">,</span><span class="mi">253</span><span class="p">};</span>  <span class="c1">//an array that will hold all of our &#39;key tags&#39;. Key tags are treated differently from other tags read</span>
-    <span class="kr">byte</span> <span class="n">tagData</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>                   <span class="c1">//Holds the ID numbers from the tag</span>
-    <span class="kr">boolean</span> <span class="n">verifyKey</span> <span class="o">=</span> <span class="kr">false</span><span class="p">;</span>
+    <span class="nf">byte</span> <span class="n">keyTag</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span><span class="p">{</span><span class="mi">37</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">161</span><span class="p">,</span><span class="mi">253</span><span class="p">};</span>  <span class="c1">//an array that will hold all of our &#39;key tags&#39;. Key tags are treated differently from other tags read</span>
+    <span class="nf">byte</span> <span class="n">tagData</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>                   <span class="c1">//Holds the ID numbers from the tag</span>
+    <span class="kt">boolean</span> <span class="n">verifyKey</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 
-    <span class="kr">void</span> <span class="nb">setup</span><span class="p">()</span>
+    <span class="kt">void</span> <span class="nx">setup</span><span class="p">()</span>
     <span class="p">{</span>
 
     <span class="n">nh</span><span class="p">.</span><span class="n">initNode</span><span class="p">();</span>
@@ -262,38 +262,38 @@ A complete package of turtlebot arm can be found at <a class="reference external
 
     <span class="p">}</span>
 
-    <span class="kr">void</span> <span class="nb">loop</span><span class="p">()</span>
+    <span class="kt">void</span> <span class="nx">loop</span><span class="p">()</span>
     <span class="p">{</span>
 
-    <span class="k">if</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">scanForTag</span><span class="p">(</span><span class="n">tagData</span><span class="p">)</span> <span class="o">==</span> <span class="kr">true</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">scanForTag</span><span class="p">(</span><span class="n">tagData</span><span class="p">)</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span>
     <span class="p">{</span>
 
     <span class="n">verifyKey</span> <span class="o">=</span> <span class="n">myRFIDuino</span><span class="p">.</span><span class="n">compareTagData</span><span class="p">(</span><span class="n">tagData</span><span class="p">,</span> <span class="n">keyTag</span><span class="p">);</span><span class="c1">//run the comparetagData to check the tag just read against the &#39;key&#39; tag we defined.</span>
 
-    <span class="k">if</span><span class="p">(</span><span class="n">verifyKey</span> <span class="o">==</span> <span class="kr">true</span><span class="p">)</span><span class="c1">//if a &#39;true&#39; is returned by comparetagData, the current read is a key tag</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">verifyKey</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span><span class="c1">//if a &#39;true&#39; is returned by comparetagData, the current read is a key tag</span>
     <span class="p">{</span>
 
-<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led2</span><span class="p">,</span><span class="kr">HIGH</span><span class="p">);</span>         <span class="c1">//turn green LED on</span>
+<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led2</span><span class="p">,</span><span class="kc">HIGH</span><span class="p">);</span>         <span class="c1">//turn green LED on</span>
 <span class="n">myRFIDuino</span><span class="p">.</span><span class="n">successSound</span><span class="p">();</span>                  <span class="c1">//Play a &#39;success&#39; sound from the buzzer, 3 notes acsending</span>
 <span class="nf">delay</span><span class="p">(</span><span class="mi">250</span><span class="p">);</span>                                 <span class="c1">//wait for a period before turning off the LED</span>
-<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led2</span><span class="p">,</span><span class="kr">LOW</span><span class="p">);</span>       <span class="c1">//turn the green LED off</span>
+<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led2</span><span class="p">,</span><span class="kc">LOW</span><span class="p">);</span>       <span class="c1">//turn the green LED off</span>
 
     <span class="p">}</span>
     <span class="k">else</span><span class="c1">//otherwise the tag is not a key tag</span>
     <span class="p">{</span>
 
-<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led1</span><span class="p">,</span><span class="kr">HIGH</span><span class="p">);</span>         <span class="c1">//turn red LED on</span>
+<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led1</span><span class="p">,</span><span class="kc">HIGH</span><span class="p">);</span>         <span class="c1">//turn red LED on</span>
 <span class="nf">delay</span><span class="p">(</span><span class="mi">250</span><span class="p">);</span>                                 <span class="c1">//wait for a period before turning off the LED</span>
-<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led1</span><span class="p">,</span><span class="kr">LOW</span><span class="p">);</span>          <span class="c1">//turn the red LED off</span>
+<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led1</span><span class="p">,</span><span class="kc">LOW</span><span class="p">);</span>          <span class="c1">//turn the red LED off</span>
 
     <span class="p">}</span>
 
     <span class="c1">//convert the byte array into String</span>
-<span class="n">tagStr</span> <span class="o">=</span> <span class="kr">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kr">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kr">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kr">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
-<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kr">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
+<span class="n">tagStr</span> <span class="o">=</span> <span class="kt">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kt">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kt">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kt">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kt">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
 
     <span class="c1">//convert the String into char array</span>
 <span class="n">tagStr</span><span class="p">.</span><span class="n">toCharArray</span><span class="p">(</span><span class="n">tagWord</span><span class="p">,</span><span class="mi">11</span><span class="p">);</span>
@@ -368,8 +368,7 @@ A complete package of turtlebot arm can be found at <a class="reference external
 <p class="first admonition-title">Note</p>
 <p class="last">Do not give a close gripper command if the gripper is closed or the program might stop!!!</p>
 </div>
-<iframe src="http://www.youtube.com/embed/-34TNkw9W24" style="border: 0; height: 345px; width: 560px">
-</iframe></div>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/-34TNkw9W24" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
 </div>
 
 

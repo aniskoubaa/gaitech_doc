@@ -143,7 +143,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/drones/ar_parrot_2/ar-parrot-2-ros.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/drones/ar_parrot_2/ar-parrot-2-ros.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -192,7 +192,7 @@
 </pre></div>
 </div>
 <p>This message will appear if it works fine</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span> INFO<span class="o">]</span> <span class="o">[</span><span class="m">1456020168</span>.671768680<span class="o">]</span>: Successfully connected to <span class="s1">&#39;My ARDrone&#39;</span> <span class="o">(</span>AR-Drone <span class="m">2</span>.0 - Firmware: <span class="m">2</span>.4.8<span class="o">)</span> - Battery<span class="o">(</span>%<span class="o">)</span>: <span class="m">85</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span> INFO<span class="o">]</span> <span class="o">[</span>1456020168.671768680<span class="o">]</span>: Successfully connected to <span class="s1">&#39;My ARDrone&#39;</span> <span class="o">(</span>AR-Drone 2.0 - Firmware: 2.4.8<span class="o">)</span> - Battery<span class="o">(</span>%<span class="o">)</span>: 85
 </pre></div>
 </div>
 <img alt="../../_images/Real_drone_1.png" class="align-center" src="../../_images/Real_drone_1.png" />
@@ -238,7 +238,7 @@
           <span class="n">pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">Empty</span><span class="p">())</span>
           <span class="n">rate</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
           <span class="n">takeoff</span><span class="p">()</span>
         <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ROSInterruptException</span><span class="p">:</span>

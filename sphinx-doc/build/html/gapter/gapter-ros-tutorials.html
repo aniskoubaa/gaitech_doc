@@ -37,7 +37,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="GAPTER: Software Tutorials" href="software-tutorials.html"/>
-        <link rel="next" title="GAPTER: Teleopration with ROS" href="gapter-ros-teleop.html"/>
+        <link rel="next" title="MAVROS Basics" href="mavros-basics.html"/>
         <link rel="prev" title="GAPTER: Software Tutorials" href="software-tutorials.html"/> 
 
   
@@ -104,6 +104,7 @@
 <li class="toctree-l2"><a class="reference internal" href="first-flight-tests.html">First Flight Test</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="software-tutorials.html">Software Tutorials</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">ROS Tutorials</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mavros-basics.html">MAVROS Basics</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-ros-teleop.html">Teleoperation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-ros-obstacle-avoidance.html">Obstacle Avoidance</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-ros-moving-in-shapes.html">Moving in Shapes</a></li>
@@ -154,7 +155,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/gapter/gapter-ros-tutorials.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/gapter/gapter-ros-tutorials.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -214,14 +215,14 @@ user $: <span class="nb">cd</span> ~/catkin_ws
 <ul class="simple">
 <li>Open bashrc in your desktop</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="m">1</span>. user $: sudo gedit ~/.bashrc
+<div class="highlight-bash"><div class="highlight"><pre><span></span>1. user $: sudo gedit ~/.bashrc
 </pre></div>
 </div>
 <ul class="simple">
 <li>Add these lines at the end</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="m">1</span>. <span class="nb">export</span> <span class="nv">ROS_HOSTNAME</span><span class="o">=</span><span class="m">192</span>.168.x.xxx
-<span class="m">2</span>. <span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://192.168.1.100:11311
+<div class="highlight-bash"><div class="highlight"><pre><span></span>1. <span class="nb">export</span> <span class="nv">ROS_HOSTNAME</span><span class="o">=</span>192.168.x.xxx
+2. <span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://192.168.1.100:11311
 </pre></div>
 </div>
 <p>where <code class="docutils literal"><span class="pre">192.168.x.xxx</span></code> is your desktop&#8217;s ip address and <code class="docutils literal"><span class="pre">192.168.1.100</span></code> is gapter&#8217;s ip address.</p>
@@ -244,7 +245,7 @@ user $: <span class="nb">cd</span> ~/catkin_ws
 <ul class="simple">
 <li>Now in the same terminal type following to change parameters</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>odroid $: mavproxy.py --master<span class="o">=</span>/dev/ttyUSB0 --baudrate <span class="m">57600</span> --out <span class="m">192</span>.168.x.xx:5000  --aircraft MyCopter
+<div class="highlight-bash"><div class="highlight"><pre><span></span>odroid $: mavproxy.py --master<span class="o">=</span>/dev/ttyUSB0 --baudrate <span class="m">57600</span> --out 192.168.x.xx:5000  --aircraft MyCopter
 </pre></div>
 </div>
 <p>You must enter your desktop&#8217;s ip in place of <code class="docutils literal"><span class="pre">192.168.x.xx</span></code></p>
@@ -322,7 +323,7 @@ user $: <span class="nb">cd</span> ~/catkin_ws
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="gapter-ros-teleop.html" class="btn btn-neutral float-right" title="GAPTER: Teleopration with ROS" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mavros-basics.html" class="btn btn-neutral float-right" title="MAVROS Basics" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="software-tutorials.html" class="btn btn-neutral" title="GAPTER: Software Tutorials" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

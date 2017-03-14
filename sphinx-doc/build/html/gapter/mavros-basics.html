@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MAVROS Basics &mdash; Gaitech EDU 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="GAPTER: ROS Tutorials" href="gapter-ros-tutorials.html"/>
+        <link rel="next" title="GAPTER: Teleopration with ROS" href="gapter-ros-teleop.html"/>
+        <link rel="prev" title="GAPTER: ROS Tutorials" href="gapter-ros-tutorials.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech EDU
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../turtlebot/turtlebot-tutorials.html">Turtlebot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Gapter Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview-and-features.html">Gapter Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assembly.html">Gapter Assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building-and-configuring-autopilot.html">Building and Configuring the Autopilot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-configuration.html">Network Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preflight-configurations.html">Pre-Flight Configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-flight-tests.html">First Flight Test</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="software-tutorials.html">Software Tutorials</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="gapter-ros-tutorials.html">ROS Tutorials</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">MAVROS Basics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gapter-ros-teleop.html">Teleoperation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gapter-ros-obstacle-avoidance.html">Obstacle Avoidance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gapter-ros-moving-in-shapes.html">Moving in Shapes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gapter-ros-tutorials.html#controlling-gapter-from-desktop-using-mavros">Controlling Gapter from desktop using mavros:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gapter-mavlink-tutorials.html">MAVLink Tutorials</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech EDU</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Gapter Drone Documentation</a> &raquo;</li>
+      
+          <li><a href="software-tutorials.html">GAPTER: Software Tutorials</a> &raquo;</li>
+      
+          <li><a href="gapter-ros-tutorials.html">GAPTER: ROS Tutorials</a> &raquo;</li>
+      
+    <li>MAVROS Basics</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/gapter/mavros-basics.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mavros-basics">
+<span id="id1"></span><h1>MAVROS Basics<a class="headerlink" href="#mavros-basics" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial will introduce the basic operations using the MAVROS.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This tutorial was developed for ROS <a class="reference external" href="http://wiki.ros.org/indigo">Indigo</a> version, and tested on ubuntu 14.04</p>
+</div>
+<p>First launch the simulation, see following links for further details:</p>
+<p><a class="reference external" href="http://docs.erlerobotics.com/simulation/vehicles/erle_copter/tutorial_1">erlerobotics.com</a></p>
+<p><a class="reference external" href="http://wiki.coins-lab.org/index.php?title=Simulation_of_Erle_Copter">coins-lab.org</a></p>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/gapter_ros_teleop_fig_1.png"><img alt="../_images/gapter_ros_teleop_fig_1.png" src="../_images/gapter_ros_teleop_fig_1.png" style="width: 400pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 1: Launch the simulator</span></p>
+</div>
+<p>Then in new terminal, launch the following ROS node (python):</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun gapter_py gapter_pilot.py
+</pre></div>
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/gapter_mavros_basics_fig_1.png"><img alt="../_images/gapter_mavros_basics_fig_1.png" src="../_images/gapter_mavros_basics_fig_1.png" style="width: 400pt;" /></a>
+<p class="caption"><span class="caption-text">Figure 2: MAVROS Basics</span></p>
+</div>
+<p>This node allows you to set the mode and to takeoff and land the drone.</p>
+<div class="section" id="code-explanation">
+<h2>Code Explanation<a class="headerlink" href="#code-explanation" title="Permalink to this headline">¶</a></h2>
+<p>The source code could be found in <a class="reference external" href="https://github.com/">github_link</a>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+   <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;gapter_pilot_node&#39;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+   <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s2">&quot;/mavros/global_position/raw/fix&quot;</span><span class="p">,</span> <span class="n">NavSatFix</span><span class="p">,</span> <span class="n">globalPositionCallback</span><span class="p">)</span>
+   <span class="n">velocity_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;/mavros/setpoint_velocity/cmd_vel&#39;</span><span class="p">,</span> <span class="n">TwistStamped</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+   <span class="n">myLoop</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>As any ROS node, it starts with initialization of the ROS node for the process. <code class="docutils literal"><span class="pre">myLoop()</span></code> function is used to display the main menu and to get the input from the user:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myLoop</span><span class="p">():</span>
+   <span class="n">x</span><span class="o">=</span><span class="s1">&#39;1&#39;</span>
+   <span class="k">while</span> <span class="p">((</span><span class="ow">not</span> <span class="n">rospy</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">())</span><span class="ow">and</span> <span class="p">(</span><span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="s1">&#39;5&#39;</span><span class="p">,</span><span class="s1">&#39;6&#39;</span><span class="p">,</span><span class="s1">&#39;7&#39;</span><span class="p">])):</span>
+       <span class="n">menu</span><span class="p">()</span>
+       <span class="n">x</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Enter your input: &quot;</span><span class="p">);</span>
+       <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="s1">&#39;1&#39;</span><span class="p">):</span>
+           <span class="n">setGuidedMode</span><span class="p">()</span>
+       <span class="k">elif</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="s1">&#39;2&#39;</span><span class="p">):</span>
+           <span class="n">setStabilizeMode</span><span class="p">()</span>
+       <span class="k">elif</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="s1">&#39;3&#39;</span><span class="p">):</span>
+           <span class="n">setArm</span><span class="p">()</span>
+       <span class="k">elif</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="s1">&#39;4&#39;</span><span class="p">):</span>
+           <span class="n">setDisarm</span><span class="p">()</span>
+       <span class="k">elif</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="s1">&#39;5&#39;</span><span class="p">):</span>
+           <span class="n">setTakeoffMode</span><span class="p">()</span>
+       <span class="k">elif</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="s1">&#39;6&#39;</span><span class="p">):</span>
+           <span class="n">setLandMode</span><span class="p">()</span>
+       <span class="k">elif</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="s1">&#39;7&#39;</span><span class="p">):</span>
+           <span class="k">global</span> <span class="n">latitude</span>
+           <span class="k">global</span> <span class="n">longitude</span>
+           <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;longitude: </span><span class="si">%.7f</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">longitude</span><span class="p">)</span>
+           <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;latitude: </span><span class="si">%.7f</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">latitude</span><span class="p">)</span>
+       <span class="k">else</span><span class="p">:</span>
+           <span class="k">print</span> <span class="s2">&quot;Exit&quot;</span>
+</pre></div>
+</div>
+<p>The service <code class="docutils literal"><span class="pre">/mavros/set_mode</span></code> is used to set the mode (Guided or Stabilized). The service is called by creating a <code class="docutils literal"><span class="pre">rospy.ServiceProxy</span></code> with the name of the service. Often <code class="docutils literal"><span class="pre">rospy.wait_for_service()</span></code> is called first to block until a service is available:</p>
+<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setGuidedMode</span><span class="p">():</span>
+   <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s1">&#39;/mavros/set_mode&#39;</span><span class="p">)</span>
+   <span class="k">try</span><span class="p">:</span>
+       <span class="n">flightModeService</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s1">&#39;/mavros/set_mode&#39;</span><span class="p">,</span> <span class="n">mavros_msgs</span><span class="o">.</span><span class="n">srv</span><span class="o">.</span><span class="n">SetMode</span><span class="p">)</span>
+       <span class="n">isModeChanged</span> <span class="o">=</span> <span class="n">flightModeService</span><span class="p">(</span><span class="n">custom_mode</span><span class="o">=</span><span class="s1">&#39;GUIDED&#39;</span><span class="p">)</span> <span class="c1">#return true or false</span>
+   <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceException</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+       <span class="k">print</span> <span class="s2">&quot;service set_mode call failed: </span><span class="si">%s</span><span class="s2">. GUIDED Mode could not be set. Check that GPS is enabled&quot;</span><span class="o">%</span><span class="n">e</span>
+</pre></div>
+</div>
+<p>Same code used to set Stabilized mode, just replace <code class="docutils literal"><span class="pre">custom_mode='GUIDED'</span></code> with <code class="docutils literal"><span class="pre">custom_mode='STABILIZE'</span></code> in <code class="docutils literal"><span class="pre">setStabilizeMode()</span></code> function:</p>
+<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setStabilizeMode</span><span class="p">():</span>
+   <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s1">&#39;/mavros/set_mode&#39;</span><span class="p">)</span>
+   <span class="k">try</span><span class="p">:</span>
+       <span class="n">flightModeService</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s1">&#39;/mavros/set_mode&#39;</span><span class="p">,</span> <span class="n">mavros_msgs</span><span class="o">.</span><span class="n">srv</span><span class="o">.</span><span class="n">SetMode</span><span class="p">)</span>
+       <span class="n">isModeChanged</span> <span class="o">=</span> <span class="n">flightModeService</span><span class="p">(</span><span class="n">custom_mode</span><span class="o">=</span><span class="s1">&#39;STABILIZE&#39;</span><span class="p">)</span> <span class="c1">#return true or false</span>
+   <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceException</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+       <span class="k">print</span> <span class="s2">&quot;service set_mode call failed: </span><span class="si">%s</span><span class="s2">. GUIDED Mode could not be set. Check that GPS is enabled&quot;</span><span class="o">%</span><span class="n">e</span>
+</pre></div>
+</div>
+<p>To arm or disarm the drone, the service <code class="docutils literal"><span class="pre">/mavros/cmd/arming</span></code> is used in same way as to set the mode:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setArm</span><span class="p">():</span>
+   <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s1">&#39;/mavros/cmd/arming&#39;</span><span class="p">)</span>
+   <span class="k">try</span><span class="p">:</span>
+       <span class="n">armService</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s1">&#39;/mavros/cmd/arming&#39;</span><span class="p">,</span> <span class="n">mavros_msgs</span><span class="o">.</span><span class="n">srv</span><span class="o">.</span><span class="n">CommandBool</span><span class="p">)</span>
+       <span class="n">armService</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+   <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceException</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+       <span class="k">print</span> <span class="s2">&quot;Service arm call failed: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="n">e</span>
+
+<span class="k">def</span> <span class="nf">setDisarm</span><span class="p">():</span>
+   <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s1">&#39;/mavros/cmd/arming&#39;</span><span class="p">)</span>
+   <span class="k">try</span><span class="p">:</span>
+       <span class="n">armService</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s1">&#39;/mavros/cmd/arming&#39;</span><span class="p">,</span> <span class="n">mavros_msgs</span><span class="o">.</span><span class="n">srv</span><span class="o">.</span><span class="n">CommandBool</span><span class="p">)</span>
+       <span class="n">armService</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+   <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceException</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+       <span class="k">print</span> <span class="s2">&quot;Service arm call failed: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="n">e</span>
+</pre></div>
+</div>
+<p>To takeoff the drone, the <code class="docutils literal"><span class="pre">/mavros/cmd/takeoff</span></code> service is used, and it takes the <code class="docutils literal"><span class="pre">altitude</span></code>, <code class="docutils literal"><span class="pre">latitude</span></code>, <code class="docutils literal"><span class="pre">longitude</span></code>, <code class="docutils literal"><span class="pre">min_pitch</span></code>, and <code class="docutils literal"><span class="pre">yaw</span></code> as parameters:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setTakeoffMode</span><span class="p">():</span>
+   <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s1">&#39;/mavros/cmd/takeoff&#39;</span><span class="p">)</span>
+   <span class="k">try</span><span class="p">:</span>
+       <span class="n">takeoffService</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s1">&#39;/mavros/cmd/takeoff&#39;</span><span class="p">,</span> <span class="n">mavros_msgs</span><span class="o">.</span><span class="n">srv</span><span class="o">.</span><span class="n">CommandTOL</span><span class="p">)</span>
+       <span class="n">takeoffService</span><span class="p">(</span><span class="n">altitude</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">latitude</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">longitude</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">min_pitch</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">yaw</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+   <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceException</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+       <span class="k">print</span> <span class="s2">&quot;Service takeoff call failed: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="n">e</span>
+</pre></div>
+</div>
+<p>To land the drone, the <code class="docutils literal"><span class="pre">/mavros/cmd/land</span></code> service is used, and it takes the <code class="docutils literal"><span class="pre">altitude</span></code>, <code class="docutils literal"><span class="pre">latitude</span></code>, <code class="docutils literal"><span class="pre">longitude</span></code>, <code class="docutils literal"><span class="pre">min_pitch</span></code>, and <code class="docutils literal"><span class="pre">yaw</span></code> as parameters:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setLandMode</span><span class="p">():</span>
+   <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s1">&#39;/mavros/cmd/land&#39;</span><span class="p">)</span>
+   <span class="k">try</span><span class="p">:</span>
+       <span class="n">landService</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s1">&#39;/mavros/cmd/land&#39;</span><span class="p">,</span> <span class="n">mavros_msgs</span><span class="o">.</span><span class="n">srv</span><span class="o">.</span><span class="n">CommandTOL</span><span class="p">)</span>
+       <span class="c1">#http://wiki.ros.org/mavros/CustomModes for custom modes</span>
+       <span class="n">isLanding</span> <span class="o">=</span> <span class="n">landService</span><span class="p">(</span><span class="n">altitude</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">latitude</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">longitude</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">min_pitch</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">yaw</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+   <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceException</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+       <span class="k">print</span> <span class="s2">&quot;service land call failed: </span><span class="si">%s</span><span class="s2">. The vehicle cannot land &quot;</span><span class="o">%</span><span class="n">e</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gapter-ros-teleop.html" class="btn btn-neutral float-right" title="GAPTER: Teleopration with ROS" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gapter-ros-tutorials.html" class="btn btn-neutral" title="GAPTER: ROS Tutorials" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
