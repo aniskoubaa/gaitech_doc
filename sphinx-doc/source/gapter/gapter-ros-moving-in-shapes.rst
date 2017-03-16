@@ -66,47 +66,32 @@ To move the drone, a ``TwistStamped`` message with appropriate velocities must s
  def moveSquare():
     square_pub = rospy.Publisher('/mavros/setpoint_velocity/cmd_vel', TwistStamped, queue_size=10)
     square = TwistStamped()
-    side_length = 0.5
 
-    square.twist.linear.x=side_length
-    square.twist.linear.y=0
-    square_pub.publish(square)
-    rospy.sleep(5)
+    user_input = raw_input("Enter the length of th square side: "); # input from user
+    side_length = float(user_input)
 
-    square.twist.linear.x=0;
-    square.twist.linear.y=0;
-    square_pub.publish(square);
-    rospy.sleep(2);
-    
-    square.twist.linear.x=0;
-    square.twist.linear.y=side_length;
-    square_pub.publish(square);
-    rospy.sleep(5);
-    
-    square.twist.linear.x=0;
-    square.twist.linear.y=0;
-    square_pub.publish(square);
-    rospy.sleep(2);
-    
-    square.twist.linear.x= - side_length;
-    square.twist.linear.y=0;
-    square_pub.publish(square);
-    rospy.sleep(5);
-    
-    square.twist.linear.x=0;
-    square.twist.linear.y=0;
-    square_pub.publish(square);
-    rospy.sleep(2);
-    
-    square.twist.linear.x=0;
-    square.twist.linear.y= - side_length;
-    square_pub.publish(square);
-    rospy.sleep(5);
-    
-    square.twist.linear.x=0;
-    square.twist.linear.y=0;
-    square_pub.publish(square);
-    rospy.sleep(2);
+    flag_x = 1
+    flag_y = 1
+    for x in range(2,6):
+	if 4%x == 0:
+		square.twist.linear.x = side_length
+		flag_x= -1
+	else:
+		square.twist.linear.y = side_length
+		flag_y= -1
+
+	square_pub.publish(square)
+	rospy.sleep(5)
+
+	square.twist.linear.x=0;
+	square.twist.linear.y=0;
+	square_pub.publish(square);
+	rospy.sleep(2);
+
+	if flag_x == -1 and flag_y == -1:
+		side_length *= -1
+		flag_x = 1
+		flag_y = 1
 
 To move on circle:
 

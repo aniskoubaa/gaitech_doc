@@ -204,47 +204,32 @@ takeoff 2
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">moveSquare</span><span class="p">():</span>
    <span class="n">square_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;/mavros/setpoint_velocity/cmd_vel&#39;</span><span class="p">,</span> <span class="n">TwistStamped</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
    <span class="n">square</span> <span class="o">=</span> <span class="n">TwistStamped</span><span class="p">()</span>
-   <span class="n">side_length</span> <span class="o">=</span> <span class="mf">0.5</span>
 
-   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="n">side_length</span>
-   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
-   <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
-   <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+   <span class="n">user_input</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Enter the length of th square side: &quot;</span><span class="p">);</span> <span class="c1"># input from user</span>
+   <span class="n">side_length</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
 
-   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-   <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">);</span>
-   <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+   <span class="n">flag_x</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="n">flag_y</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">):</span>
+       <span class="k">if</span> <span class="mi">4</span><span class="o">%</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+               <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">side_length</span>
+               <span class="n">flag_x</span><span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+       <span class="k">else</span><span class="p">:</span>
+               <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">side_length</span>
+               <span class="n">flag_y</span><span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 
-   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="n">side_length</span><span class="p">;</span>
-   <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">);</span>
-   <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+       <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
+       <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
-   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-   <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">);</span>
-   <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+       <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+       <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+       <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">);</span>
+       <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 
-   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span> <span class="o">-</span> <span class="n">side_length</span><span class="p">;</span>
-   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-   <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">);</span>
-   <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-
-   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-   <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">);</span>
-   <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-
-   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span> <span class="o">-</span> <span class="n">side_length</span><span class="p">;</span>
-   <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">);</span>
-   <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-
-   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-   <span class="n">square</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-   <span class="n">square_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">square</span><span class="p">);</span>
-   <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+       <span class="k">if</span> <span class="n">flag_x</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">flag_y</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+               <span class="n">side_length</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+               <span class="n">flag_x</span> <span class="o">=</span> <span class="mi">1</span>
+               <span class="n">flag_y</span> <span class="o">=</span> <span class="mi">1</span>
 </pre></div>
 </div>
 <p>To move on circle:</p>
