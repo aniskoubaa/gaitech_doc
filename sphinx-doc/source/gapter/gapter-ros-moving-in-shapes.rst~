@@ -67,7 +67,7 @@ To move the drone, a ``TwistStamped`` message with appropriate velocities must s
     square_pub = rospy.Publisher('/mavros/setpoint_velocity/cmd_vel', TwistStamped, queue_size=10)
     square = TwistStamped()
 
-    user_input = raw_input("Enter the length of th square side: "); # take from user
+    user_input = raw_input("Enter the length of th square side: "); # input from user
     side_length = float(user_input)
 
     flag_x = 1

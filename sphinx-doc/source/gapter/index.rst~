@@ -20,7 +20,6 @@ Gapter Drone Documentation
    Pre-Flight Configurations <preflight-configurations.rst>
    First Flight Test <first-flight-tests.rst>
    Software Tutorials <software-tutorials.rst>
-   Demos <demos.rst>
 
 Gaitech is proud to announce the release of its educational drone: Gapter, a shortcut for Gaitech Copter. 
 This documentation presents step-by-step instructions and get started with Gapter and understand how to develop applications with it.

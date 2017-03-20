@@ -108,7 +108,6 @@ Same code used to set Stabilized mode, just replace ``custom_mode='GUIDED'`` wit
     rospy.wait_for_service('/mavros/set_mode')
     try:
         flightModeService = rospy.ServiceProxy('/mavros/set_mode', mavros_msgs.srv.SetMode)
-        #http://wiki.ros.org/mavros/CustomModes for custom modes
         isModeChanged = flightModeService(custom_mode='STABILIZE') #return true or false
     except rospy.ServiceException, e:
         print "service set_mode call failed: %s. GUIDED Mode could not be set. Check that GPS is enabled"%e

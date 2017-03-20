@@ -14,16 +14,18 @@ GAPTER: ROS Tutorials
    Obstacle Avoidance <gapter-ros-obstacle-avoidance.rst>
    Moving in Shapes <gapter-ros-moving-in-shapes.rst>
 
-Controlling Gapter from desktop using mavros:
-=============================================
+Controlling Gapter MAVROS
+=========================
 
-Configuring Desktop with MAVROS:
---------------------------------
+In this tutorial, we will provide the main steps to follow to configure MAVROS and to control Gapter using ROS terminal commands.
+
+Configuring Desktop with MAVROS
+-------------------------------
 
 Prerequisites: Tested on ubuntu 14.04 with ROS Indigo installed
 
-Installing MAVROS on Desktop
-----------------------------
+Installing MAVROS
+-----------------
 
 * Open the terminal in your desktop and install the following
 
@@ -31,7 +33,7 @@ Installing MAVROS on Desktop
 
 	user $: sudo apt-get install python-catkin-tools python-rosinstall-generator
 
-* Creating work space
+* Create a workspace
 
 .. code-block:: bash
 
@@ -47,7 +49,7 @@ Installing MAVROS on Desktop
 	/catkin_ws $: rosinstall_generator --upstream-development mavros | tee /tmp/mavros.rosinstall
 
 
-* latest released mavlink package
+* install latest released mavlink package
 
 .. code-block:: bash 
 
@@ -57,10 +59,10 @@ Installing MAVROS on Desktop
 	/catkin_ws $: rosdep install --from-paths src --ignore-src --rosdistro indigo -y finally – build
 	/catkin_ws $: catkin build
 
-ROS Network configuration :
----------------------------
+ROS Network configuration
+-------------------------
 
-Before controlling Gapter using ROS you should configure ROS network in your desktop
+Before controlling Gapter using ROS, you should first configure ROS network in your desktop.
 
 * Open bashrc in your desktop
 
@@ -77,12 +79,17 @@ Before controlling Gapter using ROS you should configure ROS network in your des
 
 where ``192.168.x.xxx`` is your desktop's ip address and ``192.168.1.100`` is gapter's ip address.
 
-Controling Gapter using mavros
+For more comprehensive tutorial on Network Configuration on ROS, refer to :ref:`network-config-doc`
+
+Controling Gapter using MAVROS
 ------------------------------
 
-We will control Gapter using mavros. For this you don't have to configure your desktop with mavros. Here we control Gapter via ssh with Gapter's computer. 
+In this tutorial, we will control Gapter using MAVROS. 
+For this you don't have to install MAVROS on your desktop, but rather on Gapter, because we control Gapter via ssh with Gapter's onboard computer (Odroid XU4). 
 
-* Connect to Wi-Fi ``gapter`` from your desktop which will be shown in Wi-Fi list. If prompt for password type ``gapter@gaitech``
+Follow these steps:
+
+* First, connect to the WiFi ``gapternet`` from your desktop which will be shown in Wi-Fi list. If prompt for password type ``gaitech``
 
 * Open the terminal and connect to Gapter's computer by typing following
 
@@ -90,18 +97,18 @@ We will control Gapter using mavros. For this you don't have to configure your d
 
 	user $: ssh odroid@192.168.1.100
 
-If prompts for password, type ``odroid``
+If prompts for password, type ``gaitech``
 
 .. NOTE::
    Before controlling Gapter, parameters need to be changed based on indoor or outdoor operation
 
-* Now in the same terminal type following to change parameters
+* Now in the same terminal type following to start mavproxy ground station:
 
 .. code-block:: bash 
 
 	odroid $: mavproxy.py --master=/dev/ttyUSB0 --baudrate 57600 --out 192.168.x.xx:5000  --aircraft MyCopter	
 
-You must enter your desktop's ip in place of ``192.168.x.xx``
+You must enter your desktop's IP address in place of ``192.168.x.xx``
 
 * You can notice heartbeat form Gapter which shows mavlink has been connected
 
