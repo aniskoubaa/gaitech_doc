@@ -23,4 +23,3 @@ At the end of ROS Quick Start tutorials, you will get a full understanding of RO
    ROS Background <ros-background>
    ROS Programming Basics <ros-programming-basics>
    Turtlesim Cleaning Application <ros-programming-turtlesim>
-   ROSLink <roslink>
