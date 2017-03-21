@@ -93,6 +93,7 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/get-started.html">Get Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roslink/index.html">ROSLink</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../turtlebot/turtlebot-tutorials.html">Turtlebot Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Gapter Tutorials</a><ul class="current">
@@ -108,7 +109,7 @@
 <li class="toctree-l4"><a class="reference internal" href="gapter-ros-teleop.html">Teleoperation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-ros-obstacle-avoidance.html">Obstacle Avoidance</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-ros-moving-in-shapes.html">Moving in Shapes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#controlling-gapter-from-desktop-using-mavros">Controlling Gapter from desktop using mavros:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controlling-gapter-mavros">Controlling Gapter MAVROS</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="gapter-mavlink-tutorials.html">MAVLink Tutorials</a></li>
@@ -116,6 +117,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../video/index.html">Video Streaming Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
 </ul>
 
@@ -169,14 +171,15 @@
 <span id="id1"></span><h1>GAPTER: ROS Tutorials<a class="headerlink" href="#gapter-ros-tutorials" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="controlling-gapter-from-desktop-using-mavros">
-<h2>Controlling Gapter from desktop using mavros:<a class="headerlink" href="#controlling-gapter-from-desktop-using-mavros" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="controlling-gapter-mavros">
+<h2>Controlling Gapter MAVROS<a class="headerlink" href="#controlling-gapter-mavros" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial, we will provide the main steps to follow to configure MAVROS and to control Gapter using ROS terminal commands.</p>
 <div class="section" id="configuring-desktop-with-mavros">
-<h3>Configuring Desktop with MAVROS:<a class="headerlink" href="#configuring-desktop-with-mavros" title="Permalink to this headline">¶</a></h3>
+<h3>Configuring Desktop with MAVROS<a class="headerlink" href="#configuring-desktop-with-mavros" title="Permalink to this headline">¶</a></h3>
 <p>Prerequisites: Tested on ubuntu 14.04 with ROS Indigo installed</p>
 </div>
-<div class="section" id="installing-mavros-on-desktop">
-<h3>Installing MAVROS on Desktop<a class="headerlink" href="#installing-mavros-on-desktop" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="installing-mavros">
+<h3>Installing MAVROS<a class="headerlink" href="#installing-mavros" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Open the terminal in your desktop and install the following</li>
 </ul>
@@ -184,7 +187,7 @@
 </pre></div>
 </div>
 <ul class="simple">
-<li>Creating work space</li>
+<li>Create a workspace</li>
 </ul>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>user $: mkdir -p ~/catkin_ws/src
 user $: <span class="nb">cd</span> ~/catkin_ws
@@ -199,7 +202,7 @@ user $: <span class="nb">cd</span> ~/catkin_ws
 </pre></div>
 </div>
 <ul class="simple">
-<li>latest released mavlink package</li>
+<li>install latest released mavlink package</li>
 </ul>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>/catkin_ws $: rosinstall_generator mavlink <span class="p">|</span> tee -a /tmp/mavros.rosinstall workspace <span class="p">&amp;</span> deps
 /catkin_ws $: wstool merge -t src /tmp/mavros.rosinstall
@@ -210,8 +213,8 @@ user $: <span class="nb">cd</span> ~/catkin_ws
 </div>
 </div>
 <div class="section" id="ros-network-configuration">
-<h3>ROS Network configuration :<a class="headerlink" href="#ros-network-configuration" title="Permalink to this headline">¶</a></h3>
-<p>Before controlling Gapter using ROS you should configure ROS network in your desktop</p>
+<h3>ROS Network configuration<a class="headerlink" href="#ros-network-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Before controlling Gapter using ROS, you should first configure ROS network in your desktop.</p>
 <ul class="simple">
 <li>Open bashrc in your desktop</li>
 </ul>
@@ -226,29 +229,32 @@ user $: <span class="nb">cd</span> ~/catkin_ws
 </pre></div>
 </div>
 <p>where <code class="docutils literal"><span class="pre">192.168.x.xxx</span></code> is your desktop&#8217;s ip address and <code class="docutils literal"><span class="pre">192.168.1.100</span></code> is gapter&#8217;s ip address.</p>
+<p>For more comprehensive tutorial on Network Configuration on ROS, refer to <a class="reference internal" href="../turtlebot/network-config-doc.html#network-config-doc"><span class="std std-ref">Network Configuration</span></a></p>
 </div>
 <div class="section" id="controling-gapter-using-mavros">
-<h3>Controling Gapter using mavros<a class="headerlink" href="#controling-gapter-using-mavros" title="Permalink to this headline">¶</a></h3>
-<p>We will control Gapter using mavros. For this you don&#8217;t have to configure your desktop with mavros. Here we control Gapter via ssh with Gapter&#8217;s computer.</p>
+<h3>Controling Gapter using MAVROS<a class="headerlink" href="#controling-gapter-using-mavros" title="Permalink to this headline">¶</a></h3>
+<p>In this tutorial, we will control Gapter using MAVROS.
+For this you don&#8217;t have to install MAVROS on your desktop, but rather on Gapter, because we control Gapter via ssh with Gapter&#8217;s onboard computer (Odroid XU4).</p>
+<p>Follow these steps:</p>
 <ul class="simple">
-<li>Connect to Wi-Fi <code class="docutils literal"><span class="pre">gapter</span></code> from your desktop which will be shown in Wi-Fi list. If prompt for password type <code class="docutils literal"><span class="pre">gapter&#64;gaitech</span></code></li>
+<li>First, connect to the WiFi <code class="docutils literal"><span class="pre">gapternet</span></code> from your desktop which will be shown in Wi-Fi list. If prompt for password type <code class="docutils literal"><span class="pre">gaitech</span></code></li>
 <li>Open the terminal and connect to Gapter&#8217;s computer by typing following</li>
 </ul>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>user $: ssh odroid@192.168.1.100
 </pre></div>
 </div>
-<p>If prompts for password, type <code class="docutils literal"><span class="pre">odroid</span></code></p>
+<p>If prompts for password, type <code class="docutils literal"><span class="pre">gaitech</span></code></p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Before controlling Gapter, parameters need to be changed based on indoor or outdoor operation</p>
 </div>
 <ul class="simple">
-<li>Now in the same terminal type following to change parameters</li>
+<li>Now in the same terminal type following to start mavproxy ground station:</li>
 </ul>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>odroid $: mavproxy.py --master<span class="o">=</span>/dev/ttyUSB0 --baudrate <span class="m">57600</span> --out 192.168.x.xx:5000  --aircraft MyCopter
 </pre></div>
 </div>
-<p>You must enter your desktop&#8217;s ip in place of <code class="docutils literal"><span class="pre">192.168.x.xx</span></code></p>
+<p>You must enter your desktop&#8217;s IP address in place of <code class="docutils literal"><span class="pre">192.168.x.xx</span></code></p>
 <ul class="simple">
 <li>You can notice heartbeat form Gapter which shows mavlink has been connected</li>
 </ul>

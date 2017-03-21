@@ -1,0 +1,14 @@
+
+.. _video-streaming:
+
+======================================
+Welcome to Gaitech's Education Portal!
+======================================
+ 
+   
+.. toctree::
+   :hidden:
+   
+   Streaming with VLC <video-streaming-vlc>
+   Streaming with gStreamer <video-streaming-gstreamer>
+   Streaming with mjpgStreamer <video-streaming-mjpgstreamer>

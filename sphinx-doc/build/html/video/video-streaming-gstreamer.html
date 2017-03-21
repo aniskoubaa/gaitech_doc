@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Video Streaming with RapsberryPI Using gStreamer &mdash; Gaitech EDU 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="Welcome to Gaitech’s Education Portal!" href="index.html"/>
+        <link rel="next" title="Video Streaming with RapsberryPI Using mjpgStreamer" href="video-streaming-mjpgstreamer.html"/>
+        <link rel="prev" title="Video Streaming with RaspberryPi Using VLC" href="video-streaming-vlc.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech EDU
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roslink/index.html">ROSLink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../turtlebot/turtlebot-tutorials.html">Turtlebot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gapter/index.html">Gapter Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Video Streaming Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="video-streaming-vlc.html">Streaming with VLC</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Streaming with gStreamer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-your-raspberrypi">Configuring your RaspberryPi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-gstreamer">Getting gStreamer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initiating-the-video-stream">Initiating the Video Stream</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#video-demonstration">Video Demonstration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#end-3">END 3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="video-streaming-mjpgstreamer.html">Streaming with mjpgStreamer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech EDU</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Welcome to Gaitech&#8217;s Education Portal!</a> &raquo;</li>
+      
+    <li>Video Streaming with RapsberryPI Using gStreamer</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/video/video-streaming-gstreamer.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="video-streaming-with-rapsberrypi-using-gstreamer">
+<span id="video-streaming3"></span><h1>Video Streaming with RapsberryPI Using gStreamer<a class="headerlink" href="#video-streaming-with-rapsberrypi-using-gstreamer" title="Permalink to this headline">¶</a></h1>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<dl class="last docutils">
+<dt>In this tutorial, you will:</dt>
+<dd><ul class="first last simple">
+<li>Learn how to configure your Raspberry Pi for video streaming through the gStreamer Method</li>
+<li>Know the commands needed for simple video streaming through gStreamer</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This demonstration uses a Linux based environment (Ubuntu) as the client side, NOT a Windows PC like the other methods.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<dl class="last docutils">
+<dt>This demonstration was tested on:</dt>
+<dd><ul class="first last simple">
+<li>Google Chrome Version 56.0.2924.87 on Ubuntu 14.04 64-bit</li>
+<li>2017/1/11 Raspbian Jessi on a RBpi 2 Model B V1.1 using Pi Camera rev 1.3</li>
+<li>Note: Pi Camera V2.1 was also tested successfully</li>
+</ul>
+</dd>
+</dl>
+</div>
+<p>This tutorial will introduce to you to your Raspberry Pi Camera Module to view a video stream from your Pi setup, the server using Raspbian, to a different computer, a client using Ubuntu, in your home network</p>
+<img alt="../_images/raspberrypi2.jpg" class="align-center" src="../_images/raspberrypi2.jpg" />
+<div class="section" id="configuring-your-raspberrypi">
+<h2>Configuring your RaspberryPi<a class="headerlink" href="#configuring-your-raspberrypi" title="Permalink to this headline">¶</a></h2>
+<p>Firstly, on your Pi&#8217;s terminal, Update and Upgrade the environment so it can be up to date. This helps in reducing future problems. Don&#8217;t forget to ENABLE your Raspberry Pi Camera using &#8216;raspi-config&#8217;.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get update
+$ sudo apt-get upgrade
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo raspi-config
+</pre></div>
+</div>
+<p>A blue BIOS-like screen will appear, go into the Enable Camera Options and enable the camera.</p>
+<img alt="../_images/Blue1.png" class="align-center" src="../_images/Blue1.png" />
+<img alt="../_images/Blue2.png" class="align-center" src="../_images/Blue2.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Depending on your version of Raspbian, the Enable setting may not first appear on the main list. You will have to go under the settings in the blue screen to locate the enable option.</p>
+</div>
+<p>It is also advised now to see what is the IP Address of your Pi.
+Type in the following to locate the IP as you will need it in the Browser for your Windows machine.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ifconfig
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">If you are using a wireless connection,</div>
+<div class="line">the IP you want is located in the <code class="docutils literal"><span class="pre">lo</span></code> section under <code class="docutils literal"><span class="pre">inet</span> <span class="pre">addr:x.x.x.x</span></code></div>
+<div class="line">If you are using ethernet,</div>
+<div class="line">it will be under <code class="docutils literal"><span class="pre">eth0</span></code> in <code class="docutils literal"><span class="pre">inet</span> <span class="pre">addr:x.x.x.x</span></code></div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="getting-gstreamer">
+<h2>Getting gStreamer<a class="headerlink" href="#getting-gstreamer" title="Permalink to this headline">¶</a></h2>
+<p>Now we will get into the main focus of this tutorial, gStreamer. gStreamer is a multimedia tool that connects a sequence of elements through a pipeline.</p>
+<p>We will now get gStreamer for both the Pi and your Ubuntu</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo add-apt-repository ppa:gstreamer-developers/ppa
+$ sudo apt-get update
+$ sudo apt-get install gstreamer1.0*
+</pre></div>
+</div>
+</div>
+<div class="section" id="initiating-the-video-stream">
+<h2>Initiating the Video Stream<a class="headerlink" href="#initiating-the-video-stream" title="Permalink to this headline">¶</a></h2>
+<p>After the installation, to begin the video stream, we can type in the Pi:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ raspivid -fps <span class="m">26</span> -h <span class="m">450</span> -w <span class="m">600</span> -vf -n -t <span class="m">0</span> -b <span class="m">200000</span> -o - <span class="p">|</span> gst-launch-1.0 -v fdsrc ! h264parse ! rtph264pay config-interval<span class="o">=</span><span class="m">1</span> <span class="nv">pt</span><span class="o">=</span>96! gdppay ! tcpserversink <span class="nv">host</span><span class="o">=</span>x.x.x.x <span class="nv">port</span><span class="o">=</span>5000
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>..NOTE::</dt>
+<dd><ul class="first last simple">
+<li>You can remove <code class="docutils literal"><span class="pre">-n</span></code> so you can start a preview on your Pi, <code class="docutils literal"><span class="pre">-n</span></code> disables the preview</li>
+<li><code class="docutils literal"><span class="pre">-b</span></code> is for the bitrate</li>
+</ul>
+</dd>
+</dl>
+<p>Please note that the host here must be changed to YOUR host IP from the <code class="docutils literal"><span class="pre">ifconfig</span></code> above.
+That will initiate the stream from the Pi side.</p>
+<p><strong>On your client with Linux, also install gStreamer</strong>, and then type in the terminal</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ gst-launch-0.10 -v tcpclientsrc <span class="nv">host</span><span class="o">=</span>x.x.x.x <span class="nv">port</span><span class="o">=</span><span class="m">5000</span> ! gdpdepay ! rtph264depay ! ffdec_h264 ! ffmpegcolorspace ! autovideosink <span class="nv">sync</span><span class="o">=</span><span class="nb">false</span>
+</pre></div>
+</div>
+<p>Please note that the <code class="docutils literal"><span class="pre">host</span></code> here must be changed to YOUR host IP from the <code class="docutils literal"><span class="pre">ifconfig</span></code> above.
+Now you will see the stream from the Pi server.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As you can see, the quality and latency is ground breaking this time compared to the VLC and mjpgStreamer methods.</p>
+</div>
+</div>
+<div class="section" id="video-demonstration">
+<h2>Video Demonstration<a class="headerlink" href="#video-demonstration" title="Permalink to this headline">¶</a></h2>
+<video width="640" controls src="video/gstreamer.mp4"></video><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Monitor on the left displays real time from the Raspberry directly, whereas the Laptop is displaying the gStreamer stream.</p>
+</div>
+<p>Wirelessly streaming a video from a Raspberry to a remote laptop.
+This video tutorial shows the overview of this written tutorial.</p>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/sYGdge3T30o" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
+<div class="section" id="end-3">
+<h2>END 3<a class="headerlink" href="#end-3" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="video-streaming-mjpgstreamer.html" class="btn btn-neutral float-right" title="Video Streaming with RapsberryPI Using mjpgStreamer" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="video-streaming-vlc.html" class="btn btn-neutral" title="Video Streaming with RaspberryPi Using VLC" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
