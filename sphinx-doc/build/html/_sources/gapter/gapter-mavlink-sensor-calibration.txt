@@ -1,7 +1,0 @@
-.. _gapter-mavlink-sensor-calibration:
-
-==========================
-GAPTER: Sensor Calibration
-==========================
-
-coming soon ...
