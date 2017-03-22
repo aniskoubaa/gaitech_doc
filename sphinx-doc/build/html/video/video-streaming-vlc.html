@@ -1,0 +1,366 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Video Streaming with RaspberryPi Using VLC &mdash; Gaitech EDU 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="Video Streaming Tutorials" href="index.html"/>
+        <link rel="next" title="Video Streaming with RapsberryPI Using gStreamer" href="video-streaming-gstreamer.html"/>
+        <link rel="prev" title="Video Streaming Tutorials" href="index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech EDU
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roslink/index.html">ROSLink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../turtlebot/turtlebot-tutorials.html">Turtlebot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gapter/index.html">Gapter Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Video Streaming Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Streaming with VLC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-your-raspberrypi">Configuring your RaspberryPi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-vlc">Getting VLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initiating-the-stream">Initiating the Stream</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#video-demonstration">Video Demonstration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#end">END</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="video-streaming-gstreamer.html">Streaming with gStreamer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video-streaming-mjpgstreamer.html">Streaming with mjpgStreamer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech EDU</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Video Streaming Tutorials</a> &raquo;</li>
+      
+    <li>Video Streaming with RaspberryPi Using VLC</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/video/video-streaming-vlc.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="video-streaming-with-raspberrypi-using-vlc">
+<span id="video-streaming"></span><h1>Video Streaming with RaspberryPi Using VLC<a class="headerlink" href="#video-streaming-with-raspberrypi-using-vlc" title="Permalink to this headline">¶</a></h1>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<dl class="last docutils">
+<dt>In this tutorial, you will:</dt>
+<dd><ul class="first last simple">
+<li>Learn how to configure your Raspberry Pi for video streaming</li>
+<li>Know the commands needed for simple video streaming through the VLC media tool</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<dl class="last docutils">
+<dt>This demonstration was tested on:</dt>
+<dd><ul class="first last simple">
+<li>VLC 2.2.4 on a Windows 8.1 64-bit Computer</li>
+<li>2017/1/11 Raspbian Jessi on a RBpi 2 Model B V1.1 using Pi Camera rev 1.3</li>
+<li>Note: Pi Camera V2.1 was also tested successfully</li>
+</ul>
+</dd>
+</dl>
+</div>
+<p>This tutorial will introduce to you to your Raspberry Pi Camera Module to view a video stream from your Pi setup, the server using Raspbian, to a different computer, a client using Windows, in your home network</p>
+<img alt="../_images/raspberrypi2.jpg" class="align-center" src="../_images/raspberrypi2.jpg" />
+<div class="section" id="configuring-your-raspberrypi">
+<h2>Configuring your RaspberryPi<a class="headerlink" href="#configuring-your-raspberrypi" title="Permalink to this headline">¶</a></h2>
+<p>Firstly, on your Pi&#8217;s terminal, Update and Upgrade the environment so it can be up to date. This helps in reducing future problems. Don&#8217;t forget to ENABLE your Raspberry Pi Camera using &#8216;raspi-config&#8217;.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get update
+$ sudo apt-get upgrade
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo raspi-config
+</pre></div>
+</div>
+<p>A blue BIOS-like screen will appear, go into the Enable Camera Options and enable the camera.</p>
+<img alt="../_images/Blue1.png" class="align-center" src="../_images/Blue1.png" />
+<img alt="../_images/Blue2.png" class="align-center" src="../_images/Blue2.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Depending on your version of Raspbian, the Enable setting may not first appear on the main list. You will have to go under the settings in the blue screen to locate the enable option.</p>
+</div>
+<p>It is also advised now to see what is the IP Address of your Pi.
+Type in the following to locate the IP as you will need it in the VLC program for your Windows machine.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ifconfig
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">If you are using a wireless connection,</div>
+<div class="line">the IP you want is located in the <code class="docutils literal"><span class="pre">lo</span></code> section under <code class="docutils literal"><span class="pre">inet</span> <span class="pre">addr:x.x.x.x</span></code></div>
+<div class="line">If you are using ethernet,</div>
+<div class="line">it will be under <code class="docutils literal"><span class="pre">eth0</span></code> in <code class="docutils literal"><span class="pre">inet</span> <span class="pre">addr:x.x.x.x</span></code></div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="getting-vlc">
+<h2>Getting VLC<a class="headerlink" href="#getting-vlc" title="Permalink to this headline">¶</a></h2>
+<p>On your Client PC that is running Windows, download the VLC software media tool on here through the <a class="reference external" href="http://www.videolan.org/vlc/index.html">VLC&#8217;s Website</a></p>
+<p>Now on your Pi&#8217;s terminal, download and install the VLC for Raspbian.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get install vlc
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Make sure that your Pi is up-to-date and also now has VLC
+and that your PC has VLC installed, before going to the next step</p>
+</div>
+</div>
+<div class="section" id="initiating-the-stream">
+<h2>Initiating the Stream<a class="headerlink" href="#initiating-the-stream" title="Permalink to this headline">¶</a></h2>
+<p>Once installed, you may now start the video streaming by typing the folloing in your Pi&#8217;s Terminal.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ raspivid -o - -t <span class="m">0</span> -hf -w <span class="m">800</span> -h <span class="m">400</span> -fps <span class="m">24</span> <span class="p">|</span>cvlc -vvv stream:///dev/stdin --sout <span class="s1">&#39;#standard{access=http,mux=ts,dst=:8160}&#39;</span> :demux<span class="o">=</span>h264
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-o</span></code> Specifies the output filename. the &#8216;-&#8216; beside denotes no filename</li>
+<li><code class="docutils literal"><span class="pre">-t</span></code> is the duration of the recoding, 0 being infinity</li>
+<li><code class="docutils literal"><span class="pre">-hf</span></code> is Horizontal Flip</li>
+<li><code class="docutils literal"><span class="pre">-w</span></code> and -h is the resolution for Width and Height</li>
+<li><code class="docutils literal"><span class="pre">-fps</span></code> is Frames per Second</li>
+<li>The rest means that on <code class="docutils literal"><span class="pre">port</span> <span class="pre">8160</span></code>, data will be sent through http using h264 as stdout using VLC</li>
+</ul>
+<p>Once entered, the Pi Camera will turn on and start recording and simultaneously send it over http.
+This is now the time to go to your Windows machine and watch your streaming footage.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You may want to experiment and change settings like <code class="docutils literal"><span class="pre">-w</span></code>, <code class="docutils literal"><span class="pre">-h</span></code>, and <code class="docutils literal"><span class="pre">-fps</span></code>.</p>
+</div>
+<p>Open the VLC program on your Windows Machine.</p>
+<p>And under <code class="docutils literal"><span class="pre">Media</span></code> &gt; <code class="docutils literal"><span class="pre">Open</span> <span class="pre">Network</span> <span class="pre">Stream</span></code> &gt; <code class="docutils literal"><span class="pre">Network</span></code> &gt; <code class="docutils literal"><span class="pre">Please</span> <span class="pre">enter</span> <span class="pre">a</span> <span class="pre">network</span> <span class="pre">URL:</span></code></p>
+<p>Type in the IP address that you got from <code class="docutils literal"><span class="pre">ifconfig</span></code> like so;</p>
+<img alt="../_images/vlc.png" class="align-center" src="../_images/vlc.png" />
+<div class="highlight-bash"><div class="highlight"><pre><span></span>http://x.x.x.x:8160
+</pre></div>
+</div>
+<p>As we have specified the port to be 8160 in our terminal on the Pi</p>
+<p>Once entered, VLC will automatically start playing the stream from the Pi over your network.</p>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As you can see from the stream that the video quality is not that ground breaking but is acceptable, and the latency is the biggest issue of this streaming method.</p>
+</div>
+</div>
+<div class="section" id="video-demonstration">
+<h2>Video Demonstration<a class="headerlink" href="#video-demonstration" title="Permalink to this headline">¶</a></h2>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/qyzUSeduGew" frameborder="0" allowfullscreen="1">&nbsp;</iframe><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Monitor on the left displays real time from the Raspberry directly, whereas the Laptop is displaying the VLC stream.</p>
+</div>
+<p>Raspberry Pi camera module streaming video to another computer.
+This video tutorial shows the overview of this written tutorial.</p>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/JjPsW-7FUng" frameborder="0" allowfullscreen="1">&nbsp;</iframe><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="end">
+<h2>END<a class="headerlink" href="#end" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="video-streaming-gstreamer.html" class="btn btn-neutral float-right" title="Video Streaming with RapsberryPI Using gStreamer" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Video Streaming Tutorials" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
