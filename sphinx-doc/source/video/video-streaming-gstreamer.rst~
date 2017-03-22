@@ -121,6 +121,10 @@ Video Demonstration
 
 .. youtube:: qyzUSeduGew
 
+.. raw:: html 
+
+  	 <video width="640" controls src="video/gstreamer.mp4"></video> 
+
 
 .. NOTE::
 	The Monitor on the left displays real time from the Raspberry directly, whereas the Laptop is displaying the gStreamer stream.

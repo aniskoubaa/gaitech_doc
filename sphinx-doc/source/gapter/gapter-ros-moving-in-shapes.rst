@@ -4,18 +4,10 @@
 GAPTER: Moving in Shapes
 ========================
 
-This tutorial ...
-
 
 First launch the simulation, see following links for further details: 
 
-`erlerobotics.com`_
-
-`coins-lab.org`_
-
-.. _erlerobotics.com: http://docs.erlerobotics.com/simulation/vehicles/erle_copter/tutorial_1 
-
-.. _coins-lab.org: http://wiki.coins-lab.org/index.php?title=Simulation_of_Erle_Copter
+TO BE PROVIDED
 
 .. figure:: images/gapter_ros_teleop_fig_1.png
     :align: center

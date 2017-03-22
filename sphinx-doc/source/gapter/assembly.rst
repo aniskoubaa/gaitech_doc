@@ -5,5 +5,5 @@
 GAPTER: Components and Assembly Process
 =======================================
 
-coming soon
+coming soon ...
 
