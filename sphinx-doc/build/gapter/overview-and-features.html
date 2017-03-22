@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GAPTER: Educational Copter using ROS and MAVLINK &mdash; Gaitech EDU 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="Gapter Drone Documentation" href="index.html"/>
+        <link rel="next" title="GAPTER: Components and Assembly Process" href="assembly.html"/>
+        <link rel="prev" title="Gapter Drone Documentation" href="index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech EDU
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roslink/index.html">ROSLink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../turtlebot/turtlebot-tutorials.html">Turtlebot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Gapter Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Gapter Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-makes-gapter-different-from-other-drones">What makes GAPTER different from other drones?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mechanical-specification">Mechanical Specification</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hardware">Hardware</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autopilot-platform">Autopilot Platform</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="assembly.html">Gapter Assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building-and-configuring-autopilot.html">Building and Configuring the Autopilot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-configuration.html">Network Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preflight-configurations.html">Pre-Flight Configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-flight-tests.html">First Flight Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-tutorials.html">Software Tutorials</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../video/index.html">Video Streaming Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech EDU</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Gapter Drone Documentation</a> &raquo;</li>
+      
+    <li>GAPTER: Educational Copter using ROS and MAVLINK</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/gapter/overview-and-features.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gapter-educational-copter-using-ros-and-mavlink">
+<span id="gapter-overview-features"></span><h1>GAPTER: Educational Copter using ROS and MAVLINK<a class="headerlink" href="#gapter-educational-copter-using-ros-and-mavlink" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Gapter is an unprecendanted drone with was carfeully designed to meet the requirements of researchers, students and teachers as an educational and research aerial platform.
+Gapter is a modular research and educational drone platform. It supports Robot Operating System (ROS), the MAVLink protocol, and the mavros wrapper layer between ROS and MAVLink.</p>
+<p>It is based on the Pixhawk platform independent autopilot software using the Ardupilot software, and reenforced with an embedded computer Odroid XU4, which is proven to be more powerful than other single board computers, like Raspberry PI, typically used in other drones.</p>
+<p>Unlike other UAVs Gapter can work both indoor and outdoor with its inbuilt sensors like GPS and optical flow sensors.
+It has different types of connectors like power, USB and I2C allowing the user to extend their platform by connecting their own modules or sensors.</p>
+<p>Users can connect to Gapter easily to its WiFi and also connected to Internet using 3G/4G router.</p>
+</div>
+<div class="section" id="what-makes-gapter-different-from-other-drones">
+<h2>What makes GAPTER different from other drones?<a class="headerlink" href="#what-makes-gapter-different-from-other-drones" title="Permalink to this headline">¶</a></h2>
+<p>Gapter has several features, when combined together, makes it a unique and different platform.</p>
+<a class="reference internal image-reference" href="../_images/ros.png"><img alt="../_images/ros.png" class="align-left" src="../_images/ros.png" style="width: 100pt;" /></a>
+<p><strong>ROS-Enabled Drone</strong>: Gapter EDU is a perfect platform to learn drone programming with ROS. A comprehensive ROS package with several demos is available for Gapter</p>
+<a class="reference internal image-reference" href="../_images/mavlink.png"><img alt="../_images/mavlink.png" class="align-left" src="../_images/mavlink.png" style="width: 100pt;" /></a>
+<p><strong>Supports the MAVLink Protocol</strong>: Gapter fully support the MAVLink protocol allowing its control and monitoring through MAVLink ground stations. You can easly define and control autonmous missions of Gapter drone through Internet or Telemtry devices.</p>
+<a class="reference internal image-reference" href="../_images/3g4g.png"><img alt="../_images/3g4g.png" class="align-left" src="../_images/3g4g.png" style="width: 70pt;" /></a>
+<p><strong>Internet Connectivity</strong>: Using a 3G/4G WiFi model you can make Gapter accessible through Internet or Local Area Network. Using Dronemap Planner software along with the 3G/4G WiFi router, you can control and monitor Gapter anywhere in the world through the Internet.</p>
+<a class="reference internal image-reference" href="../_images/pixhawk.jpeg"><img alt="../_images/pixhawk.jpeg" class="align-left" src="../_images/pixhawk.jpeg" style="width: 120px;" /></a>
+<p><strong>Pixhawk</strong>: Pixhawk is open-source flight controller platform providing a high-quality autopilot widely accepted in robotics community. Pixhawk contains a vast array of integrated sensors including 3D accelerometer, gyroscorp, magnetometer, barometer and much more. It is nativaley support the Ardupilo flight controller software and the MAVLink protocol</p>
+<a class="reference internal image-reference" href="../_images/xu4.jpg"><img alt="../_images/xu4.jpg" class="align-left" src="../_images/xu4.jpg" style="width: 100pt;" /></a>
+<p><strong>Ordoid XU4 SBC</strong>: Odroid XU4 single-board computer is integrated with Pixhawk to provide the best performance possible for the autopilot. XU4 is a powerful single board computer which is know to be four times faster than Raspberry PI2 and also equipped with 1GB Ethernet network interface and 2G of RAM. Gapter leverages the integrated use of XU4 and Pixhawk to provide an ultimate experience and a flexible and modular platform for users and developers.</p>
+<a class="reference internal image-reference" href="../_images/asus.jpg"><img alt="../_images/asus.jpg" class="align-left" src="../_images/asus.jpg" style="width: 140px;" /></a>
+<p><strong>3D Sensor</strong>: This is a unique feature in Gapter as compared to other COTS drone platforms, as 3D sensor allows both to have onboard camera in addition to a laser range finder used to avoid obstable and navigate more safely. In addition, Asus Live Pro 3D sensor is fully compatible with ROS.</p>
+<a class="reference internal image-reference" href="../_images/software.png"><img alt="../_images/software.png" class="align-left" src="../_images/software.png" style="width: 100pt;" /></a>
+<p><strong>Software and Educational Tools</strong>: Gapter EDU was designed with research and education in mind. Gapter comes with a comprehensive documentation and software packages that allows a user to easily start working and developing with Gapter. Software packages including both ROS and MAVLink in addtion to MAVROS. Gaitech EDU portal provides an technical resources to start developing applications with Gapter, user manual and guides. Furthemore, Gaitech Forum provides customers with continuous technical support and responses to their queries.</p>
+</div>
+<div class="section" id="mechanical-specification">
+<h2>Mechanical Specification<a class="headerlink" href="#mechanical-specification" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../_images/gapter07.jpg"><img alt="../_images/gapter07.jpg" class="align-center" src="../_images/gapter07.jpg" style="width: 200pt;" /></a>
+<div class="section" id="hardware">
+<h3>Hardware<a class="headerlink" href="#hardware" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><strong>Dimensions:</strong></li>
+<li><strong>Weight:</strong></li>
+<li><strong>Payload:</strong></li>
+<li><strong>Type:</strong> X-Quad</li>
+<li><strong>Propellers:</strong></li>
+<li><strong>Color:</strong> Black</li>
+<li><strong>3D sensor:</strong> Asus Live Pro Camera, view angle: 58° H, 45° V, 70° D (Horizontal, Vertical, Diagonal)</li>
+<li><strong>Battery type:</strong> Lipo Battery (3S, 4S and 6S)</li>
+</ul>
+</div>
+<div class="section" id="autopilot-platform">
+<h3>Autopilot Platform<a class="headerlink" href="#autopilot-platform" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><strong>Flight Controller:</strong> Pixhawk 2</li>
+<li><strong>Flight Stack:</strong> Adrupilot APM</li>
+<li><strong>Onboard Computer:</strong> : Odroid XU4 with 2 GHz and Octa core CPUs</li>
+<li><strong>RAM:</strong> 2GB</li>
+<li><strong>Internal Sensors:</strong> Gyroscope, Barometer, 3D accelerometer</li>
+<li><strong>External Sensors:</strong> GPS, Optical Flow</li>
+<li><strong>Operating System:</strong> Ubuntu 14.04 LTS</li>
+<li><strong>Connectors:</strong> 2x USB 3.0, HDMI 1.4a for display, Gigabit Ethernet port</li>
+<li><strong>Communication with PC:</strong> WiFi, Telemetry</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="assembly.html" class="btn btn-neutral float-right" title="GAPTER: Components and Assembly Process" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Gapter Drone Documentation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
