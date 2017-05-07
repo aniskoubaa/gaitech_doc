@@ -15,6 +15,7 @@ Gapter Drone Documentation
    
    Gapter Overview <overview-and-features.rst>
    Gapter Assembly <assembly.rst>
+   Internal Hardware Connection <internal-hardware-connections.rst>
    Building and Configuring the Autopilot <building-and-configuring-autopilot.rst>
    Network Configuration <network-configuration.rst>
    Pre-Flight Configurations <preflight-configurations.rst>
