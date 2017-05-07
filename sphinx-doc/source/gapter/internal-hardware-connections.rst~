@@ -10,7 +10,7 @@ GAPTER: Internal Hardware Connection
     :align: left
     :width: 600pt
 
-Hello
+|   
 
 +--------------+-----------------+-------------+----------------------------------------------------------------------------------+
 | | Connection | | Connection    || No. of     | |                                                                                |
@@ -100,9 +100,9 @@ Hello
 | | 18         || Xu4 Usb 3.0    || Usb wire   || This is the usb 3.0 extension cable used to connect 3D sensor                   |
 |              | extension       |             |                                                                                  |
 +--------------+-----------------+-------------+----------------------------------------------------------------------------------+
-| | 19         || Power wire from|| Two wires  || This is to supply power form battery to power converter of pixhawk. Two wires   |
+| | 19         || Power wire from|| Two wires  || This is to supply power form battery to power converter of pixhawk. Two         |
 |              || battery to     |             |                                                                                  |
-|              |  pixhawk        ||            || +ve and –ve are connected to this module                                        |
+|              |  pixhawk        ||            || wires +ve and –ve are connected to this module                                  |
 |              || power converter|             |                                                                                  |
 +--------------+-----------------+-------------+----------------------------------------------------------------------------------+
 | | 20         || Power wire from|| Two wires  || This is to supply power form battery to power converter of xu4. Two wires       |

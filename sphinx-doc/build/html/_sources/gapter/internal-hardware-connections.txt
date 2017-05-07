@@ -10,7 +10,7 @@ GAPTER: Internal Hardware Connection
     :align: left
     :width: 600pt
 
-Hello
+.   
 
 +--------------+-----------------+-------------+----------------------------------------------------------------------------------+
 | | Connection | | Connection    || No. of     | |                                                                                |
