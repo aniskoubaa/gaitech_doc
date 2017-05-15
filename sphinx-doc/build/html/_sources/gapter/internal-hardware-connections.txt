@@ -8,7 +8,7 @@ GAPTER: Internal Hardware Connection
 
 .. image:: images/gapter_internal_HW_connection.png
     :align: left
-    :width: 600pt
+    :width: 1000pt
 
 .   
 

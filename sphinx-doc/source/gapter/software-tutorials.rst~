@@ -15,10 +15,3 @@ GAPTER: Software Tutorials
 
 
 
-   
-`ROS Tutorials <gapter-ros-tutorials.html>`_
----------------------------------------------
-
-`MAVLink Tutorials <gapter-mavlink-tutorials.html>`_
------------------------------------------------------
-

@@ -1,0 +1,424 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GAPTER: Set-up GapterSim Environment &mdash; Gaitech EDU 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="GAPTER: Simulation" href="gapter-simulation.html"/>
+        <link rel="next" title="GAPTER: ROS Tutorials" href="gapter-ros-tutorials.html"/>
+        <link rel="prev" title="GAPTER: Simulation" href="gapter-simulation.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech EDU
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roslink/index.html">ROSLink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../turtlebot/turtlebot-tutorials.html">Turtlebot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Gapter Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview-and-features.html">Gapter Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assembly.html">Gapter Assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internal-hardware-connections.html">Internal Hardware Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building-and-configuring-autopilot.html">Building and Configuring the Autopilot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-configuration.html">Network Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preflight-configurations.html">Pre-Flight Configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-flight-tests.html">First Flight Test</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="software-tutorials.html">Software Tutorials</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="gapter-simulation.html">Simulation</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Set-up GapterSim Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gapter-ros-tutorials.html">ROS Tutorials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gapter-mavlink-tutorials.html">MAVLink Tutorials</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../video/index.html">Video Streaming Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech EDU</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Gapter Drone Documentation</a> &raquo;</li>
+      
+          <li><a href="software-tutorials.html">GAPTER: Software Tutorials</a> &raquo;</li>
+      
+          <li><a href="gapter-simulation.html">GAPTER: Simulation</a> &raquo;</li>
+      
+    <li>GAPTER: Set-up GapterSim Environment</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/gapter/setup-simulation-environment.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gapter-set-up-gaptersim-environment">
+<span id="gapter-setup-simulation"></span><h1>GAPTER: Set-up GapterSim Environment<a class="headerlink" href="#gapter-set-up-gaptersim-environment" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="a-prerequisites">
+<h2>A. Prerequisites<a class="headerlink" href="#a-prerequisites" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Ubuntu 14.04 LTS (Trusty Tahr)</li>
+<li><a class="reference external" href="http://wiki.ros.org/indigo/Installation/">Ros indigo</a></li>
+</ol>
+<p><strong>Configure Ubuntu</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get update
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install gawk make git curl cmake -y
+</pre></div>
+</div>
+<p><strong>ROS dependencies and required packages:</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install python-rosinstall ros-indigo-octomap-msgs ros-indigo-joy ros-indigo-geodesy ros-indigo-octomap-ros ros-indigo-mavlink  ros-indigo-control-toolbox  ros-indigo-transmission-interface ros-indigo-joint-limits-interface unzip ros-indigo-mavros-msgs ros-indigo-mavros-extras ros-indigo-mavros -y
+</pre></div>
+</div>
+<p><strong>Mavproxy</strong></p>
+<p><em>Install dependencies</em></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install g++ python-pip python-matplotlib python-serial python-wxgtk2.8 python-scipy python-opencv python-numpy python-pyparsing ccache realpath libopencv-dev -y
+</pre></div>
+</div>
+<p><em>Install MavProxy</em></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo pip install future
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install libxml2-dev libxslt1-dev -y
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo pip2 install pymavlink catkin_pkg --upgrade
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo pip install <span class="nv">MAVProxy</span><span class="o">==</span>1.5.2
+</pre></div>
+</div>
+</div>
+<div class="section" id="b-ardupilot">
+<h2>B. Ardupilot<a class="headerlink" href="#b-ardupilot" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>mkdir -p ~/gapter_sim
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> gapter_sim
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/gaitech-robotics/gapter_ardupilot -b sim_ros_gazebo
+</pre></div>
+</div>
+</div>
+<div class="section" id="c-creating-ros-work-space">
+<h2>C. Creating ros work space<a class="headerlink" href="#c-creating-ros-work-space" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>mkdir -p ~/gapter_sim/ros_ws/src
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/gapter_sim/ros_ws/src
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_init_workspace
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> ..
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_make
+</pre></div>
+</div>
+<p><strong>Now download all repositories required</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> src/
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/gaitech-robotics/gapter_ardupilot_sitl_gazebo_plugin
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/gaitech-robotics/gapter_rotors_simulator -b sonar_plugin
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/PX4/mav_comm.git
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/ethz-asl/glog_catkin.git
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/catkin/catkin_simple.git
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/gaitech-robotics/mavros
+</pre></div>
+</div>
+</div>
+<div class="section" id="d-installing-gazebo">
+<h2>D. Installing Gazebo<a class="headerlink" href="#d-installing-gazebo" title="Permalink to this headline">¶</a></h2>
+<p><strong>Setup your computer</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo sh -c <span class="s1">&#39;echo &quot;deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main&quot; &gt; /etc/apt/sources.list.d/gazebo-stable.list&#39;</span>
+</pre></div>
+</div>
+<p><strong>Setup Keys</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>wget http://packages.osrfoundation.org/gazebo.key -O - <span class="p">|</span> sudo apt-key add -
+</pre></div>
+</div>
+<p><strong>Install gazebo</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get update
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get remove .*gazebo.* <span class="s1">&#39;.*sdformat.*&#39;</span> <span class="s1">&#39;.*ignition-math.*&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get update
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install gazebo4 libgazebo4-dev drcsim -y
+</pre></div>
+</div>
+</div>
+<div class="section" id="e-compile-workspace">
+<h2>E. Compile workspace<a class="headerlink" href="#e-compile-workspace" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> ~/gapter_sim/ros_ws/devel/setup.bash
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/gapter_sim/ros_ws
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_make --pkg mav_msgs mavros_msgs gazebo_msgs
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> devel/setup.bash
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_make -j 4
+</pre></div>
+</div>
+</div>
+<div class="section" id="f-launch-gapter-simulation">
+<h2>F. launch Gapter Simulation<a class="headerlink" href="#f-launch-gapter-simulation" title="Permalink to this headline">¶</a></h2>
+<p>Open the terminal and type following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> ~/gapter_sim/ros_ws/devel/setup.bash
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>user $: <span class="nb">cd</span> ~/gapter_sim/gapter_ardupilot/ArduCopter
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>user $: ../Tools/autotest/sim_vehicle.sh -j <span class="m">4</span> -f Gazebo
+</pre></div>
+</div>
+<p>In another terminal lauch following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> ~/gapter_sim/ros_ws/devel/setup.bash
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch ardupilot_sitl_gazebo_plugin gapter_spawn.launch
+</pre></div>
+</div>
+<p>Once mavproxy launched completely in the first terminal load parameters from Ardupilot directory</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>param load /your home directory/gapter_sim/gapter_ardupilot/Tools/Frame_params/gapter.param
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>param <span class="nb">set</span> ARMING_CHECK 0
+</pre></div>
+</div>
+<p><strong>Takeoff gapter</strong></p>
+<p>In mavproxy terminal type following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>mode Guided
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>arm throttle
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>takeoff 5
+</pre></div>
+</div>
+<p>You can see in gazebo that gapter flying at 5 meter height.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gapter-ros-tutorials.html" class="btn btn-neutral float-right" title="GAPTER: ROS Tutorials" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gapter-simulation.html" class="btn btn-neutral" title="GAPTER: Simulation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
