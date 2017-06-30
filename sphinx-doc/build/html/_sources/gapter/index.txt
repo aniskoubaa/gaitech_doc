@@ -23,7 +23,7 @@ Gapter Drone Documentation
    Software Tutorials <software-tutorials.rst>
 
 Gaitech is proud to announce the release of its educational drone: Gapter, a shortcut for Gaitech Copter. 
-This documentation presents step-by-step instructions and get started with Gapter and understand how to develop applications with it.
+This documentation presents step-by-step instructions and get started with Gapter and understand how to develop applications with it. A comprehensive `ROS package <http://wiki.ros.org/gapter>`_ with several demos is available for Gapter.
 
 Enojoy our tutorials and technical support. 
 
@@ -35,5 +35,12 @@ To receive updates about Gapter and other Gaitech Products, subscribe to the  to
 .. image:: images/gapter01.jpg
     :align: center
     :width: 600pt
+
+.. image:: images/pre-order1.png
+    :width: 49%
+
+.. image:: images/pre-order2.png
+    :width: 49%
+
 
 

@@ -25,10 +25,13 @@ What makes GAPTER different from other drones?
 Gapter has several features, when combined together, makes it a unique and different platform. 
 
 .. image:: images/features/ros.png
+    :target: http://robots.ros.org/gapter/
     :align: left
     :width: 100pt
     
-**ROS-Enabled Drone**: Gapter EDU is a perfect platform to learn drone programming with ROS. A comprehensive ROS package with several demos is available for Gapter
+
+**ROS-Enabled Drone**: Gapter EDU is a perfect platform to learn drone programming with `ROS <http://robots.ros.org/gapter/>`_. 
+| 
 
 .. image:: images/features/mavlink.png
     :align: left
@@ -63,10 +66,15 @@ Gapter has several features, when combined together, makes it a unique and diffe
 **3D Sensor**: This is a unique feature in Gapter as compared to other COTS drone platforms, as 3D sensor allows both to have onboard camera in addition to a laser range finder used to avoid obstable and navigate more safely. In addition, Asus Live Pro 3D sensor is fully compatible with ROS. 
 
 .. image:: images/features/software.png
+    :target: http://wiki.ros.org/gapter
     :align: left
     :width: 100pt
     
-**Software and Educational Tools**: Gapter EDU was designed with research and education in mind. Gapter comes with a comprehensive documentation and software packages that allows a user to easily start working and developing with Gapter. Software packages including both ROS and MAVLink in addtion to MAVROS. Gaitech EDU portal provides an technical resources to start developing applications with Gapter, user manual and guides. Furthemore, Gaitech Forum provides customers with continuous technical support and responses to their queries.
+
+
+
+
+**Software and Educational Tools**: Gapter EDU was designed with research and education in mind. Gapter comes with a comprehensive documentation and `software packages <http://wiki.ros.org/gapter>`_ that allows a user to easily start working and developing with Gapter. Software packages including both ROS and MAVLink in addtion to MAVROS. Gaitech EDU portal provides an technical resources to start developing applications with Gapter, user manual and guides. Furthemore, Gaitech Forum provides customers with continuous technical support and responses to their queries.
 
 Mechanical Specification
 ========================
@@ -78,13 +86,14 @@ Mechanical Specification
 Hardware
 ________
 
-* **Dimensions:**
-* **Weight:**  
-* **Payload:**
+* **Dimensions:** 450 mm
+* **Frame:** Carbon Fiber
+* **Weight:**  1.7 Kg (with 4S battery)
+* **Payload:** 1.5 Kg
 * **Type:** X-Quad
-* **Propellers:** 
+* **Propellers:** 9" or 10" props
 * **Color:** Black
-* **3D sensor:** Asus Live Pro Camera, view angle: 58° H, 45° V, 70° D (Horizontal, Vertical, Diagonal)
+* **3D sensor:** Intel RealSense R200
 * **Battery type:** Lipo Battery (3S, 4S and 6S)
 
 Autopilot Platform
