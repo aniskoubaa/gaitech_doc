@@ -34,6 +34,6 @@ To receive updates about Gapter and other Gaitech Products, subscribe to the  to
 
 .. image:: images/gapter01.jpg
     :align: center
-    :width: 200pt
+    :width: 600pt
 
 
