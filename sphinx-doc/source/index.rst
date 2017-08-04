@@ -94,3 +94,11 @@ Order your Turtlebot by clicking on the Turtlebot image below.
     :align: center
     :target: http://www.gaitech.hk/?wpsc-product=turtlebot-shop
 
+Change Log
+==========
+
+August 2017
+-----------
+
+* add Gapter Assembly
+* update Gapter Internal Harwarde Connections 
