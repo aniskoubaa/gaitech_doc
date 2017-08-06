@@ -5,6 +5,20 @@
 GAPTER: Network Configuration and Connection
 ============================================
 
+In this tutorial, we present the different connection modes to Gapter using WiFi Hotspot (default configuration) or through a WiFi router to connect to Internet. 
+
+
+.. NOTE::
+
+   In this tutorial you will learn how to:
+
+      * connect to Gapter using its default WiFi Hot Spot
+      * configure Gapter to connect to Internet using WiFi router infrastructure
+      * connect to Gapter through WiFi router
+   
+   For any query, please feel free to post your questions in the `Gaitech EDU Forum <http://forum.gaitech.hk/>`_
+
+
 To provide flexibility to end-users, Gapter provides two possible network configuration modes:
 
 * **WiFi Hotspot mode:** In this mode, the copter creates an adhoc network named ``gapternet`` that the user can connect to it through its compter or laptop using ``ssh``.
@@ -132,7 +146,7 @@ To enable the WiFi infrastructure, we need to change the specification of ``wlan
 With these changes, when you restart Gapter, it will automatically connect to the WiFi network defined in ``/boot/wpa_supplicant.conf``.
 The IP address of the copter will be assigned automatically by the WiFi router, as DHCP is used.
 
-It is possible to define a ``static`` or ``manual`` IP address, byt DHCP dynamic IP address assignment is recommended.  
+It is possible to define a ``static`` or ``manual`` IP address, but DHCP dynamic IP address assignment is recommended.  
 Now, your drone is connected to Internet and you can download any software or package from Internet. 
 In addition, you can make your drone streams MAVLink data to a server on the Internet. 
 
@@ -142,11 +156,27 @@ In addition, you can make your drone streams MAVLink data to a server on the Int
    In the next restart, Gapter will automatically connect to the new network.
  
 
+STEP3. Connect to Gapter
+________________________
 
+Once this is done, you can now connect to your Gapter drone.
+First, you need to know what is the IP address assigned to your drone. If DHCP is enabled, then you can enter to the admin page of your router and try to identify which IP address was assigned by the router to your drone.
+if this IP address is for example 192.168.100.13, then you can connect to the drone using ``ssh`` as follow through a terminal.
+
+.. code-block:: bash
    
+   ssh gapter@192.168.100.13
+   
+   .. WARNING::
+   Make sure to use the correct IP address of the drone to connect to it. 
    
 
+What do after connection to Gapter?
+===================================
 
+After connecting to Gapter, you can perform any terminal linux command on Odroid XU4 onboard computer, installing new software, working with ROS, developing programs, ...
+It is recommended to use the ``nano`` editor to edit program on the terminal. 
+You can find examples for developing programs for Gapter in :ref:`software-tutorials`.
 
 
 

@@ -32,4 +32,4 @@ Assemble Gapter Drone from Components
 
 You may decide to receive Gapter drone as non assembled. In this case, you can perform the assembly yourself in very simple steps as illustrated in the following video. 
 
-.. youtube:: cbDpSdVjijw
+TO BE ADDED SOON

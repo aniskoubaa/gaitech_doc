@@ -100,5 +100,6 @@ Change Log
 August 2017
 -----------
 
-* add Gapter Assembly
-* update Gapter Internal Harwarde Connections 
+* add :ref:`gapter-brain-software-suite`
+* add :ref:`gapter-assembly`
+* update :ref:`software-tutorials`
