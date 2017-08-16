@@ -20,6 +20,7 @@ Welcome to Gaitech's Education Portal!
    Drones Tutorials <drones/index>
    Gapter Tutorials <gapter/index>
    Video Streaming Tutorials <video/index>
+   Dronemap Planner <dronemap/index>
    Contributors<contributors/index>
 
 Gaitech is proud to provide you a comprehensive educational framework on Robot Operating System (ROS). 

@@ -1,9 +1,9 @@
 
 .. _gapter-mavlink-tutorials:
 
-=========================
-GAPTER: MAVLink Tutorials
-=========================
+=================
+MAVLink Tutorials
+=================
 
 
 .. toctree::
