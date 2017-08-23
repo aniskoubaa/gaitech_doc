@@ -48,7 +48,11 @@ It is recommended to use `xampp <https://www.apachefriends.org/>`_ or `wamp <htt
 System Setup
 ============
 
-Deploying Dronemap Planner is easy and fast. 
+Dronemap Planner Cloud System
++++++++++++++++++++++++++++++
+
+
+Deploying Dronemap Planner cloud system is easy and fast. 
 However, you need to carefully setup your parameters to make sure that it works correctly. 
 
 .. NOTE ::
@@ -122,5 +126,12 @@ The figure shows the list of network services and web services that are started 
 
 The next tutorials will take you step by step to control robots and drones using Dronemap Planner. 
    
-   
+
+Dronemap Planner Web Client Application
++++++++++++++++++++++++++++++++++++++++
+Dronemap Planner Web client application enables you to control and monitor the drone using a Web interface through the Dronemap Planner cloud system. 
+The Web application provides all necessary functionalities of a ground station to perform all operations on the drone, and monitor its status in real-time. 
+
+We will presents the steps you need to follow to set-up and deploy the Web application. 
+
 

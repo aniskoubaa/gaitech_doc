@@ -38,7 +38,7 @@
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Gapter Drone Documentation" href="index.html"/>
         <link rel="next" title="GAPTER: Pre-Flight Configurations" href="preflight-configurations.html"/>
-        <link rel="prev" title="GAPTER: Building and Configuring Autopilot" href="building-and-configuring-autopilot.html"/> 
+        <link rel="prev" title="GAPTER: Gapter Brain and Internal Hardware Connection" href="internal-hardware-connections.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -100,22 +100,23 @@
 <li class="toctree-l2"><a class="reference internal" href="overview-and-features.html">Gapter Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="assembly.html">Gapter Assembly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal-hardware-connections.html">Internal Hardware Connection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="building-and-configuring-autopilot.html">Building and Configuring the Autopilot</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Network Configuration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#wifi-hotspot-mode">WiFi Hotspot Mode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#wifi-infrastructure-mode">WiFi Infrastructure Mode</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#step1-specify-the-wifi-network">STEP1. Specify the WiFi Network</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#step2-modify-network-interfaces">STEP2. Modify Network Interfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step3-connect-to-gapter">STEP3. Connect to Gapter</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#what-do-after-connection-to-gapter">What do after connection to Gapter?</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="preflight-configurations.html">Pre-Flight Configurations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="first-flight-tests.html">First Flight Test</a></li>
 <li class="toctree-l2"><a class="reference internal" href="software-tutorials.html">Software Tutorials</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../video/index.html">Video Streaming Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dronemap/index.html">Dronemap Planner</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
 </ul>
 
@@ -165,6 +166,19 @@
             
   <div class="section" id="gapter-network-configuration-and-connection">
 <span id="network-configuration"></span><h1>GAPTER: Network Configuration and Connection<a class="headerlink" href="#gapter-network-configuration-and-connection" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, we present the different connection modes to Gapter using WiFi Hotspot (default configuration) or through a WiFi router to connect to Internet.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>In this tutorial you will learn how to:</p>
+<blockquote>
+<div><ul class="simple">
+<li>connect to Gapter using its default WiFi Hot Spot</li>
+<li>configure Gapter to connect to Internet using WiFi router infrastructure</li>
+<li>connect to Gapter through WiFi router</li>
+</ul>
+</div></blockquote>
+<p class="last">For any query, please feel free to post your questions in the <a class="reference external" href="http://forum.gaitech.hk/">Gaitech EDU Forum</a></p>
+</div>
 <p>To provide flexibility to end-users, Gapter provides two possible network configuration modes:</p>
 <ul class="simple">
 <li><strong>WiFi Hotspot mode:</strong> In this mode, the copter creates an adhoc network named <code class="docutils literal"><span class="pre">gapternet</span></code> that the user can connect to it through its compter or laptop using <code class="docutils literal"><span class="pre">ssh</span></code>.</li>
@@ -271,7 +285,7 @@ iface default inet dhcp
 </div>
 <p>With these changes, when you restart Gapter, it will automatically connect to the WiFi network defined in <code class="docutils literal"><span class="pre">/boot/wpa_supplicant.conf</span></code>.
 The IP address of the copter will be assigned automatically by the WiFi router, as DHCP is used.</p>
-<p>It is possible to define a <code class="docutils literal"><span class="pre">static</span></code> or <code class="docutils literal"><span class="pre">manual</span></code> IP address, byt DHCP dynamic IP address assignment is recommended.
+<p>It is possible to define a <code class="docutils literal"><span class="pre">static</span></code> or <code class="docutils literal"><span class="pre">manual</span></code> IP address, but DHCP dynamic IP address assignment is recommended.
 Now, your drone is connected to Internet and you can download any software or package from Internet.
 In addition, you can make your drone streams MAVLink data to a server on the Internet.</p>
 <div class="admonition note">
@@ -281,6 +295,24 @@ inserting the MicroSD card into your laptop and access the file <code class="doc
 In the next restart, Gapter will automatically connect to the new network.</p>
 </div>
 </div>
+<div class="section" id="step3-connect-to-gapter">
+<h3>STEP3. Connect to Gapter<a class="headerlink" href="#step3-connect-to-gapter" title="Permalink to this headline">¶</a></h3>
+<p>Once this is done, you can now connect to your Gapter drone.
+First, you need to know what is the IP address assigned to your drone. If DHCP is enabled, then you can enter to the admin page of your router and try to identify which IP address was assigned by the router to your drone.
+if this IP address is for example 192.168.100.13, then you can connect to the drone using <code class="docutils literal"><span class="pre">ssh</span></code> as follow through a terminal.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>ssh gapter@192.168.100.13
+
+.. WARNING::
+Make sure to use the correct IP address of the drone to connect to it.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="what-do-after-connection-to-gapter">
+<h2>What do after connection to Gapter?<a class="headerlink" href="#what-do-after-connection-to-gapter" title="Permalink to this headline">¶</a></h2>
+<p>After connecting to Gapter, you can perform any terminal linux command on Odroid XU4 onboard computer, installing new software, working with ROS, developing programs, ...
+It is recommended to use the <code class="docutils literal"><span class="pre">nano</span></code> editor to edit program on the terminal.
+You can find examples for developing programs for Gapter in <a class="reference internal" href="software-tutorials.html#software-tutorials"><span class="std std-ref">GAPTER: Software Tutorials</span></a>.</p>
 </div>
 </div>
 
@@ -294,7 +326,7 @@ In the next restart, Gapter will automatically connect to the new network.</p>
         <a href="preflight-configurations.html" class="btn btn-neutral float-right" title="GAPTER: Pre-Flight Configurations" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="building-and-configuring-autopilot.html" class="btn btn-neutral" title="GAPTER: Building and Configuring Autopilot" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="internal-hardware-connections.html" class="btn btn-neutral" title="GAPTER: Gapter Brain and Internal Hardware Connection" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

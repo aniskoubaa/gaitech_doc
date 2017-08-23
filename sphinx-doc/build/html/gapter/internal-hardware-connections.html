@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>GAPTER: Internal Hardware Connection &mdash; Gaitech EDU 2.5 documentation</title>
+  <title>GAPTER: Gapter Brain and Internal Hardware Connection &mdash; Gaitech EDU 2.5 documentation</title>
   
 
   
@@ -37,8 +37,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Gapter Drone Documentation" href="index.html"/>
-        <link rel="next" title="GAPTER: Building and Configuring Autopilot" href="building-and-configuring-autopilot.html"/>
-        <link rel="prev" title="GAPTER: Components and Assembly Process" href="assembly.html"/> 
+        <link rel="next" title="GAPTER: Network Configuration and Connection" href="network-configuration.html"/>
+        <link rel="prev" title="Gapter: Components and Assembly Process" href="assembly.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -99,15 +99,18 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Gapter Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="overview-and-features.html">Gapter Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="assembly.html">Gapter Assembly</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Internal Hardware Connection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="building-and-configuring-autopilot.html">Building and Configuring the Autopilot</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Internal Hardware Connection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gapter-brain-overview">Gapter Brain Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-connections">Hardware Connections</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="network-configuration.html">Network Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="preflight-configurations.html">Pre-Flight Configurations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="first-flight-tests.html">First Flight Test</a></li>
 <li class="toctree-l2"><a class="reference internal" href="software-tutorials.html">Software Tutorials</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../video/index.html">Video Streaming Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dronemap/index.html">Dronemap Planner</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
 </ul>
 
@@ -141,7 +144,7 @@
       
           <li><a href="index.html">Gapter Drone Documentation</a> &raquo;</li>
       
-    <li>GAPTER: Internal Hardware Connection</li>
+    <li>GAPTER: Gapter Brain and Internal Hardware Connection</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -155,573 +158,341 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="gapter-internal-hardware-connection">
-<span id="gapter-internal-hardware-connections"></span><h1>GAPTER: Internal Hardware Connection<a class="headerlink" href="#gapter-internal-hardware-connection" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="gapter-gapter-brain-and-internal-hardware-connection">
+<span id="gapter-internal-hardware-connections"></span><h1>GAPTER: Gapter Brain and Internal Hardware Connection<a class="headerlink" href="#gapter-gapter-brain-and-internal-hardware-connection" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial provides an overview about the internal hardware connection of Gapter and the different components of the Gapter brain.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>In this tutorial you will learn how to:</p>
+<blockquote>
+<div><ul class="simple">
+<li>the anatomy of the Gapter brain</li>
+<li>the components of the Gapter brain</li>
+<li>the connections between the different components of the brain</li>
+</ul>
+</div></blockquote>
+<p class="last">For any query, please feel free to post your questions in the <a class="reference external" href="http://forum.gaitech.hk/">Gaitech EDU Forum</a></p>
+</div>
+<div class="section" id="gapter-brain-overview">
+<h2>Gapter Brain Overview<a class="headerlink" href="#gapter-brain-overview" title="Permalink to this headline">¶</a></h2>
+<p>The following image provides the schema of internal harwarde components and connections of the Gapter Brain.</p>
 <a class="reference internal image-reference" href="../_images/gapter_internal_HW_connection.png"><img alt="../_images/gapter_internal_HW_connection.png" class="align-left" src="../_images/gapter_internal_HW_connection.png" style="width: 1000pt;" /></a>
-<p>.</p>
+<p>The Gapter Brain is composed of the Pixhawk autopilot hardware as drone controller, and the Odroid XU4 as single board computer provding additional onboard processing functionalities.</p>
+<p>The Pixhawk contains all the required navigation and flight control sensors and uses Ardupilot autpilot software to control the drone.
+Odroid XU4 single board computer extends the capabilities of Gapter by providing oboard computing and storage capabilities. It allows Gapter to be connected to the Internet. In addition, it host Robot Operating System (ROS) framework, which allows the user to develop onboard ROS program to control the drone and develop specific applications.
+Furthermore, DroneKit framework and MAVProxy are also installed on XU4 which provides another alternative to interact and develop programs for Gapter.</p>
+<p>The Gapter Brain provide unique functionalities to develop vast array of applications and programs for drones.</p>
+</div>
+<div class="section" id="hardware-connections">
+<h2>Hardware Connections<a class="headerlink" href="#hardware-connections" title="Permalink to this headline">¶</a></h2>
+<p>The following table present the internal hardward connections of the Gapter brain.</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="11%" />
-<col width="13%" />
-<col width="10%" />
-<col width="65%" />
+<col width="0%" />
+<col width="4%" />
+<col width="5%" />
+<col width="5%" />
+<col width="20%" />
+<col width="22%" />
+<col width="22%" />
+<col width="22%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head"><div class="first last line-block">
-<div class="line">Connection</div>
-<div class="line">Number</div>
-</div>
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head">Connection
+Number</th>
+<th class="head">components</th>
+<th class="head">Connection
+between</th>
+<th class="head">pins
+connecting</th>
+<th class="head"><p class="first">No. of</p>
+<p class="last">Description</p>
 </th>
-<th class="head"><div class="first last line-block">
-<div class="line">Connection</div>
-<div class="line">between</div>
-<div class="line">components</div>
-</div>
-</th>
-<th class="head"><div class="first last line-block">
-<div class="line">No. of
-pins</div>
-<div class="line">connecting</div>
-</div>
-</th>
-<th class="head"><div class="first last line-block">
-<div class="line"><br /></div>
-<div class="line">Description</div>
-</div>
-</th>
+<th class="head">&nbsp;</th>
+<th class="head">&nbsp;</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><div class="first last line-block">
-<div class="line">1</div>
-</div>
+<tr class="row-even"><td>&nbsp;</td>
+<td><p class="first">1
+px4flow</p>
+<p class="last">pixhawk</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">Sonar of
-px4flow</div>
-<div class="line">to ADC of
-pixhawk</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">Two pins</div>
-</div>
-<div class="last line-block">
-<div class="line">used in 3
-pin slot</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">Sonar connecting from px4flow to ADC of Pixhawk. Connecting slot contains</div>
-</div>
-<div class="last line-block">
-<div class="line">4 pins but only two pins are used. So 2 wires connecting between them.</div>
-</div>
-</td>
+<td>to ADC of
+pin slot</td>
+<td>Sonar of</td>
+<td>used in 3</td>
+<td>Two pins</td>
+<td>4 pins but only two pins are used. So 2 wires connecting between them.</td>
+<td>Sonar connecting from px4flow to ADC of Pixhawk. Connecting slot contains</td>
 </tr>
-<tr class="row-odd"><td><div class="first last line-block">
-<div class="line">2</div>
-</div>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><p class="first">2</p>
+<p class="last">splitter</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">I2C of px4flow</div>
-<div class="line">to I2C
-splitter</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">Four pins</div>
-<div class="line">used in 4
-pin slot</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">I2C of px4flow sensor connecting to I2C of pixhawk via I2c splitter. Four pins</div>
-<div class="line">are used. So 4 wires connecting between them.</div>
-</div>
-</td>
+<td>to I2C
+pin slot</td>
+<td>I2C of px4flow</td>
+<td>used in 4</td>
+<td>Four pins</td>
+<td>are used. So 4 wires connecting between them.</td>
+<td>I2C of px4flow sensor connecting to I2C of pixhawk via I2c splitter. Four pins</td>
 </tr>
-<tr class="row-even"><td><div class="first last line-block">
-<div class="line">3</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">GPS to I2C</div>
-<div class="line">splitter</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">Two pins</div>
-<div class="line">used in 4
-pin slot</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">GPS consists of two connecting wires. One connected to I2C of pixhawk via</div>
-<div class="line">I2C splitter. Two pins are used , so 2 wires connecting between them</div>
-</div>
-</td>
+<tr class="row-even"><td>&nbsp;</td>
+<td>3</td>
+<td>splitter
+pin slot</td>
+<td>GPS to I2C</td>
+<td>used in 4</td>
+<td>Two pins</td>
+<td>I2C splitter. Two pins are used , so 2 wires connecting between them</td>
+<td>GPS consists of two connecting wires. One connected to I2C of pixhawk via</td>
 </tr>
-<tr class="row-odd"><td><div class="first last line-block">
-<div class="line">4</div>
-</div>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><p class="first">4</p>
+<p class="last">pixhawk</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">GPS to GPS</div>
-<div class="line">slot of
-pixhawk</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">4 pins are</div>
-<div class="line">used in
-6 pin slot</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">The other wire of GPS is connected to GPS slot of pixhawk. Four pins are used</div>
-<div class="line">in 6 pin slot. Hence 4 wires are connecting between them</div>
-</div>
-</td>
+<td>slot of
+6 pin slot</td>
+<td>GPS to GPS</td>
+<td>used in</td>
+<td>4 pins are</td>
+<td>in 6 pin slot. Hence 4 wires are connecting between them</td>
+<td>The other wire of GPS is connected to GPS slot of pixhawk. Four pins are used</td>
 </tr>
-<tr class="row-even"><td><div class="first last line-block">
-<div class="line">5</div>
-</div>
+<tr class="row-even"><td>&nbsp;</td>
+<td><p class="first">5</p>
+<p class="last">splitter</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">LED/USB to</div>
-<div class="line">I2C
-splitter</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">4 pins are</div>
-<div class="line">used in 4
-pin slot</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">It LED/USB is the extension of pixhawk USB and LED notification. It consists of</div>
-<div class="line">two connecting wires. One wire is connected to pixhawk I2C via I2C splitter.</div>
-<div class="line">4 pins are used and so 4 connecting wires are used.</div>
-</div>
-</td>
+<td>I2C
+pin slot</td>
+<td>LED/USB to</td>
+<td>used in 4
+4 pins are used and so 4 connecting wires are used.</td>
+<td>4 pins are</td>
+<td>two connecting wires. One wire is connected to pixhawk I2C via I2C splitter.</td>
+<td>It LED/USB is the extension of pixhawk USB and LED notification. It consists of</td>
 </tr>
-<tr class="row-odd"><td><div class="first last line-block">
-<div class="line">6</div>
-</div>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><p class="first">6</p>
+<p class="last">splitter</p>
 </td>
-<td><div class="first line-block">
-<div class="line">Pixhawk’s</div>
-</div>
-<div class="last line-block">
-<div class="line">I2C to I2C
-splitter</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">4 pins are</div>
-</div>
-<div class="last line-block">
-<div class="line">used in 4
-pin slot</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">It is an extension of I2C’s of pixhawk allowing more components to connect</div>
-</div>
-<div class="last line-block">
-<div class="line">pixhawk which are depending on I2C channel. We connect GPS and px4flow to</div>
-<div class="line">this extension. 4 pins are used hence 4 wires are connecting between them</div>
-</div>
-</td>
+<td>I2C to I2C
+pin slot</td>
+<td>Pixhawk’s</td>
+<td>used in 4
+this extension. 4 pins are used hence 4 wires are connecting between them</td>
+<td>4 pins are</td>
+<td>pixhawk which are depending on I2C channel. We connect GPS and px4flow to</td>
+<td>It is an extension of I2C’s of pixhawk allowing more components to connect</td>
 </tr>
-<tr class="row-even"><td><div class="first last line-block">
-<div class="line">7</div>
-</div>
+<tr class="row-even"><td>&nbsp;</td>
+<td><p class="first">7
+usb to</p>
+<p class="last">extension</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">Pixhawk’s
-usb to</div>
-<div class="line">usb
-extension</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">4 pins are</div>
-</div>
-<div class="last line-block">
-<div class="line">used in 4
-pin slot</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">The other connecting wire of pixhawk’s USB extension is connected between</div>
-</div>
-<div class="last line-block">
-<div class="line">pixhawk serial USB port to USB extension. 4 pins are being used. Hence 4 wires</div>
-<div class="line">are connecting between them</div>
-</div>
-</td>
+<td>usb
+pin slot</td>
+<td>Pixhawk’s</td>
+<td>used in 4
+are connecting between them</td>
+<td>4 pins are</td>
+<td>pixhawk serial USB port to USB extension. 4 pins are being used. Hence 4 wires</td>
+<td>The other connecting wire of pixhawk’s USB extension is connected between</td>
 </tr>
-<tr class="row-odd"><td><div class="first last line-block">
-<div class="line">8</div>
-</div>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><p class="first">8
+pixhawk’s</p>
+<p class="last">channel</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">Receiver to
-pixhawk’s</div>
-<div class="line">receiving
-channel</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">2 pins are</div>
-</div>
-<div class="last line-block">
-<div class="line">used in 3
-pin slot</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">This is connecting between RC receivers to pixhawk’s RC connecting slot.</div>
-</div>
-<div class="last line-block">
-<div class="line">2 wires are used in 3 pin slot. Hence two wire are used.</div>
-</div>
-</td>
+<td>receiving
+pin slot</td>
+<td>Receiver to</td>
+<td>used in 3</td>
+<td>2 pins are</td>
+<td>2 wires are used in 3 pin slot. Hence two wire are used.</td>
+<td>This is connecting between RC receivers to pixhawk’s RC connecting slot.</td>
 </tr>
-<tr class="row-even"><td><div class="first last line-block">
-<div class="line">9</div>
-</div>
+<tr class="row-even"><td>&nbsp;</td>
+<td><p class="first">9
+to safety</p>
+<p class="last">of pixhawk</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">Safety switch
-to safety</div>
-<div class="line">switch slot
-of pixhawk</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">3 pins are</div>
-</div>
-<div class="last line-block">
-<div class="line">used in 3
-pin slot</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">This is connecting between safety switch to safety switch slot of pixhawk.</div>
-</div>
-<div class="last line-block">
-<div class="line">3 pins are used in 3 pin slot. Hence 3 wires are connecting between them</div>
-</div>
-</td>
+<td>switch slot
+pin slot</td>
+<td>Safety switch</td>
+<td>used in 3</td>
+<td>3 pins are</td>
+<td>3 pins are used in 3 pin slot. Hence 3 wires are connecting between them</td>
+<td>This is connecting between safety switch to safety switch slot of pixhawk.</td>
 </tr>
-<tr class="row-odd"><td><div class="first last line-block">
-<div class="line">10</div>
-</div>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><p class="first">10
+connecting to</p>
+<p class="last">speaker slot</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">Speaker
-connecting to</div>
-<div class="line">pixhawk
-speaker slot</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">2 pins are</div>
-</div>
-<div class="last line-block">
-<div class="line">used in 2
-pin slot</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">This is connecting between speaker module to speak slot of pixhawk. 2 pins</div>
-</div>
-<div class="last line-block">
-<div class="line">are used to connect in 2 pin slot. Hence 2 wires are used in connecting</div>
-<div class="line">between them.</div>
-</div>
-</td>
+<td>pixhawk
+pin slot</td>
+<td>Speaker</td>
+<td>used in 2
+between them.</td>
+<td>2 pins are</td>
+<td>are used to connect in 2 pin slot. Hence 2 wires are used in connecting</td>
+<td>This is connecting between speaker module to speak slot of pixhawk. 2 pins</td>
 </tr>
-<tr class="row-even"><td><div class="first last line-block">
-<div class="line">11</div>
-</div>
+<tr class="row-even"><td>&nbsp;</td>
+<td><p class="first">11</p>
+<p class="last">pixhawk</p>
 </td>
-<td><div class="first line-block">
-<div class="line">ESC to serial</div>
-</div>
-<div class="last line-block">
-<div class="line">channel of
-pixhawk</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">2 pins are</div>
-</div>
-<div class="last line-block">
-<div class="line">used in 3
-pin slot</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">ESC 1,2,3,4 are connecting between serial channels of pixhawk 1,2,3,4</div>
-<div class="line">respectively. Each ESC connecting to each channel where 2 pins are used</div>
-<div class="line">among 3 pins of each slot of channel. Hence each ESC occupying 2 wires.</div>
-<div class="line">Totally 8 wires are connecting between all ESC to pixhawk. Among them 4</div>
-<div class="line">wires are connected to negative terminal of channel slot.</div>
-</div>
-</td>
+<td>channel of
+pin slot</td>
+<td>ESC to serial</td>
+<td>respectively. Each ESC connecting to each channel where 2 pins are used
+used in 3
+Totally 8 wires are connecting between all ESC to pixhawk. Among them 4
+wires are connected to negative terminal of channel slot.</td>
+<td>2 pins are</td>
+<td>among 3 pins of each slot of channel. Hence each ESC occupying 2 wires.</td>
+<td>ESC 1,2,3,4 are connecting between serial channels of pixhawk 1,2,3,4</td>
 </tr>
-<tr class="row-odd"><td><div class="first last line-block">
-<div class="line">12</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">ESC to motor</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">3 pins are</div>
-<div class="line">used in 3
-pin slot</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">Motors 1,2,3 and 4 connecting to ESC 1,2,3 and 4 respectively. Each motor</div>
-<div class="line">uses 3 pins of esc and hence each motor connecting 3 wires between them.</div>
-<div class="line-block">
-<div class="line">Totally of 12 wires are being used to connect motors and ESC.</div>
-</div>
-</div>
-</td>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>12</td>
+<td>pin slot</td>
+<td>ESC to motor
+used in 3</td>
+<td>Totally of 12 wires are being used to connect motors and ESC.</td>
+<td>3 pins are
+uses 3 pins of esc and hence each motor connecting 3 wires between them.</td>
+<td>&nbsp;</td>
+<td>Motors 1,2,3 and 4 connecting to ESC 1,2,3 and 4 respectively. Each motor</td>
 </tr>
-<tr class="row-even"><td><div class="first last line-block">
-<div class="line">13</div>
-</div>
+<tr class="row-even"><td>&nbsp;</td>
+<td><p class="first">13</p>
+<p class="last">pixhawk</p>
 </td>
-<td><div class="first line-block">
-<div class="line">ESC to powe</div>
-</div>
-<div class="last line-block">
-<div class="line">converter of
-pixhawk</div>
-</div>
+<td>used
+converter of</td>
+<td>ESC to powe</td>
+<td>4 positive and 4 negative wires are connecting.</td>
+<td><p class="first">8 wires</p>
+<p class="last">source is connected to ESC and pixhawk power module in parallel.</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">8 wires
-used</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">ESC is powered from power module of pixhawk where power from main</div>
-</div>
-<div class="last line-block">
-<div class="line">source is connected to ESC and pixhawk power module in parallel.</div>
-<div class="line">4 positive and 4 negative wires are connecting.</div>
-</div>
-</td>
+<td>&nbsp;</td>
+<td>ESC is powered from power module of pixhawk where power from main</td>
 </tr>
-<tr class="row-odd"><td><div class="first last line-block">
-<div class="line">14</div>
-</div>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><p class="first">14
+pixhawk</p>
+<p class="last">converter</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">Power slot of
-pixhawk</div>
-<div class="line">to power
-converter</div>
-<div class="line">of pixhawk</div>
-</div>
+<td><p class="first">used in
+to power</p>
+<p class="last">of pixhawk</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">6 wires
-used in</div>
-<div class="line">6 pin slot</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">Power is supplied to pixhawk from power converter of pixhawk which</div>
-</div>
-<div class="last line-block">
-<div class="line">is sourced from battery. 6 wires are used to connect between them</div>
-</div>
-</td>
+<td>Power slot of</td>
+<td>6 pin slot</td>
+<td>6 wires</td>
+<td>is sourced from battery. 6 wires are used to connect between them</td>
+<td>Power is supplied to pixhawk from power converter of pixhawk which</td>
 </tr>
-<tr class="row-even"><td><div class="first last line-block">
-<div class="line">15</div>
-</div>
+<tr class="row-even"><td>&nbsp;</td>
+<td>15</td>
+<td>used in</td>
+<td><p class="first">Pixhawk to xu4</p>
+<p class="last">6 pin slot</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">Pixhawk to xu4</div>
-</div>
+<td>are being used in 6 pin slot.</td>
+<td><p class="first">4 wires</p>
+<p class="last">connect pixhawk’s telemetry port 1 to usb ttl connecting to xu4’s usb. 4 wires</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">4 wires
-used in</div>
-<div class="line">6 pin slot</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">This is to make communication between pixhawk and xu4. A usb-ttl is used to</div>
-</div>
-<div class="last line-block">
-<div class="line">connect pixhawk’s telemetry port 1 to usb ttl connecting to xu4’s usb. 4 wires</div>
-<div class="line">are being used in 6 pin slot.</div>
-</div>
-</td>
+<td>&nbsp;</td>
+<td>This is to make communication between pixhawk and xu4. A usb-ttl is used to</td>
 </tr>
-<tr class="row-odd"><td><div class="first last line-block">
-<div class="line">16</div>
-</div>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>16
+to radio</td>
+<td>used in</td>
+<td><p class="first">Telemetry 2</p>
+<p class="last">6 pin slot</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">Telemetry 2
-to radio</div>
-</div>
+<td>&nbsp;</td>
+<td><p class="first">6 wires</p>
+<p class="last">used in 6 pin slot</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">6 wires
-used in</div>
-<div class="line">6 pin slot</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">This is to connect between telemetry port 2 to telemetry radio. 6 wires are</div>
-</div>
-<div class="last line-block">
-<div class="line">used in 6 pin slot</div>
-</div>
-</td>
+<td>&nbsp;</td>
+<td>This is to connect between telemetry port 2 to telemetry radio. 6 wires are</td>
 </tr>
-<tr class="row-even"><td><div class="first last line-block">
-<div class="line">17</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">Xu4 to power</div>
-<div class="line">converter</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">2 wires</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">This is to power xu4 form battery via power converter. A power converter</div>
-<div class="line">which converts power to 5V, 4A is used to supply power to xu4. Two wires</div>
-<div class="line">+ve and –ve are being used.</div>
-</div>
-</td>
+<tr class="row-even"><td>&nbsp;</td>
+<td>17</td>
+<td>converter</td>
+<td>Xu4 to power</td>
+<td>+ve and –ve are being used.</td>
+<td>2 wires
+which converts power to 5V, 4A is used to supply power to xu4. Two wires</td>
+<td>&nbsp;</td>
+<td>This is to power xu4 form battery via power converter. A power converter</td>
 </tr>
-<tr class="row-odd"><td><div class="first last line-block">
-<div class="line">18</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">Xu4 Usb 3.0
-extension</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">Usb wire</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">This is the usb 3.0 extension cable used to connect 3D sensor</div>
-</div>
-</td>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>18
+extension</td>
+<td>&nbsp;</td>
+<td>Xu4 Usb 3.0</td>
+<td>&nbsp;</td>
+<td>Usb wire</td>
+<td>&nbsp;</td>
+<td>This is the usb 3.0 extension cable used to connect 3D sensor</td>
 </tr>
-<tr class="row-even"><td><div class="first last line-block">
-<div class="line">19</div>
-</div>
+<tr class="row-even"><td>&nbsp;</td>
+<td><p class="first">19</p>
+<p class="last">pixhawk</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">Power wire from</div>
-<div class="line">battery to
-pixhawk</div>
-<div class="line">power converter</div>
-</div>
+<td><p class="first">battery to</p>
+<p class="last">power converter</p>
 </td>
-<td><div class="first line-block">
-<div class="line">Two wires</div>
-</div>
-<div class="last line-block">
-<div class="line"><br /></div>
-</div>
+<td>Power wire from</td>
+<td>&nbsp;</td>
+<td><p class="first">Two wires</p>
+<p class="last">wires +ve and –ve are connected to this module</p>
 </td>
-<td><div class="first line-block">
-<div class="line">This is to supply power form battery to power converter of pixhawk. Two</div>
-</div>
-<div class="last line-block">
-<div class="line">wires +ve and –ve are connected to this module</div>
-</div>
-</td>
+<td>&nbsp;</td>
+<td>This is to supply power form battery to power converter of pixhawk. Two</td>
 </tr>
-<tr class="row-odd"><td><div class="first last line-block">
-<div class="line">20</div>
-</div>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>20</td>
+<td>battery to xu4
+power converter</td>
+<td>Power wire from</td>
+<td>&nbsp;</td>
+<td><p class="first">Two wires</p>
+<p class="last">+ve and – ve are connected to this module</p>
 </td>
-<td><div class="first last line-block">
-<div class="line">Power wire from</div>
-<div class="line">battery to xu4</div>
-<div class="line">power converter</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">Two wires</div>
-</div>
-</td>
-<td><div class="first line-block">
-<div class="line">This is to supply power form battery to power converter of xu4. Two wires</div>
-</div>
-<div class="last line-block">
-<div class="line">+ve and – ve are connected to this module</div>
-</div>
-</td>
+<td>&nbsp;</td>
+<td>This is to supply power form battery to power converter of xu4. Two wires</td>
 </tr>
-<tr class="row-even"><td><div class="first last line-block">
-<div class="line">21</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">Battery to</div>
-<div class="line">battery monitor</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">Two wires</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">This is to connect battery moniter to battery. Two wires +ve and –ve are</div>
-<div class="line">connected to this module</div>
-</div>
-</td>
+<tr class="row-even"><td>&nbsp;</td>
+<td>21</td>
+<td>battery monitor</td>
+<td>Battery to</td>
+<td>&nbsp;</td>
+<td>Two wires
+connected to this module</td>
+<td>&nbsp;</td>
+<td>This is to connect battery moniter to battery. Two wires +ve and –ve are</td>
 </tr>
-<tr class="row-odd"><td><div class="first last line-block">
-<div class="line">22</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">Battery to</div>
-<div class="line">power switch</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">One wire</div>
-</div>
-</td>
-<td><div class="first last line-block">
-<div class="line">This is to connect power switch from battery to switch and passing overall</div>
-<div class="line">power. A +ve wire is connected to switch from battery.</div>
-</div>
-</td>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>22</td>
+<td>power switch</td>
+<td>Battery to</td>
+<td>&nbsp;</td>
+<td>One wire
+power. A +ve wire is connected to switch from battery.</td>
+<td>&nbsp;</td>
+<td>This is to connect power switch from battery to switch and passing overall</td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 
 
@@ -731,10 +502,10 @@ pixhawk</div>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="building-and-configuring-autopilot.html" class="btn btn-neutral float-right" title="GAPTER: Building and Configuring Autopilot" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="network-configuration.html" class="btn btn-neutral float-right" title="GAPTER: Network Configuration and Connection" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="assembly.html" class="btn btn-neutral" title="GAPTER: Components and Assembly Process" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="assembly.html" class="btn btn-neutral" title="Gapter: Components and Assembly Process" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -80,7 +80,11 @@ Gapter has several features, when combined together, makes it a unique and diffe
 Mechanical Specification
 ========================
 
-.. image:: images/gapter07.jpg
+.. image:: images/gapter-3d-model-01.jpg
+    :align: center
+    :width: 200pt
+    
+.. image:: images/gapter-3d-model-02.jpg
     :align: center
     :width: 200pt
 

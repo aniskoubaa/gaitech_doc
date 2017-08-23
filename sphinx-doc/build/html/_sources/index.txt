@@ -20,6 +20,7 @@ Welcome to Gaitech's Education Portal!
    Drones Tutorials <drones/index>
    Gapter Tutorials <gapter/index>
    Video Streaming Tutorials <video/index>
+   Dronemap Planner <dronemap/index>
    Contributors<contributors/index>
 
 Gaitech is proud to provide you a comprehensive educational framework on Robot Operating System (ROS). 
@@ -94,3 +95,12 @@ Order your Turtlebot by clicking on the Turtlebot image below.
     :align: center
     :target: http://www.gaitech.hk/?wpsc-product=turtlebot-shop
 
+Change Log
+==========
+
+August 2017
+-----------
+
+* add :ref:`gapter-brain-software-suite`
+* add :ref:`gapter-assembly`
+* update :ref:`software-tutorials`
