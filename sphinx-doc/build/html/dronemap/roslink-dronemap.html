@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Configure ROSLink with Dronemap Planner &mdash; Gaitech EDU 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="Dronemap Planner" href="index.html"/>
+        <link rel="next" title="Gaitech EDU Contributors" href="../contributors/index.html"/>
+        <link rel="prev" title="Tutorials" href="dronemap-planner-tutorials.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech EDU
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roslink/index.html">ROSLink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../turtlebot/turtlebot-tutorials.html">Turtlebot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gapter/index.html">Gapter Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video/index.html">Video Streaming Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Dronemap Planner</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dronemap-overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dronemap-configuration.html">Setup and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dronemap-planner-tutorials.html">Tutorials</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Configure ROSLink with Dronemap Planner</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#roslink-bridge">ROSLink Bridge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#roslink-configuration">ROSLink Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-dronemap-planner-cloud">Run Dronemap planner cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-roslink">Run ROSLink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#start-webapp">Start Webapp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech EDU</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Dronemap Planner</a> &raquo;</li>
+      
+    <li>Configure ROSLink with Dronemap Planner</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/dronemap/roslink-dronemap.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configure-roslink-with-dronemap-planner">
+<span id="roslink-dronemap"></span><h1>Configure ROSLink with Dronemap Planner<a class="headerlink" href="#configure-roslink-with-dronemap-planner" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="roslink-bridge">
+<h2>ROSLink Bridge<a class="headerlink" href="#roslink-bridge" title="Permalink to this headline">¶</a></h2>
+<p>The ROSLink Bridge consists of fully-functional ROS script written in Python, which is executed as ROS node in the client. For more details about ROSLink Bridge see <a class="reference internal" href="../roslink/roslink-gapter.html#roslink-gapter"><span class="std std-ref">ROSLink Bridge for Gapter</span></a>.</p>
+</div>
+<div class="section" id="roslink-configuration">
+<h2>ROSLink Configuration<a class="headerlink" href="#roslink-configuration" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>configure periods of updating the ROSLink messages:</li>
+</ol>
+<p>open the file <code class="docutils literal"><span class="pre">roslink/configuration/ROSLINK_MESSAGE_PERIOD.py</span></code></p>
+<p>This file contains period of every message in seconds:</p>
+<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="n">ROSLINK_HEARTBEAT_MESSAGE_RATE</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">ROSLINK_ROBOT_STATUS_MESSAGE_RATE</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">ROSLINK_GLOBAL_MOTION_MESSAGE_RATE</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">ROSLINK_GPS_RAW_INFO_MESSAGE_RATE</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">ROSLINK_RANGE_FINDER_DATA_MESSAGE_RATE</span> <span class="o">=</span> <span class="mf">0.5</span>
+</pre></div>
+</div>
+<p>The user can set these values as appropriate for the application.</p>
+<p><code class="docutils literal"><span class="pre">ROSLINK_HEARTBEAT_MESSAGE_RATE</span></code> specify the period for heartbeat message.
+<code class="docutils literal"><span class="pre">ROSLINK_ROBOT_STATUS_MESSAGE_RATE</span></code> specify the period for the robot status message
+<code class="docutils literal"><span class="pre">ROSLINK_GLOBAL_MOTION_MESSAGE_RATE</span></code> specify the period for the global motion message
+<code class="docutils literal"><span class="pre">ROSLINK_GPS_RAW_INFO_MESSAGE_RATE</span></code> specify the period for the GPS indo message
+<code class="docutils literal"><span class="pre">ROSLINK_RANGE_FINDER_DATA_MESSAGE_RATE</span></code> specify the period for the range finder message</p>
+<ol class="arabic simple" start="2">
+<li>configure ROSLink parameters</li>
+</ol>
+<p>open the file <code class="docutils literal"><span class="pre">roslink/launch/gapter_roslink.launch</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
+ &lt;node <span class="nv">pkg</span><span class="o">=</span><span class="s2">&quot;roslink&quot;</span> <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;udp_client_gapter_node&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;roslink_bridge_gapter.py&quot;</span> <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span>/&gt;
+ &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;ground_station_ip&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s1">&#39;192.168.100.6&#39;</span> /&gt;
+ &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;ground_station_port&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s1">&#39;25500&#39;</span> /&gt;
+ &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;roslink_version&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> /&gt;
+ &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;ros_version&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;8&quot;</span> /&gt;
+ &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;system_id&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s1">&#39;12&#39;</span> /&gt;
+ &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;robot_name&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;Gapter Drone&quot;</span> /&gt;
+ &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;type&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> /&gt;
+ &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;owner_id&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;3&quot;</span> /&gt;
+ &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;key&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;1243-0000-0000-FGFG&quot;</span> /&gt;
+&lt;/launch&gt;
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">ground_station_ip</span></code> to identify the IP address of your server machine, replace it with the correct IP addrees of the Dronemap Planner. Refer to <a class="reference internal" href="dronemap-configuration.html#dronemap-configuration"><span class="std std-ref">this page</span></a> to know how to configure Dronemap Planner .</p>
+<p><code class="docutils literal"><span class="pre">ground_station_port</span></code> to identify the port number. 25500 is the port of the Datagram Socket Server on Dronemap Planner</p>
+<p><code class="docutils literal"><span class="pre">system_id</span></code> to specify specifies the ID of the robot. It helps in differentiating robots from each other at the server side.</p>
+<p><code class="docutils literal"><span class="pre">key</span></code> field is used to identify a robot, and to map it to a user. A user that would like to have access to a robot, must use the same key that the robot is using in its Heartbeat message.</p>
+</div>
+<div class="section" id="run-dronemap-planner-cloud">
+<h2>Run Dronemap planner cloud<a class="headerlink" href="#run-dronemap-planner-cloud" title="Permalink to this headline">¶</a></h2>
+<p>Follow the tutorial in <a class="reference internal" href="dronemap-configuration.html#dronemap-configuration"><span class="std std-ref">this page</span></a> to run Dronemap planner cloud</p>
+</div>
+<div class="section" id="run-roslink">
+<h2>Run ROSLink<a class="headerlink" href="#run-roslink" title="Permalink to this headline">¶</a></h2>
+<p>After setting all the parameter, now you can launch Gapter simulator as explained in: <a class="reference internal" href="../gapter/setup-simulation-environment.html#gapter-setup-simulation"><span class="std std-ref">GAPTER: Set-up GapterSim Environment</span></a></p>
+<p>Then launch you roslink bridge</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch roslink gapter_roslink.launch
+</pre></div>
+</div>
+</div>
+<div class="section" id="start-webapp">
+<h2>Start Webapp<a class="headerlink" href="#start-webapp" title="Permalink to this headline">¶</a></h2>
+<p>1- Run your web servers app (xampp or wamp)</p>
+<p>2- open your brower and enter the link of the dronmemap planner main website.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../contributors/index.html" class="btn btn-neutral float-right" title="Gaitech EDU Contributors" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dronemap-planner-tutorials.html" class="btn btn-neutral" title="Tutorials" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

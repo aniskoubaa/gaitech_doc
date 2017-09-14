@@ -11,6 +11,7 @@ Dronemap Planner
    Overview  <dronemap-overview.rst>
    Setup and Configuration <dronemap-configuration.rst>
    Tutorials <dronemap-planner-tutorials.rst>
+   Configure ROSLink with Dronemap Planner <roslink-dronemap.rst>
 
 .. figure:: images/dronemap-logo-transparent.png
     :align: center

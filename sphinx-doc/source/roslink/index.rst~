@@ -1,8 +1,8 @@
 .. _roslink:
 
-==========================
+=======
 ROSLink
-==========================
+=======
  
    
 .. toctree::
@@ -16,6 +16,6 @@ ROSLink is a new protocol to integrate Robot Operating System (ROS) enabled-robo
 
 For more details please see: `ROSLink paper`_
 
-.. _ROSLink paper: http://wiki.coins-lab.org/
+.. _ROSLink paper: http://www.springer.com/gp/book/9783319549262
 
 
