@@ -161,38 +161,37 @@
             
   <div class="section" id="configure-roslink-with-dronemap-planner">
 <span id="roslink-dronemap"></span><h1>Configure ROSLink with Dronemap Planner<a class="headerlink" href="#configure-roslink-with-dronemap-planner" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>In this tutorial you will learn:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Parameter Configuration of ROSLink Bridge</li>
+<li>Run the ROSLink Bridge</li>
+</ul>
+</div></blockquote>
+<p class="last">For any query, please feel free to post your questions in the <a class="reference external" href="http://forum.gaitech.hk/">Gaitech EDU Forum</a></p>
+</div>
 <div class="section" id="roslink-bridge">
 <h2>ROSLink Bridge<a class="headerlink" href="#roslink-bridge" title="Permalink to this headline">¶</a></h2>
 <p>The ROSLink Bridge consists of fully-functional ROS script written in Python, which is executed as ROS node in the client. For more details about ROSLink Bridge see <a class="reference internal" href="../roslink/roslink-gapter.html#roslink-gapter"><span class="std std-ref">ROSLink Bridge for Gapter</span></a>.</p>
 </div>
 <div class="section" id="roslink-configuration">
 <h2>ROSLink Configuration<a class="headerlink" href="#roslink-configuration" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li>configure periods of updating the ROSLink messages:</li>
-</ol>
-<p>open the file <code class="docutils literal"><span class="pre">roslink/configuration/ROSLINK_MESSAGE_PERIOD.py</span></code></p>
-<p>This file contains period of every message in seconds:</p>
-<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="n">ROSLINK_HEARTBEAT_MESSAGE_RATE</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">ROSLINK_ROBOT_STATUS_MESSAGE_RATE</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">ROSLINK_GLOBAL_MOTION_MESSAGE_RATE</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">ROSLINK_GPS_RAW_INFO_MESSAGE_RATE</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">ROSLINK_RANGE_FINDER_DATA_MESSAGE_RATE</span> <span class="o">=</span> <span class="mf">0.5</span>
-</pre></div>
-</div>
-<p>The user can set these values as appropriate for the application.</p>
-<p><code class="docutils literal"><span class="pre">ROSLINK_HEARTBEAT_MESSAGE_RATE</span></code> specify the period for heartbeat message.
-<code class="docutils literal"><span class="pre">ROSLINK_ROBOT_STATUS_MESSAGE_RATE</span></code> specify the period for the robot status message
-<code class="docutils literal"><span class="pre">ROSLINK_GLOBAL_MOTION_MESSAGE_RATE</span></code> specify the period for the global motion message
-<code class="docutils literal"><span class="pre">ROSLINK_GPS_RAW_INFO_MESSAGE_RATE</span></code> specify the period for the GPS indo message
-<code class="docutils literal"><span class="pre">ROSLINK_RANGE_FINDER_DATA_MESSAGE_RATE</span></code> specify the period for the range finder message</p>
-<ol class="arabic simple" start="2">
-<li>configure ROSLink parameters</li>
-</ol>
+<p>The first step is to configure ROSLink parameters and the periods of updating the ROSLink messages:</p>
 <p>open the file <code class="docutils literal"><span class="pre">roslink/launch/gapter_roslink.launch</span></code></p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
  &lt;node <span class="nv">pkg</span><span class="o">=</span><span class="s2">&quot;roslink&quot;</span> <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;udp_client_gapter_node&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;roslink_bridge_gapter.py&quot;</span> <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span>/&gt;
+
  &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;ground_station_ip&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s1">&#39;192.168.100.6&#39;</span> /&gt;
  &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;ground_station_port&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s1">&#39;25500&#39;</span> /&gt;
+
+ &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;heartbeat_msg_period&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> /&gt;
+ &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;robot_status_msg_period&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span> /&gt;
+ &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;global_motion_msg_period&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span> /&gt;
+ &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;gps_raw_info_msg_period&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span> /&gt;
+ &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;range_finder_data_msg_period&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span> /&gt;
+
  &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;roslink_version&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> /&gt;
  &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;ros_version&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;8&quot;</span> /&gt;
  &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;system_id&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s1">&#39;12&#39;</span> /&gt;
@@ -203,8 +202,14 @@
 &lt;/launch&gt;
 </pre></div>
 </div>
+<p>The user can set these values as appropriate for the application.</p>
 <p><code class="docutils literal"><span class="pre">ground_station_ip</span></code> to identify the IP address of your server machine, replace it with the correct IP addrees of the Dronemap Planner. Refer to <a class="reference internal" href="dronemap-configuration.html#dronemap-configuration"><span class="std std-ref">this page</span></a> to know how to configure Dronemap Planner .</p>
 <p><code class="docutils literal"><span class="pre">ground_station_port</span></code> to identify the port number. 25500 is the port of the Datagram Socket Server on Dronemap Planner</p>
+<p><code class="docutils literal"><span class="pre">heartbeat_msg_period</span></code> specify the period for heartbeat message.</p>
+<p><code class="docutils literal"><span class="pre">robot_status_msg_period</span></code> specify the period for the robot status message.</p>
+<p><code class="docutils literal"><span class="pre">global_motion_msg_period</span></code> specify the period for the global motion message.</p>
+<p><code class="docutils literal"><span class="pre">gps_raw_info_msg_period</span></code> specify the period for the GPS indo message.</p>
+<p><code class="docutils literal"><span class="pre">range_finder_data_msg_period</span></code> specify the period for the range finder message.</p>
 <p><code class="docutils literal"><span class="pre">system_id</span></code> to specify specifies the ID of the robot. It helps in differentiating robots from each other at the server side.</p>
 <p><code class="docutils literal"><span class="pre">key</span></code> field is used to identify a robot, and to map it to a user. A user that would like to have access to a robot, must use the same key that the robot is using in its Heartbeat message.</p>
 </div>
@@ -214,10 +219,33 @@
 </div>
 <div class="section" id="run-roslink">
 <h2>Run ROSLink<a class="headerlink" href="#run-roslink" title="Permalink to this headline">¶</a></h2>
-<p>After setting all the parameter, now you can launch Gapter simulator as explained in: <a class="reference internal" href="../gapter/setup-simulation-environment.html#gapter-setup-simulation"><span class="std std-ref">GAPTER: Set-up GapterSim Environment</span></a></p>
-<p>Then launch you roslink bridge</p>
+<p>After setting all the parameter, now you can launch Gapter simulator as explained in: <a class="reference internal" href="../gapter/setup-simulation-environment.html#gapter-setup-simulation"><span class="std std-ref">GAPTER: Set-up GapterSim Environment</span></a> by first run the following commands:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/gapter_ardupilot/ArduCopter
+
+$ ../Tools/autotest/sim_vehicle.sh -j <span class="m">4</span> -f Gazebo
+</pre></div>
+</div>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/roslink_sim_vehicle_gazebo.png"><img alt="../_images/roslink_sim_vehicle_gazebo.png" src="../_images/roslink_sim_vehicle_gazebo.png" style="width: 600pt;" /></a>
+</div>
+<p>Then in another terminal lauch following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ardupilot_sitl_gazebo_plugin gapter_spawn.launch
+</pre></div>
+</div>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/roslink_gapter_spawn.png"><img alt="../_images/roslink_gapter_spawn.png" src="../_images/roslink_gapter_spawn.png" style="width: 600pt;" /></a>
+</div>
+<p>Gazebo window will opened now and you should see Gapter model.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/roslink_gapter_sim.png"><img alt="../_images/roslink_gapter_sim.png" src="../_images/roslink_gapter_sim.png" style="width: 600pt;" /></a>
+</div>
+<p>Now launch you roslink bridge</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch roslink gapter_roslink.launch
 </pre></div>
+</div>
+<p>You will see something like the following in the terminal:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/roslink_start_bridge.png"><img alt="../_images/roslink_start_bridge.png" src="../_images/roslink_start_bridge.png" style="width: 600pt;" /></a>
 </div>
 </div>
 <div class="section" id="start-webapp">
