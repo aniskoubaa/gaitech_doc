@@ -122,3 +122,17 @@ Start Webapp
 1- Run your web servers app (xampp or wamp)
 
 2- open your brower and enter the link of the dronmemap planner main website.
+
+.. figure:: images/roslink_robots.png
+    :align: center
+    :width: 600pt
+
+To be able to control Gapter, click on |link| button.
+
+.. |link| image:: images/roslink_link.png 
+		:width: 30pt
+
+
+.. figure:: images/roslink_control.png
+    :align: center
+    :width: 600pt
