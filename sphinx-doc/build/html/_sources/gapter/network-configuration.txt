@@ -21,7 +21,7 @@ In this tutorial, we present the different connection modes to Gapter using WiFi
 
 To provide flexibility to end-users, Gapter provides two possible network configuration modes:
 
-* **WiFi Hotspot mode:** In this mode, the copter creates an adhoc network named ``gapternet`` that the user can connect to it through its compter or laptop using ``ssh``.
+* **WiFi Hotspot mode:** In this mode, the copter creates an adhoc network named ``gapternet`` that the user can connect to it through its computer or laptop using ``ssh``.
 * **WiFi infrastructure mode:** in this mode, the copter connects to a WiFi router network that must be specified in advance. Users then can connect to the copter using ``ssh``.
 
 .. NOTE::
@@ -42,11 +42,11 @@ Once this is done, you just need to use ``ssh`` to connect to the drone as follo
 
 .. code-block:: bash
    
-   ssh gapter@10.0.0.1
+   ssh gapter@192.168.1.1
 
-Note that the default ip address of gapter is ``10.0.0.1``, and your laptop connects to that ``gapternet``, 
-it will be assigned th IP address ``10.0.0.2``.
-You will be request for a password. The password is ``gaitech``. 
+Note that the default ip address of gapter is ``192.168.1.1``, and your laptop connects to that ``gapternet``, 
+it will be assigned th IP address ``192.168.1.2``.
+You will be request for a password. The password is ``gapteredu``. 
 
 Now you are connected to the copter and you can navigate inside the ubuntu file system, run ROS programs, etc. 
 
@@ -120,7 +120,7 @@ You will the following configuration that corresponds to the default hotspot mod
    #for wifi in hotspot mode
    auto wlan0
    iface wlan0 inet static
-   address 10.0.0.1
+   address 192.168.1.1
    netmask 255.255.255.0
    
 To enable the WiFi infrastructure, we need to change the specification of ``wlan0`` as follow

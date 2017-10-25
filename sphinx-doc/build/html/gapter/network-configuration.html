@@ -181,7 +181,7 @@
 </div>
 <p>To provide flexibility to end-users, Gapter provides two possible network configuration modes:</p>
 <ul class="simple">
-<li><strong>WiFi Hotspot mode:</strong> In this mode, the copter creates an adhoc network named <code class="docutils literal"><span class="pre">gapternet</span></code> that the user can connect to it through its compter or laptop using <code class="docutils literal"><span class="pre">ssh</span></code>.</li>
+<li><strong>WiFi Hotspot mode:</strong> In this mode, the copter creates an adhoc network named <code class="docutils literal"><span class="pre">gapternet</span></code> that the user can connect to it through its computer or laptop using <code class="docutils literal"><span class="pre">ssh</span></code>.</li>
 <li><strong>WiFi infrastructure mode:</strong> in this mode, the copter connects to a WiFi router network that must be specified in advance. Users then can connect to the copter using <code class="docutils literal"><span class="pre">ssh</span></code>.</li>
 </ul>
 <div class="admonition note">
@@ -198,12 +198,12 @@ In this case, to connect to Gapter, you need to look for available WiFi networks
 <p class="last">Remember that in this mode, there is no Internet connection.</p>
 </div>
 <p>Once this is done, you just need to use <code class="docutils literal"><span class="pre">ssh</span></code> to connect to the drone as follow through a terminal.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>ssh gapter@10.0.0.1
+<div class="highlight-bash"><div class="highlight"><pre><span></span>ssh gapter@192.168.1.1
 </pre></div>
 </div>
-<p>Note that the default ip address of gapter is <code class="docutils literal"><span class="pre">10.0.0.1</span></code>, and your laptop connects to that <code class="docutils literal"><span class="pre">gapternet</span></code>,
-it will be assigned th IP address <code class="docutils literal"><span class="pre">10.0.0.2</span></code>.
-You will be request for a password. The password is <code class="docutils literal"><span class="pre">gaitech</span></code>.</p>
+<p>Note that the default ip address of gapter is <code class="docutils literal"><span class="pre">192.168.1.1</span></code>, and your laptop connects to that <code class="docutils literal"><span class="pre">gapternet</span></code>,
+it will be assigned th IP address <code class="docutils literal"><span class="pre">192.168.1.2</span></code>.
+You will be request for a password. The password is <code class="docutils literal"><span class="pre">gapteredu</span></code>.</p>
 <p>Now you are connected to the copter and you can navigate inside the ubuntu file system, run ROS programs, etc.</p>
 <p>As mentioned before, this mode does not have Internet connection. So, you cannot do any operation that requires Internet.
 If you need Internet to download new packages or software inside Gapter, you need to configure the WiFi infrastructure mode as explained below.</p>
@@ -261,7 +261,7 @@ iface eth0 inet dhcp
 <span class="c1">#for wifi in hotspot mode</span>
 auto wlan0
 iface wlan0 inet static
-address 10.0.0.1
+address 192.168.1.1
 netmask 255.255.255.0
 </pre></div>
 </div>
