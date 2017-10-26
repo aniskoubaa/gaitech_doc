@@ -11,6 +11,7 @@ GAPTER: Software Tutorials
    
    Gapter Brain Software Suite <gapter-brain-software-suite.rst>
    Simulation <gapter-simulation.rst>
+   Ball Tracking <gapter-ball-tracking.rst>
    ROS Tutorials <gapter-ros-tutorials.rst>
    MAVLink Tutorials <gapter-mavlink-tutorials.rst>
 

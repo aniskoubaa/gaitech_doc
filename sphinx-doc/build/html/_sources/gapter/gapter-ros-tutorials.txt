@@ -75,9 +75,9 @@ Before controlling Gapter using ROS, you should first configure ROS network in y
 .. code-block:: bash 
 
 	1. export ROS_HOSTNAME=192.168.x.xxx
-	2. export ROS_MASTER_URI=http://192.168.1.100:11311
+	2. export ROS_MASTER_URI=http://192.168.1.1:11311
 
-where ``192.168.x.xxx`` is your desktop's ip address and ``192.168.1.100`` is gapter's ip address.
+where ``192.168.x.xxx`` is your desktop's ip address and ``192.168.1.1`` is gapter's ip address.
 
 For more comprehensive tutorial on Network Configuration on ROS, refer to :ref:`network-config-doc`
 
@@ -89,15 +89,15 @@ For this you don't have to install MAVROS on your desktop, but rather on Gapter,
 
 Follow these steps:
 
-* First, connect to the WiFi ``gapternet`` from your desktop which will be shown in Wi-Fi list. If prompt for password type ``gaitech``
+* First, connect to the WiFi ``gapternet`` from your desktop which will be shown in Wi-Fi list. If prompt for password type ``gapteredu``
 
 * Open the terminal and connect to Gapter's computer by typing following
 
 .. code-block:: bash 
 
-	user $: ssh odroid@192.168.1.100
+	user $: ssh odroid@192.168.1.1
 
-If prompts for password, type ``gaitech``
+If prompts for password, type ``gapteredu``
 
 .. NOTE::
    Before controlling Gapter, parameters need to be changed based on indoor or outdoor operation
@@ -118,13 +118,13 @@ You must enter your desktop's IP address in place of ``192.168.x.xx``
 
 .. code-block:: bash 
 
-	MAV> load param /home/odroid/gapter_param/gapter_outdoor.param 
+	MAV> load param /home/gapter/gapter_param/gapter_outdoor.param 
 
 *For indoor operation*
 
 .. code-block:: bash 
 
-	MAV> load param /home/odroid/gapter_param/gapter_indoor.param
+	MAV> load param /home/gapter/gapter_param/gapter_indoor.param
 	
 * Once parameters loaded you can stop mavlink by pressing ``ctrl+c``
 

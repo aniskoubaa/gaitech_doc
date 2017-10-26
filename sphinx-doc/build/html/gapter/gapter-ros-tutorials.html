@@ -227,10 +227,10 @@ user $: <span class="nb">cd</span> ~/catkin_ws
 <li>Add these lines at the end</li>
 </ul>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>1. <span class="nb">export</span> <span class="nv">ROS_HOSTNAME</span><span class="o">=</span>192.168.x.xxx
-2. <span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://192.168.1.100:11311
+2. <span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://192.168.1.1:11311
 </pre></div>
 </div>
-<p>where <code class="docutils literal"><span class="pre">192.168.x.xxx</span></code> is your desktop&#8217;s ip address and <code class="docutils literal"><span class="pre">192.168.1.100</span></code> is gapter&#8217;s ip address.</p>
+<p>where <code class="docutils literal"><span class="pre">192.168.x.xxx</span></code> is your desktop&#8217;s ip address and <code class="docutils literal"><span class="pre">192.168.1.1</span></code> is gapter&#8217;s ip address.</p>
 <p>For more comprehensive tutorial on Network Configuration on ROS, refer to <a class="reference internal" href="../turtlebot/network-config-doc.html#network-config-doc"><span class="std std-ref">Network Configuration</span></a></p>
 </div>
 <div class="section" id="controling-gapter-using-mavros">
@@ -239,13 +239,13 @@ user $: <span class="nb">cd</span> ~/catkin_ws
 For this you don&#8217;t have to install MAVROS on your desktop, but rather on Gapter, because we control Gapter via ssh with Gapter&#8217;s onboard computer (Odroid XU4).</p>
 <p>Follow these steps:</p>
 <ul class="simple">
-<li>First, connect to the WiFi <code class="docutils literal"><span class="pre">gapternet</span></code> from your desktop which will be shown in Wi-Fi list. If prompt for password type <code class="docutils literal"><span class="pre">gaitech</span></code></li>
+<li>First, connect to the WiFi <code class="docutils literal"><span class="pre">gapternet</span></code> from your desktop which will be shown in Wi-Fi list. If prompt for password type <code class="docutils literal"><span class="pre">gapteredu</span></code></li>
 <li>Open the terminal and connect to Gapter&#8217;s computer by typing following</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>user $: ssh odroid@192.168.1.100
+<div class="highlight-bash"><div class="highlight"><pre><span></span>user $: ssh odroid@192.168.1.1
 </pre></div>
 </div>
-<p>If prompts for password, type <code class="docutils literal"><span class="pre">gaitech</span></code></p>
+<p>If prompts for password, type <code class="docutils literal"><span class="pre">gapteredu</span></code></p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Before controlling Gapter, parameters need to be changed based on indoor or outdoor operation</p>
@@ -262,11 +262,11 @@ For this you don&#8217;t have to install MAVROS on your desktop, but rather on G
 </ul>
 <p><a href="#id2"><span class="problematic" id="id3">*</span></a>Type these lines in the same terminal where you can see <code class="docutils literal"><span class="pre">MAV&gt;</span></code> tab on left side</p>
 <p><em>For outdoor operation</em></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>MAV&gt; load param /home/odroid/gapter_param/gapter_outdoor.param
+<div class="highlight-bash"><div class="highlight"><pre><span></span>MAV&gt; load param /home/gapter/gapter_param/gapter_outdoor.param
 </pre></div>
 </div>
 <p><em>For indoor operation</em></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>MAV&gt; load param /home/odroid/gapter_param/gapter_indoor.param
+<div class="highlight-bash"><div class="highlight"><pre><span></span>MAV&gt; load param /home/gapter/gapter_param/gapter_indoor.param
 </pre></div>
 </div>
 <ul class="simple">
