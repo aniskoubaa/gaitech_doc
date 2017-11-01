@@ -60,11 +60,26 @@ Gapter has several features, when combined together, makes it a unique and diffe
 
 **Ordoid XU4 SBC**: Odroid XU4 single-board computer is integrated with Pixhawk to provide the best performance possible for the autopilot. XU4 is a powerful single board computer which is know to be four times faster than Raspberry PI2 and also equipped with 1GB Ethernet network interface and 2G of RAM. Gapter leverages the integrated use of XU4 and Pixhawk to provide an ultimate experience and a flexible and modular platform for users and developers.
 
-.. image:: images/features/asus.jpg
+.. .. image:: images/features/asus.jpg
     :align: left
     :width: 140
     
-**3D Sensor**: This is a unique feature in Gapter as compared to other COTS drone platforms, as 3D sensor allows both to have onboard camera in addition to a laser range finder used to avoid obstable and navigate more safely. In addition, Asus Live Pro 3D sensor is fully compatible with ROS. 
+.. **3D Sensor**: This is a unique feature in Gapter as compared to other COTS drone platforms, as 3D sensor allows both to have onboard camera in addition to a laser range finder used to avoid obstable and navigate more safely. In addition, Asus Live Pro 3D sensor is fully compatible with ROS. 
+
+
+.. image:: images/features/rplidar.jpg
+    :align: left
+    :width: 140
+
+|
+|
+|
+
+**Laser scanner**: Rplidar laser scan sensor allows to build map and navigate within the generated map autonomously
+
+|
+|
+|
 
 .. image:: images/features/software.png
     :target: http://wiki.ros.org/gapter

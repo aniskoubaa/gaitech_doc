@@ -19,9 +19,9 @@ import os
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.insert(0, os.path.abspath('.'))
-sys.path.append(os.path.abspath('extensions/sphinxcontrib.youtube/sphinxcontrib/youtube/'))
-sys.path.append(os.path.abspath('extensions/sphinxcontrib.youtube/'))
-sys.path.append(os.path.abspath('extensions/sphinxcontrib.youtube/sphinxcontrib/'))
+sys.path.append(os.path.abspath('extensions/youtube/sphinxcontrib/youtube/'))
+sys.path.append(os.path.abspath('extensions/youtube/'))
+sys.path.append(os.path.abspath('extensions/youtube/sphinxcontrib/'))
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -194,7 +194,7 @@ html_static_path = ['_static']
 # If true, an OpenSearch description file will be output, and all pages will
 # contain a <link> tag referring to it.  The value of this option must be the
 # base URL from which the finished HTML is served.
-html_use_opensearch = ''
+#html_use_opensearch = ''
 
 # This is the file name suffix for HTML files (e.g. ".xhtml").
 #html_file_suffix = None
