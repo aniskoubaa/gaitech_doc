@@ -167,7 +167,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/speech-doc.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/speech-doc.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -234,10 +234,10 @@ Then, run the following command:</p>
 </div>
 <p>This command will run the <code class="docutils literal"><span class="pre">recognizer.py</span></code> script with loading the dictionary <code class="docutils literal"><span class="pre">robocup.dic</span></code>.
 A list of INFO messages will appear showing the loading of the recognition model. The last few messages will look like this:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>INFO: ngram_search_fwdtree.c<span class="o">(</span>186<span class="o">)</span>: Creating search tree
-INFO: ngram_search_fwdtree.c<span class="o">(</span>191<span class="o">)</span>: before: <span class="m">0</span> root, <span class="m">0</span> non-root channels, <span class="m">12</span> single-phone words
-INFO: ngram_search_fwdtree.c<span class="o">(</span>326<span class="o">)</span>: after: max nonroot chan increased to 328
-INFO: ngram_search_fwdtree.c<span class="o">(</span>338<span class="o">)</span>: after: <span class="m">77</span> root, <span class="m">200</span> non-root channels, <span class="m">11</span> single-phone words
+<div class="highlight-bash"><div class="highlight"><pre><span></span>INFO: ngram_search_fwdtree.c<span class="o">(</span><span class="m">186</span><span class="o">)</span>: Creating search tree
+INFO: ngram_search_fwdtree.c<span class="o">(</span><span class="m">191</span><span class="o">)</span>: before: <span class="m">0</span> root, <span class="m">0</span> non-root channels, <span class="m">12</span> single-phone words
+INFO: ngram_search_fwdtree.c<span class="o">(</span><span class="m">326</span><span class="o">)</span>: after: max nonroot chan increased to <span class="m">328</span>
+INFO: ngram_search_fwdtree.c<span class="o">(</span><span class="m">338</span><span class="o">)</span>: after: <span class="m">77</span> root, <span class="m">200</span> non-root channels, <span class="m">11</span> single-phone words
 </pre></div>
 </div>
 <p>Now, you can start saying some words to check if the recognizer will be able to understand what you are saying. For example, try to say the following words:</p>
@@ -270,7 +270,7 @@ data: hello
 more robocup.corpus
 </pre></div>
 </div>
-<p>Try saying a word that is not in the list such as &#8220;the food is hot&#8221; and see the results on the topic <code class="docutils literal"><span class="pre">/recognizer/output</span></code>, which will show something different. The recognizer will always try to find the nearest match to the word you say.</p>
+<p>Try saying a word that is not in the list such as “the food is hot” and see the results on the topic <code class="docutils literal"><span class="pre">/recognizer/output</span></code>, which will show something different. The recognizer will always try to find the nearest match to the word you say.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">Make sure that you mute the recognizer when you are not using it because this will send random data to the robot.</p>
@@ -399,7 +399,7 @@ Once a command is received, the callback function of the subscribed topic <code 
 
 <span class="k">class</span> <span class="nc">RobotVoiceTeleop</span><span class="p">:</span>
     <span class="c1">#define the constructor of the class</span>
-    <span class="k">def</span>  <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span>  <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1">#initialize the ROS node with a name voice_teleop</span>
         <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;voice_teleop&#39;</span><span class="p">)</span>
 
@@ -464,7 +464,7 @@ Once a command is received, the callback function of the subscribed topic <code 
 
 
 
-<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
       <span class="n">RobotVoiceTeleop</span><span class="p">()</span>
       <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
@@ -523,7 +523,7 @@ roslaunch turtlebot_stage turtlebot_in_stage.launch
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>These simulators requires a powerful PC with a good graphics card that can launch them. They also may crash once you start them but don&#8217;t worry this is very normal, just rerun the script until it launches.
+<p>These simulators requires a powerful PC with a good graphics card that can launch them. They also may crash once you start them but don’t worry this is very normal, just rerun the script until it launches.
 Make sure to check your Mic settings as described above. If you got an error running the <code class="docutils literal"><span class="pre">recognizer</span></code> node then try installing the following package:</p>
 <div class="last highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install gstreamer0.10-gconf
 </pre></div>
@@ -563,7 +563,7 @@ Also, make sure that your computer machine is correctly configured to work with 
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">Try a simple command at first like the rotate right to avoid any accidents.
-You can change the robot&#8217;s speed by giving the command &#8220;go faster&#8221; or &#8220;slow down&#8221; and this will change the parameters for speed in the <code class="docutils literal"><span class="pre">turtlebot_voice_teleop.launch</span></code> file.
+You can change the robot’s speed by giving the command “go faster” or “slow down” and this will change the parameters for speed in the <code class="docutils literal"><span class="pre">turtlebot_voice_teleop.launch</span></code> file.
 However, you will have to add the commands as mentioned previously in the <code class="docutils literal"><span class="pre">config/voice_teleop.txt</span></code> file and redo all he steps again.</p>
 </div>
 </div>
@@ -611,7 +611,7 @@ However, you will have to add the commands as mentioned previously in the <code 
 </div>
 <div class="section" id="question2-leveraging-the-use-of-launch-files">
 <h3>Question2: Leveraging the Use of Launch Files<a class="headerlink" href="#question2-leveraging-the-use-of-launch-files" title="Permalink to this headline">¶</a></h3>
-<p>The variables defined above <code class="docutils literal"><span class="pre">linear_increment</span></code>, <code class="docutils literal"><span class="pre">angular_increment</span></code>, <code class="docutils literal"><span class="pre">max_speed</span></code> and <code class="docutils literal"><span class="pre">max_angular_speed</span></code> are set based on the user&#8217;s preference.
+<p>The variables defined above <code class="docutils literal"><span class="pre">linear_increment</span></code>, <code class="docutils literal"><span class="pre">angular_increment</span></code>, <code class="docutils literal"><span class="pre">max_speed</span></code> and <code class="docutils literal"><span class="pre">max_angular_speed</span></code> are set based on the user’s preference.
 It is more appropriate to set these values as parameters into the launch file and then read these parameters from your program or script before using them.</p>
 <p>Modify the code so that to allow the user to define these parameters from the launch file.</p>
 <div class="admonition hint">
@@ -685,7 +685,6 @@ For this, you need to add two keywords into the vocabulary.</p>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

@@ -164,7 +164,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/create-map-kenict.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/create-map-kenict.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -200,7 +200,7 @@ First, you need to check which 3D sensor you Turtlebot is having, and make appro
 <h3>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h3>
 <p>First, you need to start the robot drivers and then start the ROS node responsible for building the map.
 It has to be noted that to build a map ROS uses the <code class="docutils literal"><span class="pre">gmapping</span></code> software package, that is fully integrated with ROS.
-The gmapping package contains a ROS wrapper for OpenSlam&#8217;s Gmapping.
+The gmapping package contains a ROS wrapper for OpenSlam’s Gmapping.
 The  package provides laser-based SLAM (Simultaneous Localization and Mapping), as a ROS node called <code class="docutils literal"><span class="pre">slam_gmapping</span></code>. Using <code class="docutils literal"><span class="pre">slam_gmapping</span></code>, you can create a 2-D occupancy grid map (like a building floorplan) from laser and pose data collected by a mobile robot.</p>
 </div>
 <div class="section" id="slam-background">
@@ -257,7 +257,7 @@ It is not recommended to start <code class="docutils literal"><span class="pre">
 <div class="section" id="analyzing-the-generated-map">
 <h2>Analyzing the Generated Map<a class="headerlink" href="#analyzing-the-generated-map" title="Permalink to this headline">¶</a></h2>
 <p>The previous command will generate <strong>two files</strong> with the name you specified in the <code class="docutils literal"><span class="pre">map_server</span></code> commnd.
-So in this case, the two files&#8217; names are <code class="docutils literal"><span class="pre">my_map.pgm</span></code> and <code class="docutils literal"><span class="pre">my_map.yaml</span></code>.
+So in this case, the two files’ names are <code class="docutils literal"><span class="pre">my_map.pgm</span></code> and <code class="docutils literal"><span class="pre">my_map.yaml</span></code>.
 If you open the <code class="docutils literal"><span class="pre">.yaml</span></code> file you will see something like this:</p>
 <div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/my_map.pgm</span>
 <span class="l l-Scalar l-Scalar-Plain">resolution</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.050000</span>
@@ -345,7 +345,7 @@ Considering the fact that the odometry of the Turtlebot is not reliable and is p
 <p>Here are some useful reference to learn more about building maps using ROS.</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference external" href="http://wiki.ros.org/gmapping">gmapping package</a>: This package contains a ROS wrapper for OpenSlam&#8217;s Gmapping. The gmapping package provides laser-based SLAM (Simultaneous Localization and Mapping), as a ROS node called slam_gmapping. Using slam_gmapping, you can create a 2-D occupancy grid map (like a building floorplan) from laser and pose data collected by a mobile robot.</li>
+<li><a class="reference external" href="http://wiki.ros.org/gmapping">gmapping package</a>: This package contains a ROS wrapper for OpenSlam’s Gmapping. The gmapping package provides laser-based SLAM (Simultaneous Localization and Mapping), as a ROS node called slam_gmapping. Using slam_gmapping, you can create a 2-D occupancy grid map (like a building floorplan) from laser and pose data collected by a mobile robot.</li>
 <li><a class="reference external" href="http://wiki.ros.org/slam_gmapping">slam_gmapping package</a>: slam_gmapping contains a wrapper around gmapping which provides SLAM capabilities.</li>
 <li><a class="reference external" href="https://www.openslam.org/gmapping.html">OpenSLAM Gmapping</a>: GMapping is a highly efficient Rao-Blackwellized particle filer to learn grid maps from laser range data.</li>
 <li><a class="reference external" href="http://wiki.ros.org/map_server">map_server</a>: map_server provides the map_server ROS Node, which offers map data as a ROS Service. It also provides the map_saver command-line utility, which allows dynamically generated maps to be saved to file.</li>
@@ -423,7 +423,6 @@ Considering the fact that the odometry of the Turtlebot is not reliable and is p
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

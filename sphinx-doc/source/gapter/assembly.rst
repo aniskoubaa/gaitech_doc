@@ -23,5 +23,5 @@ The following video illustrates unboxing Gapter package and presents the differe
 When Gapter comes assembled, you will need to attach propellers and other devices to Gapter before starting your first flight.
 This will need less than 5 minutes as shown in the video. 
 
-.. youtube:: Ivg_4hBQ-aw
+.. youtube:: 7qL0Q3Ggq6k
 

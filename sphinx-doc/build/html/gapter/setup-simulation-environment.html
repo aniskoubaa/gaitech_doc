@@ -159,7 +159,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/gapter/setup-simulation-environment.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/gapter/setup-simulation-environment.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -203,7 +203,7 @@
 <div class="highlight-bash"><div class="highlight"><pre><span></span>sudo pip2 install pymavlink catkin_pkg --upgrade
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo pip install <span class="nv">MAVProxy</span><span class="o">==</span>1.5.2
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo pip install <span class="nv">MAVProxy</span><span class="o">==</span><span class="m">1</span>.5.2
 </pre></div>
 </div>
 </div>
@@ -297,7 +297,7 @@
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> devel/setup.bash
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_make -j 4
+<div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_make -j <span class="m">4</span>
 </pre></div>
 </div>
 </div>
@@ -324,7 +324,7 @@
 <div class="highlight-bash"><div class="highlight"><pre><span></span>param load /your home directory/gapter_sim/gapter_ardupilot/Tools/Frame_params/gapter.param
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>param <span class="nb">set</span> ARMING_CHECK 0
+<div class="highlight-bash"><div class="highlight"><pre><span></span>param <span class="nb">set</span> ARMING_CHECK <span class="m">0</span>
 </pre></div>
 </div>
 <p><strong>Takeoff gapter</strong></p>
@@ -335,7 +335,7 @@
 <div class="highlight-bash"><div class="highlight"><pre><span></span>arm throttle
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>takeoff 5
+<div class="highlight-bash"><div class="highlight"><pre><span></span>takeoff <span class="m">5</span>
 </pre></div>
 </div>
 <p>You can see in gazebo that gapter flying at 5 meter height.</p>
@@ -392,7 +392,6 @@
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

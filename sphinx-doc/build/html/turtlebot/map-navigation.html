@@ -166,7 +166,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/map-navigation.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/map-navigation.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -204,7 +204,7 @@ In this tutorial, we are going to consider the following University floor map to
 <p>Later on, as an exercise, you will use your own map to develop a navigation mission for your Turtlebot.</p>
 <p>In the map of Figure 1, we identify four locations of interests namely, the Cafe area, Office1, Office2 and Office3. Other locations can also be defined, but we just used these representative four locations for illustration purposes.
 If we want to develop a ROS program that allow the robot to navigate to those locations, we first need to know what are the <code class="docutils literal"><span class="pre">(x,y)</span></code> coordinate of these locations onto the map. This is what will be explained later.
-Then, we use these coordinates to define a navigation mission that we submit to the robot&#8217;s navigation stack to execute it.
+Then, we use these coordinates to define a navigation mission that we submit to the robot’s navigation stack to execute it.
 Remember that any robot on ROS runs the <code class="docutils literal"><span class="pre">move_base</span></code> navigation stack which allow the robot to find a path towards a goal and execute the path following while avoiding obstacles. Refer to <a class="reference internal" href="navigation-stack.html#navigation-stack"><span class="std std-ref">Navigation Stack Review</span></a> for a refresher.</p>
 </div>
 <div class="section" id="tutorial-files">
@@ -564,7 +564,7 @@ Note that this request is <strong>sychrounous</strong>, which means it will bloc
     <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">choice</span>
 
-  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
     <span class="n">sc</span> <span class="o">=</span> <span class="n">SoundClient</span><span class="p">()</span>
     <span class="n">path_to_sounds</span> <span class="o">=</span> <span class="s2">&quot;/home/ros/catkin_ws/src/gaitech_edu/src/sounds/&quot;</span>
@@ -685,7 +685,7 @@ Note that this request is <strong>sychrounous</strong>, which means it will bloc
               <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;The robot failed to reach the destination&quot;</span><span class="p">)</span>
               <span class="k">return</span> <span class="bp">False</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
 
         <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;You have reached the destination&quot;</span><span class="p">)</span>
@@ -837,9 +837,9 @@ Then you set the initial position of the robot of your choice. For this, you can
 <p>Now, you should be able to run the simulator with your own map.</p>
 <div class="section" id="running-on-a-real-robot">
 <h3>Running on a real robot<a class="headerlink" href="#running-on-a-real-robot" title="Permalink to this headline">¶</a></h3>
-<p>To deploy on a real robot, you simply need to build a map as mentioned in the <a class="reference internal" href="create-map-kenict.html#create-map"><span class="std std-ref">Building a Map with a Turtlebot</span></a> tutorial and after saving the map on your Turtlebot&#8217;s PC bring-up your turtlebot robot, and then follow the previous steps to save some locations of interest. After that execute the following commands:</p>
+<p>To deploy on a real robot, you simply need to build a map as mentioned in the <a class="reference internal" href="create-map-kenict.html#create-map"><span class="std std-ref">Building a Map with a Turtlebot</span></a> tutorial and after saving the map on your Turtlebot’s PC bring-up your turtlebot robot, and then follow the previous steps to save some locations of interest. After that execute the following commands:</p>
 <div class="section" id="on-your-turtlebot-s-pc">
-<h4>On your Turtlebot&#8217;s PC<a class="headerlink" href="#on-your-turtlebot-s-pc" title="Permalink to this headline">¶</a></h4>
+<h4>On your Turtlebot’s PC<a class="headerlink" href="#on-your-turtlebot-s-pc" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>roscore
 roslaunch turtlebot_bringup minimal.launch
 roslaunch turtlebot_navigation amcl_demo.launch map_file:<span class="o">=</span>/your_path/your_map.yaml
@@ -977,7 +977,6 @@ rosrun sound_play soundplay_node.py
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

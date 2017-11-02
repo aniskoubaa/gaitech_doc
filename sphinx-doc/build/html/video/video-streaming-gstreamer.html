@@ -148,7 +148,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/video/video-streaming-gstreamer.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/video/video-streaming-gstreamer.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -191,7 +191,7 @@
 <img alt="../_images/raspberrypi2.jpg" class="align-center" src="../_images/raspberrypi2.jpg" />
 <div class="section" id="configuring-your-raspberrypi">
 <h2>Configuring your RaspberryPi<a class="headerlink" href="#configuring-your-raspberrypi" title="Permalink to this headline">¶</a></h2>
-<p>Firstly, on your Pi&#8217;s terminal, Update and Upgrade the environment so it can be up to date. This helps in reducing future problems. Don&#8217;t forget to ENABLE your Raspberry Pi Camera using &#8216;raspi-config&#8217;.</p>
+<p>Firstly, on your Pi’s terminal, Update and Upgrade the environment so it can be up to date. This helps in reducing future problems. Don’t forget to ENABLE your Raspberry Pi Camera using ‘raspi-config’.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get update
 $ sudo apt-get upgrade
 </pre></div>
@@ -232,7 +232,7 @@ $ sudo apt-get install gstreamer1.0*
 <div class="section" id="initiating-the-video-stream">
 <h2>Initiating the Video Stream<a class="headerlink" href="#initiating-the-video-stream" title="Permalink to this headline">¶</a></h2>
 <p>After the installation, to begin the video stream, we can type in the Pi:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ raspivid -fps <span class="m">26</span> -h <span class="m">450</span> -w <span class="m">600</span> -vf -n -t <span class="m">0</span> -b <span class="m">200000</span> -o - <span class="p">|</span> gst-launch-1.0 -v fdsrc ! h264parse ! rtph264pay config-interval<span class="o">=</span><span class="m">1</span> <span class="nv">pt</span><span class="o">=</span>96! gdppay ! tcpserversink <span class="nv">host</span><span class="o">=</span>x.x.x.x <span class="nv">port</span><span class="o">=</span>5000
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ raspivid -fps <span class="m">26</span> -h <span class="m">450</span> -w <span class="m">600</span> -vf -n -t <span class="m">0</span> -b <span class="m">200000</span> -o - <span class="p">|</span> gst-launch-1.0 -v fdsrc ! h264parse ! rtph264pay config-interval<span class="o">=</span><span class="m">1</span> <span class="nv">pt</span><span class="o">=</span><span class="m">96</span>! gdppay ! tcpserversink <span class="nv">host</span><span class="o">=</span>x.x.x.x <span class="nv">port</span><span class="o">=</span><span class="m">5000</span>
 </pre></div>
 </div>
 <dl class="docutils">
@@ -322,7 +322,6 @@ This video tutorial shows the overview of this written tutorial.</p>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

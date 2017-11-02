@@ -103,7 +103,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Streaming with mjpgStreamer</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#configuring-your-raspberrypi">Configuring your RaspberryPi</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#getting-mjpgstreamer">Getting mjpgStreamer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#getting-mjpgstreamer-s-dependencies">Getting mjpgStreamer&#8217;s Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-mjpgstreamer-s-dependencies">Getting mjpgStreamer’s Dependencies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#video-demonstration">Video Demonstration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#end-2">END 2</a></li>
 </ul>
@@ -148,7 +148,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/video/video-streaming-mjpgstreamer.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/video/video-streaming-mjpgstreamer.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -188,7 +188,7 @@
 <img alt="../_images/raspberrypi2.jpg" class="align-center" src="../_images/raspberrypi2.jpg" />
 <div class="section" id="configuring-your-raspberrypi">
 <h2>Configuring your RaspberryPi<a class="headerlink" href="#configuring-your-raspberrypi" title="Permalink to this headline">¶</a></h2>
-<p>Firstly, on your Pi&#8217;s terminal, Update and Upgrade the environment so it can be up to date. This helps in reducing future problems. Don&#8217;t forget to ENABLE your Raspberry Pi Camera using &#8216;raspi-config&#8217;.</p>
+<p>Firstly, on your Pi’s terminal, Update and Upgrade the environment so it can be up to date. This helps in reducing future problems. Don’t forget to ENABLE your Raspberry Pi Camera using ‘raspi-config’.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get update
 $ sudo apt-get upgrade
 </pre></div>
@@ -232,8 +232,8 @@ which will automatically start the download.</p>
 </div>
 </div>
 <div class="section" id="getting-mjpgstreamer-s-dependencies">
-<h2>Getting mjpgStreamer&#8217;s Dependencies<a class="headerlink" href="#getting-mjpgstreamer-s-dependencies" title="Permalink to this headline">¶</a></h2>
-<p>Now we need mjpgStreamer&#8217;s dependancies to make it fully functional.</p>
+<h2>Getting mjpgStreamer’s Dependencies<a class="headerlink" href="#getting-mjpgstreamer-s-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>Now we need mjpgStreamer’s dependancies to make it fully functional.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get install libjpeg8-dev
 $ sudo apt-get install imagemagick
 </pre></div>
@@ -256,7 +256,7 @@ So in <code class="docutils literal"><span class="pre">~/mjpg-streamer/mjpg-stre
 </pre></div>
 </div>
 <p>Open a new terminal window and type</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ raspistill -w <span class="m">640</span> -h <span class="m">480</span> -q <span class="m">5</span> -o /tmp/stream/pic.jpg -tl <span class="m">1</span> -t <span class="m">9999999</span> -th 0:0:0
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ raspistill -w <span class="m">640</span> -h <span class="m">480</span> -q <span class="m">5</span> -o /tmp/stream/pic.jpg -tl <span class="m">1</span> -t <span class="m">9999999</span> -th <span class="m">0</span>:0:0
 </pre></div>
 </div>
 <ul class="simple">
@@ -264,7 +264,7 @@ So in <code class="docutils literal"><span class="pre">~/mjpg-streamer/mjpg-stre
 <li><code class="docutils literal"><span class="pre">-q</span></code> is quality</li>
 <li><code class="docutils literal"><span class="pre">-o</span></code> is the Specified output filename</li>
 <li><code class="docutils literal"><span class="pre">-tl</span></code> is the time interval between each snap shot (here is 1 millisecond)</li>
-<li><code class="docutils literal"><span class="pre">-t</span></code> is the camera&#8217;s ON time in seconds, 9999999 is 115 Days</li>
+<li><code class="docutils literal"><span class="pre">-t</span></code> is the camera’s ON time in seconds, 9999999 is 115 Days</li>
 <li><code class="docutils literal"><span class="pre">-th</span></code> Set thumbnail parameters (x:y:quality)</li>
 </ul>
 <p>Now, on your client computer, open your preferred browser and type in your <code class="docutils literal"><span class="pre">IP</span></code> and <code class="docutils literal"><span class="pre">port#</span></code> which will be 8080 by default.</p>
@@ -344,7 +344,6 @@ This video tutorial shows the overview of this written tutorial.</p>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

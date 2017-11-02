@@ -161,7 +161,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/turtlebot-arm-arduino.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/turtlebot-arm-arduino.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -229,8 +229,8 @@ A complete package of turtlebot arm can be found at <a class="reference external
 <p>In this section, you will learn what are the steps to sync a Turtlebot Arm PhantomX Pincher with a RFID using arduino UNO board with a <code class="docutils literal"><span class="pre">C++</span></code> (listener) file for the turtlebot arm robot and an <code class="docutils literal"><span class="pre">arduino</span></code> file (publisher) for the UNO board with ROS. First step, you need to define any tag in the arduino code. When the antenna reads this tag you will hear a sound/tone if the tag was not equal to the predefined one you will see a red light from the led on the RFID. Then the program publishes a topic of type char array containing the tag value/number. Second step, the <code class="docutils literal"><span class="pre">C++</span></code> code will receive this message/topic and compare it to a defined tag. If the two tags were the same the gripper will open and if not it will close.</p>
 <div class="section" id="main-steps">
 <h3>Main Steps<a class="headerlink" href="#main-steps" title="Permalink to this headline">¶</a></h3>
-<p>Let&#8217;s divide this tutorial into two parts:</p>
-<p>1-The Publisher: an <code class="docutils literal"><span class="pre">arduino</span></code> program with ros library that will allow us to publish a certain topic carrying a value that you can define according to the type of message/data you want (Boolean, String, char...etc). This program reads the data from the antenna and send it in a message/topic. Every topic can have a single value of a single type as mentioned before.</p>
+<p>Let’s divide this tutorial into two parts:</p>
+<p>1-The Publisher: an <code class="docutils literal"><span class="pre">arduino</span></code> program with ros library that will allow us to publish a certain topic carrying a value that you can define according to the type of message/data you want (Boolean, String, char…etc). This program reads the data from the antenna and send it in a message/topic. Every topic can have a single value of a single type as mentioned before.</p>
 <p>2-The Listener: a <code class="docutils literal"><span class="pre">C++</span></code> program that can receive the topic that was published from the arduino program and give the command to the Gripper either to open or to close so it controls the turtlebot arm robot.</p>
 </div>
 <div class="section" id="the-arduino-program">
@@ -241,7 +241,7 @@ A complete package of turtlebot arm can be found at <a class="reference external
 
     <span class="c1">//Create the node handler and the message type</span>
     <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
-    <span class="n">std_msgs</span><span class="o">::</span><span class="kt">String</span> <span class="n">str_msg</span><span class="p">;</span>
+    <span class="n">std_msgs</span><span class="o">::</span><span class="kr">String</span> <span class="n">str_msg</span><span class="p">;</span>
 
     <span class="c1">//Create a publisher for the message</span>
     <span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span> <span class="n">pub_tag</span><span class="p">(</span><span class="s">&quot;/tagRead&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">str_msg</span><span class="p">);</span>
@@ -249,15 +249,15 @@ A complete package of turtlebot arm can be found at <a class="reference external
     <span class="c1">//initialize an RFIDuino object for hardware version 1.1</span>
     <span class="n">RFIDuino</span> <span class="nf">myRFIDuino</span><span class="p">(</span><span class="mf">1.1</span><span class="p">);</span>    <span class="c1">//you can use RFIDuino myRFIDuino(1.2) for the other version</span>
 
-    <span class="kt">char</span> <span class="n">tagWord</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
-    <span class="kt">String</span> <span class="n">tagStr</span><span class="p">;</span>
+    <span class="kr">char</span> <span class="n">tagWord</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+    <span class="kr">String</span> <span class="n">tagStr</span><span class="p">;</span>
 
     <span class="c1">//enter your ID numbers below as a &#39;key&#39; tag</span>
-    <span class="nf">byte</span> <span class="n">keyTag</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span><span class="p">{</span><span class="mi">37</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">161</span><span class="p">,</span><span class="mi">253</span><span class="p">};</span>  <span class="c1">//an array that will hold all of our &#39;key tags&#39;. Key tags are treated differently from other tags read</span>
-    <span class="nf">byte</span> <span class="n">tagData</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>                   <span class="c1">//Holds the ID numbers from the tag</span>
-    <span class="kt">boolean</span> <span class="n">verifyKey</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="kr">byte</span> <span class="n">keyTag</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span><span class="p">{</span><span class="mi">37</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">161</span><span class="p">,</span><span class="mi">253</span><span class="p">};</span>  <span class="c1">//an array that will hold all of our &#39;key tags&#39;. Key tags are treated differently from other tags read</span>
+    <span class="kr">byte</span> <span class="n">tagData</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>                   <span class="c1">//Holds the ID numbers from the tag</span>
+    <span class="kr">boolean</span> <span class="n">verifyKey</span> <span class="o">=</span> <span class="kr">false</span><span class="p">;</span>
 
-    <span class="kt">void</span> <span class="nx">setup</span><span class="p">()</span>
+    <span class="kr">void</span> <span class="nb">setup</span><span class="p">()</span>
     <span class="p">{</span>
 
     <span class="n">nh</span><span class="p">.</span><span class="n">initNode</span><span class="p">();</span>
@@ -265,38 +265,38 @@ A complete package of turtlebot arm can be found at <a class="reference external
 
     <span class="p">}</span>
 
-    <span class="kt">void</span> <span class="nx">loop</span><span class="p">()</span>
+    <span class="kr">void</span> <span class="nb">loop</span><span class="p">()</span>
     <span class="p">{</span>
 
-    <span class="k">if</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">scanForTag</span><span class="p">(</span><span class="n">tagData</span><span class="p">)</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">scanForTag</span><span class="p">(</span><span class="n">tagData</span><span class="p">)</span> <span class="o">==</span> <span class="kr">true</span><span class="p">)</span>
     <span class="p">{</span>
 
     <span class="n">verifyKey</span> <span class="o">=</span> <span class="n">myRFIDuino</span><span class="p">.</span><span class="n">compareTagData</span><span class="p">(</span><span class="n">tagData</span><span class="p">,</span> <span class="n">keyTag</span><span class="p">);</span><span class="c1">//run the comparetagData to check the tag just read against the &#39;key&#39; tag we defined.</span>
 
-    <span class="k">if</span><span class="p">(</span><span class="n">verifyKey</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span><span class="c1">//if a &#39;true&#39; is returned by comparetagData, the current read is a key tag</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">verifyKey</span> <span class="o">==</span> <span class="kr">true</span><span class="p">)</span><span class="c1">//if a &#39;true&#39; is returned by comparetagData, the current read is a key tag</span>
     <span class="p">{</span>
 
-<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led2</span><span class="p">,</span><span class="kc">HIGH</span><span class="p">);</span>         <span class="c1">//turn green LED on</span>
+<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led2</span><span class="p">,</span><span class="kr">HIGH</span><span class="p">);</span>         <span class="c1">//turn green LED on</span>
 <span class="n">myRFIDuino</span><span class="p">.</span><span class="n">successSound</span><span class="p">();</span>                  <span class="c1">//Play a &#39;success&#39; sound from the buzzer, 3 notes acsending</span>
 <span class="nf">delay</span><span class="p">(</span><span class="mi">250</span><span class="p">);</span>                                 <span class="c1">//wait for a period before turning off the LED</span>
-<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led2</span><span class="p">,</span><span class="kc">LOW</span><span class="p">);</span>       <span class="c1">//turn the green LED off</span>
+<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led2</span><span class="p">,</span><span class="kr">LOW</span><span class="p">);</span>       <span class="c1">//turn the green LED off</span>
 
     <span class="p">}</span>
     <span class="k">else</span><span class="c1">//otherwise the tag is not a key tag</span>
     <span class="p">{</span>
 
-<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led1</span><span class="p">,</span><span class="kc">HIGH</span><span class="p">);</span>         <span class="c1">//turn red LED on</span>
+<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led1</span><span class="p">,</span><span class="kr">HIGH</span><span class="p">);</span>         <span class="c1">//turn red LED on</span>
 <span class="nf">delay</span><span class="p">(</span><span class="mi">250</span><span class="p">);</span>                                 <span class="c1">//wait for a period before turning off the LED</span>
-<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led1</span><span class="p">,</span><span class="kc">LOW</span><span class="p">);</span>          <span class="c1">//turn the red LED off</span>
+<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led1</span><span class="p">,</span><span class="kr">LOW</span><span class="p">);</span>          <span class="c1">//turn the red LED off</span>
 
     <span class="p">}</span>
 
     <span class="c1">//convert the byte array into String</span>
-<span class="n">tagStr</span> <span class="o">=</span> <span class="kt">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kt">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kt">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kt">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
-<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kt">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
+<span class="n">tagStr</span> <span class="o">=</span> <span class="kr">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kr">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kr">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kr">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kr">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
 
     <span class="c1">//convert the String into char array</span>
 <span class="n">tagStr</span><span class="p">.</span><span class="n">toCharArray</span><span class="p">(</span><span class="n">tagWord</span><span class="p">,</span><span class="mi">11</span><span class="p">);</span>
@@ -364,7 +364,7 @@ A complete package of turtlebot arm can be found at <a class="reference external
 <p>where the <code class="docutils literal"><span class="pre">ttyACM0</span></code> is the port for the Arduino board.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last">If it fails uploading in step 5 or fails running in step 6 repeat step 2 but for the arduino board&#8217;s port.</p>
+<p class="last">If it fails uploading in step 5 or fails running in step 6 repeat step 2 but for the arduino board’s port.</p>
 </div>
 <p>Try putting the tag you define in front of the RFID.</p>
 <div class="admonition note">
@@ -425,7 +425,6 @@ A complete package of turtlebot arm can be found at <a class="reference external
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

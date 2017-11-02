@@ -161,7 +161,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/gapter/gapter-ros-tutorials.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/gapter/gapter-ros-tutorials.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -222,27 +222,27 @@ user $: <span class="nb">cd</span> ~/catkin_ws
 <ul class="simple">
 <li>Open bashrc in your desktop</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>1. user $: sudo gedit ~/.bashrc
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="m">1</span>. user $: sudo gedit ~/.bashrc
 </pre></div>
 </div>
 <ul class="simple">
 <li>Add these lines at the end</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>1. <span class="nb">export</span> <span class="nv">ROS_HOSTNAME</span><span class="o">=</span>192.168.x.xxx
-2. <span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://192.168.1.1:11311
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="m">1</span>. <span class="nb">export</span> <span class="nv">ROS_HOSTNAME</span><span class="o">=</span><span class="m">192</span>.168.x.xxx
+<span class="m">2</span>. <span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://192.168.1.1:11311
 </pre></div>
 </div>
-<p>where <code class="docutils literal"><span class="pre">192.168.x.xxx</span></code> is your desktop&#8217;s ip address and <code class="docutils literal"><span class="pre">192.168.1.1</span></code> is gapter&#8217;s ip address.</p>
+<p>where <code class="docutils literal"><span class="pre">192.168.x.xxx</span></code> is your desktop’s ip address and <code class="docutils literal"><span class="pre">192.168.1.1</span></code> is gapter’s ip address.</p>
 <p>For more comprehensive tutorial on Network Configuration on ROS, refer to <a class="reference internal" href="../turtlebot/network-config-doc.html#network-config-doc"><span class="std std-ref">Network Configuration</span></a></p>
 </div>
 <div class="section" id="controling-gapter-using-mavros">
 <h3>Controling Gapter using MAVROS<a class="headerlink" href="#controling-gapter-using-mavros" title="Permalink to this headline">¶</a></h3>
 <p>In this tutorial, we will control Gapter using MAVROS.
-For this you don&#8217;t have to install MAVROS on your desktop, but rather on Gapter, because we control Gapter via ssh with Gapter&#8217;s onboard computer (Odroid XU4).</p>
+For this you don’t have to install MAVROS on your desktop, but rather on Gapter, because we control Gapter via ssh with Gapter’s onboard computer (Odroid XU4).</p>
 <p>Follow these steps:</p>
 <ul class="simple">
 <li>First, connect to the WiFi <code class="docutils literal"><span class="pre">gapternet</span></code> from your desktop which will be shown in Wi-Fi list. If prompt for password type <code class="docutils literal"><span class="pre">gapteredu</span></code></li>
-<li>Open the terminal and connect to Gapter&#8217;s computer by typing following</li>
+<li>Open the terminal and connect to Gapter’s computer by typing following</li>
 </ul>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>user $: ssh odroid@192.168.1.1
 </pre></div>
@@ -255,10 +255,10 @@ For this you don&#8217;t have to install MAVROS on your desktop, but rather on G
 <ul class="simple">
 <li>Now in the same terminal type following to start mavproxy ground station:</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>odroid $: mavproxy.py --master<span class="o">=</span>/dev/ttyUSB0 --baudrate <span class="m">57600</span> --out 192.168.x.xx:5000  --aircraft MyCopter
+<div class="highlight-bash"><div class="highlight"><pre><span></span>odroid $: mavproxy.py --master<span class="o">=</span>/dev/ttyUSB0 --baudrate <span class="m">57600</span> --out <span class="m">192</span>.168.x.xx:5000  --aircraft MyCopter
 </pre></div>
 </div>
-<p>You must enter your desktop&#8217;s IP address in place of <code class="docutils literal"><span class="pre">192.168.x.xx</span></code></p>
+<p>You must enter your desktop’s IP address in place of <code class="docutils literal"><span class="pre">192.168.x.xx</span></code></p>
 <ul class="simple">
 <li>You can notice heartbeat form Gapter which shows mavlink has been connected</li>
 </ul>
@@ -296,10 +296,10 @@ For this you don&#8217;t have to install MAVROS on your desktop, but rather on G
 </ul>
 </li>
 </ul>
-<p>You can see Gapter&#8217;s propellers are rotating</p>
+<p>You can see Gapter’s propellers are rotating</p>
 <blockquote>
 <div><ul>
-<li><p class="first">Change Gapter&#8217;s mode to GUIDED mode</p>
+<li><p class="first">Change Gapter’s mode to GUIDED mode</p>
 <blockquote>
 <div><ul class="simple">
 <li><code class="docutils literal"><span class="pre">odroid</span> <span class="pre">$:</span> <span class="pre">rosrun</span> <span class="pre">mavros</span> <span class="pre">mavsys</span> <span class="pre">mode</span> <span class="pre">-c</span> <span class="pre">GUIDED</span></code></li>
@@ -376,7 +376,6 @@ For this you don&#8217;t have to install MAVROS on your desktop, but rather on G
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

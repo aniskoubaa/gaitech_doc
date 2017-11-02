@@ -163,7 +163,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/gapter/mavros-basics.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/gapter/mavros-basics.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -198,7 +198,7 @@
 <div class="section" id="code-explanation">
 <h2>Code Explanation<a class="headerlink" href="#code-explanation" title="Permalink to this headline">¶</a></h2>
 <p>The source code could be found in <a class="reference external" href="https://github.com/">github_link</a>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
    <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;gapter_pilot_node&#39;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
    <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s2">&quot;/mavros/global_position/raw/fix&quot;</span><span class="p">,</span> <span class="n">NavSatFix</span><span class="p">,</span> <span class="n">globalPositionCallback</span><span class="p">)</span>
    <span class="n">velocity_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;/mavros/setpoint_velocity/cmd_vel&#39;</span><span class="p">,</span> <span class="n">TwistStamped</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -345,7 +345,6 @@
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
