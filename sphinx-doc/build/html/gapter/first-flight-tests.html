@@ -99,6 +99,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Gapter Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="overview-and-features.html">Gapter Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="assembly.html">Gapter Assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gapter-calibration.html">Gapter Calibration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal-hardware-connections.html">Internal Hardware Connection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-configuration.html">Network Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="preflight-configurations.html">Pre-Flight Configurations</a></li>
@@ -178,11 +179,11 @@
 <h3>Things to know<a class="headerlink" href="#things-to-know" title="Permalink to this headline">¶</a></h3>
 <p>Before controlling Gapter in any mode you must know the flight modes and its respective positions in RC. We have configured 6 modes to control Gapter. Two modes are dedicated for manual mode and land mode. Rest of them is used for automatic positioning and guiding Gapter. Flight modes are as follows</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>POSHOLD Mode     position <span class="m">1</span>
-Alt_Hold Mode    position <span class="m">2</span>
+Land Mode        position <span class="m">2</span>
 GUIDED Mode      position <span class="m">3</span>
 STABILIZE Mode   position <span class="m">4</span>
 LOITER Mode      position <span class="m">5</span>
-Land Mode        position <span class="m">6</span>
+Alt_Hold Mode    position <span class="m">6</span>
 </pre></div>
 </div>
 </div>
@@ -194,7 +195,7 @@ Land Mode        position <span class="m">6</span>
 <p class="caption"><span class="caption-text">position1: a(down) &amp; b(up) <strong>POSHOLD Mode</strong></span></p>
 </div>
 <div class="figure align-center" id="id2">
-<a class="reference internal image-reference" href="../_images/First_Flight_Tests_RC_fig_2.jpg"><img alt="../_images/First_Flight_Tests_RC_fig_2.jpg" src="../_images/First_Flight_Tests_RC_fig_2.jpg" style="width: 200pt;" /></a>
+<a class="reference internal image-reference" href="../_images/First_Flight_Tests_RC_fig_6.jpg"><img alt="../_images/First_Flight_Tests_RC_fig_6.jpg" src="../_images/First_Flight_Tests_RC_fig_6.jpg" style="width: 200pt;" /></a>
 <p class="caption"><span class="caption-text">position2: a(up) &amp; b(up) <strong>Alt_Hold Mode</strong></span></p>
 </div>
 <div class="figure align-center" id="id3">
@@ -210,7 +211,7 @@ Land Mode        position <span class="m">6</span>
 <p class="caption"><span class="caption-text">position5: a(down)&amp; b(down) <strong>LOITER Mode</strong></span></p>
 </div>
 <div class="figure align-center" id="id6">
-<a class="reference internal image-reference" href="../_images/First_Flight_Tests_RC_fig_6.jpg"><img alt="../_images/First_Flight_Tests_RC_fig_6.jpg" src="../_images/First_Flight_Tests_RC_fig_6.jpg" style="width: 200pt;" /></a>
+<a class="reference internal image-reference" href="../_images/First_Flight_Tests_RC_fig_2.jpg"><img alt="../_images/First_Flight_Tests_RC_fig_2.jpg" src="../_images/First_Flight_Tests_RC_fig_2.jpg" style="width: 200pt;" /></a>
 <p class="caption"><span class="caption-text">position6: a(up) &amp; b(down) <strong>Land Mode</strong></span></p>
 </div>
 </div>
@@ -235,7 +236,7 @@ Land Mode        position <span class="m">6</span>
 <div class="legend">
 RX=Gapter’s battery level</div>
 </div>
-<p>When you set RC switches , you might have noticed switches “a” &amp; “b” are in up position which Gapter is in Alt_Hold mode.</p>
+<p>When you set RC switches , you might have noticed switches “a” &amp; “b” are in up position which Gapter is in Land mode. Now change to loiter</p>
 <p>Now to initialize Gapter, hold J1 stick down right corner. You can notice propellers must be running.</p>
 <p>Slowly rise throttle upwards. While doing so Gapter will be flying now. Depending on rise of throttle, Gapter’s altitude will be increasing.</p>
 <p>Hold at one position and control J2 stick up, down, left and right for Gapter’s forward, backward, left and right movements respectively</p>
@@ -243,7 +244,7 @@ RX=Gapter’s battery level</div>
 Now to land Gapter Keep switches in position 6 (land mode). Gapter will land automatically to its current position.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">While changing modes from Alt_hold to stabilize be careful as throttle rises suddenly and Gapter will fly at a huge altitude.While operating throttle (J1 stick) be very careful as single point increment tends to change altitude at high rate.</p>
+<p class="last">While working in stabilize mode be careful as throttle rises suddenly and Gapter will fly at a huge altitude.While operating throttle (J1 stick) be very careful as single point increment tends to change altitude at high rate.</p>
 </div>
 </div>
 </div>

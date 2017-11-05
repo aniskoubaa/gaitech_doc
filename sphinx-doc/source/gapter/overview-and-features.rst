@@ -111,10 +111,9 @@ ________
 * **Weight:**  1.7 Kg (with 4S battery)
 * **Payload:** 1.5 Kg
 * **Type:** X-Quad
-* **Propellers:** 9" or 10" props
+* **Propellers:** 9.45 props
 * **Color:** Black
-* **3D sensor:** Intel RealSense R200
-* **Battery type:** Lipo Battery (3S, 4S and 6S)
+* **Battery type:** Lipo Battery (4S)
 
 Autopilot Platform
 __________________

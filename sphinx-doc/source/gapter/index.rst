@@ -16,7 +16,6 @@ Gapter Drone Documentation
    Gapter Overview <overview-and-features.rst>
    Gapter Assembly <assembly.rst>
    Gapter Calibration <gapter-calibration.rst>
-   ESC Calibration <esc-calibration.rst>
    Internal Hardware Connection <internal-hardware-connections.rst>
    Network Configuration <network-configuration.rst>
    Pre-Flight Configurations <preflight-configurations.rst>

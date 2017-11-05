@@ -22,11 +22,11 @@ Before controlling Gapter in any mode you must know the flight modes and its res
 .. code-block:: bash
 
 	POSHOLD Mode     position 1
-	Alt_Hold Mode    position 2
+	Land Mode        position 2
 	GUIDED Mode      position 3
 	STABILIZE Mode   position 4
 	LOITER Mode      position 5
-	Land Mode        position 6	
+	Alt_Hold Mode    position 6	
 
 Positions in RC
 ---------------
@@ -40,11 +40,12 @@ The 6 positions of flight modes can be attained by the combination of two switch
 
     position1: a(down) & b(up) **POSHOLD Mode**
 
-.. figure:: images/First_Flight_Tests_RC_fig_2.jpg
+.. figure:: images/First_Flight_Tests_RC_fig_6.jpg
     :align: center
     :width: 200pt
 
     position2: a(up) & b(up) **Alt_Hold Mode**
+    
 
 .. figure:: images/First_Flight_Tests_RC_fig_3.jpg
     :align: center
@@ -64,11 +65,12 @@ The 6 positions of flight modes can be attained by the combination of two switch
 
     position5: a(down)& b(down) **LOITER Mode**
 
-.. figure:: images/First_Flight_Tests_RC_fig_6.jpg
+.. figure:: images/First_Flight_Tests_RC_fig_2.jpg
     :align: center
     :width: 200pt
 
     position6: a(up) & b(down) **Land Mode**
+
 
 
 Controllers
@@ -103,7 +105,7 @@ Turn on RC. Make sure throttle must be completely down and all the switches must
 
     RX=Gapter's battery level
 
-When you set RC switches , you might have noticed switches “a” & “b” are in up position which Gapter is in Alt_Hold mode.
+When you set RC switches , you might have noticed switches “a” & “b” are in up position which Gapter is in Land mode. Now change to loiter
 
 Now to initialize Gapter, hold J1 stick down right corner. You can notice propellers must be running.
 
@@ -115,4 +117,4 @@ To control yaw movement of Gapter, move J1 stick left and right at its position.
 Now to land Gapter Keep switches in position 6 (land mode). Gapter will land automatically to its current position.
 
 .. NOTE::
-    While changing modes from Alt_hold to stabilize be careful as throttle rises suddenly and Gapter will fly at a huge altitude.While operating throttle (J1 stick) be very careful as single point increment tends to change altitude at high rate.
+    While working in stabilize mode be careful as throttle rises suddenly and Gapter will fly at a huge altitude.While operating throttle (J1 stick) be very careful as single point increment tends to change altitude at high rate.
