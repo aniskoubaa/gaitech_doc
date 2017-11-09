@@ -157,7 +157,7 @@ D. Installing Gazebo
 
 .. code-block:: bash
 
-	sudo apt-get remove .*gazebo.* '.*sdformat.*' '.*ignition-math.*' 
+	sudo apt-get remove '.*gazebo.*' '.*sdformat.*' '.*ignition-math.*' 
 
 .. code-block:: bash
 

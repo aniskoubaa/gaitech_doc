@@ -95,7 +95,7 @@ Follow these steps:
 
 .. code-block:: bash 
 
-	user $: ssh odroid@192.168.1.1
+	user $: ssh gapter@192.168.1.1
 
 If prompts for password, type ``gapteredu``
 
@@ -112,19 +112,19 @@ You must enter your desktop's IP address in place of ``192.168.x.xx``
 
 * You can notice heartbeat form Gapter which shows mavlink has been connected
 
-*Type these lines in the same terminal where you can see ``MAV>`` tab on left side
+* Type these lines in the same terminal where you can see ``MAV>`` tab on left side
 
 *For outdoor operation*
 
 .. code-block:: bash 
 
-	MAV> load param /home/gapter/gapter_param/gapter_outdoor.param 
+	MAV> load param /home/gapter/gapter_param/outdoor.param 
 
 *For indoor operation*
 
 .. code-block:: bash 
 
-	MAV> load param /home/gapter/gapter_param/gapter_indoor.param
+	MAV> load param /home/gapter/gapter_param/indoor.param
 	
 * Once parameters loaded you can stop mavlink by pressing ``ctrl+c``
 
@@ -132,7 +132,7 @@ You must enter your desktop's IP address in place of ``192.168.x.xx``
 
 .. code-block:: bash 
 
-	odroid $ : roslaunch mavros apm2.launch gcs_url:=udp://@192.168.x.xxx:5000 fcu_url:=/dev/ttyUSB0:57600
+	gapter $ : roslaunch ros_gapter bringup_minimal.launch
 
 Type your desktop ip address in place of ``192.168.x.xxx``
 
@@ -143,21 +143,21 @@ Type your desktop ip address in place of ``192.168.x.xxx``
   * You should ssh to gapter before running following lines.
   * This is to arm Gapter
 
-	* ``odroid $: rosrun mavros mavsafety arm``
+	* ``gapter $: rosrun mavros mavsafety arm``
 
 You can see Gapter's propellers are rotating
 
   * Change Gapter's mode to GUIDED mode
 
-        * ``odroid $: rosrun mavros mavsys mode -c GUIDED``
+        * ``gapter $: rosrun mavros mavsys mode -c GUIDED``
 
   * For takeoff  at 3 meters height from current positione
 
-        * ``odroid $: rosrun mavros mavcm takeoffcur 0 0 3``
+        * ``gapter $: rosrun mavros mavcm takeoffcur 0 0 3``
 
   * For landing Gapter 
 
-        * ``odroid $: rosrun mavros mavsys mode -c Land``
+        * ``gapter $: rosrun mavros mavsys mode -c Land``
 
 
 

@@ -196,6 +196,10 @@ Then, you will have access to the software development frameworks of Gapter, whi
 <h2>Robot Operating System (ROS)<a class="headerlink" href="#robot-operating-system-ros" title="Permalink to this headline">¶</a></h2>
 <p>ROS is the defacto standard for developing software and applications for robots, including drones. ROS is already installed in Gapter. It can be located in this folder <code class="docutils literal"><span class="pre">/opt/ros/</span></code>.
 To know the version of ROS installed on your Gapter, you can perform the following command</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> /opt/ros/
+ls
+</pre></div>
+</div>
 <p>Then, you will see the folder name which presents the ROS version. The default ROS version is <code class="docutils literal"><span class="pre">indigo</span></code>.</p>
 <p>If you want to install another version of ROS on Gapter Brain, then make sure that you are connected to it in <strong>WiFi infrastructre mode</strong> as illustrated in the tutorial <a class="reference internal" href="network-configuration.html#network-configuration"><span class="std std-ref">GAPTER: Network Configuration and Connection</span></a> and that you are connected to the Internet.
 Then, you can install ROS by following the ROS tutorials (for Ubuntu 14.04 OS) <a class="reference external" href="http://wiki.ros.org/indigo/Installation/Ubuntu">installation instructions of ROS Indigo</a>, then you must <a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment">configure your ROS environment</a>
@@ -250,7 +254,7 @@ If you connect through Wifi connection, the process is the same. However, make s
 <div class="section" id="id2">
 <h2>MAVProxy<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal"><span class="pre">MAVProxy</span></code> is a lightweight terminal command ground station that supports the MAVLink protocol. You can get more details about * <a class="reference external" href="http://ardupilot.github.io/MAVProxy/html/index.html">MAVProxy</a>.
-<code class="docutils literal"><span class="pre">MAVProxy</span></code> comes pre-installed into Odroid XU4 computer of the Gapter Brain. It allows to connect to the Pizhawk autopilot through a serial link to get all the status of the autopilot through MAVLink message.
+<code class="docutils literal"><span class="pre">MAVProxy</span></code> comes pre-installed into Odroid XU4 computer of the Gapter Brain. It allows to connect to the Pixhawk autopilot through a serial link to get all the status of the autopilot through MAVLink message.
 In addition, MAVProxy allows to broadcast MAVLink messages through WiFi connection using either UDP or TCP. Thus, MAVLink message can be broadcasted through the Internet, which can be processed by cloud platforms such as the <code class="docutils literal"><span class="pre">Dronemap</span> <span class="pre">Planner</span></code> cloud-based drone management system.</p>
 </div>
 <div class="section" id="dronekit">

@@ -5,15 +5,15 @@
 GAPTER: Controlling Gapter from desktop using mavlink
 =====================================================
 
-Connect to wifi “gapter” from your desktop which will be shown in Wi-Fi list. If prompt for password type ``gapter@gaitech``
+Connect to wifi “gapter” from your desktop which will be shown in Wi-Fi list. If prompt for password type ``gapteredu``
 
 * Open the terminal and connect to Gapter's computer by typing following
 
 .. code-block:: bash
 
-	user $: ssh odroid@192.168.1.100
+	user $: ssh gapter@192.168.1.1
 
-If prompts for password, type ``odroid``
+If prompts for password, type ``gapteredu``
 
 * Now in the same terminal type following
 
@@ -33,7 +33,7 @@ You must enter your desktop's ip in place of  ``192.168.x.xx``
 
 .. code-block:: bash
 
-		MAV> load param /home/odroid/gapter_param/gapter_outdoor.param 
+		MAV> load param /home/gapter/gapter_param/outdoor.param 
 		MAV > mode GUIDED
 		MAV> arm throttle
 		MAV> takeoff 3
@@ -48,7 +48,7 @@ You must enter your desktop's ip in place of  ``192.168.x.xx``
 
 .. NOTE::
     To control Gapter indoor you must change parameters to indoor.
-    ``MAV> load param /home/odroid/gapter_param/gapter_indoor.param``
+    ``MAV> load param /home/gapter/gapter_param/indoor.param``
 
     Then control follow rest of lines like outdoor control.
 

@@ -204,15 +204,15 @@ In this case, to connect to Gapter, you need to look for available WiFi networks
 </pre></div>
 </div>
 <p>Note that the default ip address of gapter is <code class="docutils literal"><span class="pre">192.168.1.1</span></code>, and your laptop connects to that <code class="docutils literal"><span class="pre">gapternet</span></code>,
-it will be assigned th IP address <code class="docutils literal"><span class="pre">192.168.1.2</span></code>.
+it will be assigned an IP address such that <code class="docutils literal"><span class="pre">192.168.1.*</span></code>.
 You will be request for a password. The password is <code class="docutils literal"><span class="pre">gapteredu</span></code>.</p>
-<p>Now you are connected to the copter and you can navigate inside the ubuntu file system, run ROS programs, etc.</p>
+<p>Now you are connected to the Gapter and you can navigate inside the ubuntu file system, run ROS programs, etc.</p>
 <p>As mentioned before, this mode does not have Internet connection. So, you cannot do any operation that requires Internet.
 If you need Internet to download new packages or software inside Gapter, you need to configure the WiFi infrastructure mode as explained below.</p>
 </div>
 <div class="section" id="wifi-infrastructure-mode">
 <h2>WiFi Infrastructure Mode<a class="headerlink" href="#wifi-infrastructure-mode" title="Permalink to this headline">¶</a></h2>
-<p>To work in WiFi infrastructure mode, you first need to have a WiFi router to which the copter will connect.</p>
+<p>To work in WiFi infrastructure mode, you first need to have a WiFi router to which the Gapter will connect.</p>
 <p>The connection to the WiFi network will use <code class="docutils literal"><span class="pre">wpa_supplicant</span></code> network configuration tool.</p>
 <div class="section" id="step1-specify-the-wifi-network">
 <h3>STEP1. Specify the WiFi Network<a class="headerlink" href="#step1-specify-the-wifi-network" title="Permalink to this headline">¶</a></h3>
@@ -257,12 +257,12 @@ auto lo
 iface lo inet loopback
 
 <span class="c1">#for ethernet</span>
-auto eth0
-iface eth0 inet dhcp
+auto eth*
+iface eth* inet dhcp
 
 <span class="c1">#for wifi in hotspot mode</span>
-auto wlan0
-iface wlan0 inet static
+auto wlan*
+iface wlan* inet static
 address <span class="m">192</span>.168.1.1
 netmask <span class="m">255</span>.255.255.0
 </pre></div>
@@ -273,12 +273,12 @@ auto lo
 iface lo inet loopback
 
 <span class="c1">#for ethernet</span>
-auto eth0
-iface eth0 inet dhcp
+auto eth*
+iface eth* inet dhcp
 
 <span class="c1">#for wifi in hotspot mode</span>
-allow-hotplug wlan0
-iface wlan0 inet dhcp
+allow-hotplug wlan*
+iface wlan* inet dhcp
 wpa-conf /boot/wpa_supplicant.conf
 
 <span class="c1">#default route</span>

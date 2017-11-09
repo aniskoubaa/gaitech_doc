@@ -5,8 +5,6 @@
 GAPTER: Ball Tracking
 =======================
 
-This tutorial will provide you .. 
-
 .. NOTE::
 
    In this tutorial you will learn how to:
@@ -14,6 +12,15 @@ This tutorial will provide you ..
       * run ball tracking code with gapter 
    
    For any query, please feel free to post your questions in the `Gaitech EDU Forum <http://forum.gaitech.hk/>`_
+
+Prerequisite
+============
+
+* `Opencv 2.4 <https://gist.github.com/bigsnarfdude/7305c8d8335c7cfc91888485a33d9bd9>`_
+
+* `imutils <https://github.com/jrosebr1/imutils>`_
+
+
 
 Get ball tracking code
 ======================
@@ -66,3 +73,9 @@ You can now move the ball, and see your Gapter following it. You can use rqt_plo
 .. figure:: images/ball-tracking-rqt-plot.png
     :align: center
     :width: 400pt
+
+|
+|
+
+
+.. youtube:: f8y7W9EQw8k

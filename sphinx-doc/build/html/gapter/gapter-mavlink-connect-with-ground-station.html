@@ -185,14 +185,14 @@
             
   <div class="section" id="gapter-controlling-gapter-from-desktop-using-mavlink">
 <span id="gapter-mavlink-connect-with-ground-station"></span><h1>GAPTER: Controlling Gapter from desktop using mavlink<a class="headerlink" href="#gapter-controlling-gapter-from-desktop-using-mavlink" title="Permalink to this headline">¶</a></h1>
-<p>Connect to wifi “gapter” from your desktop which will be shown in Wi-Fi list. If prompt for password type <code class="docutils literal"><span class="pre">gapter&#64;gaitech</span></code></p>
+<p>Connect to wifi “gapter” from your desktop which will be shown in Wi-Fi list. If prompt for password type <code class="docutils literal"><span class="pre">gapteredu</span></code></p>
 <ul class="simple">
 <li>Open the terminal and connect to Gapter’s computer by typing following</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>user $: ssh odroid@192.168.1.100
+<div class="highlight-bash"><div class="highlight"><pre><span></span>user $: ssh gapter@192.168.1.1
 </pre></div>
 </div>
-<p>If prompts for password, type <code class="docutils literal"><span class="pre">odroid</span></code></p>
+<p>If prompts for password, type <code class="docutils literal"><span class="pre">gapteredu</span></code></p>
 <ul class="simple">
 <li>Now in the same terminal type following</li>
 </ul>
@@ -206,7 +206,7 @@
 <li>We will test Gapter outdoor to fly at 3 meters height and make it land.</li>
 <li>Type these lines in the same terminal</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>MAV&gt; load param /home/odroid/gapter_param/gapter_outdoor.param
+<div class="highlight-bash"><div class="highlight"><pre><span></span>MAV&gt; load param /home/gapter/gapter_param/outdoor.param
 MAV &gt; mode GUIDED
 MAV&gt; arm throttle
 MAV&gt; takeoff <span class="m">3</span>
@@ -224,7 +224,7 @@ MAV&gt; takeoff <span class="m">3</span>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>To control Gapter indoor you must change parameters to indoor.
-<code class="docutils literal"><span class="pre">MAV&gt;</span> <span class="pre">load</span> <span class="pre">param</span> <span class="pre">/home/odroid/gapter_param/gapter_indoor.param</span></code></p>
+<code class="docutils literal"><span class="pre">MAV&gt;</span> <span class="pre">load</span> <span class="pre">param</span> <span class="pre">/home/gapter/gapter_param/indoor.param</span></code></p>
 <p class="last">Then control follow rest of lines like outdoor control.</p>
 </div>
 </div>

@@ -45,10 +45,10 @@ Once this is done, you just need to use ``ssh`` to connect to the drone as follo
    ssh gapter@192.168.1.1
 
 Note that the default ip address of gapter is ``192.168.1.1``, and your laptop connects to that ``gapternet``, 
-it will be assigned th IP address ``192.168.1.2``.
+it will be assigned an IP address such that ``192.168.1.*``.
 You will be request for a password. The password is ``gapteredu``. 
 
-Now you are connected to the copter and you can navigate inside the ubuntu file system, run ROS programs, etc. 
+Now you are connected to the Gapter and you can navigate inside the ubuntu file system, run ROS programs, etc. 
 
 As mentioned before, this mode does not have Internet connection. So, you cannot do any operation that requires Internet. 
 If you need Internet to download new packages or software inside Gapter, you need to configure the WiFi infrastructure mode as explained below. 
@@ -56,7 +56,7 @@ If you need Internet to download new packages or software inside Gapter, you nee
 WiFi Infrastructure Mode
 ========================
 
-To work in WiFi infrastructure mode, you first need to have a WiFi router to which the copter will connect. 
+To work in WiFi infrastructure mode, you first need to have a WiFi router to which the Gapter will connect. 
 
 The connection to the WiFi network will use ``wpa_supplicant`` network configuration tool. 
 
@@ -114,12 +114,12 @@ You will the following configuration that corresponds to the default hotspot mod
    iface lo inet loopback
    
    #for ethernet
-   auto eth0 
-   iface eth0 inet dhcp
+   auto eth* 
+   iface eth* inet dhcp
     
    #for wifi in hotspot mode
-   auto wlan0
-   iface wlan0 inet static
+   auto wlan*
+   iface wlan* inet static
    address 192.168.1.1
    netmask 255.255.255.0
    
@@ -132,12 +132,12 @@ To enable the WiFi infrastructure, we need to change the specification of ``wlan
    iface lo inet loopback
    
    #for ethernet
-   auto eth0 
-   iface eth0 inet dhcp
+   auto eth*
+   iface eth* inet dhcp
    
    #for wifi in hotspot mode
-   allow-hotplug wlan0
-   iface wlan0 inet dhcp
+   allow-hotplug wlan*
+   iface wlan* inet dhcp
    wpa-conf /boot/wpa_supplicant.conf
    
    #default route

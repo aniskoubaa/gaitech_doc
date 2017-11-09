@@ -34,6 +34,7 @@ ROS is the defacto standard for developing software and applications for robots,
 To know the version of ROS installed on your Gapter, you can perform the following command
 
 .. code-block:: bash
+
    cd /opt/ros/
    ls 
    
@@ -102,7 +103,7 @@ MAVProxy
 ========
 
 ``MAVProxy`` is a lightweight terminal command ground station that supports the MAVLink protocol. You can get more details about * `MAVProxy <http://ardupilot.github.io/MAVProxy/html/index.html>`_. 
-``MAVProxy`` comes pre-installed into Odroid XU4 computer of the Gapter Brain. It allows to connect to the Pizhawk autopilot through a serial link to get all the status of the autopilot through MAVLink message.
+``MAVProxy`` comes pre-installed into Odroid XU4 computer of the Gapter Brain. It allows to connect to the Pixhawk autopilot through a serial link to get all the status of the autopilot through MAVLink message.
 In addition, MAVProxy allows to broadcast MAVLink messages through WiFi connection using either UDP or TCP. Thus, MAVLink message can be broadcasted through the Internet, which can be processed by cloud platforms such as the ``Dronemap Planner`` cloud-based drone management system. 
 
 

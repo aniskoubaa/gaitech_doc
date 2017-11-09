@@ -125,7 +125,7 @@ __________________
 * **Internal Sensors:** Gyroscope, Barometer, 3D accelerometer 
 * **External Sensors:** GPS, Optical Flow
 * **Operating System:** Ubuntu 14.04 LTS
-* **Connectors:** 2x USB 3.0, HDMI 1.4a for display, Gigabit Ethernet port
+* **Connectors:** 1x USB 3.0, and 1x USB 2.0 (dedicated to wifi usb), HDMI 1.4a for display, Gigabit Ethernet port
 * **Communication with PC:** WiFi, Telemetry
 
 
