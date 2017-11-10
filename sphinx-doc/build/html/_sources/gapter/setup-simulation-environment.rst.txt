@@ -130,6 +130,15 @@ C. Creating ros work space
 
 	git clone https://github.com/gaitech-robotics/mavros
 
+.. code-block:: bash
+
+	git clone https://github.com/tu-darmstadt-ros-pkg/hector_gazebo/
+
+.. code-block:: bash
+
+	git clone https://github.com/ros-simulation/gazebo_ros_pkgs.git -b indigo-devel
+
+
 
 D. Installing Gazebo
 --------------------
