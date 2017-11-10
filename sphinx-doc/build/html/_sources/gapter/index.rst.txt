@@ -14,6 +14,7 @@ Gapter Drone Documentation
    :hidden:
    
    Gapter Overview <overview-and-features.rst>
+   Precautions & Warning <precautions-warning.rst>
    Gapter Assembly <assembly.rst>
    Gapter Calibration <gapter-calibration.rst>
    Internal Hardware Connection <internal-hardware-connections.rst>
