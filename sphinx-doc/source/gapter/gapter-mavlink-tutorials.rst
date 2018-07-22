@@ -27,6 +27,7 @@ MAVLink Tutorial 1: Overview of MAVLink protocol
 
 |
 |
+
 MAVLink Tutorial 2: Overview of Ground Station of the MAVLink protocol
 ======================================================================
 **Date:** Nov 11, 2016
@@ -35,35 +36,44 @@ MAVLink Tutorial 2: Overview of Ground Station of the MAVLink protocol
 
 |
 |
+
 MAVLink Tutorial 3: Overview of RC Transmitters
 ===============================================
 **Date:** Nov 11, 2016
 
 .. youtube:: PLlM-PzYLqQ
+
 |
 |
+
 MAVLink Tutorial 4: MAVLink Messages and Commands
 =================================================
 **Date:** Nov 18, 2016
 
 .. youtube:: qum_S8GvDRw
+
 |
 |
+
 MAVLink Tutorial 5: Flight Modes
 ================================
 **Date:** Nov 19, 2016
 
 .. youtube:: k4gFq2eQ3-U
+
 |
 |
+
 MAVLink Tutorial 6: Start SITL
 ==============================
 
 **Date:** Dec 13, 2016
 
 .. youtube:: cYBqGRWb5Yk
+
 |
 |
+
 MAVLink Tutorial 7: Connect SITL to Ground Station
 ==================================================
 **Date:** Dec 13, 2016
@@ -72,6 +82,7 @@ MAVLink Tutorial 7: Connect SITL to Ground Station
 
 |
 |
+
 MAVLink Tutorial 8: Taking-Off, Landing and Flying in GUIDED mode
 =================================================================
 
@@ -81,6 +92,7 @@ MAVLink Tutorial 8: Taking-Off, Landing and Flying in GUIDED mode
 
 |
 |
+
 MAVLink Tutorial 9: Getting and Setting MAVLink Parameters
 ==========================================================
 

@@ -106,6 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../turtlebot/turtlebot-tutorials.html">Turtlebot Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gapter/index.html">Gapter Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ria_r100/index.html">RIA-R100</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../video/index.html">Video Streaming Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dronemap/index.html">Dronemap Planner</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
@@ -156,9 +157,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="roslink-overview">
-<span id="roslink"></span><h1>ROSLink Overview<a class="headerlink" href="#roslink-overview" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>ROSLink Overview<a class="headerlink" href="#roslink-overview" title="Permalink to this headline">¶</a></h1>
 <p>The architecture of ROSLink is depicted in Figure 1.</p>
-<div class="figure align-center" id="id1">
+<div class="figure align-center" id="id2">
 <a class="reference internal image-reference" href="../_images/roslink_fig_1.png"><img alt="../_images/roslink_fig_1.png" src="../_images/roslink_fig_1.png" style="width: 400pt;" /></a>
 <p class="caption"><span class="caption-text">Figure 1: ROSLink Architecture</span></p>
 </div>
@@ -179,7 +180,7 @@
 <p><strong>Step 3: Declare a set of ROS parameters:</strong> Some information about the robot or the system can be provided as parameters such as: <code class="docutils literal"><span class="pre">robot</span> <span class="pre">name</span></code>, <code class="docutils literal"><span class="pre">ROSLink</span> <span class="pre">proxy</span> <span class="pre">IP</span></code>, <code class="docutils literal"><span class="pre">ROSLink</span> <span class="pre">proxy</span> <span class="pre">port</span></code>, <code class="docutils literal"><span class="pre">heartbeat</span> <span class="pre">message</span> <span class="pre">period</span></code>, <code class="docutils literal"><span class="pre">system</span> <span class="pre">ID</span></code>, etc. These parameters can be assigned with some default values and also can be configured as needed from ROS launch file.</p>
 <p><strong>Step 4: Declare ROSLink messages:</strong> Create data structure or class to represent <code class="docutils literal"><span class="pre">ROSLink</span></code> messages. Different <code class="docutils literal"><span class="pre">ROSLink</span></code> messages can have different structure, an array or a list or any other data structure can be used to represent them. The ROSLink communication protocol is based on the exchange of ROSLink messages. ROSLink messages are JSON formatted strings that contain information about the command and its parameters. To standardize the type of messages exchanged, we specified a set of ROSLink messages that are supported by the ROSLink Proxy. These messages can be easily extended based on the requirements of the user and the application. There are two main categories of ROSLink messages: (i.) State messages: these are message sent by the robot and carry out information about the internal state of the robot, including its position, orientation, battery level, etc. (ii.) Command messages: these are messages sent by the client application to the robot and carry out commands to make the robot execute some actions, like for example moving, executing a mission, going to a goal location, etc.</p>
 <p>A ROSLink message is a composed of a header and a payload. The structure of the ROSLink message header is presented in Figure 2.</p>
-<div class="figure align-center" id="id2">
+<div class="figure align-center" id="id3">
 <a class="reference internal image-reference" href="../_images/roslink_fig_2.png"><img alt="../_images/roslink_fig_2.png" src="../_images/roslink_fig_2.png" style="width: 400pt;" /></a>
 <p class="caption"><span class="caption-text">Figure 2: ROSLink Message Header Structure</span></p>
 </div>

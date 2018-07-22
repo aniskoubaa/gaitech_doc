@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>RIA-R100: configuration packages &mdash; Gaitech EDU 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="RIA-R100 Documentation" href="index.html"/>
+        <link rel="next" title="External Components and Details" href="external-components.html"/>
+        <link rel="prev" title="RIA-R100: Unmanned Ground Vehicle" href="overview.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech EDU
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roslink/index.html">ROSLink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../turtlebot/turtlebot-tutorials.html">Turtlebot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gapter/index.html">Gapter Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">RIA-R100</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">RIA-R100 Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RIA configuration packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#standard-package">STANDARD PACKAGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#navigation-package">NAVIGATION PACKAGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manipulator-package">MANIPULATOR PACKAGE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="external-components.html">External Components and Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internal-components.html">Internal Components and Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-architecture.html">System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-architecture.html">Software Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual-control.html">Manual Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="battery.html">Battery and charger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mechanical-drawings.html">Mechanical Drawings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maintenance.html">Maintenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="r100-warning.html">Warning and safety precautions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo-apps.html">Demo Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html">Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../video/index.html">Video Streaming Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dronemap/index.html">Dronemap Planner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech EDU</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">RIA-R100 Documentation</a> &raquo;</li>
+      
+    <li>RIA-R100: configuration packages</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/ria_r100/configuration.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ria-r100-configuration-packages">
+<span id="ria-r100-configuration"></span><h1>RIA-R100: configuration packages<a class="headerlink" href="#ria-r100-configuration-packages" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="standard-package">
+<h2>STANDARD PACKAGE<a class="headerlink" href="#standard-package" title="Permalink to this headline">¶</a></h2>
+<p>This is standard package of RIA-R100 which contains basic components required to get started. It comes with pre-installed industrial PC with Ubuntu 14.04 and ROS. Sensor deck at front has been setup with 2xUSB3. 0, 1xLAN and power connectors of 5V &amp; 12V which allows to connect sensors while the top frame allows for easy integration of manipulators and other hardware. They can be communicated and powered from rear panel section where 2xUSB3.0, 1xWLAN and 24V power port are available.</p>
+<p><strong>Included Components and Accessories</strong></p>
+<ul class="simple">
+<li>Industrial PC – Intel Core i5 with 6cores, 8Gb ram and 120Gb SSD</li>
+<li>IMU – (Pixhawk)</li>
+<li>Logitech Gamepad Controller</li>
+<li>Battery - LiPo</li>
+<li>Charger</li>
+</ul>
+</div>
+<div class="section" id="navigation-package">
+<h2>NAVIGATION PACKAGE<a class="headerlink" href="#navigation-package" title="Permalink to this headline">¶</a></h2>
+<p>It is an upgradation of RIA standard package fully equipped with full suite of sensors laser scanner and RGBD camera which enables basic indoor navigation with autonomous functionality. Complete software pack required for basic navigation based on sensors integrated has been preconfigured. This helps ready to go work related to navigating RIA without any prior setup</p>
+<p><strong>Included Components and Accessories</strong></p>
+<ul class="simple">
+<li>Robot - RIA with Standard Package</li>
+<li>Laser Scanner - SICK TIM571</li>
+<li>RGBD- Orbbec 3D sensor</li>
+<li>Optional sensors – Ublox GPS M8N,</li>
+</ul>
+</div>
+<div class="section" id="manipulator-package">
+<h2>MANIPULATOR PACKAGE<a class="headerlink" href="#manipulator-package" title="Permalink to this headline">¶</a></h2>
+<p>In this RIA’s standard package will be equipped with UR5 arm and Robotiq finger gripper with additional sensors. This makes RIA to interact more with the world around it. All components equipped are supported with ROS and comes with preinstalled and configured.</p>
+<p><strong>Included Components and Accessories</strong></p>
+<ul class="simple">
+<li>Robot Arm – UR5</li>
+<li>Gripper -  Robotiq 85 finger gripper</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="external-components.html" class="btn btn-neutral float-right" title="External Components and Details" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview.html" class="btn btn-neutral" title="RIA-R100: Unmanned Ground Vehicle" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

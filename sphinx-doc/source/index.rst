@@ -19,6 +19,7 @@ Welcome to Gaitech's Education Portal!
    Turtlebot Tutorials <turtlebot/turtlebot-tutorials>
    Drones Tutorials <drones/index>
    Gapter Tutorials <gapter/index>
+   RIA-R100 <ria_r100/index>
    Video Streaming Tutorials <video/index>
    Dronemap Planner <dronemap/index>
    Contributors<contributors/index>

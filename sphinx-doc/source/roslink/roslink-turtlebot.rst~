@@ -120,13 +120,13 @@ And we need to subscribe in following topics:
             print 'thread %s %d\n'%(self.name, self.count)
             #self.send(self.socket, json.dumps(self.roslink_message.__dict__))
             if (self.roslink_message_type == MESSAGE_TYPE.ROSLINK_MESSAGE_HEARTBEAT):
-                self.send(self.socket, json.dumps(ROSLinkBridgeARDrone.static_build_heartbeat_message()))
+                self.send(self.socket, json.dumps(ROSLinkBridgeTurtlebot.static_build_heartbeat_message()))
             elif (self.roslink_message_type == MESSAGE_TYPE.ROSLINK_MESSAGE_ROBOT_STATUS):
-                self.send(self.socket, json.dumps(ROSLinkBridgeARDrone.static_build_robot_status_message()))
+                self.send(self.socket, json.dumps(ROSLinkBridgeTurtlebot.static_build_robot_status_message()))
             elif (self.roslink_message_type == MESSAGE_TYPE.ROSLINK_MESSAGE_GLOBAL_MOTION):
-                self.send(self.socket, json.dumps(ROSLinkBridgeARDrone.static_build_global_motion_message()))
+                self.send(self.socket, json.dumps(ROSLinkBridgeTurtlebot.static_build_global_motion_message()))
             elif (self.roslink_message_type == MESSAGE_TYPE.ROSLINK_MESSAGE_GPS_RAW_INFO):
-                self.send(self.socket, json.dumps(ROSLinkBridgeARDrone.static_build_gps_raw_info_message()))
+                self.send(self.socket, json.dumps(ROSLinkBridgeTurtlebot.static_build_gps_raw_info_message()))
 
 **Step 6: Receive ROSLink message:** The ``ROSLink Bridge`` will receive command messages from ``ROSLink proxy``. After parsing the incoming ``ROSLink Message`` and extracting the command, the ``ROSLink Bridge`` publishes the command to the appropriate ROS topic or request the appropriate ROS service to execute the action. The ``ROSLink Bridge`` will know what topic to publish with message content from ``message_id`` field from  ``ROSLink`` message.
 
@@ -144,9 +144,9 @@ And we need to subscribe in following topics:
         while True:
             try:
                 msg, address = self.socket.recvfrom(MESSAGE_MAX_LENGTH)
-                ROSLinkBridgeARDrone.process_roslink_command_message(msg)
+                ROSLinkBridgeTurtlebot.process_roslink_command_message(msg)
             except socket.timeout:
-                continue  
+                continue   
 
     @staticmethod
     def process_roslink_command_message(msg):
@@ -155,15 +155,6 @@ And we need to subscribe in following topics:
         print 'ROSLink command received ..'
         print msg
         
-        if command['header']['message_id'] == MESSAGE_TYPE.ROSLINK_MESSAGE_COMMAND_TAKEOFF:  
-            print 'I received Takeoff command' 
-            print '\n\nThe robot is Taking off\n\n'   
-            ROSLinkBridgeARDrone.takeoff_publisher.publish(Empty())
-   
-        elif command['header']['message_id'] == MESSAGE_TYPE.ROSLINK_MESSAGE_COMMAND_LAND:
-            print 'I received Land command' 
-            print '\n\nThe robot is landing\n\n'
-            ROSLinkBridgeARDrone.land_publisher.publish(Empty()) 
             
         if command['header']['message_id'] == MESSAGE_TYPE.ROSLINK_MESSAGE_COMMAND_TWIST:  
             print 'I received Twist command successfully'
@@ -175,7 +166,7 @@ And we need to subscribe in following topics:
             TwistCommand.angular.y = command['wy'] 
             TwistCommand.angular.z = command['wz']             
             print TwistCommand
-            ROSLinkBridgeARDrone.move_publisher.publish (TwistCommand)
+            ROSLinkBridgeTurtlebot.move_publisher.publish (TwistCommand)
 
 
 

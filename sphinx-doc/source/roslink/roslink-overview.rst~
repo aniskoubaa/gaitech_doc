@@ -4,7 +4,8 @@
 ================
 ROSLink Overview
 ================
-ROSLink is a new protocol to integrate Robot Operating System (ROS) enabled-robots with the IoT. The motivation behind ROSLink is the lack of ROS functionality in monitoring and controlling robots through the Internet. The architecture of ROSLink is depicted in Figure 1.
+
+The architecture of ROSLink is depicted in Figure 1.
 
 .. figure:: images/roslink_fig_1.png
     :align: center

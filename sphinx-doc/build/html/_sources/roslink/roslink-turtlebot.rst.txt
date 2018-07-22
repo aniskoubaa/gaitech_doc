@@ -1,8 +1,8 @@
 .. _roslink-turtlebot:
 
-===========================
+============================
 ROSLink Bridge for Turtlebot
-===========================
+============================
 
 .. _PoseStamped message: http://docs.ros.org/api/geometry\_msgs/html/msg/PoseStamped.html
 

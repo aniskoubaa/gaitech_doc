@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Simulating RIA &mdash; Gaitech EDU 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="RIA-R100 Documentation" href="index.html"/>
+        <link rel="next" title="Video Streaming Tutorials" href="../video/index.html"/>
+        <link rel="prev" title="Demo Applications" href="demo-apps.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech EDU
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roslink/index.html">ROSLink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../turtlebot/turtlebot-tutorials.html">Turtlebot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gapter/index.html">Gapter Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">RIA-R100</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">RIA-R100 Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">RIA configuration packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external-components.html">External Components and Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internal-components.html">Internal Components and Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-architecture.html">System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-architecture.html">Software Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual-control.html">Manual Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="battery.html">Battery and charger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mechanical-drawings.html">Mechanical Drawings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maintenance.html">Maintenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="r100-warning.html">Warning and safety precautions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo-apps.html">Demo Applications</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../video/index.html">Video Streaming Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dronemap/index.html">Dronemap Planner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech EDU</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">RIA-R100 Documentation</a> &raquo;</li>
+      
+    <li>Simulating RIA</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/ria_r100/simulation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="simulating-ria">
+<span id="ria-r100-simulation"></span><h1>Simulating RIA<a class="headerlink" href="#simulating-ria" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>RIA can be used in simulated environments regardless of real robot</li>
+<li>This step will guide to how to use RIA simulator</li>
+<li>Simulator package is included in RIA meta package that has been setup at installation step</li>
+<li>Run following in each terminal</li>
+<li>To start simulation:</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ria_sim gazebo.launch
+</pre></div>
+</div>
+<p>This will launch RIA’s simulation world. By default it is empty world. Can add different worlds by adding argument</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ria_sim gazebo.launch world_name:<span class="o">=</span>/worlds/willogarage.world
+</pre></div>
+</div>
+<ul class="simple">
+<li>To control manually</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ria_sim keyboard.launch
+</pre></div>
+</div>
+<ul class="simple">
+<li>To generate map</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ria_sim slam_gmapping.launch
+</pre></div>
+</div>
+<ul class="simple">
+<li>To navigate robot</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$  roslaunch ria_sim move_base.launch
+</pre></div>
+</div>
+<ul class="simple">
+<li>To visualize robot in rviz</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ria_sim view.launch
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../video/index.html" class="btn btn-neutral float-right" title="Video Streaming Tutorials" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="demo-apps.html" class="btn btn-neutral" title="Demo Applications" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

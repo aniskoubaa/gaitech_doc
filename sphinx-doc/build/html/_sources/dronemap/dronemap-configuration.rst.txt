@@ -94,6 +94,7 @@ Here are the steps to follow for setting up Dronemap Planner:
    If you do not use the correct IP address of your server machine, Dronemap Planner will not correctly start. 
    
 * **Step 4**: Line 5 of the ``XML`` script contains the **port number** of Dronemap Planner cloud UDP server. 
+
 This is the port number that the drone will use to connect to the cloud using the MAVLink protocol. You should keep this value at its default ``14550``. 
 You can change the port number to any other value. We will discuss more the port number during the execution of Dronemap Planner cloud services. 
 

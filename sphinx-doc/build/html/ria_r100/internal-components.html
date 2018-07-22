@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Internal Components and Details &mdash; Gaitech EDU 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="RIA-R100 Documentation" href="index.html"/>
+        <link rel="next" title="System Architecture" href="system-architecture.html"/>
+        <link rel="prev" title="External Components and Details" href="external-components.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech EDU
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roslink/index.html">ROSLink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../turtlebot/turtlebot-tutorials.html">Turtlebot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gapter/index.html">Gapter Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">RIA-R100</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">RIA-R100 Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">RIA configuration packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external-components.html">External Components and Details</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Internal Components and Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#internal-pc">Internal Pc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#power-ports">Power Ports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wi-fi-router">Wi-Fi router</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fuses">Fuses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#motor-controller">Motor controller</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="system-architecture.html">System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-architecture.html">Software Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual-control.html">Manual Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="battery.html">Battery and charger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mechanical-drawings.html">Mechanical Drawings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maintenance.html">Maintenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="r100-warning.html">Warning and safety precautions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo-apps.html">Demo Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html">Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../video/index.html">Video Streaming Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dronemap/index.html">Dronemap Planner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech EDU</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">RIA-R100 Documentation</a> &raquo;</li>
+      
+    <li>Internal Components and Details</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/ria_r100/internal-components.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="internal-components-and-details">
+<span id="ria-r100-internal-components"></span><h1>Internal Components and Details<a class="headerlink" href="#internal-components-and-details" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-center" id="id1">
+<img alt="../_images/ria_r100_internal_fig01.png" src="../_images/ria_r100_internal_fig01.png" />
+<p class="caption"><span class="caption-text">Fig 1.Internal view of RIA-R100</span></p>
+</div>
+<div class="section" id="internal-pc">
+<h2>Internal Pc<a class="headerlink" href="#internal-pc" title="Permalink to this headline">¶</a></h2>
+<p>RIA-R100 Is integrated with Intel i5 Z370 chipset over Gigabyte Mini ITX board. It can be replaced with any kind of processors based on chipset preference.</p>
+<p>Following are complete set of specifications related to Internal PC:</p>
+<p>Processor: Intel® Core™ i5-8400 Processor, 9M Cache, up to 4.00 GHz
+RAM: 8Gb
+Memory: 120 Gb SSD
+Mother Board: Gigabyte Z370N WIFI</p>
+<ul class="simple">
+<li>USB3.0 = 4 (one used by Joystick)</li>
+<li>HDMI =1 Using HDMI 2.0 interface</li>
+<li>Dual Channel DDR4, Two Memory Slots – (8GB Fixed at one slot)</li>
+<li>Supports Intel ® OptaneTM Technology</li>
+<li>Supports graphics card slot transfer 2x8 mode expansion card</li>
+<li>Intel ® USB 3.1 Gen1 Type-CTM Interface</li>
+<li>Realtek flagship audio chip supporting smart power amplifier technology</li>
+<li>Intel ® wireless card that supports high-speed 802.11ac 5G WIFI and Bluetooth 4.2</li>
+<li>Dual Intel® Gigabit High Speed ​​Network Card + cFos Network Management Software</li>
+<li>Network Interface Upgrade Strengthens Anti-Static and Anti-Surge Functions</li>
+<li>Two high-speed NVMe M.2 SSD slot designs using PCI-E 3.0 x4 high-speed channels (supports PCI-E channel and SATA channel M.2 SSD)</li>
+<li>Gigabyte Smart Fan Technology with Smart Fan Shutdown</li>
+<li>Using graphics slot alloy armor</li>
+<li>Mainboard components upgrade anti-vulcanization technology</li>
+</ul>
+<img alt="../_images/ria_r100_internal_fig02.png" class="align-center" src="../_images/ria_r100_internal_fig02.png" />
+<div class="figure align-center" id="id2">
+<img alt="../_images/ria_r100_internal_fig03.png" src="../_images/ria_r100_internal_fig03.png" />
+<p class="caption"><span class="caption-text">Fig 2. Internal PC</span></p>
+</div>
+</div>
+<div class="section" id="power-ports">
+<h2>Power Ports<a class="headerlink" href="#power-ports" title="Permalink to this headline">¶</a></h2>
+<p>RIA-R100 is embedded with three power ports with different ratings 24V, 12V and 5V fused with 5A each. Two power slots 12V and 5V has been fixed at sensor deck which are quite sufficient for powering up sensors like LIDAR, RGBD and others. One power slot 24V is fixed at control panel. It is quite suitable for integrating manipulators and other hardware devices. If necessary this power slot can be fused up to 30A.</p>
+<p>There are other power converters which are embedded for PC and Router</p>
+</div>
+<div class="section" id="wi-fi-router">
+<h2>Wi-Fi router<a class="headerlink" href="#wi-fi-router" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id3">
+<img alt="../_images/ria_r100_internal_fig04.png" src="../_images/ria_r100_internal_fig04.png" />
+<p class="caption"><span class="caption-text">Fig 3. Wi-Fi Router</span></p>
+</div>
+<p>Wi-Fi router with 4 LAN ports and 1 WAN port is fixed inside robot where one LAN port is connected to robot’s wan slot and one connected to LAN extension port where it will be available at sensor deck to have direct access to PC which some sensors need to communicate via LAN. Since there are two WAN ports available in PC one of WAN port is extended to rear control panel allowing user to access internet for updating or downloading packages.</p>
+</div>
+<div class="section" id="fuses">
+<h2>Fuses<a class="headerlink" href="#fuses" title="Permalink to this headline">¶</a></h2>
+<p>RIA-R100 is completely fused with 100A from main battery connection and each component inside robot used are fused at their required currents. All fuses can be accessed underside of control panel where one 100A and one 60A main fuses are connected for overall robot and motor controller. There will be a small fuse box with multiple fuses rating from 5A to 30A. These were connected to several components mostly with 5A. Once current is overloaded at 100A and 60A power flow will be disconnected and can reconnected by sliding the lock. If current overloaded with 5A slots they have to be replaced.</p>
+</div>
+<div class="section" id="motor-controller">
+<h2>Motor controller<a class="headerlink" href="#motor-controller" title="Permalink to this headline">¶</a></h2>
+<p>RIA-R100 base has been embedded by a differential drive motor controller with two motors left and right attached to it with no additional power module for motors. It is also capable to read encoders from each motor and thus control speed of robot. Drivers and PID for these motor controllers has been developed at Gaitech Robotics and encoders has been set according to wheel size and speed of motor. So, don’t change these values. Power supplied to this motor controller has been fused at 60A to avoid damage.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="system-architecture.html" class="btn btn-neutral float-right" title="System Architecture" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="external-components.html" class="btn btn-neutral" title="External Components and Details" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

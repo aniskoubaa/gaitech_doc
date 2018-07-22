@@ -1,0 +1,439 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>External Components and Details &mdash; Gaitech EDU 2.5 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gaitech32.jpg"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
+        <link rel="up" title="RIA-R100 Documentation" href="index.html"/>
+        <link rel="next" title="Internal Components and Details" href="internal-components.html"/>
+        <link rel="prev" title="RIA-R100: configuration packages" href="configuration.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Gaitech EDU
+          
+
+          
+            
+            <img src="../_static/gaitechlogo150.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roslink/index.html">ROSLink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../turtlebot/turtlebot-tutorials.html">Turtlebot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drones/index.html">Drones Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gapter/index.html">Gapter Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">RIA-R100</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">RIA-R100 Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">RIA configuration packages</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">External Components and Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#chassis">Chassis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#motors-and-wheels">Motors and Wheels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-mounting-plates">User Mounting Plates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control-panel">Control Panel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rgbd-camera-optional">RGBD Camera (Optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sick-laser-sensor-optional">SICK Laser Sensor (Optional)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="internal-components.html">Internal Components and Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-architecture.html">System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-architecture.html">Software Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual-control.html">Manual Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="battery.html">Battery and charger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mechanical-drawings.html">Mechanical Drawings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maintenance.html">Maintenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="r100-warning.html">Warning and safety precautions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick-start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo-apps.html">Demo Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html">Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../video/index.html">Video Streaming Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dronemap/index.html">Dronemap Planner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors/index.html">Contributors</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gaitech EDU</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">RIA-R100 Documentation</a> &raquo;</li>
+      
+    <li>External Components and Details</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/ria_r100/external-components.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="external-components-and-details">
+<span id="ria-r100-external-components"></span><h1>External Components and Details<a class="headerlink" href="#external-components-and-details" title="Permalink to this headline">¶</a></h1>
+<p>RIA FRONT AND BACK VIEW PICTURES</p>
+<div class="section" id="chassis">
+<h2>Chassis<a class="headerlink" href="#chassis" title="Permalink to this headline">¶</a></h2>
+<p>Robot body is completely made of high grade Aluminum alloy which is strong enough to withhold huge payloads and protects internal components. It is designed in such a way that total load will be applying over wheels and doesn’t affect any components.</p>
+<p>Its wide structure maintains low center of gravity and ensures safety in maintaining ground level even at hazard surfaces. All components including battery are placed in such a way that total weight acts at its center</p>
+</div>
+<div class="section" id="motors-and-wheels">
+<h2>Motors and Wheels<a class="headerlink" href="#motors-and-wheels" title="Permalink to this headline">¶</a></h2>
+<p>RIA-R100 is driven by two brushed DC motors and four wheels. Each motor drives two wheels with belt transform motion. Both motors are configured equally with an output power of 274W. They are fixed inside chassis on lower frame and connected to wheels externally. Two Optical encoders are fixed at rear shaft of each motor and wheels are attached to front shaft.</p>
+<p>RIA-R100 wheels are wide with high traction which are capable in moving over rough terrain. Their tires are tubeless and easily maintainable. Four wheels attached to motor shaft using coupler with three nuts each which can be easily detachable. No cable from motors are exposed which is hassle free to maintain.</p>
+</div>
+<div class="section" id="user-mounting-plates">
+<h2>User Mounting Plates<a class="headerlink" href="#user-mounting-plates" title="Permalink to this headline">¶</a></h2>
+<p>Top portion of RIA-R100 is covered with thick plate which is capable to hold heavy payloads. User can utilize its 500x514mm space to develop according to their requirement. This plate is strong enough holding manipulators and other hardware controllers. It has wide hole at middle which allows cables to pass through it and thus connecting to internal pc and power directly. It is easy to remove this plate and fix other hardware control boards or to access inside components.</p>
+<p>At front, another plate is placed which is over sensor deck. It is used to mount sensors like camera, laser scanners, RGBD and so. It can be communicated with internal PC via free USB and power connecters which are at sensor deck portion. Sensor deck plate is equipped with several holes allowing user to connect their sensors using screws. All cables and wires can be placed under side of this plate in order to avoid damage.</p>
+</div>
+<div class="section" id="control-panel">
+<h2>Control Panel<a class="headerlink" href="#control-panel" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id1">
+<img alt="../_images/ria_r100_components_fig03.png" src="../_images/ria_r100_components_fig03.png" />
+<p class="caption"><span class="caption-text">Fig 3. Rear control panel</span></p>
+</div>
+<p>The rear cover of RIA-R100 holds main user control panel and front portion covers limited control panel dedicated for sensor deck.</p>
+<p>It embedded with following elements:</p>
+<p><strong>Main Control Panel</strong></p>
+<ol class="arabic simple">
+<li><strong>E-stop:</strong> Enabling Emergency Stop button indicated LED over for user notification and stops motors to rotate. While enabled program which is being executed will not be interrupted. So when released the program continues and controller starts accepting commands.</li>
+<li><strong>Charging port:</strong> It is a two pin port which allows to charge battery without removing battery from robot. It fits with the charger which is provided with RIA-R100. It is warned  to turnoff robot while charging.</li>
+<li><strong>Wi-Fi Antennas:</strong> Two tall antennas are being fixed at control panel which allows to communicate well with robot’s router without any interruption. They are flexible in rotating and keeping at desired position to that interfacing with components which are placed on top of robot can be avoided.</li>
+<li><strong>Battery Display:</strong> Digital battery display shows indication of battery status in percentage. while charging battery and battery completely charged it may show indication with an error of 5%. So, consider its percentage only for indication but not as true values of battery. It helps user to check if battery is about to drain and to charge when needed.</li>
+<li><strong>Main Power Switch:</strong> It is the overall power switch which is square shaped red in color with LED indication. It maintains complete flow of power to the robot. Since it is main power control switch it is always recommended to turnoff rest of components like PC before turning off main power switch. sudden powering off PC may damage OS.</li>
+<li><strong>PC switch:</strong> It is power switch which is round shaped blue color with LED indication. Single press of this switch turns ON internal PC. The same works to turnoff PC too. It is always recommended to turnoff PC by single pressing this switch and then turning off main power switch. sudden powering off PC may damage OS.</li>
+<li><strong>HDMI port:</strong> HDMI port gives direct access to connect display of internal PC. RIA-R100 is configured with desktop utilities. When connected you can have a view of desktop and allows to access all files just like PC.</li>
+<li><strong>Free 2x USB3.0 ports:</strong> Two USB3.0 ports are embedded over control panel and allows to access PC’s internal ports directly. One of USB port is dedicated to joystick controller. An USB splitter can be used to connect multiple devices like keyboard, mouse and others</li>
+<li><strong>LAN port:</strong> A WLAN port has been embedded which have a direct access to one of WLAN ports of internal PC (RIA-R100 contains two WLAN ports). It allows to connect devices which need to be communicated using LAN based connections. it also allows to connect Ethernet cable and thus allows to access internet to update software packages or download for further development</li>
+<li><strong>Power Port:</strong> A 24V which is fused at 5A has been fixed at right side which allows to connect devices. It can be altered with fuses up to 30A. For this internal fuse has to be changed at fuse box.</li>
+</ol>
+<p><strong>Control Panel at Sensor Deck</strong></p>
+<div class="figure align-center" id="id2">
+<img alt="../_images/ria_r100_components_fig04.png" src="../_images/ria_r100_components_fig04.png" />
+<p class="caption"><span class="caption-text">Fig 4. Front panel and sensor deck portion</span></p>
+</div>
+<ol class="arabic simple">
+<li><strong>Free 2x USB3.0 ports:</strong> Two USB3.0 ports are embedded at front portion of control panel over sensor deck. It allows to access PC’s internal USB ports directly. sensors which are mounted over sensor deck plate can be communicated with PC via these USBs and quite easy to plug. No hassle to worry about length of cables.</li>
+<li><strong>LAN Port:</strong> A LAN port has been embedded at sensor deck next to USB ports. It is connected to one of ports of Wi-Fi router which allows to connect sensors that has to be communicated with PC via LAN ports.</li>
+<li><strong>Power Ports:</strong> Two power ports which are rated with 12V and 5V fused at 5A each are placed on other side or sensor deck control panel. It allows to power up sensors which are mounted over sensor deck.</li>
+</ol>
+</div>
+<div class="section" id="rgbd-camera-optional">
+<h2>RGBD Camera (Optional)<a class="headerlink" href="#rgbd-camera-optional" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id3">
+<img alt="../_images/ria_r100_components_fig05.png" src="../_images/ria_r100_components_fig05.png" />
+<p class="caption"><span class="caption-text">Fig 5. RGBD Camera – Astra Orbbec</span></p>
+</div>
+<p>RGBD camera is placed at front over sensor deck. It is connected to one of free USB3.0 at front panel. It is powered from same USB port</p>
+<p><strong>Specifications:</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Size/Dimensions</td>
+<td>160 x 30 x 40 mm</td>
+</tr>
+<tr class="row-even"><td>Weight</td>
+<td>0.3 kg</td>
+</tr>
+<tr class="row-odd"><td>Range</td>
+<td>0.6 – 8m (Optimal 0.6 – 5m)</td>
+</tr>
+<tr class="row-even"><td>Depth Image Size</td>
+<td>640*480 (VGA) &#64; 30FPS</td>
+</tr>
+<tr class="row-odd"><td>RGB Image Size</td>
+<td>1280*720 &#64; 30FPS (UVC Support)</td>
+</tr>
+<tr class="row-even"><td>Field of View</td>
+<td>60° horiz x 49.5° vert. (73° diagonal)</td>
+</tr>
+<tr class="row-odd"><td>Data Interface</td>
+<td>USB 2.0</td>
+</tr>
+<tr class="row-even"><td>Microphones</td>
+<td>2</td>
+</tr>
+<tr class="row-odd"><td>Operating Systems</td>
+<td>Windows, Linux, Android</td>
+</tr>
+<tr class="row-even"><td>Power</td>
+<td>USB 2.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="sick-laser-sensor-optional">
+<h2>SICK Laser Sensor (Optional)<a class="headerlink" href="#sick-laser-sensor-optional" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id4">
+<img alt="../_images/ria_r100_components_fig06.png" src="../_images/ria_r100_components_fig06.png" />
+<p class="caption"><span class="caption-text">Fig 6. Sick Tim571 Two Dimensional Laser Sensor</span></p>
+</div>
+<p><strong>FEATURES</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Application</td>
+<td>Outdoor / Indoor</td>
+</tr>
+<tr class="row-even"><td>Light source</td>
+<td>Infrared (850 nm)</td>
+</tr>
+<tr class="row-odd"><td>Aperture angle</td>
+<td>270° (Limited to 180° wide at sensor deck)</td>
+</tr>
+<tr class="row-even"><td>Scanning frequency</td>
+<td>15 Hz</td>
+</tr>
+<tr class="row-odd"><td>Angular resolution</td>
+<td>0.33°</td>
+</tr>
+<tr class="row-even"><td>Operating range</td>
+<td>0.05 m … 25 m</td>
+</tr>
+<tr class="row-odd"><td>Max. range with 10 % reflectivity</td>
+<td>8 m</td>
+</tr>
+</tbody>
+</table>
+<p><strong>INTERFACES</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Interfaces</td>
+<td>Ethernet/Micro USB</td>
+</tr>
+<tr class="row-even"><td>Optical indicators</td>
+<td>2 LEDs (ON, “device ready”)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>MECHANICS/ELECTRONICS</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Electrical connection</td>
+<td>1 x “Ethernet” connection, 4-pin M12 female connector</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line"><br /></div>
+</div>
+</td>
+<td>1 x connection “Power/Synchronization output” 5-pin, M12 male connector</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line"><br /></div>
+</div>
+</td>
+<td>1 x Micro USB female connector, type B</td>
+</tr>
+<tr class="row-even"><td>Operating voltage</td>
+<td>9 V DC … 28 V DC</td>
+</tr>
+<tr class="row-odd"><td>Power consumption</td>
+<td>Typ. 4 W</td>
+</tr>
+<tr class="row-even"><td>Dimensions (L x W x H)</td>
+<td>60 mm x 60 mm x 86 mm</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="internal-components.html" class="btn btn-neutral float-right" title="Internal Components and Details" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="configuration.html" class="btn btn-neutral" title="RIA-R100: configuration packages" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Gaitech.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54522619-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

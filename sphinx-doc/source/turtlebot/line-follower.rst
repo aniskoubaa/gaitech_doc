@@ -198,6 +198,7 @@ Code Explanation
 The following code initialise the ``Publisher`` and ``Subscriber`` topics for the line_follower`` node.
 
 .. code-block:: python
+
    :emphasize-lines: 15
    
    	self.bridge = cv_bridge.CvBridge()
@@ -212,6 +213,7 @@ The following code initialise the ``Publisher`` and ``Subscriber`` topics for th
 The following code is for the image transformation, convertion and then analysing the data coming from the camera sensor. The first part works on converting the image from ``BGR`` (Blue, Green, Red) to ``HSV`` (Hue, Saturation, Value) using the ``cv2`` library and defining the lower and upper limit for the yellow color degrees and use a ``mask`` to make sure of that using the ``inRange()`` function to produce a binary image.  
 
 .. code-block:: python
+
    :emphasize-lines: 15
    
 	def image_callback(self, msg):
@@ -225,6 +227,7 @@ The following code is for the image transformation, convertion and then analysin
 Using the ``OpenCV`` and ``numpy`` libraries we will erase all the pixels that was not in the range we defined before. You can see this in the following code.
 
 .. code-block:: python
+
    :emphasize-lines: 15
    
 		h, w, d = image.shape
@@ -236,6 +239,7 @@ Using the ``OpenCV`` and ``numpy`` libraries we will erase all the pixels that w
 After that we will use the ``moments()`` function in the ``OpenCV`` library to determind the center point of the rest of the binary image that was inside the range we defined above. To make it easier for you to debug it is better to draw a red circle in the middle/origin point of your image. Then you display the image that is produced during all this process. 
 
 .. code-block:: python
+
    :emphasize-lines: 15
 
 		M = cv2.moments(mask)
