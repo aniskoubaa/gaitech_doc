@@ -16,16 +16,8 @@ RIA is a medium sized robotic research and development platform categorized unde
 
 Technical Specifications
 ========================
-kk
 
-=====  =====  =======
-A      B      A and B
-=====  =====  =======
-False  False  False
-True   False  False
-False  True   False
-True   True   True
-=====  =====  =======
+
 
 .. figure:: images/ria_r100_overview_fig02.jpg
     :width: 160pt
