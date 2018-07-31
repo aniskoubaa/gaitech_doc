@@ -29,3 +29,11 @@ Setup gaitech_doc ROS Package
 First, download the lastest version of the ``gaitech_edu`` package from `this github link <https://github.com/aniskoubaa/gaitech_edu>`_. 
 Then, unzip the package into your catkin workspace. Compile the package to make sure that all is running as expected.
 If you have compilation errors, check if it is related to some missing dependencies. In such a case, download them and compile again. 
+
+.. NOTE::
+
+   Learn ROS and get your ROS certificate by enrolling in the Udemy course 
+   `ROS for Beginners: Basics, Motion and OpenCV. <https://www.udemy.com/ros-essentials/?couponCode=ROS1GAITECHEDU>`_
+
+   Learn about ROS2: ROS Next Generation by enrolling in the Udemy course
+   `ROS2 How To: Discover Next Generation ROS <https://www.udemy.com/ros2-how-to/?couponCode=ROS2GAITECHEDU>`_

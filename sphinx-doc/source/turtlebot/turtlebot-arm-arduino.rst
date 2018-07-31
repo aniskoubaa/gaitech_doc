@@ -216,3 +216,15 @@ Try putting the tag you define in front of the RFID.
 	Do not give a close gripper command if the gripper is closed or the program might stop!!!
 
 .. youtube:: -34TNkw9W24
+
+|
+|
+
+
+.. NOTE::
+
+   Learn ROS and get your ROS certificate by enrolling in the Udemy course 
+   `ROS for Beginners: Basics, Motion and OpenCV. <https://www.udemy.com/ros-essentials/?couponCode=ROS1GAITECHEDU>`_
+
+   Learn about ROS2: ROS Next Generation by enrolling in the Udemy course
+   `ROS2 How To: Discover Next Generation ROS <https://www.udemy.com/ros2-how-to/?couponCode=ROS2GAITECHEDU>`_

@@ -77,3 +77,12 @@ Questions
 * What is the technique used to link the topic of the velocity command published by the keyboard teleop node and the velocity command topic received by the robot?
 * What is the role of ``scale_linear`` and ``scale_angular``. Explain. 
 
+
+
+.. NOTE::
+
+   Learn ROS and get your ROS certificate by enrolling in the Udemy course 
+   `ROS for Beginners: Basics, Motion and OpenCV. <https://www.udemy.com/ros-essentials/?couponCode=ROS1GAITECHEDU>`_
+
+   Learn about ROS2: ROS Next Generation by enrolling in the Udemy course
+   `ROS2 How To: Discover Next Generation ROS <https://www.udemy.com/ros2-how-to/?couponCode=ROS2GAITECHEDU>`_

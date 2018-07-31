@@ -173,3 +173,13 @@ Then, you should see the following interface of the Arbotix Simulator
 	:align: center
 
 Simply check any joint and enjoy moving it. 
+
+
+
+.. NOTE::
+
+   Learn ROS and get your ROS certificate by enrolling in the Udemy course 
+   `ROS for Beginners: Basics, Motion and OpenCV. <https://www.udemy.com/ros-essentials/?couponCode=ROS1GAITECHEDU>`_
+
+   Learn about ROS2: ROS Next Generation by enrolling in the Udemy course
+   `ROS2 How To: Discover Next Generation ROS <https://www.udemy.com/ros2-how-to/?couponCode=ROS2GAITECHEDU>`_

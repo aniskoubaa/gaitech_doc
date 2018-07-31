@@ -211,3 +211,12 @@ Review questions
    * How a map is represented in ROS? What is the relation between the ``yaml`` file and the ``pgm`` file?
    * Which specific launch file is responsible for executing the gmapping algorithm and initialize its parameters?  
 
+
+
+.. NOTE::
+
+   Learn ROS and get your ROS certificate by enrolling in the Udemy course 
+   `ROS for Beginners: Basics, Motion and OpenCV. <https://www.udemy.com/ros-essentials/?couponCode=ROS1GAITECHEDU>`_
+
+   Learn about ROS2: ROS Next Generation by enrolling in the Udemy course
+   `ROS2 How To: Discover Next Generation ROS <https://www.udemy.com/ros2-how-to/?couponCode=ROS2GAITECHEDU>`_

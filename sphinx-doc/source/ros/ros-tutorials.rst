@@ -17,6 +17,15 @@ Finally, some more advanced concepts will be introduced through the development 
 At the end of ROS Quick Start tutorials, you will get a full understanding of ROS that allows you to dive deeper and develop more advanced robotics applications. 
 
 
+.. NOTE::
+
+   Learn ROS and get your ROS certificate by enrolling in the Udemy course 
+   `ROS for Beginners: Basics, Motion and OpenCV. <https://www.udemy.com/ros-essentials/?couponCode=ROS1GAITECHEDU>`_
+
+   Learn about ROS2: ROS Next Generation by enrolling in the Udemy course
+   `ROS2 How To: Discover Next Generation ROS <https://www.udemy.com/ros2-how-to/?couponCode=ROS2GAITECHEDU>`_
+
+
 .. toctree::
    :hidden:
 

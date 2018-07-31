@@ -186,3 +186,13 @@ Now to be able to see what the robot is acually sees you can open a new terminal
 
 .. NOTE::
 	The RViz simulator may take a couple of minutes to be launched. Make sure you have a powerful PC with a good graphics card.
+
+
+
+.. NOTE::
+
+   Learn ROS and get your ROS certificate by enrolling in the Udemy course 
+   `ROS for Beginners: Basics, Motion and OpenCV. <https://www.udemy.com/ros-essentials/?couponCode=ROS1GAITECHEDU>`_
+
+   Learn about ROS2: ROS Next Generation by enrolling in the Udemy course
+   `ROS2 How To: Discover Next Generation ROS <https://www.udemy.com/ros2-how-to/?couponCode=ROS2GAITECHEDU>`_
