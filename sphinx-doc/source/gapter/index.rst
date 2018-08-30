@@ -37,11 +37,5 @@ To receive updates about Gapter and other Gaitech Products, subscribe to the  to
     :align: center
     :width: 600pt
 
-.. image:: images/pre-order1.png
-    :width: 49%
-
-.. image:: images/pre-order2.png
-    :width: 49%
-
 
 
