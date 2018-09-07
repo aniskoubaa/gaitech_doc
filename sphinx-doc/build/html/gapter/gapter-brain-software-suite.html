@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="GAPTER: Software Tutorials" href="software-tutorials.html"/>
         <link rel="next" title="GAPTER: Simulation" href="gapter-simulation.html"/>
@@ -106,7 +103,7 @@
 <li class="toctree-l2"><a class="reference internal" href="preflight-configurations.html">Pre-Flight Configurations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="first-flight-tests.html">First Flight Test</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="software-tutorials.html">Software Tutorials</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Gapter Brain Software Suite</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Gapter Brain Software Suite</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#the-ubuntu-14-04-lts-operating-system-os">The Ubuntu 14.04 LTS Operating System (OS)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#robot-operating-system-ros">Robot Operating System (ROS)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mavlink">MAVLink</a></li>
@@ -164,7 +161,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/gapter/gapter-brain-software-suite.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/gapter/gapter-brain-software-suite.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -188,7 +185,7 @@
 </div></blockquote>
 <p class="last">For any query, please feel free to post your questions in the <a class="reference external" href="http://forum.gaitech.hk/">Gaitech EDU Forum</a></p>
 </div>
-<p>First, before being able to develop or deploy any program in Gapter Brain, you need to connect to it. Depending on the wireless mode, you can connect to Gapter by following instructions in <a class="reference internal" href="network-configuration.html#network-configuration"><span class="std std-ref">GAPTER: Network Configuration and Connection</span></a>.
+<p>First, before being able to develop or deploy any program in Gapter Brain, you need to connect to it. Depending on the wireless mode, you can connect to Gapter by following instructions in <a class="reference internal" href="network-configuration.html#network-configuration"><span>GAPTER: Network Configuration and Connection</span></a>.
 Then, you will have access to the software development frameworks of Gapter, which are presented in what follows.</p>
 <div class="section" id="the-ubuntu-14-04-lts-operating-system-os">
 <h2>The Ubuntu 14.04 LTS Operating System (OS)<a class="headerlink" href="#the-ubuntu-14-04-lts-operating-system-os" title="Permalink to this headline">¶</a></h2>
@@ -198,12 +195,12 @@ Then, you will have access to the software development frameworks of Gapter, whi
 <h2>Robot Operating System (ROS)<a class="headerlink" href="#robot-operating-system-ros" title="Permalink to this headline">¶</a></h2>
 <p>ROS is the defacto standard for developing software and applications for robots, including drones. ROS is already installed in Gapter. It can be located in this folder <code class="docutils literal"><span class="pre">/opt/ros/</span></code>.
 To know the version of ROS installed on your Gapter, you can perform the following command</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> /opt/ros/
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> /opt/ros/
 ls
 </pre></div>
 </div>
 <p>Then, you will see the folder name which presents the ROS version. The default ROS version is <code class="docutils literal"><span class="pre">indigo</span></code>.</p>
-<p>If you want to install another version of ROS on Gapter Brain, then make sure that you are connected to it in <strong>WiFi infrastructre mode</strong> as illustrated in the tutorial <a class="reference internal" href="network-configuration.html#network-configuration"><span class="std std-ref">GAPTER: Network Configuration and Connection</span></a> and that you are connected to the Internet.
+<p>If you want to install another version of ROS on Gapter Brain, then make sure that you are connected to it in <strong>WiFi infrastructre mode</strong> as illustrated in the tutorial <a class="reference internal" href="network-configuration.html#network-configuration"><span>GAPTER: Network Configuration and Connection</span></a> and that you are connected to the Internet.
 Then, you can install ROS by following the ROS tutorials (for Ubuntu 14.04 OS) <a class="reference external" href="http://wiki.ros.org/indigo/Installation/Ubuntu">installation instructions of ROS Indigo</a>, then you must <a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment">configure your ROS environment</a>
 The installation of ROS on Odroid XU4 is similar to installing it on any other computer with Ubuntu 14.04 OS.</p>
 <p>The default <code class="docutils literal"><span class="pre">catkin</span></code> workspace is located in <code class="docutils literal"><span class="pre">/home/gapter/catkin_ws</span></code> folder. You can create new ROS packages in <code class="docutils literal"><span class="pre">/home/gapter/catkin_ws/src/</span></code> as illustrated in the tutorial <a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/CreatingPackage">Creating a ROS Package</a> .</p>
@@ -211,18 +208,18 @@ The installation of ROS on Odroid XU4 is similar to installing it on any other c
 If this is not enough convinient, then you can develop your ROS programs locally on your computer machine, and test them; then transfer the file to appropriate folder in the catkin workspace and ROS package. You can use FTP client to transfer files from your computer to Gapter (e.g. FileZilla or others), or you can transfer through using a USB device.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last">Note that you can run your programs first on Gapter simulator (see tutorial <a class="reference internal" href="gapter-simulation.html#gapter-simulation"><span class="std std-ref">GAPTER: Simulation</span></a>) to make sure that they work as expected before running them on the real Gapter drone.</p>
+<p class="last">Note that you can run your programs first on Gapter simulator (see tutorial <a class="reference internal" href="gapter-simulation.html#gapter-simulation"><span>GAPTER: Simulation</span></a>) to make sure that they work as expected before running them on the real Gapter drone.</p>
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">We already provide a sample of ROS programs on Gapter brain, which are available in the folder <code class="docutils literal"><span class="pre">/home/gapter/catkin_ws/src/gaitech_edu/src/gapter/</span></code>.
-You can run and test these programs by following the <a class="reference internal" href="gapter-ros-tutorials.html#gapter-ros-tutorials"><span class="std std-ref">GAPTER: ROS Tutorials</span></a>.</p>
+You can run and test these programs by following the <a class="reference internal" href="gapter-ros-tutorials.html#gapter-ros-tutorials"><span>GAPTER: ROS Tutorials</span></a>.</p>
 </div>
 </div>
 <div class="section" id="mavlink">
 <h2>MAVLink<a class="headerlink" href="#mavlink" title="Permalink to this headline">¶</a></h2>
 <p>MAVLink is a communication protocol supported by the Ardupilot autopilot software between the drone and the ground station.
-As Gapter uses Pixhawk autopilot, which is embeds the Ardupilot autopilot, it uses the MAVLink protocol to communicate with the ground stations such as QGroundControl, DroidPlanner, Tower, AMP Planner, Mission Planner, …</p>
+As Gapter uses Pixhawk autopilot, which is embeds the Ardupilot autopilot, it uses the MAVLink protocol to communicate with the ground stations such as QGroundControl, DroidPlanner, Tower, AMP Planner, Mission Planner, ...</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p>For more information about the MAVLink protocol, and Ardupilot system, we provide the following references:</p>

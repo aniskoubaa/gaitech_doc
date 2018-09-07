@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="RIA-R100 Documentation" href="index.html"/>
         <link rel="next" title="Video Streaming Tutorials" href="../video/index.html"/>
@@ -112,7 +109,7 @@
 <li class="toctree-l2"><a class="reference internal" href="quick-start.html">Quick Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="demo-apps.html">Demo Applications</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Simulation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Simulation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../video/index.html">Video Streaming Tutorials</a></li>
@@ -154,7 +151,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/ria_r100/simulation.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/ria_r100/simulation.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -173,35 +170,35 @@
 <li>Run following in each terminal</li>
 <li>To start simulation:</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ria_sim gazebo.launch
+<div class="highlight-bash"><div class="highlight"><pre>$ roslaunch ria_sim gazebo.launch
 </pre></div>
 </div>
 <p>This will launch RIA’s simulation world. By default it is empty world. Can add different worlds by adding argument</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ria_sim gazebo.launch world_name:<span class="o">=</span>/worlds/willogarage.world
+<div class="highlight-bash"><div class="highlight"><pre>$ roslaunch ria_sim gazebo.launch world_name:<span class="o">=</span>/worlds/willogarage.world
 </pre></div>
 </div>
 <ul class="simple">
 <li>To control manually</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ria_sim keyboard.launch
+<div class="highlight-bash"><div class="highlight"><pre>$ roslaunch ria_sim keyboard.launch
 </pre></div>
 </div>
 <ul class="simple">
 <li>To generate map</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ria_sim slam_gmapping.launch
+<div class="highlight-bash"><div class="highlight"><pre>$ roslaunch ria_sim slam_gmapping.launch
 </pre></div>
 </div>
 <ul class="simple">
 <li>To navigate robot</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$  roslaunch ria_sim move_base.launch
+<div class="highlight-bash"><div class="highlight"><pre>$  roslaunch ria_sim move_base.launch
 </pre></div>
 </div>
 <ul class="simple">
 <li>To visualize robot in rviz</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ria_sim view.launch
+<div class="highlight-bash"><div class="highlight"><pre>$ roslaunch ria_sim view.launch
 </pre></div>
 </div>
 </div>

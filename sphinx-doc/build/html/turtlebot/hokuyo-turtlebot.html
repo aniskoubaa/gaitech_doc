@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
         <link rel="next" title="Drones" href="../drones/index.html"/>
@@ -106,7 +103,7 @@
 <li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="turtlebot-arm-pincher.html">Turtlebot Arm PhantomX Pincher with ROS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="turtlebot-arm-arduino.html">Controlling a Turtlebot Arm with an Arduino Board using RFID</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Adding Hokuyo Laser Range Finder to Turtlebot</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Adding Hokuyo Laser Range Finder to Turtlebot</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installing-the-hokuyo-related-packages">Installing the Hokuyo Related Packages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#copying-hokuyo-description-in-meshes-folder">Copying Hokuyo description in meshes folder</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#editing-and-adding-the-hokuyo-urdf-file">Editing and adding the Hokuyo URDF file</a></li>
@@ -160,7 +157,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/hokuyo-turtlebot.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/hokuyo-turtlebot.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -186,17 +183,26 @@
 </div></blockquote>
 <p class="last">This tutorial was developed for ROS <a class="reference external" href="http://wiki.ros.org/hydro">Hydro</a> version. However, it is expected to also work with <a class="reference external" href="http://wiki.ros.org/groovy">Groovy</a> (not tested).</p>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If you want to learn about laser scanners and how they can be programmed in ROS, it is presented in Section 8 in the Udemy course
+<a class="reference external" href="https://www.udemy.com/ros-essentials/?couponCode=ROS1GAITECHEDU">ROS for Beginners: Basics, Motion and OpenCV.</a></p>
+<p>Learn ROS and get your ROS certificate by enrolling in the Udemy course
+<a class="reference external" href="https://www.udemy.com/ros-essentials/?couponCode=ROS1GAITECHEDU">ROS for Beginners: Basics, Motion and OpenCV.</a></p>
+<p class="last">Learn about ROS2: ROS Next Generation by enrolling in the Udemy course
+<a class="reference external" href="https://www.udemy.com/ros2-how-to/?couponCode=ROS2GAITECHEDU">ROS2 How To: Discover Next Generation ROS</a></p>
+</div>
 <p>The figure below shows the Hokuyo LRF added on top of the Turtlebot. It is possible to add it in other locations, provided that the laser beam do not interfere with the body of the robot.</p>
 <img alt="../_images/Hokuyo_Turtlebot.jpg" class="align-center" src="../_images/Hokuyo_Turtlebot.jpg" />
 <div class="section" id="installing-the-hokuyo-related-packages">
 <h2>Installing the Hokuyo Related Packages<a class="headerlink" href="#installing-the-hokuyo-related-packages" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://www.hokuyo-aut.jp/02sensor/07scanner/urg_04lx_ug01.html">Hokuyo Node</a> (UTM-04G) is a laser scanner that can scan with an opening up to 270 degrees with a range up to 4 meters. TurtleBot comes with the Kinect sensor that has a laser scanner with a scan opening up to 57 degrees with practical range of 3 meters. Hokuyo LRF is more accurate than the Kinect sensor and it would be more useful in making maps with gmapping and SLAM applications.
 ROS provides a driver for Hokyuo LRF, referred to as <a class="reference external" href="http://wiki.ros.org/hydro">urg_node</a> in ROS Hydro distribution. You have to install the <a class="reference external" href="http://wiki.ros.org/urg_node">urg_node</a> as follows:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-hydro-urg-*
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install ros-hydro-urg-*
 </pre></div>
 </div>
 <p>It is also possible to use the hokuyo_node and for this you need to install <a class="reference external" href="http://wiki.ros.org/hokuyo_node">hokuyo_node</a> as follows:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-hydro-hokuyo-node
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install ros-hydro-hokuyo-node
 </pre></div>
 </div>
 <div class="admonition note">
@@ -215,7 +221,7 @@ ROS provides a driver for Hokyuo LRF, referred to as <a class="reference externa
 <div class="section" id="editing-and-adding-the-hokuyo-urdf-file">
 <h2>Editing and adding the Hokuyo URDF file<a class="headerlink" href="#editing-and-adding-the-hokuyo-urdf-file" title="Permalink to this headline">¶</a></h2>
 <p>Now go the folder <code class="docutils literal"><span class="pre">/opt/ros/hydro/share/turtlebot_description/urdf/sensors</span></code> and create a new file called as <code class="docutils literal"><span class="pre">hokuyo.urdf.xacro</span></code>. And add the following lines in the file:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
 <span class="nt">&lt;robot</span> <span class="na">name=</span><span class="s">&quot;sensor_hokuyo&quot;</span> <span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;xacro:include</span> <span class="na">filename=</span><span class="s">&quot;$(find turtlebot_description)/urdf/turtlebot_gazebo.urdf.xacro&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;xacro:include</span> <span class="na">filename=</span><span class="s">&quot;$(find turtlebot_description)/urdf/turtlebot_properties.urdf.xacro&quot;</span><span class="nt">/&gt;</span>
@@ -254,7 +260,7 @@ ROS provides a driver for Hokyuo LRF, referred to as <a class="reference externa
 <div class="section" id="code-explanation">
 <h2>Code Explanation<a class="headerlink" href="#code-explanation" title="Permalink to this headline">¶</a></h2>
 <p>The code focuses on two things one is description about <a class="reference external" href="http://www.hokuyo-aut.jp/02sensor/07scanner/urg_04lx_ug01.html">Hokuyo</a> that is in <code class="docutils literal"><span class="pre">meshes</span></code> folder, and other is the defining join with its location and its relation with parent frame (joint). For finding the location of hokuyo sensor, you may need to calculate the location that will be in meters and the representation is in <code class="docutils literal"><span class="pre">x,y,z</span></code> . Turtlebot assumes <code class="docutils literal"><span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span></code> at it base center.</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;collision&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;collision&gt;</span>
 <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;geometry&gt;</span>
 <span class="nt">&lt;box</span> <span class="na">size=</span><span class="s">&quot;0.1 0.1 0.1&quot;</span><span class="nt">/&gt;</span>
@@ -263,7 +269,7 @@ ROS provides a driver for Hokyuo LRF, referred to as <a class="reference externa
 </pre></div>
 </div>
 <p>Collision do provide the opportunity to take a decision before going to collide.In above code we have defined collisions for more explanation look into <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials/Adding%20Physical%20and%20Collision%20Properties%20to%20a%20URDF%20Model">Adding Collisions</a>.It is necessary to set the parameters to avoid collisions.</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;hokuyo_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;hokuyo_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0 0.22 0.05&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0 0 1.570796&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;${parent}&quot;</span><span class="nt">/&gt;</span>
@@ -276,7 +282,7 @@ ROS provides a driver for Hokyuo LRF, referred to as <a class="reference externa
 <div class="section" id="adding-hokuyo-urdf-description-to-turtlebot-urdf-description">
 <h2>Adding Hokuyo URDF description to Turtlebot URDF description<a class="headerlink" href="#adding-hokuyo-urdf-description-to-turtlebot-urdf-description" title="Permalink to this headline">¶</a></h2>
 <p>In order to be Hokuyo a part of URDF description, we need to add Hokuyo LRF description to the Turtlebot URDF so that it can be visualized in rivz and other simulators. For that purpose, go to the folder <code class="docutils literal"><span class="pre">/opt/ros/hydro/share/turtlebot_description/urdf</span></code> and add the following line in <code class="docutils literal"><span class="pre">turtlebot_library.urdf.xacro</span></code> file:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;xacro:include</span> <span class="na">filename=</span><span class="s">&quot;$(find turtlebot_description)/urdf/sensors/hokuyo.urdf.xacro&quot;</span><span class="nt">/&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;xacro:include</span> <span class="na">filename=</span><span class="s">&quot;$(find turtlebot_description)/urdf/sensors/hokuyo.urdf.xacro&quot;</span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>This will call the hokuyo description created in urdf. In order to launch the description , it is just required to launch <code class="docutils literal"><span class="pre">mininal.launch</span></code> and it will work, in order to see a hokuyo sensor in rviz we need to add its definition in gazebo that is not covered in this tutorial but can be borrowed from <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials/Building%20a%20Visual%20Robot%20Model%20with%20URDF%20from%20Scratch">Building Visual Robot</a></p>
@@ -284,7 +290,7 @@ ROS provides a driver for Hokyuo LRF, referred to as <a class="reference externa
 <div class="section" id="creating-a-launch-file-for-hokuyo-node">
 <h2>Creating a Launch File for Hokuyo Node<a class="headerlink" href="#creating-a-launch-file-for-hokuyo-node" title="Permalink to this headline">¶</a></h2>
 <p>Its is better to create a Hokuyo Launch file in order to launch the Hokuyo node. It will also allow Hokuyo node dynamic re-configuration of Hokuyo node. Create a launch file in any package and call it as <code class="docutils literal"><span class="pre">hokuyo.launch</span></code>. Copy and paste the following code in <code class="docutils literal"><span class="pre">hokuyo.launch</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
+<div class="highlight-bash"><div class="highlight"><pre>&lt;launch&gt;
 &lt;node <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;hokuyo&quot;</span> <span class="nv">pkg</span><span class="o">=</span><span class="s2">&quot;hokuyo_node&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;hokuyo_node&quot;</span> <span class="nv">respawn</span><span class="o">=</span><span class="s2">&quot;false&quot;</span> <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span>&gt;
 &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;calibrate_time&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;bool&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>/&gt;
 &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;port&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;string&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;/dev/ttyACM0&quot;</span>/&gt;
@@ -300,27 +306,20 @@ ROS provides a driver for Hokyuo LRF, referred to as <a class="reference externa
 <div class="section" id="using-slam-with-hokuyo-lidar-sensor">
 <h2>Using SLAM With Hokuyo LIDAR Sensor<a class="headerlink" href="#using-slam-with-hokuyo-lidar-sensor" title="Permalink to this headline">¶</a></h2>
 <p>In order to use Hokuyo for SLAM as described in tutorial <a class="reference external" href="http://wiki.ros.org/turtlebot_navigation/Tutorials/Build%20a%20map%20with%20SLAM">Building SLAM</a> hokuyo-turtlebot. Following are the steps to be done at turtlebot Launch the Turtlebot</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_bringup minimal.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch turtlebot_bringup minimal.launch
 </pre></div>
 </div>
 <p>run the Hokuyo node:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_test_launch hokuyo.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch turtlebot_test_launch hokuyo.launch
 </pre></div>
 </div>
 <p>Launch the <code class="docutils literal"><span class="pre">gmapping</span></code> for map building</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_navigation gmapping_demo.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch turtlebot_navigation gmapping_demo.launch
 </pre></div>
 </div>
 <p>You can view the map at workstation using <code class="docutils literal"><span class="pre">rviz</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_rviz_launchers view_navigation.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch turtlebot_rviz_launchers view_navigation.launch
 </pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>Learn ROS and get your ROS certificate by enrolling in the Udemy course
-<a class="reference external" href="https://www.udemy.com/ros-essentials/?couponCode=ROS1GAITECHEDU">ROS for Beginners: Basics, Motion and OpenCV.</a></p>
-<p class="last">Learn about ROS2: ROS Next Generation by enrolling in the Udemy course
-<a class="reference external" href="https://www.udemy.com/ros2-how-to/?couponCode=ROS2GAITECHEDU">ROS2 How To: Discover Next Generation ROS</a></p>
 </div>
 </div>
 </div>

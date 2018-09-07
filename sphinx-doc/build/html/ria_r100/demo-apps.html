@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="RIA-R100 Documentation" href="index.html"/>
         <link rel="next" title="Simulating RIA" href="simulation.html"/>
@@ -111,7 +108,7 @@
 <li class="toctree-l2"><a class="reference internal" href="r100-warning.html">Warning and safety precautions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quick-start.html">Quick Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Demo Applications</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Demo Applications</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#tele-op">Tele-op</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mapping-navigation">Mapping &amp; Navigation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#manipulation">Manipulation</a></li>
@@ -160,7 +157,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/ria_r100/demo-apps.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/ria_r100/demo-apps.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -181,7 +178,7 @@
 <li>To control RIA with keyboard from host PC follow these steps</li>
 <li>In a terminal.</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ria_teleop keyboard.launch
+<div class="highlight-bash"><div class="highlight"><pre>$ roslaunch ria_teleop keyboard.launch
 </pre></div>
 </div>
 </div>
@@ -193,19 +190,19 @@
 <li>In separate terminal launch following files in host PC</li>
 <li>To create map</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ria_navigation slam_gmapping.launch
+<div class="highlight-bash"><div class="highlight"><pre>$ roslaunch ria_navigation slam_gmapping.launch
 </pre></div>
 </div>
 <p><strong>Note:</strong> Can use either gmapping or hector slam</p>
 <p>To view robot and mapping</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ria_description description_complete.launch
+<div class="highlight-bash"><div class="highlight"><pre>$ roslaunch ria_description description_complete.launch
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ria_description view.launch
+<div class="highlight-bash"><div class="highlight"><pre>$ roslaunch ria_description view.launch
 </pre></div>
 </div>
 <p>To Navigate robot</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ria_navigation move_base.launch
+<div class="highlight-bash"><div class="highlight"><pre>$ roslaunch ria_navigation move_base.launch
 </pre></div>
 </div>
 </div>

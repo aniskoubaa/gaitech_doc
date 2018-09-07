@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Dronemap Planner" href="index.html"/>
         <link rel="next" title="Tutorials" href="dronemap-planner-tutorials.html"/>
@@ -101,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../video/index.html">Video Streaming Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Dronemap Planner</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="dronemap-overview.html">Overview</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Setup and Configuration</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Setup and Configuration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#hardware-system-requirements">Hardware System Requirements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#software-system-requirements">Software System Requirements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#system-setup">System Setup</a><ul>
@@ -152,7 +149,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/dronemap/dronemap-configuration.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/dronemap/dronemap-configuration.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -221,7 +218,7 @@ If you want to work with Dronemap Planner on a Local Aera Network (LAN), then yo
 <li><strong>Step 2</strong>: identify the IP address of your server machine. Let us assume that the IP address is <code class="docutils literal"><span class="pre">192.168.10.10</span></code>. Use the correct address of your server machine instead.</li>
 <li><strong>Step 3</strong>: open the file <code class="docutils literal"><span class="pre">dronemap-config.xml</span></code> and edit the IP address with the correct IP address of your server as shown in line 4 of <code class="docutils literal"><span class="pre">XML</span></code> script:</li>
 </ul>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
 <span class="nt">&lt;dronemap-params&gt;</span>
    <span class="nt">&lt;server&gt;</span>
 <span class="hll">      <span class="nt">&lt;ip&gt;</span>192.168.10.10<span class="nt">&lt;/ip&gt;</span>
@@ -259,7 +256,7 @@ You can change the port number to any other value. We will discuss more the port
 </ul>
 <p>Once all these parameters are set correctly, you are now ready to execute and run Dronemap Planner jar file.</p>
 <p>Using command line, go to the folder where Dronemap Planner jar file is located, and execute the following command</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>java -jar dronemap-planner.jar dronemap-config.xml
+<div class="highlight-bash"><div class="highlight"><pre>java -jar dronemap-planner.jar dronemap-config.xml
 </pre></div>
 </div>
 <p>then, you should be able to see all the Dronemap Planner services started as illustrated in the following figure (<em>output might be slightly different based on version</em>):</p>

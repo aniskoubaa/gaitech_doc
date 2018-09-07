@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
         <link rel="next" title="Adding Hokuyo Laser Range Finder to Turtlebot" href="hokuyo-turtlebot.html"/>
@@ -105,7 +102,7 @@
 <li class="toctree-l2"><a class="reference internal" href="map-navigation.html">Map Navigation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="turtlebot-arm-pincher.html">Turtlebot Arm PhantomX Pincher with ROS</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Controlling a Turtlebot Arm with an Arduino Board using RFID</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Controlling a Turtlebot Arm with an Arduino Board using RFID</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installation-of-packages">Installation of Packages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#components">Components</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#develop-a-program-to-control-the-arm-robot-with-the-arduino-board">Develop a program to control the Arm robot with the Arduino board</a><ul>
@@ -162,7 +159,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/turtlebot-arm-arduino.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/turtlebot-arm-arduino.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -195,7 +192,7 @@ A complete package of turtlebot arm can be found at <a class="reference external
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Make sure that you completed the previous <a class="reference internal" href="turtlebot-arm-pincher.html#turtlebot-arm-pincher"><span class="std std-ref">Getting Started with Turtlebot Arm PhantomX Pincher with ROS</span></a> tutorial.</p>
+<p class="last">Make sure that you completed the previous <a class="reference internal" href="turtlebot-arm-pincher.html#turtlebot-arm-pincher"><span>Getting Started with Turtlebot Arm PhantomX Pincher with ROS</span></a> tutorial.</p>
 </div>
 <div class="section" id="installation-of-packages">
 <h2>Installation of Packages<a class="headerlink" href="#installation-of-packages" title="Permalink to this headline">¶</a></h2>
@@ -230,19 +227,19 @@ A complete package of turtlebot arm can be found at <a class="reference external
 <p>In this section, you will learn what are the steps to sync a Turtlebot Arm PhantomX Pincher with a RFID using arduino UNO board with a <code class="docutils literal"><span class="pre">C++</span></code> (listener) file for the turtlebot arm robot and an <code class="docutils literal"><span class="pre">arduino</span></code> file (publisher) for the UNO board with ROS. First step, you need to define any tag in the arduino code. When the antenna reads this tag you will hear a sound/tone if the tag was not equal to the predefined one you will see a red light from the led on the RFID. Then the program publishes a topic of type char array containing the tag value/number. Second step, the <code class="docutils literal"><span class="pre">C++</span></code> code will receive this message/topic and compare it to a defined tag. If the two tags were the same the gripper will open and if not it will close.</p>
 <div class="section" id="main-steps">
 <h3>Main Steps<a class="headerlink" href="#main-steps" title="Permalink to this headline">¶</a></h3>
-<p>Let’s divide this tutorial into two parts:</p>
-<p>1-The Publisher: an <code class="docutils literal"><span class="pre">arduino</span></code> program with ros library that will allow us to publish a certain topic carrying a value that you can define according to the type of message/data you want (Boolean, String, char…etc). This program reads the data from the antenna and send it in a message/topic. Every topic can have a single value of a single type as mentioned before.</p>
+<p>Let&#8217;s divide this tutorial into two parts:</p>
+<p>1-The Publisher: an <code class="docutils literal"><span class="pre">arduino</span></code> program with ros library that will allow us to publish a certain topic carrying a value that you can define according to the type of message/data you want (Boolean, String, char...etc). This program reads the data from the antenna and send it in a message/topic. Every topic can have a single value of a single type as mentioned before.</p>
 <p>2-The Listener: a <code class="docutils literal"><span class="pre">C++</span></code> program that can receive the topic that was published from the arduino program and give the command to the Gripper either to open or to close so it controls the turtlebot arm robot.</p>
 </div>
 <div class="section" id="the-arduino-program">
 <h3>The Arduino Program<a class="headerlink" href="#the-arduino-program" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-arduino"><div class="highlight"><pre><span></span>    <span class="cp">#include</span> <span class="cpf">&lt;ros.h&gt;</span><span class="cp"></span>
+<div class="highlight-arduino"><div class="highlight"><pre>    <span class="cp">#include</span> <span class="cpf">&lt;ros.h&gt;</span><span class="cp"></span>
     <span class="cp">#include</span> <span class="cpf">&lt;RFIDuino.h&gt;</span><span class="cp"></span>
     <span class="cp">#include</span> <span class="cpf">&lt;std_msgs/String.h&gt;</span><span class="cp"></span>
 
     <span class="c1">//Create the node handler and the message type</span>
     <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
-    <span class="n">std_msgs</span><span class="o">::</span><span class="kr">String</span> <span class="n">str_msg</span><span class="p">;</span>
+    <span class="n">std_msgs</span><span class="o">::</span><span class="kt">String</span> <span class="n">str_msg</span><span class="p">;</span>
 
     <span class="c1">//Create a publisher for the message</span>
     <span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span> <span class="n">pub_tag</span><span class="p">(</span><span class="s">&quot;/tagRead&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">str_msg</span><span class="p">);</span>
@@ -250,15 +247,15 @@ A complete package of turtlebot arm can be found at <a class="reference external
     <span class="c1">//initialize an RFIDuino object for hardware version 1.1</span>
     <span class="n">RFIDuino</span> <span class="nf">myRFIDuino</span><span class="p">(</span><span class="mf">1.1</span><span class="p">);</span>    <span class="c1">//you can use RFIDuino myRFIDuino(1.2) for the other version</span>
 
-    <span class="kr">char</span> <span class="n">tagWord</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
-    <span class="kr">String</span> <span class="n">tagStr</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">tagWord</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+    <span class="kt">String</span> <span class="n">tagStr</span><span class="p">;</span>
 
     <span class="c1">//enter your ID numbers below as a &#39;key&#39; tag</span>
-    <span class="kr">byte</span> <span class="n">keyTag</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span><span class="p">{</span><span class="mi">37</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">161</span><span class="p">,</span><span class="mi">253</span><span class="p">};</span>  <span class="c1">//an array that will hold all of our &#39;key tags&#39;. Key tags are treated differently from other tags read</span>
-    <span class="kr">byte</span> <span class="n">tagData</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>                   <span class="c1">//Holds the ID numbers from the tag</span>
-    <span class="kr">boolean</span> <span class="n">verifyKey</span> <span class="o">=</span> <span class="kr">false</span><span class="p">;</span>
+    <span class="nf">byte</span> <span class="n">keyTag</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span><span class="p">{</span><span class="mi">37</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">161</span><span class="p">,</span><span class="mi">253</span><span class="p">};</span>  <span class="c1">//an array that will hold all of our &#39;key tags&#39;. Key tags are treated differently from other tags read</span>
+    <span class="nf">byte</span> <span class="n">tagData</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>                   <span class="c1">//Holds the ID numbers from the tag</span>
+    <span class="kt">boolean</span> <span class="n">verifyKey</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 
-    <span class="kr">void</span> <span class="nb">setup</span><span class="p">()</span>
+    <span class="kt">void</span> <span class="nx">setup</span><span class="p">()</span>
     <span class="p">{</span>
 
     <span class="n">nh</span><span class="p">.</span><span class="n">initNode</span><span class="p">();</span>
@@ -266,38 +263,38 @@ A complete package of turtlebot arm can be found at <a class="reference external
 
     <span class="p">}</span>
 
-    <span class="kr">void</span> <span class="nb">loop</span><span class="p">()</span>
+    <span class="kt">void</span> <span class="nx">loop</span><span class="p">()</span>
     <span class="p">{</span>
 
-    <span class="k">if</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">scanForTag</span><span class="p">(</span><span class="n">tagData</span><span class="p">)</span> <span class="o">==</span> <span class="kr">true</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">scanForTag</span><span class="p">(</span><span class="n">tagData</span><span class="p">)</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span>
     <span class="p">{</span>
 
     <span class="n">verifyKey</span> <span class="o">=</span> <span class="n">myRFIDuino</span><span class="p">.</span><span class="n">compareTagData</span><span class="p">(</span><span class="n">tagData</span><span class="p">,</span> <span class="n">keyTag</span><span class="p">);</span><span class="c1">//run the comparetagData to check the tag just read against the &#39;key&#39; tag we defined.</span>
 
-    <span class="k">if</span><span class="p">(</span><span class="n">verifyKey</span> <span class="o">==</span> <span class="kr">true</span><span class="p">)</span><span class="c1">//if a &#39;true&#39; is returned by comparetagData, the current read is a key tag</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">verifyKey</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span><span class="c1">//if a &#39;true&#39; is returned by comparetagData, the current read is a key tag</span>
     <span class="p">{</span>
 
-<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led2</span><span class="p">,</span><span class="kr">HIGH</span><span class="p">);</span>         <span class="c1">//turn green LED on</span>
+<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led2</span><span class="p">,</span><span class="kc">HIGH</span><span class="p">);</span>         <span class="c1">//turn green LED on</span>
 <span class="n">myRFIDuino</span><span class="p">.</span><span class="n">successSound</span><span class="p">();</span>                  <span class="c1">//Play a &#39;success&#39; sound from the buzzer, 3 notes acsending</span>
 <span class="nf">delay</span><span class="p">(</span><span class="mi">250</span><span class="p">);</span>                                 <span class="c1">//wait for a period before turning off the LED</span>
-<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led2</span><span class="p">,</span><span class="kr">LOW</span><span class="p">);</span>       <span class="c1">//turn the green LED off</span>
+<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led2</span><span class="p">,</span><span class="kc">LOW</span><span class="p">);</span>       <span class="c1">//turn the green LED off</span>
 
     <span class="p">}</span>
     <span class="k">else</span><span class="c1">//otherwise the tag is not a key tag</span>
     <span class="p">{</span>
 
-<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led1</span><span class="p">,</span><span class="kr">HIGH</span><span class="p">);</span>         <span class="c1">//turn red LED on</span>
+<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led1</span><span class="p">,</span><span class="kc">HIGH</span><span class="p">);</span>         <span class="c1">//turn red LED on</span>
 <span class="nf">delay</span><span class="p">(</span><span class="mi">250</span><span class="p">);</span>                                 <span class="c1">//wait for a period before turning off the LED</span>
-<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led1</span><span class="p">,</span><span class="kr">LOW</span><span class="p">);</span>          <span class="c1">//turn the red LED off</span>
+<span class="nf">digitalWrite</span><span class="p">(</span><span class="n">myRFIDuino</span><span class="p">.</span><span class="n">led1</span><span class="p">,</span><span class="kc">LOW</span><span class="p">);</span>          <span class="c1">//turn the red LED off</span>
 
     <span class="p">}</span>
 
     <span class="c1">//convert the byte array into String</span>
-<span class="n">tagStr</span> <span class="o">=</span> <span class="kr">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kr">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kr">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kr">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
-<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kr">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
+<span class="n">tagStr</span> <span class="o">=</span> <span class="kt">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kt">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kt">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kt">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+<span class="n">tagStr</span> <span class="o">=</span> <span class="n">tagStr</span> <span class="o">+</span> <span class="kt">String</span><span class="p">(</span><span class="n">tagData</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
 
     <span class="c1">//convert the String into char array</span>
 <span class="n">tagStr</span><span class="p">.</span><span class="n">toCharArray</span><span class="p">(</span><span class="n">tagWord</span><span class="p">,</span><span class="mi">11</span><span class="p">);</span>
@@ -335,7 +332,7 @@ A complete package of turtlebot arm can be found at <a class="reference external
 <h2>Test your Program<a class="headerlink" href="#test-your-program" title="Permalink to this headline">¶</a></h2>
 <p>Upload the ros program in the (ArbotiX Sketches) to the turtlebot arm robot and make sure you picked the right Board and the right Serial Port.</p>
 <p>Run this command to give the permission to the port you are using:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo chmod <span class="m">777</span> /dev/ttyUSB0
+<div class="highlight-bash"><div class="highlight"><pre>sudo chmod <span class="m">777</span> /dev/ttyUSB0
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -343,7 +340,7 @@ A complete package of turtlebot arm can be found at <a class="reference external
 <p class="last">Make sure you give the permission to the right port.</p>
 </div>
 <p>To launch the <code class="docutils literal"><span class="pre">arm.launch</span></code> file and load the drivers for the robot</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_arm_bringup arm.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch turtlebot_arm_bringup arm.launch
 </pre></div>
 </div>
 <div class="admonition note">
@@ -351,7 +348,7 @@ A complete package of turtlebot arm can be found at <a class="reference external
 <p class="last">Make sure that the arm robot is connected to the same port in the <code class="docutils literal"><span class="pre">arm.yaml</span></code> <a class="reference external" href="https://github.com/turtlebot/turtlebot_arm/blob/indigo-devel/turtlebot_arm_bringup/config/arm.yaml">file</a> .</p>
 </div>
 <p>Run the following command where <code class="docutils literal"><span class="pre">beginner_tutorials</span></code> is the package containing the listener file and the armcontrol in the listener file.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun beginner_tutorials armcontrol
+<div class="highlight-bash"><div class="highlight"><pre>rosrun beginner_tutorials armcontrol
 </pre></div>
 </div>
 <div class="admonition note">
@@ -359,21 +356,20 @@ A complete package of turtlebot arm can be found at <a class="reference external
 <p class="last">Make sure that you compile the work space before loading anything to avoid errors. Follow the <a class="reference external" href="http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment">link</a> to know how.</p>
 </div>
 <p>Upload the Arduino program to your board. Make sure that you choose the right Board and Serial Port.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun rosserial_python serial_node.py /dev/ttyACM0
+<div class="highlight-bash"><div class="highlight"><pre>rosrun rosserial_python serial_node.py /dev/ttyACM0
 </pre></div>
 </div>
 <p>where the <code class="docutils literal"><span class="pre">ttyACM0</span></code> is the port for the Arduino board.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last">If it fails uploading in step 5 or fails running in step 6 repeat step 2 but for the arduino board’s port.</p>
+<p class="last">If it fails uploading in step 5 or fails running in step 6 repeat step 2 but for the arduino board&#8217;s port.</p>
 </div>
 <p>Try putting the tag you define in front of the RFID.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Do not give a close gripper command if the gripper is closed or the program might stop!!!</p>
 </div>
-<iframe src="http://www.youtube.com/embed/-34TNkw9W24" style="border: 0; height: 345px; width: 560px">
-</iframe><div class="line-block">
+<iframe width="640" height="360" src="http://www.youtube.com/embed/-34TNkw9W24" frameborder="0" allowfullscreen="1">&nbsp;</iframe><div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>

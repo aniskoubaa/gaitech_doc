@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/> 
 
   
@@ -132,7 +129,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/openCV-turtlebot.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/openCV-turtlebot.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -148,7 +145,7 @@
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <ul class="last simple">
-<li>Make sure that you completed installing all the required packages in the previous tutorials <a class="reference internal" href="openKinect-turtlebot.html#openkinect-turtlebot"><span class="std std-ref">Setting-up 3D Sensor for the Turtlebot</span></a> and <a class="reference internal" href="network-config-doc.html#network-config-doc"><span class="std std-ref">Network Configuration</span></a> and your network set-up is working fine between the ROS Master node and the host node.</li>
+<li>Make sure that you completed installing all the required packages in the previous tutorials <a class="reference internal" href="openKinect-turtlebot.html#openkinect-turtlebot"><span>Setting-up 3D Sensor for the Turtlebot</span></a> and <a class="reference internal" href="network-config-doc.html#network-config-doc"><span>Network Configuration</span></a> and your network set-up is working fine between the ROS Master node and the host node.</li>
 </ul>
 </div>
 <div class="section" id="installing-and-testing-camera-drivers">
@@ -157,7 +154,7 @@
 <div class="section" id="installing-the-camera-drivers">
 <h3>Installing the Camera Drivers<a class="headerlink" href="#installing-the-camera-drivers" title="Permalink to this headline">¶</a></h3>
 <p>All you need to do is to install the ROS <code class="docutils literal"><span class="pre">openni</span></code> and <code class="docutils literal"><span class="pre">freenect</span></code> drivers by running the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-indigo-openni-* ros-indigo-openni2-* <span class="se">\ </span>ros-indigo-freenect-*
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install ros-indigo-openni-* ros-indigo-openni2-* <span class="se">\ </span>ros-indigo-freenect-*
 rospack profile
 </pre></div>
 </div>
@@ -166,22 +163,22 @@ rospack profile
 <h3>Testing your Camera<a class="headerlink" href="#testing-your-camera" title="Permalink to this headline">¶</a></h3>
 <p>To be able to see the video stream coming from your camera we need to use the <code class="docutils literal"><span class="pre">image_view</span></code> <a class="reference external" href="http://wiki.ros.org/image_view">package</a> .</p>
 <p>For <code class="docutils literal"><span class="pre">Microsoft</span> <span class="pre">Kinect</span></code> camera run the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch freenect_launch freenect.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch freenect_launch freenect.launch
 </pre></div>
 </div>
 <p>For <code class="docutils literal"><span class="pre">Asus</span></code> camera run the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch openni2_launch openni2.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch openni2_launch openni2.launch
 </pre></div>
 </div>
 <p>If there is no problem with your installation you will see some thing like this:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>process<span class="o">[</span>camera/camera_nodelet_manager-1<span class="o">]</span>: started with pid <span class="o">[</span><span class="m">18070</span><span class="o">]</span>
-<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span><span class="m">1420555647</span>.969035762<span class="o">]</span>: Initializing nodelet with <span class="m">4</span> worker
+<div class="highlight-bash"><div class="highlight"><pre>process<span class="o">[</span>camera/camera_nodelet_manager-1<span class="o">]</span>: started with pid <span class="o">[</span>18070<span class="o">]</span>
+<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>1420555647.969035762<span class="o">]</span>: Initializing nodelet with <span class="m">4</span> worker
 threads.
-process<span class="o">[</span>camera/driver-2<span class="o">]</span>: started with pid <span class="o">[</span><span class="m">18078</span><span class="o">]</span>
+process<span class="o">[</span>camera/driver-2<span class="o">]</span>: started with pid <span class="o">[</span>18078<span class="o">]</span>
 Warning: USB events thread - failed to <span class="nb">set</span> priority. This might cause
 loss of data...
-process<span class="o">[</span>camera/rectify_color-3<span class="o">]</span>: started with pid <span class="o">[</span><span class="m">18112</span><span class="o">]</span>
-process<span class="o">[</span>camera/depth_rectify_depth-4<span class="o">]</span>: started with pid <span class="o">[</span><span class="m">18126</span><span class="o">]</span>
+process<span class="o">[</span>camera/rectify_color-3<span class="o">]</span>: started with pid <span class="o">[</span>18112<span class="o">]</span>
+process<span class="o">[</span>camera/depth_rectify_depth-4<span class="o">]</span>: started with pid <span class="o">[</span>18126<span class="o">]</span>
 etc.
 </pre></div>
 </div>
@@ -190,7 +187,7 @@ etc.
 <p class="last">You will see a couple of warnings about USB event threads, you can ignore them.</p>
 </div>
 <p>The color video stream uses the following topic to publish on <code class="docutils literal"><span class="pre">/camera/rgb/image_raw</span></code> which uses the <code class="docutils literal"><span class="pre">image_view</span></code> package. Run the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun image_view image_view image:<span class="o">=</span>/camera/rgb/image_raw
+<div class="highlight-bash"><div class="highlight"><pre>rosrun image_view image_view image:<span class="o">=</span>/camera/rgb/image_raw
 </pre></div>
 </div>
 <p>After a few seconds you will see the video stream from your camera on a small window.</p>
@@ -199,18 +196,18 @@ etc.
 <div class="section" id="installing-opencv-packages">
 <h2>Installing OpenCV packages<a class="headerlink" href="#installing-opencv-packages" title="Permalink to this headline">¶</a></h2>
 <p>You need to download the OpenCV packages by running the following commands:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-indigo-vision-opencv libopencv-dev python-opencv
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install ros-indigo-vision-opencv libopencv-dev python-opencv
 rospack profile
 </pre></div>
 </div>
 <p>After installation type this command to make sure that you have successfully installed the packages:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python
+<div class="highlight-bash"><div class="highlight"><pre>$ python
 &gt;&gt;&gt; from cv2 import cv
 &gt;&gt;&gt; quit<span class="o">()</span>
 </pre></div>
 </div>
 <p>You can type the following command to make sure that the OpenCV Python library is installed in its proper location:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>locate cv2.so <span class="p">|</span> grep python
+<div class="highlight-bash"><div class="highlight"><pre>locate cv2.so <span class="p">|</span> grep python
 </pre></div>
 </div>
 <p>You will get an output like this:</p>
@@ -224,7 +221,7 @@ rospack profile
 <p class="last">Make sure that you downloaded the <code class="docutils literal"><span class="pre">gaitech_edu</span></code> package from our GitHub <a class="reference external" href="https://github.com/aniskoubaa/gaitech_edu">repository</a></p>
 </div>
 <p>You will find a launch file called <code class="docutils literal"><span class="pre">turtlebot_openCV</span></code> in the following path <code class="docutils literal"><span class="pre">gaitech_edu/src/turtlebot/openCV/launch/turtlebot_openCV.launch</span></code>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
+<div class="highlight-bash"><div class="highlight"><pre>&lt;launch&gt;
         &lt;node <span class="nv">pkg</span><span class="o">=</span><span class="s2">&quot;gaitech_edu&quot;</span> <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;turtlebot_openCV&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;turtlebot_openCV.py&quot;</span> <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span>&gt;
         &lt;remap <span class="nv">from</span><span class="o">=</span><span class="s2">&quot;input_rgb_image&quot;</span> <span class="nv">to</span><span class="o">=</span><span class="s2">&quot;/camera/rgb/image_raw&quot;</span> /&gt;
         &lt;remap <span class="nv">from</span><span class="o">=</span><span class="s2">&quot;input_depth_image&quot;</span> <span class="nv">to</span><span class="o">=</span><span class="s2">&quot;/camera/depth/image_rect&quot;</span> /&gt;
@@ -233,7 +230,7 @@ rospack profile
 </pre></div>
 </div>
 <p>Run the file in a terminal:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_edu turtlebot_openCV.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch gaitech_edu turtlebot_openCV.launch
 </pre></div>
 </div>
 <div class="admonition note">
@@ -241,18 +238,18 @@ rospack profile
 <p>Make sure that your camera driver is running.</p>
 <p>For <code class="docutils literal"><span class="pre">Microsoft</span> <span class="pre">Kinect</span></code> camera:</p>
 <blockquote>
-<div><div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch freenect_launch freenect.launch
+<div><div class="highlight-bash"><div class="highlight"><pre>roslaunch freenect_launch freenect.launch
 </pre></div>
 </div>
 </div></blockquote>
 <p>For <code class="docutils literal"><span class="pre">Asus</span></code> camera:</p>
-<div class="last highlight-bash"><div class="highlight"><pre><span></span>roslaunch openni2_launch openni2.launch
+<div class="last highlight-bash"><div class="highlight"><pre>roslaunch openni2_launch openni2.launch
 </pre></div>
 </div>
 </div>
 <p>This file will run a python script called <code class="docutils literal"><span class="pre">turtlebot_openCV.py</span></code> and you can find the file in the following path <code class="docutils literal"><span class="pre">gaitech_edu/src/turtlebot/openCV/scripts/turtlebot_openCV.py</span></code>. The code is well documented but we will have a look at a couple of parts of it.</p>
 <p>All the OpenCV scripts have to import the <code class="docutils literal"><span class="pre">cv2</span></code> and the older version of it <code class="docutils literal"><span class="pre">cv2.cv</span></code> as it has some functions needed. The <code class="docutils literal"><span class="pre">Image</span></code> and <code class="docutils literal"><span class="pre">CamerInfo</span></code> are used for ROS messages. To be able to convert from ROS to OpenCV you need to import the <code class="docutils literal"><span class="pre">CvBridge</span></code> and <code class="docutils literal"><span class="pre">CvBridgeError</span></code> from the <code class="docutils literal"><span class="pre">cv_bridge</span></code> package. As for the last import <code class="docutils literal"><span class="pre">numpy</span></code>, it is used because OpenCV use it to process the images.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rospy</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">rospy</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
 <span class="kn">import</span> <span class="nn">cv2.cv</span> <span class="kn">as</span> <span class="nn">cv</span>
@@ -262,7 +259,7 @@ rospack profile
 </pre></div>
 </div>
 <p>This part is to initialize the two windows to display the images on.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Create the OpenCV display window for the RGB image</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># Create the OpenCV display window for the RGB image</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">cv_window_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_name</span>
 <span class="n">cv</span><span class="o">.</span><span class="n">NamedWindow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cv_window_name</span><span class="p">,</span> <span class="n">cv</span><span class="o">.</span><span class="n">CV_WINDOW_NORMAL</span><span class="p">)</span>
 <span class="n">cv</span><span class="o">.</span><span class="n">MoveWindow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cv_window_name</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
@@ -274,7 +271,7 @@ rospack profile
 </div>
 <p>As menthioned before that this program will display two windows, one for the Image and one for the Depth Image so each methods of them is for its Image processing, converting and displaying.</p>
 <p>The code is well explained for the Image function and the Depth Image.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">image_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">image_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
     <span class="c1"># Use cv_bridge() to convert the ROS image to OpenCV format</span>
     <span class="c1"># Convert the ROS image to OpenCV format using a cv_bridge helper function</span>
     <span class="n">frame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_image</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>

@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="MAVLink Tutorials" href="gapter-mavlink-tutorials.html"/>
         <link rel="next" title="GAPTER: Sensor Calibration" href="gapter-mavlink-sensor-calibration.html"/>
@@ -111,7 +108,7 @@
 <li class="toctree-l3"><a class="reference internal" href="gapter-ball-tracking.html">Ball Tracking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gapter-ros-tutorials.html">ROS Tutorials</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="gapter-mavlink-tutorials.html">MAVLink Tutorials</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Connecting with MAVLink Ground Station</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="">Connecting with MAVLink Ground Station</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-mavlink-sensor-calibration.html">Sensor Calibration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-mavlink-sitl.html">Using SITL Simulator</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-mavlink-dronekit.html">Developing Apps with DroneKit</a></li>
@@ -175,7 +172,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/gapter/gapter-mavlink-connect-with-ground-station.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/gapter/gapter-mavlink-connect-with-ground-station.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -189,35 +186,35 @@
 <span id="gapter-mavlink-connect-with-ground-station"></span><h1>GAPTER: Controlling Gapter from desktop using mavlink<a class="headerlink" href="#gapter-controlling-gapter-from-desktop-using-mavlink" title="Permalink to this headline">¶</a></h1>
 <p>Connect to wifi “gapter” from your desktop which will be shown in Wi-Fi list. If prompt for password type <code class="docutils literal"><span class="pre">gapteredu</span></code></p>
 <ul class="simple">
-<li>Open the terminal and connect to Gapter’s computer by typing following</li>
+<li>Open the terminal and connect to Gapter&#8217;s computer by typing following</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>user $: ssh gapter@192.168.1.1
+<div class="highlight-bash"><div class="highlight"><pre>user $: ssh gapter@192.168.1.1
 </pre></div>
 </div>
 <p>If prompts for password, type <code class="docutils literal"><span class="pre">gapteredu</span></code></p>
 <ul class="simple">
 <li>Now in the same terminal type following</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>odroid $: mavproxy.py --master<span class="o">=</span>/dev/ttyUSB0 --baudrate <span class="m">57600</span> --out <span class="m">192</span>.168.x.xx:5000  --aircraft MyCopter
+<div class="highlight-bash"><div class="highlight"><pre>odroid $: mavproxy.py --master<span class="o">=</span>/dev/ttyUSB0 --baudrate <span class="m">57600</span> --out 192.168.x.xx:5000  --aircraft MyCopter
 </pre></div>
 </div>
-<p>You must enter your desktop’s ip in place of  <code class="docutils literal"><span class="pre">192.168.x.xx</span></code></p>
+<p>You must enter your desktop&#8217;s ip in place of  <code class="docutils literal"><span class="pre">192.168.x.xx</span></code></p>
 <ul class="simple">
 <li>You can notice heartbeat form Gapter which shows mavlink has been connected</li>
 <li>In order to fly Gapter you must keep Gapter in GUIDED MODE then giving command takeoff at desired altitude.</li>
 <li>We will test Gapter outdoor to fly at 3 meters height and make it land.</li>
 <li>Type these lines in the same terminal</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>MAV&gt; load param /home/gapter/gapter_param/outdoor.param
+<div class="highlight-bash"><div class="highlight"><pre>MAV&gt; load param /home/gapter/gapter_param/outdoor.param
 MAV &gt; mode GUIDED
 MAV&gt; arm throttle
-MAV&gt; takeoff <span class="m">3</span>
+MAV&gt; takeoff 3
 </pre></div>
 </div>
 <ul class="simple">
 <li>Now you can notice Gapter hovering at 3 meters height. To land Gapter , mode should be changed to land mode</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>MAV&gt; mode LAND
+<div class="highlight-bash"><div class="highlight"><pre>MAV&gt; mode LAND
 </pre></div>
 </div>
 <ul class="simple">

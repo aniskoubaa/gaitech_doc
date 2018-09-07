@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/> 
 
   
@@ -132,7 +129,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/navigation-stack.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/navigation-stack.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -167,7 +164,7 @@
 </div>
 <div class="section" id="odometry-information">
 <h2>2. Odometry Information<a class="headerlink" href="#odometry-information" title="Permalink to this headline">¶</a></h2>
-<p>The odometry information’s messages <code class="docutils literal"><span class="pre">nav_msgs/Odometry</span></code> are published using <code class="docutils literal"><span class="pre">tf</span></code>. There are a couple of platforms for odometry with the supporting driviers such as <cite>Videre Erratic</cite> or <cite>PR2</cite>.</p>
+<p>The odometry information&#8217;s messages <code class="docutils literal"><span class="pre">nav_msgs/Odometry</span></code> are published using <code class="docutils literal"><span class="pre">tf</span></code>. There are a couple of platforms for odometry with the supporting driviers such as <cite>Videre Erratic</cite> or <cite>PR2</cite>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">To understand how to publish the previous message to ROS follow the <code class="docutils literal"><span class="pre">Publishing</span> <span class="pre">Odometry</span> <span class="pre">Information</span> <span class="pre">Over</span> <span class="pre">ROS</span></code> tutorial [<strong>***Reference Later***</strong>]</p>
@@ -175,11 +172,11 @@
 </div>
 <div class="section" id="base-controller">
 <h2>3. Base Controller<a class="headerlink" href="#base-controller" title="Permalink to this headline">¶</a></h2>
-<p>The navigation stack uses the <code class="docutils literal"><span class="pre">geometry_msgs/Twist</span></code> messages to control the velocity of the robot over the topic <code class="docutils literal"><span class="pre">cmd_vel</span></code> that is able to take the <cite>vx</cite>, <cite>vy</cite>, <cite>vtheta</cite> –&gt; <cite>cmd_vel.linear.x</cite>, <cite>cmd_vel.linear.y</cite>, <cite>cmd_vel.angular.z</cite> velocities and convert them to motor commands sent to the mobile base. There are a couple of platforms for base control with the supporting driviers such as <cite>Videre Erratic</cite> or <cite>PR2</cite>.</p>
+<p>The navigation stack uses the <code class="docutils literal"><span class="pre">geometry_msgs/Twist</span></code> messages to control the velocity of the robot over the topic <code class="docutils literal"><span class="pre">cmd_vel</span></code> that is able to take the <cite>vx</cite>, <cite>vy</cite>, <cite>vtheta</cite> &#8211;&gt; <cite>cmd_vel.linear.x</cite>, <cite>cmd_vel.linear.y</cite>, <cite>cmd_vel.angular.z</cite> velocities and convert them to motor commands sent to the mobile base. There are a couple of platforms for base control with the supporting driviers such as <cite>Videre Erratic</cite> or <cite>PR2</cite>.</p>
 </div>
 <div class="section" id="world-s-map">
-<h2>4. World’s Map<a class="headerlink" href="#world-s-map" title="Permalink to this headline">¶</a></h2>
-<p>As mentioned before, the navigation stack can function without having a predefined map but let’s assume that you have a map.</p>
+<h2>4. World&#8217;s Map<a class="headerlink" href="#world-s-map" title="Permalink to this headline">¶</a></h2>
+<p>As mentioned before, the navigation stack can function without having a predefined map but let&#8217;s assume that you have a map.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">To understand how to build a map follow the <code class="docutils literal"><span class="pre">How</span> <span class="pre">to</span> <span class="pre">Build</span> <span class="pre">a</span> <span class="pre">Map</span> <span class="pre">Using</span> <span class="pre">Logged</span> <span class="pre">Data</span></code> tutorial [<strong>***Reference Later***</strong>]</p>

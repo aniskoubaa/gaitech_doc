@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
         <link rel="next" title="Controlling a Turtlebot Arm with an Arduino Board using RFID" href="turtlebot-arm-arduino.html"/>
@@ -104,7 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Building a Map with a Turtlebot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map-navigation.html">Map Navigation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="free-space-navigation.html">Turtlebot free movement in Space</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Turtlebot Arm PhantomX Pincher with ROS</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Turtlebot Arm PhantomX Pincher with ROS</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#download-the-arbotix-package">Download the Arbotix Package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test-and-develop-the-arm-phantomx-pincher-robot">Test and Develop the Arm PhantomX Pincher robot</a></li>
 </ul>
@@ -155,7 +152,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/turtlebot-arm-pincher.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/turtlebot-arm-pincher.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -186,25 +183,25 @@ A complete package of turtlebot arm can be found at <a class="reference external
 <div class="section" id="download-the-arbotix-package">
 <h2>Download the Arbotix Package<a class="headerlink" href="#download-the-arbotix-package" title="Permalink to this headline">¶</a></h2>
 <p>First, make sure to install the arbotix package as follows:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-hydro-arbotix
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install ros-hydro-arbotix
 </pre></div>
 </div>
 <p>Then, you can check that you arm is effectively connected to your robot (or computer machine). Connect the PhantomX Pincher arm through USB port to your robot laptop and plug power cable to socket. make sure that you have read, write and execute access on the USP port using this command</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo chmod <span class="m">777</span> /dev/ttyUSB0
+<div class="highlight-bash"><div class="highlight"><pre>sudo chmod <span class="m">777</span> /dev/ttyUSB0
 </pre></div>
 </div>
 <p>Assuming that your arm is connected on port <code class="docutils literal"><span class="pre">ttyUSB0</span></code> to the robot laptop. Then, execute the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>arbotix_terminal
+<div class="highlight-bash"><div class="highlight"><pre>arbotix_terminal
 </pre></div>
 </div>
 <p>You should see the following:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>ArbotiX Terminal --- Version <span class="m">0</span>.1
+<div class="highlight-bash"><div class="highlight"><pre>ArbotiX Terminal --- Version 0.1
 Copyright <span class="m">2011</span> Vanadium Labs LLC
 &gt;&gt;
 </pre></div>
 </div>
 <p>You can check that your servos are all active using the <code class="docutils literal"><span class="pre">ls</span></code> command</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>ArbotiX Terminal --- Version <span class="m">0</span>.1
+<div class="highlight-bash"><div class="highlight"><pre>ArbotiX Terminal --- Version 0.1
 Copyright <span class="m">2011</span> Vanadium Labs LLC
 &gt;&gt;  ls
 <span class="m">1</span>    <span class="m">2</span>    <span class="m">3</span>    <span class="m">4</span>    <span class="m">5</span> .... .... .... ....
@@ -217,15 +214,15 @@ Copyright <span class="m">2011</span> Vanadium Labs LLC
 <h2>Test and Develop the Arm PhantomX Pincher robot<a class="headerlink" href="#test-and-develop-the-arm-phantomx-pincher-robot" title="Permalink to this headline">¶</a></h2>
 <p>Now, you want to move the robot arm. This can be done through the <code class="docutils literal"><span class="pre">arbotix_gui</span></code> interface, but some prior work is needed beforehand.
 First, you need to describe the turtlebot arm in a <code class="docutils literal"><span class="pre">yaml</span></code> description file. Here is a working description of the PhatomX Pincher arm, assuming that the arm is connected through port <code class="docutils literal"><span class="pre">ttyUSB0</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>port: /dev/ttyUSB0
-read_rate: <span class="m">15</span>
-write_rate: <span class="m">25</span>
+<div class="highlight-bash"><div class="highlight"><pre>port: /dev/ttyUSB0
+read_rate: 15
+write_rate: 25
 joints: <span class="o">{</span>
-arm_shoulder_pan_joint: <span class="o">{</span>id: <span class="m">1</span>, neutral: <span class="m">205</span>, max_angle: <span class="m">180</span>, min_angle: -60, max_speed: <span class="m">90</span><span class="o">}</span>,
-arm_shoulder_lift_joint: <span class="o">{</span>id: <span class="m">2</span>, max_angle: <span class="m">150</span>, min_angle: -150, max_speed: <span class="m">90</span><span class="o">}</span>,
-arm_elbow_flex_joint: <span class="o">{</span>id: <span class="m">3</span>, max_angle: <span class="m">150</span>, min_angle: -150, max_speed: <span class="m">90</span><span class="o">}</span>,
-arm_wrist_flex_joint: <span class="o">{</span>id: <span class="m">4</span>, max_angle: <span class="m">100</span>, min_angle: -100, max_speed: <span class="m">90</span><span class="o">}</span>,
-gripper_joint: <span class="o">{</span>id: <span class="m">5</span>, max_speed: <span class="m">90</span><span class="o">}</span>,
+arm_shoulder_pan_joint: <span class="o">{</span>id: 1, neutral: 205, max_angle: 180, min_angle: -60, max_speed: 90<span class="o">}</span>,
+arm_shoulder_lift_joint: <span class="o">{</span>id: 2, max_angle: 150, min_angle: -150, max_speed: 90<span class="o">}</span>,
+arm_elbow_flex_joint: <span class="o">{</span>id: 3, max_angle: 150, min_angle: -150, max_speed: 90<span class="o">}</span>,
+arm_wrist_flex_joint: <span class="o">{</span>id: 4, max_angle: 100, min_angle: -100, max_speed: 90<span class="o">}</span>,
+gripper_joint: <span class="o">{</span>id: 5, max_speed: 90<span class="o">}</span>,
 <span class="o">}</span>
 controllers: <span class="o">{</span>
 arm_controller: <span class="o">{</span>type: follow_controller, joints: <span class="o">[</span>arm_shoulder_pan_joint, arm_shoulder_lift_joint,  arm_elbow_flex_joint,
@@ -236,7 +233,7 @@ arm_wrist_flex_joint<span class="o">]</span>, action_name: arm_controller/follow
 <p>As it can be observed, five joints are defined, each joint related to one servo. For example, <code class="docutils literal"><span class="pre">servo</span> <span class="pre">1</span></code> is defined as <code class="docutils literal"><span class="pre">arm_shoulder_pan_joint</span></code>. Then, controllers are defined. All joints are of follow_controller type. Consult <a class="reference external" href="http://wiki.ros.org/arbotix">arbotix wiki page</a> for more details about controllers types and other information.</p>
 <p>You need to copy and paste the code above in a file with <code class="docutils literal"><span class="pre">.yaml</span></code> extension and put in a certain ROS package. let us assume that the file is called <code class="docutils literal"><span class="pre">turtlebot_arm.yaml</span></code> and is located in the <code class="docutils literal"><span class="pre">turtlebot_arm_bringup</span></code> package.</p>
 <p>Now, in your package (e.g. <code class="docutils literal"><span class="pre">turtlebot_arm_bringup</span></code>) define the following launch file to run the arbotix_driver for the PhantomX Pincher arm and call it <code class="docutils literal"><span class="pre">turtlebot_arm_bringup.launch</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
+<div class="highlight-bash"><div class="highlight"><pre>&lt;launch&gt;
 
 &lt;node <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;arbotix&quot;</span> <span class="nv">pkg</span><span class="o">=</span><span class="s2">&quot;arbotix_python&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;arbotix_driver&quot;</span> <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span>&gt;
 &lt;rosparam <span class="nv">file</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>find turtlebot_arm_bringup<span class="k">)</span><span class="s2">/config/turtlebot_arm.yaml&quot;</span> <span class="nv">command</span><span class="o">=</span><span class="s2">&quot;load&quot;</span> /&gt;
@@ -247,11 +244,11 @@ arm_wrist_flex_joint<span class="o">]</span>, action_name: arm_controller/follow
 </div>
 <p>This simple launch file will start the node <code class="docutils literal"><span class="pre">arbotix_driver</span></code> located in the <code class="docutils literal"><span class="pre">arbotix_python</span></code> and will take as argument the <code class="docutils literal"><span class="pre">yaml</span></code> description file of the PhantomX Pincher arm named <code class="docutils literal"><span class="pre">turtlebot_arm.yaml</span></code>.
 You can now start up the driver as follows:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_arm_bringup turtlebot_arm_bringup.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch turtlebot_arm_bringup turtlebot_arm_bringup.launch
 </pre></div>
 </div>
 <p>You should see the following output:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>... logging to /home/akoubaa/.ros/log/60196d6e-27a7-11e4-98e5-080027b791fe/roslaunch-coins-3216.log
+<div class="highlight-bash"><div class="highlight"><pre>... logging to /home/akoubaa/.ros/log/60196d6e-27a7-11e4-98e5-080027b791fe/roslaunch-coins-3216.log
 Checking log directory <span class="k">for</span> disk usage. This may take awhile.
 Press Ctrl-C to interrupt
 Done checking log file disk usage. Usage is &lt;1GB.
@@ -298,14 +295,14 @@ NODES
 <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://localhost:11311
 
 core service <span class="o">[</span>/rosout<span class="o">]</span> found
-process<span class="o">[</span>arbotix-1<span class="o">]</span>: started with pid <span class="o">[</span><span class="m">3234</span><span class="o">]</span>
-<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: <span class="m">1408457288</span>.608035<span class="o">]</span> Started ArbotiX connection on port /dev/ttyUSB0.
-<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: <span class="m">1408457288</span>.713417<span class="o">]</span> Started FollowController <span class="o">(</span>arm_controller<span class="o">)</span>. Joints:  <span class="o">[</span><span class="s1">&#39;arm_shoulder_pan_joint&#39;</span>, <span class="s1">&#39;arm_shoulder_lift_joint&#39;</span>, <span class="s1">&#39;arm_elbow_flex_joint&#39;</span>, <span class="s1">&#39;arm_wrist_flex_joint&#39;</span><span class="o">]</span> on  C1
-<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: <span class="m">1408457288</span>.717421<span class="o">]</span> ArbotiX connected.
+process<span class="o">[</span>arbotix-1<span class="o">]</span>: started with pid <span class="o">[</span>3234<span class="o">]</span>
+<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: 1408457288.608035<span class="o">]</span> Started ArbotiX connection on port /dev/ttyUSB0.
+<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: 1408457288.713417<span class="o">]</span> Started FollowController <span class="o">(</span>arm_controller<span class="o">)</span>. Joints:  <span class="o">[</span><span class="s1">&#39;arm_shoulder_pan_joint&#39;</span>, <span class="s1">&#39;arm_shoulder_lift_joint&#39;</span>, <span class="s1">&#39;arm_elbow_flex_joint&#39;</span>, <span class="s1">&#39;arm_wrist_flex_joint&#39;</span><span class="o">]</span> on  C1
+<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>WallTime: 1408457288.717421<span class="o">]</span> ArbotiX connected.
 </pre></div>
 </div>
 <p>This means that your arm is not successfully connected and ready to receive motion command. The easiest way to control the servos is using the <code class="docutils literal"><span class="pre">arbotix_gui</span></code> command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>arbotix_gui
+<div class="highlight-bash"><div class="highlight"><pre>arbotix_gui
 </pre></div>
 </div>
 <p>Then, you should see the following interface of the Arbotix Simulator</p>

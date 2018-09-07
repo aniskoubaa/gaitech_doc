@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="GAPTER: ROS Tutorials" href="gapter-ros-tutorials.html"/>
         <link rel="next" title="GAPTER: Obstacle Avoidance" href="gapter-ros-obstacle-avoidance.html"/>
@@ -111,7 +108,7 @@
 <li class="toctree-l3"><a class="reference internal" href="gapter-ball-tracking.html">Ball Tracking</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="gapter-ros-tutorials.html">ROS Tutorials</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="mavros-basics.html">MAVROS Basics</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Teleoperation</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="">Teleoperation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-ros-obstacle-avoidance.html">Obstacle Avoidance</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-ros-moving-in-shapes.html">Moving in Shapes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-ros-tutorials.html#controlling-gapter-mavros">Controlling Gapter MAVROS</a></li>
@@ -166,7 +163,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/gapter/gapter-ros-teleop.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/gapter/gapter-ros-teleop.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -197,10 +194,10 @@
 <p class="caption"><span class="caption-text">Figure 1: Launch the simulator</span></p>
 </div>
 <p>After launching the simulator, Take off the drone:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># in the MAVProxy prompt:</span>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c1"># in the MAVProxy prompt:</span>
 mode GUIDED
 arm throttle
-takeoff <span class="m">2</span>
+takeoff 2
 </pre></div>
 </div>
 <div class="figure align-center" id="id2">
@@ -208,7 +205,7 @@ takeoff <span class="m">2</span>
 <p class="caption"><span class="caption-text">Figure 2: Drone taking off</span></p>
 </div>
 <p>Then, in new terminal, launch the ROS node (python) for teleoperation:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun gapter_py teleop_key.py
+<div class="highlight-bash"><div class="highlight"><pre>rosrun gapter_py teleop_key.py
 </pre></div>
 </div>
 <div class="figure align-center" id="id3">
@@ -220,7 +217,7 @@ takeoff <span class="m">2</span>
 <p class="caption"><span class="caption-text">Figure 4: Running Teleop node</span></p>
 </div>
 <p>Or run the C++ node:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun gapter teleop_key
+<div class="highlight-bash"><div class="highlight"><pre>rosrun gapter teleop_key
 </pre></div>
 </div>
 <div class="figure align-center" id="id5">
@@ -231,18 +228,18 @@ takeoff <span class="m">2</span>
 <h2>Code Explanation<a class="headerlink" href="#code-explanation" title="Permalink to this headline">¶</a></h2>
 <p>The source code of the keyboard teleop could be found in <a class="reference external" href="https://github.com/">github_link</a>.</p>
 <p>First initializes the ROS node for the process. Then creates an object from the class <code class="docutils literal"><span class="pre">SimpleKeyTeleop</span></code> to process the user input.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">stdscr</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">stdscr</span><span class="p">):</span>
    <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;tele&#39;</span><span class="p">)</span>
    <span class="n">app</span> <span class="o">=</span> <span class="n">SimpleKeyTeleop</span><span class="p">(</span><span class="n">TextWindow</span><span class="p">(</span><span class="n">stdscr</span><span class="p">))</span>
    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>In <code class="docutils literal"><span class="pre">SimpleKeyTeleop</span></code>, a publisher is defined to publish <code class="docutils literal"><span class="pre">TwistStamped</span></code> message to <code class="docutils literal"><span class="pre">/mavros/setpoint_velocity/cmd_vel</span></code> topic:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">_pub_cmd</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;/mavros/setpoint_velocity/cmd_vel&#39;</span><span class="p">,</span> <span class="n">TwistStamped</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">_pub_cmd</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;/mavros/setpoint_velocity/cmd_vel&#39;</span><span class="p">,</span> <span class="n">TwistStamped</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Following lines are to get the rate for the movement.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">_forward_rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;~forward_rate&#39;</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">_forward_rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;~forward_rate&#39;</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">_backward_rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;~backward_rate&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">_rigth_rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;~rigth_rate&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">_left_rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;~left_rate&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
@@ -250,7 +247,7 @@ takeoff <span class="m">2</span>
 </div>
 <p>The second value passed to the <code class="docutils literal"><span class="pre">rospy.get_param</span></code> is a default value to use if the parameter is not set. So the forward rate will be 0.8 if the user choose to move the drone forward.</p>
 <p>The first function will be executed from <code class="docutils literal"><span class="pre">SimpleKeyTeleop</span></code> is <code class="docutils literal"><span class="pre">run</span></code>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Rate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hz</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_running</span> <span class="o">=</span> <span class="bp">True</span>
     <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running</span><span class="p">:</span>

@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Video Streaming Tutorials" href="index.html"/>
         <link rel="next" title="Video Streaming with RapsberryPI Using gStreamer" href="video-streaming-gstreamer.html"/>
@@ -99,7 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../gapter/index.html">Gapter Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ria_r100/index.html">RIA-R100</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Video Streaming Tutorials</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Streaming with VLC</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Streaming with VLC</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#configuring-your-raspberrypi">Configuring your RaspberryPi</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#getting-vlc">Getting VLC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#initiating-the-stream">Initiating the Stream</a></li>
@@ -150,7 +147,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/video/video-streaming-vlc.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/video/video-streaming-vlc.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -189,12 +186,12 @@
 <img alt="../_images/raspberrypi2.jpg" class="align-center" src="../_images/raspberrypi2.jpg" />
 <div class="section" id="configuring-your-raspberrypi">
 <h2>Configuring your RaspberryPi<a class="headerlink" href="#configuring-your-raspberrypi" title="Permalink to this headline">¶</a></h2>
-<p>Firstly, on your Pi’s terminal, Update and Upgrade the environment so it can be up to date. This helps in reducing future problems. Don’t forget to ENABLE your Raspberry Pi Camera using ‘raspi-config’.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get update
+<p>Firstly, on your Pi&#8217;s terminal, Update and Upgrade the environment so it can be up to date. This helps in reducing future problems. Don&#8217;t forget to ENABLE your Raspberry Pi Camera using &#8216;raspi-config&#8217;.</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo apt-get update
 $ sudo apt-get upgrade
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo raspi-config
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo raspi-config
 </pre></div>
 </div>
 <p>A blue BIOS-like screen will appear, go into the Enable Camera Options and enable the camera.</p>
@@ -206,7 +203,7 @@ $ sudo apt-get upgrade
 </div>
 <p>It is also advised now to see what is the IP Address of your Pi.
 Type in the following to locate the IP as you will need it in the VLC program for your Windows machine.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ifconfig
+<div class="highlight-bash"><div class="highlight"><pre>$ ifconfig
 </pre></div>
 </div>
 <div class="line-block">
@@ -219,9 +216,9 @@ Type in the following to locate the IP as you will need it in the VLC program fo
 </div>
 <div class="section" id="getting-vlc">
 <h2>Getting VLC<a class="headerlink" href="#getting-vlc" title="Permalink to this headline">¶</a></h2>
-<p>On your Client PC that is running Windows, download the VLC software media tool on here through the <a class="reference external" href="http://www.videolan.org/vlc/index.html">VLC’s Website</a></p>
-<p>Now on your Pi’s terminal, download and install the VLC for Raspbian.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get install vlc
+<p>On your Client PC that is running Windows, download the VLC software media tool on here through the <a class="reference external" href="http://www.videolan.org/vlc/index.html">VLC&#8217;s Website</a></p>
+<p>Now on your Pi&#8217;s terminal, download and install the VLC for Raspbian.</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo apt-get install vlc
 </pre></div>
 </div>
 <div class="admonition note">
@@ -232,12 +229,12 @@ and that your PC has VLC installed, before going to the next step</p>
 </div>
 <div class="section" id="initiating-the-stream">
 <h2>Initiating the Stream<a class="headerlink" href="#initiating-the-stream" title="Permalink to this headline">¶</a></h2>
-<p>Once installed, you may now start the video streaming by typing the folloing in your Pi’s Terminal.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ raspivid -o - -t <span class="m">0</span> -hf -w <span class="m">800</span> -h <span class="m">400</span> -fps <span class="m">24</span> <span class="p">|</span>cvlc -vvv stream:///dev/stdin --sout <span class="s1">&#39;#standard{access=http,mux=ts,dst=:8160}&#39;</span> :demux<span class="o">=</span>h264
+<p>Once installed, you may now start the video streaming by typing the folloing in your Pi&#8217;s Terminal.</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ raspivid -o - -t <span class="m">0</span> -hf -w <span class="m">800</span> -h <span class="m">400</span> -fps <span class="m">24</span> <span class="p">|</span>cvlc -vvv stream:///dev/stdin --sout <span class="s1">&#39;#standard{access=http,mux=ts,dst=:8160}&#39;</span> :demux<span class="o">=</span>h264
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-o</span></code> Specifies the output filename. the ‘-‘ beside denotes no filename</li>
+<li><code class="docutils literal"><span class="pre">-o</span></code> Specifies the output filename. the &#8216;-&#8216; beside denotes no filename</li>
 <li><code class="docutils literal"><span class="pre">-t</span></code> is the duration of the recoding, 0 being infinity</li>
 <li><code class="docutils literal"><span class="pre">-hf</span></code> is Horizontal Flip</li>
 <li><code class="docutils literal"><span class="pre">-w</span></code> and -h is the resolution for Width and Height</li>
@@ -254,7 +251,7 @@ This is now the time to go to your Windows machine and watch your streaming foot
 <p>And under <code class="docutils literal"><span class="pre">Media</span></code> &gt; <code class="docutils literal"><span class="pre">Open</span> <span class="pre">Network</span> <span class="pre">Stream</span></code> &gt; <code class="docutils literal"><span class="pre">Network</span></code> &gt; <code class="docutils literal"><span class="pre">Please</span> <span class="pre">enter</span> <span class="pre">a</span> <span class="pre">network</span> <span class="pre">URL:</span></code></p>
 <p>Type in the IP address that you got from <code class="docutils literal"><span class="pre">ifconfig</span></code> like so;</p>
 <img alt="../_images/vlc.png" class="align-center" src="../_images/vlc.png" />
-<div class="highlight-bash"><div class="highlight"><pre><span></span>http://x.x.x.x:8160
+<div class="highlight-bash"><div class="highlight"><pre>http://x.x.x.x:8160
 </pre></div>
 </div>
 <p>As we have specified the port to be 8160 in our terminal on the Pi</p>
@@ -269,15 +266,13 @@ This is now the time to go to your Windows machine and watch your streaming foot
 </div>
 <div class="section" id="video-demonstration">
 <h2>Video Demonstration<a class="headerlink" href="#video-demonstration" title="Permalink to this headline">¶</a></h2>
-<iframe src="http://www.youtube.com/embed/qyzUSeduGew" style="border: 0; height: 345px; width: 560px">
-</iframe><div class="admonition note">
+<iframe width="640" height="360" src="http://www.youtube.com/embed/qyzUSeduGew" frameborder="0" allowfullscreen="1">&nbsp;</iframe><div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The Monitor on the left displays real time from the Raspberry directly, whereas the Laptop is displaying the VLC stream.</p>
 </div>
 <p>Raspberry Pi camera module streaming video to another computer.
 This video tutorial shows the overview of this written tutorial.</p>
-<iframe src="http://www.youtube.com/embed/JjPsW-7FUng" style="border: 0; height: 345px; width: 560px">
-</iframe><div class="line-block">
+<iframe width="640" height="360" src="http://www.youtube.com/embed/JjPsW-7FUng" frameborder="0" allowfullscreen="1">&nbsp;</iframe><div class="line-block">
 <div class="line"><br /></div>
 </div>
 </div>

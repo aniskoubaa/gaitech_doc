@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Dronemap Planner" href="index.html"/>
         <link rel="next" title="Configure ROSLink with Dronemap Planner" href="roslink-dronemap.html"/>
@@ -102,7 +99,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Dronemap Planner</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="dronemap-overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dronemap-configuration.html">Setup and Configuration</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Tutorials</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Tutorials</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#start-dronemap-planner">Start Dronemap Planner</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-sitl-simulator">Using SITL Simulator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#control-and-monitoring-using-dronemap-planner-web-interface">Control and Monitoring using Dronemap Planner Web Interface</a></li>
@@ -148,7 +145,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/dronemap/dronemap-planner-tutorials.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/dronemap/dronemap-planner-tutorials.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -170,9 +167,9 @@
 </div>
 <div class="section" id="start-dronemap-planner">
 <h2>Start Dronemap Planner<a class="headerlink" href="#start-dronemap-planner" title="Permalink to this headline">¶</a></h2>
-<p>The first thing, you need to start Dronemap Planner on your local machine or your cloud server as explained in the tutorial <a class="reference internal" href="dronemap-configuration.html#dronemap-configuration"><span class="std std-ref">Setup and Configuration</span></a>.
+<p>The first thing, you need to start Dronemap Planner on your local machine or your cloud server as explained in the tutorial <a class="reference internal" href="dronemap-configuration.html#dronemap-configuration"><span>Setup and Configuration</span></a>.
 Using command line, go to the folder where Dronemap Planner jar file is located, and execute the following command</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>java -jar dronemap-planner.jar dronemap-config.xml
+<div class="highlight-bash"><div class="highlight"><pre>java -jar dronemap-planner.jar dronemap-config.xml
 </pre></div>
 </div>
 <p>then, you should be able to see all the Dronemap Planner services started as illustrated in the following figure (<em>output might be slightly different based on version</em>):</p>
@@ -197,10 +194,10 @@ As Gapter uses the Pixhawk autopilot powered by Ardupilot, you can use STIL to e
 <p>In this tutorial assumes that you are familiar with SITL simulator.
 If you are not, you need to see the tutorials available on the <a class="reference external" href="http://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html">SITL page</a>
 in particular, it is recommended that you perform <a class="reference external" href="http://ardupilot.org/dev/docs/copter-sitl-mavproxy-tutorial.html">Copter SITL/MAVProxy Tutorial</a></p>
-<p class="last">For a quick introduction about SITL, you can watch our tutorial videos on <a class="reference internal" href="../gapter/gapter-mavlink-tutorials.html#gapter-mavlink-tutorials"><span class="std std-ref">MAVLink Tutorials</span></a></p>
+<p class="last">For a quick introduction about SITL, you can watch our tutorial videos on <a class="reference internal" href="../gapter/gapter-mavlink-tutorials.html#gapter-mavlink-tutorials"><span>MAVLink Tutorials</span></a></p>
 </div>
 <p>Execute SITL simulator. If you are using <code class="docutils literal"><span class="pre">Gaitech</span> <span class="pre">Virtual</span> <span class="pre">Machine</span></code>, you can try this command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/ardupilot/ArduCopter
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~/ardupilot/ArduCopter
 sim_vehicle.sh --console --map --aircraft <span class="nb">test</span>
 </pre></div>
 </div>
@@ -209,9 +206,9 @@ sim_vehicle.sh --console --map --aircraft <span class="nb">test</span>
 <a class="reference internal image-reference" href="../_images/sitl.png"><img alt="../_images/sitl.png" src="../_images/sitl.png" style="width: 500pt;" /></a>
 </div>
 <p>The next step is to add a MAVLink output stream from the drone to the cloud server. For this, you need to know the IP address of your server machine.
-Let us assume that it is <code class="docutils literal"><span class="pre">192.168.1.10</span></code>. Remember that in the <code class="docutils literal"><span class="pre">dronemap-config.xml</span></code> configuration file of the tutorial <a class="reference internal" href="dronemap-configuration.html#dronemap-configuration"><span class="std std-ref">Setup and Configuration</span></a>, the port number of the UDP server of the MAVLink protocol was set to the default value <code class="docutils literal"><span class="pre">14550</span></code>.  So, we will use this port to send the MAVLink stream from the drone to the server.
+Let us assume that it is <code class="docutils literal"><span class="pre">192.168.1.10</span></code>. Remember that in the <code class="docutils literal"><span class="pre">dronemap-config.xml</span></code> configuration file of the tutorial <a class="reference internal" href="dronemap-configuration.html#dronemap-configuration"><span>Setup and Configuration</span></a>, the port number of the UDP server of the MAVLink protocol was set to the default value <code class="docutils literal"><span class="pre">14550</span></code>.  So, we will use this port to send the MAVLink stream from the drone to the server.
 In the terminal command of SITL simulator, write the following instruction to add a new output stream:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>output add <span class="m">192</span>.168.1.10:14550
+<div class="highlight-bash"><div class="highlight"><pre>output add 192.168.1.10:14550
 </pre></div>
 </div>
 <div class="admonition warning">

@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Dronemap Planner" href="index.html"/>
         <link rel="next" title="Gaitech EDU Contributors" href="../contributors/index.html"/>
@@ -103,7 +100,7 @@
 <li class="toctree-l2"><a class="reference internal" href="dronemap-overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dronemap-configuration.html">Setup and Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dronemap-planner-tutorials.html">Tutorials</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Configure ROSLink with Dronemap Planner</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Configure ROSLink with Dronemap Planner</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#roslink-bridge">ROSLink Bridge</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#roslink-configuration">ROSLink Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#run-dronemap-planner-cloud">Run Dronemap planner cloud</a></li>
@@ -150,7 +147,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/dronemap/roslink-dronemap.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/dronemap/roslink-dronemap.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -175,13 +172,13 @@
 </div>
 <div class="section" id="roslink-bridge">
 <h2>ROSLink Bridge<a class="headerlink" href="#roslink-bridge" title="Permalink to this headline">¶</a></h2>
-<p>The ROSLink Bridge consists of fully-functional ROS script written in Python, which is executed as ROS node in the client. For more details about ROSLink Bridge see <a class="reference internal" href="../roslink/roslink-gapter.html#roslink-gapter"><span class="std std-ref">ROSLink Bridge for Gapter</span></a>.</p>
+<p>The ROSLink Bridge consists of fully-functional ROS script written in Python, which is executed as ROS node in the client. For more details about ROSLink Bridge see <a class="reference internal" href="../roslink/roslink-gapter.html#roslink-gapter"><span>ROSLink Bridge for Gapter</span></a>.</p>
 </div>
 <div class="section" id="roslink-configuration">
 <h2>ROSLink Configuration<a class="headerlink" href="#roslink-configuration" title="Permalink to this headline">¶</a></h2>
 <p>The first step is to configure ROSLink parameters and the periods of updating the ROSLink messages:</p>
 <p>open the file <code class="docutils literal"><span class="pre">roslink/launch/gapter_roslink.launch</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>&lt;launch&gt;
+<div class="highlight-bash"><div class="highlight"><pre>&lt;launch&gt;
  &lt;node <span class="nv">pkg</span><span class="o">=</span><span class="s2">&quot;roslink&quot;</span> <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;udp_client_gapter_node&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;roslink_bridge_gapter.py&quot;</span> <span class="nv">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span>/&gt;
 
  &lt;param <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;ground_station_ip&quot;</span> <span class="nv">value</span><span class="o">=</span><span class="s1">&#39;192.168.100.6&#39;</span> /&gt;
@@ -204,7 +201,7 @@
 </pre></div>
 </div>
 <p>The user can set these values as appropriate for the application.</p>
-<p><code class="docutils literal"><span class="pre">ground_station_ip</span></code> to identify the IP address of your server machine, replace it with the correct IP addrees of the Dronemap Planner. Refer to <a class="reference internal" href="dronemap-configuration.html#dronemap-configuration"><span class="std std-ref">this page</span></a> to know how to configure Dronemap Planner .</p>
+<p><code class="docutils literal"><span class="pre">ground_station_ip</span></code> to identify the IP address of your server machine, replace it with the correct IP addrees of the Dronemap Planner. Refer to <a class="reference internal" href="dronemap-configuration.html#dronemap-configuration"><span>this page</span></a> to know how to configure Dronemap Planner .</p>
 <p><code class="docutils literal"><span class="pre">ground_station_port</span></code> to identify the port number. 25500 is the port of the Datagram Socket Server on Dronemap Planner</p>
 <p><code class="docutils literal"><span class="pre">heartbeat_msg_period</span></code> specify the period for heartbeat message.</p>
 <p><code class="docutils literal"><span class="pre">robot_status_msg_period</span></code> specify the period for the robot status message.</p>
@@ -216,12 +213,12 @@
 </div>
 <div class="section" id="run-dronemap-planner-cloud">
 <h2>Run Dronemap planner cloud<a class="headerlink" href="#run-dronemap-planner-cloud" title="Permalink to this headline">¶</a></h2>
-<p>Follow the tutorial in <a class="reference internal" href="dronemap-configuration.html#dronemap-configuration"><span class="std std-ref">this page</span></a> to run Dronemap planner cloud</p>
+<p>Follow the tutorial in <a class="reference internal" href="dronemap-configuration.html#dronemap-configuration"><span>this page</span></a> to run Dronemap planner cloud</p>
 </div>
 <div class="section" id="run-roslink">
 <h2>Run ROSLink<a class="headerlink" href="#run-roslink" title="Permalink to this headline">¶</a></h2>
-<p>After setting all the parameter, now you can launch Gapter simulator as explained in: <a class="reference internal" href="../gapter/setup-simulation-environment.html#gapter-setup-simulation"><span class="std std-ref">GAPTER: Set-up GapterSim Environment</span></a> by first run the following commands:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/gapter_ardupilot/ArduCopter
+<p>After setting all the parameter, now you can launch Gapter simulator as explained in: <a class="reference internal" href="../gapter/setup-simulation-environment.html#gapter-setup-simulation"><span>GAPTER: Set-up GapterSim Environment</span></a> by first run the following commands:</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ <span class="nb">cd</span> ~/gapter_ardupilot/ArduCopter
 
 $ ../Tools/autotest/sim_vehicle.sh -j <span class="m">4</span> -f Gazebo
 </pre></div>
@@ -230,7 +227,7 @@ $ ../Tools/autotest/sim_vehicle.sh -j <span class="m">4</span> -f Gazebo
 <a class="reference internal image-reference" href="../_images/roslink_sim_vehicle_gazebo.png"><img alt="../_images/roslink_sim_vehicle_gazebo.png" src="../_images/roslink_sim_vehicle_gazebo.png" style="width: 600pt;" /></a>
 </div>
 <p>Then in another terminal lauch following:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch ardupilot_sitl_gazebo_plugin gapter_spawn.launch
+<div class="highlight-bash"><div class="highlight"><pre>$ roslaunch ardupilot_sitl_gazebo_plugin gapter_spawn.launch
 </pre></div>
 </div>
 <div class="figure align-center">
@@ -241,7 +238,7 @@ $ ../Tools/autotest/sim_vehicle.sh -j <span class="m">4</span> -f Gazebo
 <a class="reference internal image-reference" href="../_images/roslink_gapter_sim.png"><img alt="../_images/roslink_gapter_sim.png" src="../_images/roslink_gapter_sim.png" style="width: 600pt;" /></a>
 </div>
 <p>Now launch you roslink bridge</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ roslaunch roslink gapter_roslink.launch
+<div class="highlight-bash"><div class="highlight"><pre>$ roslaunch roslink gapter_roslink.launch
 </pre></div>
 </div>
 <p>You will see something like the following in the terminal:</p>

@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
         <link rel="next" title="Turtlebot Simulators" href="turtlebot-simulators.html"/>
@@ -97,7 +94,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="turtlebot-tutorials.html">Turtlebot Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="turtlebot-first-tests.html">First Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network-config-doc.html">Network Configuration</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Keyboard Teleop</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Keyboard Teleop</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#code-explanation">Code Explanation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#video-demonstration">Video Demonstration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#questions">Questions</a></li>
@@ -156,7 +153,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/teleop-doc.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/teleop-doc.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -174,11 +171,11 @@
 <p class="last">Make sure that you completed installing all the required packets in the previous tutorials and your network is working fine between the ROS Master node and the Host node.</p>
 </div>
 <p>On the Master node (the turtulebot PC) run the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_bringup minimal.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch turtlebot_bringup minimal.launch
 </pre></div>
 </div>
 <p>On your workspace PC (the host node) run the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_teleop keyboard_teleop.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch turtlebot_teleop keyboard_teleop.launch
 </pre></div>
 </div>
 <p>You can move your turtlebot robot according to the instructions below:</p>
@@ -192,7 +189,7 @@
 <p>The source code of the keyboard teleop could be found in <code class="docutils literal"><span class="pre">src/tutlebot/keyboard_teleop</span></code> folder of the <a class="reference external" href="https://github.com/aniskoubaa/gaitech_edu">gaitech_edu</a> package.
 Note that by default the keyboard teleop application is in the folder <code class="docutils literal"><span class="pre">/opt/ros/indigo/share/turtlebot_teleop</span></code> of the ROS distribution.
 We explain the following script of the <code class="docutils literal"><span class="pre">keyboard_teleop.launch</span></code> file:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span> <span class="nt">&lt;launch&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre> <span class="nt">&lt;launch&gt;</span>
   <span class="c">&lt;!-- turtlebot_teleop_key already has its own built in velocity smoother --&gt;</span>
    <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">&quot;turtlebot_teleop&quot;</span> <span class="na">type=</span><span class="s">&quot;turtlebot_teleop_key&quot;</span> <span class="na">name=</span><span class="s">&quot;turtlebot_teleop_keyboard&quot;</span>  <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;scale_linear&quot;</span> <span class="na">value=</span><span class="s">&quot;0.5&quot;</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span><span class="nt">/&gt;</span>
@@ -220,8 +217,7 @@ If for some reason it does not work, make sure to correctly map the ROS topic ov
 <div class="section" id="video-demonstration">
 <h2>Video Demonstration<a class="headerlink" href="#video-demonstration" title="Permalink to this headline">¶</a></h2>
 <p>You can watch an illustration of keyboard teleoperation of the turtlebot in this video</p>
-<iframe src="http://www.youtube.com/embed/pjq-vThdWjw" style="border: 0; height: 345px; width: 560px">
-</iframe></div>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/pjq-vThdWjw" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
 <div class="section" id="questions">
 <h2>Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">

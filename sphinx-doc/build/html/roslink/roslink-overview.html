@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="ROSLink" href="index.html"/>
         <link rel="next" title="ROSLink Bridge for Ar Drone" href="roslink-parrot.html"/>
@@ -94,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/get-started.html">Get Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ros/ros-tutorials.html">ROS Quick Start</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">ROSLink</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ROSLink Overview</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">ROSLink Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-create-roslink-bridge-client">How to Create ROSLink Bridge Client</a></li>
 </ul>
 </li>
@@ -146,7 +143,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/roslink/roslink-overview.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/roslink/roslink-overview.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -191,14 +188,14 @@
 <p>The <code class="docutils literal"><span class="pre">message</span> <span class="pre">id</span></code> specifies the type of message received. It helps in correctly parsing the incoming message and extract underlying information.</p>
 <p>The <code class="docutils literal"><span class="pre">sequence</span> <span class="pre">number</span></code> denotes the sequence of the packet, identifies a single packet, and avoid processing duplicate packets.</p>
 <p>The <code class="docutils literal"><span class="pre">key</span></code> field is encoded on 24 bits and is used to identify a robot, and to map it to a user. A user that would like to have access to a robot, must use the same key that the robot is using in its Heartbeat message.</p>
-<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="n">__package__</span> <span class="o">=</span> <span class="s1">&#39;messages&#39;</span>
+<div class="highlight-Python"><div class="highlight"><pre><span class="n">__package__</span> <span class="o">=</span> <span class="s1">&#39;messages&#39;</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">json</span>
 
 <span class="k">class</span> <span class="nc">ROSLinkHeader</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-       <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roslink_version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ros_version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">system_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">message_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sequence_number</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+       <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roslink_version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ros_version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">system_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">message_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sequence_number</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
                <span class="bp">self</span><span class="o">.</span><span class="n">roslink_version</span> <span class="o">=</span> <span class="n">roslink_version</span>
                <span class="bp">self</span><span class="o">.</span><span class="n">ros_version</span> <span class="o">=</span> <span class="n">ros_version</span>
                <span class="bp">self</span><span class="o">.</span><span class="n">system_id</span> <span class="o">=</span> <span class="n">system_id</span>
@@ -208,13 +205,13 @@
                <span class="k">pass</span>
 
        <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
-               <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-               <span class="bp">self</span><span class="o">.</span><span class="n">roslink_version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;header&#39;</span><span class="p">][</span><span class="s1">&#39;roslink_version&#39;</span><span class="p">]</span>
-               <span class="bp">self</span><span class="o">.</span><span class="n">ros_version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;header&#39;</span><span class="p">][</span><span class="s1">&#39;ros_version&#39;</span><span class="p">]</span>
-               <span class="bp">self</span><span class="o">.</span><span class="n">system_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;header&#39;</span><span class="p">][</span><span class="s1">&#39;system_id&#39;</span><span class="p">]</span>
-               <span class="bp">self</span><span class="o">.</span><span class="n">message_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;header&#39;</span><span class="p">][</span><span class="s1">&#39;message_id&#39;</span><span class="p">]</span>
-               <span class="bp">self</span><span class="o">.</span><span class="n">sequence_number</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;header&#39;</span><span class="p">][</span><span class="s1">&#39;sequence_number&#39;</span><span class="p">]</span>
-               <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;header&#39;</span><span class="p">][</span><span class="s1">&#39;key&#39;</span><span class="p">]</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">roslink_version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">[</span><span class="s1">&#39;header&#39;</span><span class="p">][</span><span class="s1">&#39;roslink_version&#39;</span><span class="p">]</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">ros_version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">[</span><span class="s1">&#39;header&#39;</span><span class="p">][</span><span class="s1">&#39;ros_version&#39;</span><span class="p">]</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">system_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">[</span><span class="s1">&#39;header&#39;</span><span class="p">][</span><span class="s1">&#39;system_id&#39;</span><span class="p">]</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">message_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">[</span><span class="s1">&#39;header&#39;</span><span class="p">][</span><span class="s1">&#39;message_id&#39;</span><span class="p">]</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">sequence_number</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">[</span><span class="s1">&#39;header&#39;</span><span class="p">][</span><span class="s1">&#39;sequence_number&#39;</span><span class="p">]</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">[</span><span class="s1">&#39;header&#39;</span><span class="p">][</span><span class="s1">&#39;key&#39;</span><span class="p">]</span>
 
        <span class="k">def</span> <span class="nf">printMessage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
                <span class="k">print</span> <span class="s1">&#39;--------------------------&#39;</span>
@@ -229,12 +226,12 @@
 </div>
 <p>The payload carries out data relevant for each ROSLink message type. ROSLink defines several state message and command types. Following is the most common state and command messages:</p>
 <p><strong>Presence message:</strong> the robot should declare its presence regularly to declare itself and to be considered as active. Typically, Heartbeat messages sent at a certain frequency (typically one message per second) are used for this purpose. Following is the heartbeat message class:</p>
-<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="n">__package__</span> <span class="o">=</span> <span class="s1">&#39;messages&#39;</span>
+<div class="highlight-Python"><div class="highlight"><pre><span class="n">__package__</span> <span class="o">=</span> <span class="s1">&#39;messages&#39;</span>
 
 <span class="kn">import</span> <span class="nn">json</span>
 
 <span class="k">class</span> <span class="nc">HeartBeat</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-   <span class="k">def</span> <span class="fm">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">robot_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">system_status</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">owner_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+   <span class="k">def</span> <span class="nf">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">robot_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">system_status</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">owner_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
        <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="n">header</span>
        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">robot_type</span>
        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
@@ -243,7 +240,7 @@
        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
 
    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
-       <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 
    <span class="k">def</span> <span class="nf">printMessage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -255,12 +252,12 @@
 </pre></div>
 </div>
 <p><strong>Motion messages:</strong> In robot mission, it is important to know the location and odometry motion parameters (i.e.linear and angular velocities) of the robot at a certain time. Thus, a motion message containing position information of the robot should be periodically broadcast.</p>
-<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="n">__package__</span> <span class="o">=</span> <span class="s1">&#39;messages&#39;</span>
+<div class="highlight-Python"><div class="highlight"><pre><span class="n">__package__</span> <span class="o">=</span> <span class="s1">&#39;messages&#39;</span>
 
 <span class="kn">import</span> <span class="nn">json</span>
 
 <span class="k">class</span> <span class="nc">GlobalMotion</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">time_boot_ms</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">vx</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">vy</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">vz</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>  <span class="n">wx</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">wy</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">wz</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pitch</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">roll</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">heading</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">time_boot_ms</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">vx</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">vy</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">vz</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>  <span class="n">wx</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">wy</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">wz</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pitch</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">roll</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">heading</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
        <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="n">header</span>
        <span class="bp">self</span><span class="o">.</span><span class="n">time_boot_ms</span> <span class="o">=</span> <span class="n">time_boot_ms</span>
        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
@@ -277,7 +274,7 @@
        <span class="bp">self</span><span class="o">.</span><span class="n">heading</span> <span class="o">=</span> <span class="n">heading</span>
 
    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
-       <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
    <span class="k">def</span> <span class="nf">printMessage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
        <span class="k">print</span> <span class="s1">&#39;time_boot_ms: &#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_boot_ms</span>
@@ -296,12 +293,12 @@
 </pre></div>
 </div>
 <p><strong>Sensor messages:</strong> The robot needs to broadcast its internal sensor data such as IMU, laser scanners, camera images, GPS coordinates, actuators states, etc. ROSLink also defines several sensor messages to exchange these data between the robot and the user.</p>
-<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="n">__package__</span> <span class="o">=</span> <span class="s1">&#39;messages&#39;</span>
+<div class="highlight-Python"><div class="highlight"><pre><span class="n">__package__</span> <span class="o">=</span> <span class="s1">&#39;messages&#39;</span>
 
 <span class="kn">import</span> <span class="nn">json</span>
 
 <span class="k">class</span> <span class="nc">GPSRawInfo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">time_usec</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fix_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">alt</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">eph</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">epv</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">vel</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cog</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">satellites_visible</span> <span class="o">=</span> <span class="bp">None</span> <span class="p">):</span>
+   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">time_usec</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fix_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">alt</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">eph</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">epv</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">vel</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cog</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">satellites_visible</span> <span class="o">=</span> <span class="bp">None</span> <span class="p">):</span>
        <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="n">header</span>
        <span class="bp">self</span><span class="o">.</span><span class="n">time_usec</span> <span class="o">=</span> <span class="n">time_usec</span>
        <span class="bp">self</span><span class="o">.</span><span class="n">fix_type</span> <span class="o">=</span> <span class="n">fix_type</span>
@@ -315,7 +312,7 @@
        <span class="bp">self</span><span class="o">.</span><span class="n">satellites_visible</span> <span class="o">=</span> <span class="n">satellites_visible</span>
 
    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
-       <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
    <span class="k">def</span> <span class="nf">printMessage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
        <span class="k">print</span> <span class="s1">&#39;time_usec: &#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_usec</span>
@@ -330,12 +327,12 @@
        <span class="k">print</span> <span class="s1">&#39;satellites_visible: &#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">satellites_visible</span>
 </pre></div>
 </div>
-<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="n">__package__</span> <span class="o">=</span> <span class="s1">&#39;messages&#39;</span>
+<div class="highlight-Python"><div class="highlight"><pre><span class="n">__package__</span> <span class="o">=</span> <span class="s1">&#39;messages&#39;</span>
 
 <span class="kn">import</span> <span class="nn">json</span>
 
 <span class="k">class</span> <span class="nc">RangeFinderData</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">time_usec</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">angle_min</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">angle_max</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">angle_increment</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">time_increment</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scan_time</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">range_min</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">range_max</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ranges</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">intensities</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">time_usec</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">angle_min</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">angle_max</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">angle_increment</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">time_increment</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scan_time</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">range_min</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">range_max</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ranges</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">intensities</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
        <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="n">header</span>
        <span class="bp">self</span><span class="o">.</span><span class="n">time_usec</span> <span class="o">=</span> <span class="n">time_usec</span>
        <span class="bp">self</span><span class="o">.</span><span class="n">angle_min</span> <span class="o">=</span> <span class="n">angle_min</span>
@@ -349,7 +346,7 @@
        <span class="bp">self</span><span class="o">.</span><span class="n">intensities</span> <span class="o">=</span> <span class="n">intensities</span>
 
    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
-       <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
    <span class="k">def</span> <span class="nf">printMessage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
        <span class="k">print</span> <span class="s1">&#39;time_usec: &#39;</span> <span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_usec</span>
@@ -366,23 +363,23 @@
 </div>
 <p><strong>Motion commands:</strong> For the robot to navigate in ROS, certain commands are sent to it like <code class="docutils literal"><span class="pre">Twist</span></code> messages in ROS, goal/waypoint locations, and takeoff/landing command for drones.</p>
 <p>The takeoff command message class:</p>
-<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="n">__package__</span> <span class="o">=</span> <span class="s1">&#39;messages&#39;</span>
+<div class="highlight-Python"><div class="highlight"><pre><span class="n">__package__</span> <span class="o">=</span> <span class="s1">&#39;messages&#39;</span>
 
 <span class="kn">import</span> <span class="nn">json</span>
 
 <span class="k">class</span> <span class="nc">Takeoff</span> <span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-   <span class="k">def</span> <span class="fm">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="p">,</span> <span class="n">altitude</span><span class="p">):</span>
+   <span class="k">def</span> <span class="nf">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="p">,</span> <span class="n">altitude</span><span class="p">):</span>
        <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="n">header</span>
        <span class="bp">self</span><span class="o">.</span> <span class="n">altitude</span> <span class="o">=</span> <span class="n">altitude</span>
 </pre></div>
 </div>
 <p>The landing command message class:</p>
-<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="n">__package__</span> <span class="o">=</span> <span class="s1">&#39;messages&#39;</span>
+<div class="highlight-Python"><div class="highlight"><pre><span class="n">__package__</span> <span class="o">=</span> <span class="s1">&#39;messages&#39;</span>
 
 <span class="kn">import</span> <span class="nn">json</span>
 
 <span class="k">class</span> <span class="nc">Land</span> <span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-   <span class="k">def</span> <span class="fm">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
+   <span class="k">def</span> <span class="nf">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
        <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="n">header</span>
 </pre></div>
 </div>

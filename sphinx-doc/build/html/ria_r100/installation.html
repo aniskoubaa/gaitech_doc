@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="RIA-R100 Documentation" href="index.html"/>
         <link rel="next" title="Demo Applications" href="demo-apps.html"/>
@@ -110,7 +107,7 @@
 <li class="toctree-l2"><a class="reference internal" href="maintenance.html">Maintenance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="r100-warning.html">Warning and safety precautions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quick-start.html">Quick Start</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#network-configuration">Network Configuration</a></li>
 </ul>
 </li>
@@ -157,7 +154,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/ria_r100/installation.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/ria_r100/installation.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -175,7 +172,7 @@
 <li>Following steps need to be done in host PC</li>
 <li>Creating Work Space:</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir –p ~/catkin_ws/src
+<div class="highlight-bash"><div class="highlight"><pre>$ mkdir –p ~/catkin_ws/src
 $ <span class="nb">cd</span> ~/catkin_ws/src
 $ git clone https://github.com/gaitech-robotics/RIA-R100.git
 $ <span class="nb">cd</span> ~/catkin_ws <span class="o">&amp;&amp;</span> catkin_make
@@ -189,17 +186,17 @@ $ <span class="nb">cd</span> ~/catkin_ws <span class="o">&amp;&amp;</span> catki
 <li>Open bashrc in host PC and add these lines at the end</li>
 <li>In a terminal:</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo gedit ~/.bashrc
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo gedit ~/.bashrc
 </pre></div>
 </div>
 <p>Then add these lines at the end</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://192.168.0.2:11311
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://192.168.0.2:11311
 <span class="nb">export</span> <span class="nv">ROS_HOSTNAME</span><span class="o">=</span>IP_HOSTPC
 </pre></div>
 </div>
 <p>in IP_HOSTPC replace it with your PC IP address</p>
 <p>Whenever to control robot from HOST pc it should be connected to robot’s wifi from terminal via ssh server</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo ssh ria@192.168.0.2
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo ssh ria@192.168.0.2
 </pre></div>
 </div>
 <p>If prompt for password enter “gaitechedu”</p>

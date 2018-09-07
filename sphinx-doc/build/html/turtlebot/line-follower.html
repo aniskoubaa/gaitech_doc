@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/> 
 
   
@@ -132,7 +129,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/line-follower.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/line-follower.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -166,7 +163,7 @@
 <p>OpenCV is a popular open source computer vision library. We will use this library to view images and stream from the turtlbot robot so it can follow a line on the ground. In order to do that we will need to see the line, define the centre of this line and finally move the robot to follow the robot.
 Messages from the camera are published on the <code class="docutils literal"><span class="pre">sensor_msgs/Image</span></code> topic so we will need to write a node that subscribe to the same topic.</p>
 <p>Open a file called <code class="docutils literal"><span class="pre">follower.py</span></code> in the following path <code class="docutils literal"><span class="pre">gaitech_edu/src/turtlebot/navigation/line_follower/scripts/</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="ch">#!/usr/bin/env python</span>
 <span class="kn">import</span> <span class="nn">rospy</span>
 <span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">Image</span>
 
@@ -180,31 +177,31 @@ Messages from the camera are published on the <code class="docutils literal"><sp
 </div>
 <p>This a very simple subscriber node that does nothing.
 Run the following commands:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roscore
+<div class="highlight-bash"><div class="highlight"><pre>roscore
 </pre></div>
 </div>
 <p>Start up your Gazebo simulator:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_gazebo turtlebot_world.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch turtlebot_gazebo turtlebot_world.launch
 </pre></div>
 </div>
 <p>then type this command to see all the topics published so far.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rostopic list
+<div class="highlight-bash"><div class="highlight"><pre>rostopic list
 </pre></div>
 </div>
 <p>You will see something like the following.</p>
 <img alt="../_images/rostopic_list.png" class="align-center" src="../_images/rostopic_list.png" />
 <p>We are only interested about the <code class="docutils literal"><span class="pre">camera</span></code> topics.</p>
 <p>Now run your python script:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_path/follower.py
+<div class="highlight-bash"><div class="highlight"><pre>python your_path/follower.py
 </pre></div>
 </div>
 <p>To be able to make sure that it is working run the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosnode list
+<div class="highlight-bash"><div class="highlight"><pre>rosnode list
 </pre></div>
 </div>
 <p>This will give you a list of all the active nodes on your ROS environment and you will find your <code class="docutils literal"><span class="pre">follower</span></code> node between them.</p>
 <p>Now you need to create a <code class="docutils literal"><span class="pre">python</span></code> script to view the images from the turtlebot. Open a file called <code class="docutils literal"><span class="pre">follower_opencv.py</span></code> in the following path <code class="docutils literal"><span class="pre">gaitech_edu/src/turtlebot/navigation/line_follower/scripts/</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="ch">#!/usr/bin/env python</span>
 
 <span class="c1">#This script uses the cv_bridge package to convert images coming on the topic</span>
 <span class="c1">#sensor_msgs/Image to OpenCV messages and display them on the screen</span>
@@ -213,7 +210,7 @@ Run the following commands:</p>
 <span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">import</span> <span class="nn">cv2</span><span class="o">,</span> <span class="nn">cv_bridge</span>
 <span class="k">class</span> <span class="nc">Follower</span><span class="p">:</span>
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span> <span class="o">=</span> <span class="n">cv_bridge</span><span class="o">.</span><span class="n">CvBridge</span><span class="p">()</span>
                 <span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s2">&quot;window&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">image_sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;camera/rgb/image_raw&#39;</span><span class="p">,</span>
@@ -238,7 +235,7 @@ Run the following commands:</p>
 <h2>Follow the line<a class="headerlink" href="#follow-the-line" title="Permalink to this headline">¶</a></h2>
 <p>After drawing the yellow line we need to make the robot follow this line. The apprach that is used here is for the robot the follow the line after defining the center of the line and draw a red dot at the center point of the line and keep this dot at 1 meter distance from the robot. Then move the robot according to the line path.</p>
 <p>Open a file called <code class="docutils literal"><span class="pre">line_follower.py</span></code> in the same path <code class="docutils literal"><span class="pre">gaitech_edu/src/turtlebot/navigation/line_follower/scripts/</span></code> :</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="ch">#!/usr/bin/env python</span>
 
 
 <span class="c1">#This Program is tested on Gazebo Simulator</span>
@@ -254,7 +251,7 @@ Run the following commands:</p>
 
 <span class="k">class</span> <span class="nc">Follower</span><span class="p">:</span>
 
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span> <span class="o">=</span> <span class="n">cv_bridge</span><span class="o">.</span><span class="n">CvBridge</span><span class="p">()</span>
                 <span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s2">&quot;window&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -301,14 +298,14 @@ Run the following commands:</p>
 </pre></div>
 </div>
 <p>Open <cite>Gazebo</cite> and then run the <code class="docutils literal"><span class="pre">python</span></code> script:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_path/line_follower.py
+<div class="highlight-bash"><div class="highlight"><pre>python your_path/line_follower.py
 </pre></div>
 </div>
 </div>
 <div class="section" id="code-explanation">
 <h2>Code Explanation<a class="headerlink" href="#code-explanation" title="Permalink to this headline">¶</a></h2>
 <p>The following code initialise the <code class="docutils literal"><span class="pre">Publisher</span></code> and <code class="docutils literal"><span class="pre">Subscriber</span></code> topics for the line_follower`` node.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">emphasize</span><span class="o">-</span><span class="n">lines</span><span class="p">:</span> <span class="mi">15</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">:</span><span class="n">emphasize</span><span class="o">-</span><span class="n">lines</span><span class="p">:</span> <span class="mi">15</span>
 
      <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span> <span class="o">=</span> <span class="n">cv_bridge</span><span class="o">.</span><span class="n">CvBridge</span><span class="p">()</span>
      <span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s2">&quot;window&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -321,7 +318,7 @@ Run the following commands:</p>
 </pre></div>
 </div>
 <p>The following code is for the image transformation, convertion and then analysing the data coming from the camera sensor. The first part works on converting the image from <code class="docutils literal"><span class="pre">BGR</span></code> (Blue, Green, Red) to <code class="docutils literal"><span class="pre">HSV</span></code> (Hue, Saturation, Value) using the <code class="docutils literal"><span class="pre">cv2</span></code> library and defining the lower and upper limit for the yellow color degrees and use a <code class="docutils literal"><span class="pre">mask</span></code> to make sure of that using the <code class="docutils literal"><span class="pre">inRange()</span></code> function to produce a binary image.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">emphasize</span><span class="o">-</span><span class="n">lines</span><span class="p">:</span> <span class="mi">15</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">:</span><span class="n">emphasize</span><span class="o">-</span><span class="n">lines</span><span class="p">:</span> <span class="mi">15</span>
 
      <span class="k">def</span> <span class="nf">image_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
 
@@ -333,7 +330,7 @@ Run the following commands:</p>
 </pre></div>
 </div>
 <p>Using the <code class="docutils literal"><span class="pre">OpenCV</span></code> and <code class="docutils literal"><span class="pre">numpy</span></code> libraries we will erase all the pixels that was not in the range we defined before. You can see this in the following code.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">emphasize</span><span class="o">-</span><span class="n">lines</span><span class="p">:</span> <span class="mi">15</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">:</span><span class="n">emphasize</span><span class="o">-</span><span class="n">lines</span><span class="p">:</span> <span class="mi">15</span>
 
              <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
              <span class="n">search_top</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">h</span><span class="o">/</span><span class="mi">4</span>
@@ -343,7 +340,7 @@ Run the following commands:</p>
 </pre></div>
 </div>
 <p>After that we will use the <code class="docutils literal"><span class="pre">moments()</span></code> function in the <code class="docutils literal"><span class="pre">OpenCV</span></code> library to determind the center point of the rest of the binary image that was inside the range we defined above. To make it easier for you to debug it is better to draw a red circle in the middle/origin point of your image. Then you display the image that is produced during all this process.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">emphasize</span><span class="o">-</span><span class="n">lines</span><span class="p">:</span> <span class="mi">15</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">:</span><span class="n">emphasize</span><span class="o">-</span><span class="n">lines</span><span class="p">:</span> <span class="mi">15</span>
 
              <span class="n">M</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">moments</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
              <span class="k">if</span> <span class="n">M</span><span class="p">[</span><span class="s1">&#39;m00&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -365,19 +362,18 @@ Run the following commands:</p>
 <p>Draw a yellow line on your ground using a colored paper or a ducktape.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Make sure that the color ground’s color is different than the yellow color you are using to avoid conflict and ensure good results.</p>
+<p class="last">Make sure that the color ground&#8217;s color is different than the yellow color you are using to avoid conflict and ensure good results.</p>
 </div>
 <p>On your master node(turtlebot PC) run the following commands:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roscore
+<div class="highlight-bash"><div class="highlight"><pre>roscore
 roslaunch turtlebot_bringup minimal.launch
 </pre></div>
 </div>
 <p>on your host node(your PC) run the <code class="docutils literal"><span class="pre">python</span></code> script:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_path/line_follower.py
+<div class="highlight-bash"><div class="highlight"><pre>python your_path/line_follower.py
 </pre></div>
 </div>
-<iframe src="http://www.youtube.com/embed/qptuCbHESi8" style="border: 0; height: 345px; width: 560px">
-</iframe></div>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/qptuCbHESi8" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
 </div>
 
 

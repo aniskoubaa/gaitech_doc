@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="GAPTER: ROS Tutorials" href="gapter-ros-tutorials.html"/>
         <link rel="next" title="GAPTER: Teleopration with ROS" href="gapter-ros-teleop.html"/>
@@ -110,7 +107,7 @@
 <li class="toctree-l3"><a class="reference internal" href="gapter-simulation.html">Simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gapter-ball-tracking.html">Ball Tracking</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="gapter-ros-tutorials.html">ROS Tutorials</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">MAVROS Basics</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="">MAVROS Basics</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-ros-teleop.html">Teleoperation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-ros-obstacle-avoidance.html">Obstacle Avoidance</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-ros-moving-in-shapes.html">Moving in Shapes</a></li>
@@ -166,7 +163,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/gapter/mavros-basics.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/gapter/mavros-basics.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -190,7 +187,7 @@
 <p class="caption"><span class="caption-text">Figure 1: Launch the simulator</span></p>
 </div>
 <p>Then in new terminal, launch the following ROS node (python):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun gapter_py gapter_pilot.py
+<div class="highlight-bash"><div class="highlight"><pre>rosrun gapter_py gapter_pilot.py
 </pre></div>
 </div>
 <div class="figure align-center" id="id3">
@@ -201,7 +198,7 @@
 <div class="section" id="code-explanation">
 <h2>Code Explanation<a class="headerlink" href="#code-explanation" title="Permalink to this headline">¶</a></h2>
 <p>The source code could be found in <a class="reference external" href="https://github.com/">github_link</a>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
    <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;gapter_pilot_node&#39;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
    <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s2">&quot;/mavros/global_position/raw/fix&quot;</span><span class="p">,</span> <span class="n">NavSatFix</span><span class="p">,</span> <span class="n">globalPositionCallback</span><span class="p">)</span>
    <span class="n">velocity_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;/mavros/setpoint_velocity/cmd_vel&#39;</span><span class="p">,</span> <span class="n">TwistStamped</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -210,7 +207,7 @@
 </pre></div>
 </div>
 <p>As any ROS node, it starts with initialization of the ROS node for the process. <code class="docutils literal"><span class="pre">myLoop()</span></code> function is used to display the main menu and to get the input from the user:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myLoop</span><span class="p">():</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">myLoop</span><span class="p">():</span>
    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;1&#39;</span>
    <span class="k">while</span> <span class="p">((</span><span class="ow">not</span> <span class="n">rospy</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">())</span><span class="ow">and</span> <span class="p">(</span><span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="s1">&#39;5&#39;</span><span class="p">,</span><span class="s1">&#39;6&#39;</span><span class="p">,</span><span class="s1">&#39;7&#39;</span><span class="p">])):</span>
        <span class="n">menu</span><span class="p">()</span>
@@ -237,7 +234,7 @@
 </pre></div>
 </div>
 <p>The service <code class="docutils literal"><span class="pre">/mavros/set_mode</span></code> is used to set the mode (Guided or Stabilized). The service is called by creating a <code class="docutils literal"><span class="pre">rospy.ServiceProxy</span></code> with the name of the service. Often <code class="docutils literal"><span class="pre">rospy.wait_for_service()</span></code> is called first to block until a service is available:</p>
-<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setGuidedMode</span><span class="p">():</span>
+<div class="highlight-Python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">setGuidedMode</span><span class="p">():</span>
    <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s1">&#39;/mavros/set_mode&#39;</span><span class="p">)</span>
    <span class="k">try</span><span class="p">:</span>
        <span class="n">flightModeService</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s1">&#39;/mavros/set_mode&#39;</span><span class="p">,</span> <span class="n">mavros_msgs</span><span class="o">.</span><span class="n">srv</span><span class="o">.</span><span class="n">SetMode</span><span class="p">)</span>
@@ -247,7 +244,7 @@
 </pre></div>
 </div>
 <p>Same code used to set Stabilized mode, just replace <code class="docutils literal"><span class="pre">custom_mode='GUIDED'</span></code> with <code class="docutils literal"><span class="pre">custom_mode='STABILIZE'</span></code> in <code class="docutils literal"><span class="pre">setStabilizeMode()</span></code> function:</p>
-<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setStabilizeMode</span><span class="p">():</span>
+<div class="highlight-Python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">setStabilizeMode</span><span class="p">():</span>
    <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s1">&#39;/mavros/set_mode&#39;</span><span class="p">)</span>
    <span class="k">try</span><span class="p">:</span>
        <span class="n">flightModeService</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s1">&#39;/mavros/set_mode&#39;</span><span class="p">,</span> <span class="n">mavros_msgs</span><span class="o">.</span><span class="n">srv</span><span class="o">.</span><span class="n">SetMode</span><span class="p">)</span>
@@ -257,7 +254,7 @@
 </pre></div>
 </div>
 <p>To arm or disarm the drone, the service <code class="docutils literal"><span class="pre">/mavros/cmd/arming</span></code> is used in same way as to set the mode:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setArm</span><span class="p">():</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">setArm</span><span class="p">():</span>
    <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s1">&#39;/mavros/cmd/arming&#39;</span><span class="p">)</span>
    <span class="k">try</span><span class="p">:</span>
        <span class="n">armService</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s1">&#39;/mavros/cmd/arming&#39;</span><span class="p">,</span> <span class="n">mavros_msgs</span><span class="o">.</span><span class="n">srv</span><span class="o">.</span><span class="n">CommandBool</span><span class="p">)</span>
@@ -275,7 +272,7 @@
 </pre></div>
 </div>
 <p>To takeoff the drone, the <code class="docutils literal"><span class="pre">/mavros/cmd/takeoff</span></code> service is used, and it takes the <code class="docutils literal"><span class="pre">altitude</span></code>, <code class="docutils literal"><span class="pre">latitude</span></code>, <code class="docutils literal"><span class="pre">longitude</span></code>, <code class="docutils literal"><span class="pre">min_pitch</span></code>, and <code class="docutils literal"><span class="pre">yaw</span></code> as parameters:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setTakeoffMode</span><span class="p">():</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">setTakeoffMode</span><span class="p">():</span>
    <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s1">&#39;/mavros/cmd/takeoff&#39;</span><span class="p">)</span>
    <span class="k">try</span><span class="p">:</span>
        <span class="n">takeoffService</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s1">&#39;/mavros/cmd/takeoff&#39;</span><span class="p">,</span> <span class="n">mavros_msgs</span><span class="o">.</span><span class="n">srv</span><span class="o">.</span><span class="n">CommandTOL</span><span class="p">)</span>
@@ -285,7 +282,7 @@
 </pre></div>
 </div>
 <p>To land the drone, the <code class="docutils literal"><span class="pre">/mavros/cmd/land</span></code> service is used, and it takes the <code class="docutils literal"><span class="pre">altitude</span></code>, <code class="docutils literal"><span class="pre">latitude</span></code>, <code class="docutils literal"><span class="pre">longitude</span></code>, <code class="docutils literal"><span class="pre">min_pitch</span></code>, and <code class="docutils literal"><span class="pre">yaw</span></code> as parameters:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setLandMode</span><span class="p">():</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">setLandMode</span><span class="p">():</span>
    <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s1">&#39;/mavros/cmd/land&#39;</span><span class="p">)</span>
    <span class="k">try</span><span class="p">:</span>
        <span class="n">landService</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s1">&#39;/mavros/cmd/land&#39;</span><span class="p">,</span> <span class="n">mavros_msgs</span><span class="o">.</span><span class="n">srv</span><span class="o">.</span><span class="n">CommandTOL</span><span class="p">)</span>

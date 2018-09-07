@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="GAPTER: Simulation" href="gapter-simulation.html"/>
         <link rel="next" title="GAPTER: Ball Tracking" href="gapter-ball-tracking.html"/>
@@ -108,7 +105,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="software-tutorials.html">Software Tutorials</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="gapter-brain-software-suite.html">Gapter Brain Software Suite</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="gapter-simulation.html">Simulation</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Set-up GapterSim Environment</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="">Set-up GapterSim Environment</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="gapter-ball-tracking.html">Ball Tracking</a></li>
@@ -162,7 +159,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/gapter/setup-simulation-environment.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/gapter/setup-simulation-environment.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -181,170 +178,170 @@
 <li><a class="reference external" href="http://wiki.ros.org/indigo/Installation/">Ros indigo</a></li>
 </ol>
 <p><strong>Configure Ubuntu</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get update
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get update
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install gawk make git curl cmake -y
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install gawk make git curl cmake -y
 </pre></div>
 </div>
 <p><strong>ROS dependencies and required packages:</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install python-rosinstall ros-indigo-octomap-msgs ros-indigo-joy ros-indigo-geodesy ros-indigo-octomap-ros ros-indigo-mavlink  ros-indigo-control-toolbox  ros-indigo-transmission-interface ros-indigo-joint-limits-interface unzip ros-indigo-mavros-msgs ros-indigo-mavros-extras ros-indigo-mavros -y
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install python-rosinstall ros-indigo-octomap-msgs ros-indigo-joy ros-indigo-geodesy ros-indigo-octomap-ros ros-indigo-mavlink  ros-indigo-control-toolbox  ros-indigo-transmission-interface ros-indigo-joint-limits-interface unzip ros-indigo-mavros-msgs ros-indigo-mavros-extras ros-indigo-mavros -y
 </pre></div>
 </div>
 <p><strong>Mavproxy</strong></p>
 <p><em>Install dependencies</em></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install g++ python-pip python-matplotlib python-serial python-wxgtk2.8 python-scipy python-opencv python-numpy python-pyparsing ccache realpath libopencv-dev -y
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install g++ python-pip python-matplotlib python-serial python-wxgtk2.8 python-scipy python-opencv python-numpy python-pyparsing ccache realpath libopencv-dev -y
 </pre></div>
 </div>
 <p><em>Install MavProxy</em></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo pip install future
+<div class="highlight-bash"><div class="highlight"><pre>sudo pip install future
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install libxml2-dev libxslt1-dev -y
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install libxml2-dev libxslt1-dev -y
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo pip2 install pymavlink catkin_pkg --upgrade
+<div class="highlight-bash"><div class="highlight"><pre>sudo pip2 install pymavlink catkin_pkg --upgrade
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo pip install <span class="nv">MAVProxy</span><span class="o">==</span><span class="m">1</span>.5.2
+<div class="highlight-bash"><div class="highlight"><pre>sudo pip install <span class="nv">MAVProxy</span><span class="o">==</span>1.5.2
 </pre></div>
 </div>
 </div>
 <div class="section" id="b-ardupilot">
 <h2>B. Ardupilot<a class="headerlink" href="#b-ardupilot" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>mkdir -p ~/gapter_sim
+<div class="highlight-bash"><div class="highlight"><pre>mkdir -p ~/gapter_sim
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> gapter_sim
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> gapter_sim
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/gaitech-robotics/gapter_ardupilot -b sim_ros_gazebo
+<div class="highlight-bash"><div class="highlight"><pre>git clone https://github.com/gaitech-robotics/gapter_ardupilot -b sim_ros_gazebo
 </pre></div>
 </div>
 </div>
 <div class="section" id="c-creating-ros-work-space">
 <h2>C. Creating ros work space<a class="headerlink" href="#c-creating-ros-work-space" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>mkdir -p ~/gapter_sim/ros_ws/src
+<div class="highlight-bash"><div class="highlight"><pre>mkdir -p ~/gapter_sim/ros_ws/src
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/gapter_sim/ros_ws/src
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~/gapter_sim/ros_ws/src
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_init_workspace
+<div class="highlight-bash"><div class="highlight"><pre>catkin_init_workspace
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> ..
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ..
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_make
+<div class="highlight-bash"><div class="highlight"><pre>catkin_make
 </pre></div>
 </div>
 <p><strong>Now download all repositories required</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> src/
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> src/
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/gaitech-robotics/gapter_ardupilot_sitl_gazebo_plugin
+<div class="highlight-bash"><div class="highlight"><pre>git clone https://github.com/gaitech-robotics/gapter_ardupilot_sitl_gazebo_plugin
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/gaitech-robotics/gapter_rotors_simulator -b sonar_plugin
+<div class="highlight-bash"><div class="highlight"><pre>git clone https://github.com/gaitech-robotics/gapter_rotors_simulator -b sonar_plugin
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/PX4/mav_comm.git
+<div class="highlight-bash"><div class="highlight"><pre>git clone https://github.com/PX4/mav_comm.git
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/ethz-asl/glog_catkin.git
+<div class="highlight-bash"><div class="highlight"><pre>git clone https://github.com/ethz-asl/glog_catkin.git
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/catkin/catkin_simple.git
+<div class="highlight-bash"><div class="highlight"><pre>git clone https://github.com/catkin/catkin_simple.git
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/gaitech-robotics/mavros
+<div class="highlight-bash"><div class="highlight"><pre>git clone https://github.com/gaitech-robotics/mavros
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/tu-darmstadt-ros-pkg/hector_gazebo/
+<div class="highlight-bash"><div class="highlight"><pre>git clone https://github.com/tu-darmstadt-ros-pkg/hector_gazebo/
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/ros-simulation/gazebo_ros_pkgs.git -b indigo-devel
+<div class="highlight-bash"><div class="highlight"><pre>git clone https://github.com/ros-simulation/gazebo_ros_pkgs.git -b indigo-devel
 </pre></div>
 </div>
 </div>
 <div class="section" id="d-installing-gazebo">
 <h2>D. Installing Gazebo<a class="headerlink" href="#d-installing-gazebo" title="Permalink to this headline">¶</a></h2>
 <p><strong>Setup your computer</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo sh -c <span class="s1">&#39;echo &quot;deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main&quot; &gt; /etc/apt/sources.list.d/gazebo-stable.list&#39;</span>
+<div class="highlight-bash"><div class="highlight"><pre>sudo sh -c <span class="s1">&#39;echo &quot;deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main&quot; &gt; /etc/apt/sources.list.d/gazebo-stable.list&#39;</span>
 </pre></div>
 </div>
 <p><strong>Setup Keys</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>wget http://packages.osrfoundation.org/gazebo.key -O - <span class="p">|</span> sudo apt-key add -
+<div class="highlight-bash"><div class="highlight"><pre>wget http://packages.osrfoundation.org/gazebo.key -O - <span class="p">|</span> sudo apt-key add -
 </pre></div>
 </div>
 <p><strong>Install gazebo</strong></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get update
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get update
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get remove <span class="s1">&#39;.*gazebo.*&#39;</span> <span class="s1">&#39;.*sdformat.*&#39;</span> <span class="s1">&#39;.*ignition-math.*&#39;</span>
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get remove <span class="s1">&#39;.*gazebo.*&#39;</span> <span class="s1">&#39;.*sdformat.*&#39;</span> <span class="s1">&#39;.*ignition-math.*&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get update
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get update
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install gazebo4 libgazebo4-dev drcsim -y
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install gazebo4 libgazebo4-dev drcsim -y
 </pre></div>
 </div>
 </div>
 <div class="section" id="e-compile-workspace">
 <h2>E. Compile workspace<a class="headerlink" href="#e-compile-workspace" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> ~/gapter_sim/ros_ws/devel/setup.bash
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">source</span> ~/gapter_sim/ros_ws/devel/setup.bash
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/gapter_sim/ros_ws
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~/gapter_sim/ros_ws
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_make --pkg mav_msgs mavros_msgs gazebo_msgs
+<div class="highlight-bash"><div class="highlight"><pre>catkin_make --pkg mav_msgs mavros_msgs gazebo_msgs
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> devel/setup.bash
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">source</span> devel/setup.bash
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_make -j <span class="m">4</span>
+<div class="highlight-bash"><div class="highlight"><pre>catkin_make -j 4
 </pre></div>
 </div>
 </div>
 <div class="section" id="f-launch-gapter-simulation">
 <h2>F. launch Gapter Simulation<a class="headerlink" href="#f-launch-gapter-simulation" title="Permalink to this headline">¶</a></h2>
 <p>Open the terminal and type following:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> ~/gapter_sim/ros_ws/devel/setup.bash
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">source</span> ~/gapter_sim/ros_ws/devel/setup.bash
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>user $: <span class="nb">cd</span> ~/gapter_sim/gapter_ardupilot/ArduCopter
+<div class="highlight-bash"><div class="highlight"><pre>user $: <span class="nb">cd</span> ~/gapter_sim/gapter_ardupilot/ArduCopter
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>user $: ../Tools/autotest/sim_vehicle.sh -j <span class="m">4</span> -f Gazebo
+<div class="highlight-bash"><div class="highlight"><pre>user $: ../Tools/autotest/sim_vehicle.sh -j <span class="m">4</span> -f Gazebo
 </pre></div>
 </div>
 <p>In another terminal lauch following:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> ~/gapter_sim/ros_ws/devel/setup.bash
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">source</span> ~/gapter_sim/ros_ws/devel/setup.bash
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch ardupilot_sitl_gazebo_plugin gapter_spawn.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch ardupilot_sitl_gazebo_plugin gapter_spawn.launch
 </pre></div>
 </div>
 <p>Once mavproxy launched completely in the first terminal load parameters from Ardupilot directory</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>param load /your home directory/gapter_sim/gapter_ardupilot/Tools/Frame_params/gapter.param
+<div class="highlight-bash"><div class="highlight"><pre>param load /your home directory/gapter_sim/gapter_ardupilot/Tools/Frame_params/gapter.param
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>param <span class="nb">set</span> ARMING_CHECK <span class="m">0</span>
+<div class="highlight-bash"><div class="highlight"><pre>param <span class="nb">set</span> ARMING_CHECK 0
 </pre></div>
 </div>
 <p><strong>Takeoff gapter</strong></p>
 <p>In mavproxy terminal type following:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>mode Guided
+<div class="highlight-bash"><div class="highlight"><pre>mode Guided
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>arm throttle
+<div class="highlight-bash"><div class="highlight"><pre>arm throttle
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>takeoff <span class="m">5</span>
+<div class="highlight-bash"><div class="highlight"><pre>takeoff 5
 </pre></div>
 </div>
 <p>You can see in gazebo that gapter flying at 5 meter height.</p>

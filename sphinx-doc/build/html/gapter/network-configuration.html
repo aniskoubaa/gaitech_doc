@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Gapter Drone Documentation" href="index.html"/>
         <link rel="next" title="GAPTER: Pre-Flight Configurations" href="preflight-configurations.html"/>
@@ -102,7 +99,7 @@
 <li class="toctree-l2"><a class="reference internal" href="assembly.html">Gapter Assembly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gapter-calibration.html">Gapter Calibration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal-hardware-connections.html">Internal Hardware Connection</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Network Configuration</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Network Configuration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#wifi-hotspot-mode">WiFi Hotspot Mode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#wifi-infrastructure-mode">WiFi Infrastructure Mode</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#step1-specify-the-wifi-network">STEP1. Specify the WiFi Network</a></li>
@@ -158,7 +155,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/gapter/network-configuration.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/gapter/network-configuration.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -202,7 +199,7 @@ In this case, to connect to Gapter, you need to look for available WiFi networks
 <p class="last">Remember that in this mode, there is no Internet connection.</p>
 </div>
 <p>Once this is done, you just need to use <code class="docutils literal"><span class="pre">ssh</span></code> to connect to the drone as follow through a terminal.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>ssh gapter@192.168.1.1
+<div class="highlight-bash"><div class="highlight"><pre>ssh gapter@192.168.1.1
 </pre></div>
 </div>
 <p>Note that the default ip address of gapter is <code class="docutils literal"><span class="pre">192.168.1.1</span></code>, and your laptop connects to that <code class="docutils literal"><span class="pre">gapternet</span></code>,
@@ -219,7 +216,7 @@ If you need Internet to download new packages or software inside Gapter, you nee
 <div class="section" id="step1-specify-the-wifi-network">
 <h3>STEP1. Specify the WiFi Network<a class="headerlink" href="#step1-specify-the-wifi-network" title="Permalink to this headline">¶</a></h3>
 <p>First, connect to Gapter in hotspot mode, and in the terminal write:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>wpa_passphrase network-ssid network-password
+<div class="highlight-bash"><div class="highlight"><pre>wpa_passphrase network-ssid network-password
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -227,7 +224,7 @@ If you need Internet to download new packages or software inside Gapter, you nee
 <p class="last">Change the name of the ssid and the password of the network, with your network credentials.</p>
 </div>
 <p>You will get an output similar to</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span> <span class="nv">network</span><span class="o">={</span>
+<div class="highlight-bash"><div class="highlight"><pre> <span class="nv">network</span><span class="o">={</span>
    <span class="nv">ssid</span><span class="o">=</span><span class="s2">&quot;ssid-name&quot;</span>
    <span class="c1">#psk=&quot;password&quot;</span>
    <span class="nv">psk</span><span class="o">=</span>9b3dfa68a71033a672d01c961c03415ae47bfd8cadede26127be40aab43b5c75
@@ -235,7 +232,7 @@ If you need Internet to download new packages or software inside Gapter, you nee
 </pre></div>
 </div>
 <p>Then, save this into a file called <code class="docutils literal"><span class="pre">wpa_supplicant.conf</span></code> as follows:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo nano /boot/wpa_supplicant.conf
+<div class="highlight-bash"><div class="highlight"><pre>sudo nano /boot/wpa_supplicant.conf
 </pre></div>
 </div>
 <p>The nano terminal command editor will open, and you need to edit or copy/paste the network information into that file.</p>
@@ -250,11 +247,11 @@ In the next restart, the copter will automatically connect to the new WiFi netwo
 <h3>STEP2. Modify Network Interfaces<a class="headerlink" href="#step2-modify-network-interfaces" title="Permalink to this headline">¶</a></h3>
 <p>Gapter was pre-configured to work in a WiFi hostpost. We need to change the interfaces defined in <code class="docutils literal"><span class="pre">/etc/network/interfaces</span></code> to enable the infastructure mode.
 When you are connected to Gapter in Hotspot mode, in the terminal edit the <code class="docutils literal"><span class="pre">/etc/network/interfaces</span></code> file as follow:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo nano /etc/network/interfaces
+<div class="highlight-bash"><div class="highlight"><pre>sudo nano /etc/network/interfaces
 </pre></div>
 </div>
 <p>You will the following configuration that corresponds to the default hotspot mode:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1">#for loopback interface</span>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c1">#for loopback interface</span>
 auto lo
 iface lo inet loopback
 
@@ -265,12 +262,12 @@ iface eth* inet dhcp
 <span class="c1">#for wifi in hotspot mode</span>
 auto wlan*
 iface wlan* inet static
-address <span class="m">192</span>.168.1.1
-netmask <span class="m">255</span>.255.255.0
+address 192.168.1.1
+netmask 255.255.255.0
 </pre></div>
 </div>
 <p>To enable the WiFi infrastructure, we need to change the specification of <code class="docutils literal"><span class="pre">wlan0</span></code> as follow</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1">#for loopback interface</span>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c1">#for loopback interface</span>
 auto lo
 iface lo inet loopback
 
@@ -304,7 +301,7 @@ In the next restart, Gapter will automatically connect to the new network.</p>
 <p>Once this is done, you can now connect to your Gapter drone.
 First, you need to know what is the IP address assigned to your drone. If DHCP is enabled, then you can enter to the admin page of your router and try to identify which IP address was assigned by the router to your drone.
 if this IP address is for example 192.168.100.13, then you can connect to the drone using <code class="docutils literal"><span class="pre">ssh</span></code> as follow through a terminal.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>ssh gapter@192.168.100.13
+<div class="highlight-bash"><div class="highlight"><pre>ssh gapter@192.168.100.13
 
 .. WARNING::
 Make sure to use the correct IP address of the drone to connect to it.
@@ -314,9 +311,9 @@ Make sure to use the correct IP address of the drone to connect to it.
 </div>
 <div class="section" id="what-do-after-connection-to-gapter">
 <h2>What do after connection to Gapter?<a class="headerlink" href="#what-do-after-connection-to-gapter" title="Permalink to this headline">¶</a></h2>
-<p>After connecting to Gapter, you can perform any terminal linux command on Odroid XU4 onboard computer, installing new software, working with ROS, developing programs, …
+<p>After connecting to Gapter, you can perform any terminal linux command on Odroid XU4 onboard computer, installing new software, working with ROS, developing programs, ...
 It is recommended to use the <code class="docutils literal"><span class="pre">nano</span></code> editor to edit program on the terminal.
-You can find examples for developing programs for Gapter in <a class="reference internal" href="software-tutorials.html#software-tutorials"><span class="std std-ref">GAPTER: Software Tutorials</span></a>.</p>
+You can find examples for developing programs for Gapter in <a class="reference internal" href="software-tutorials.html#software-tutorials"><span>GAPTER: Software Tutorials</span></a>.</p>
 </div>
 </div>
 

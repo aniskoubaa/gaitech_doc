@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="GAPTER: Software Tutorials" href="software-tutorials.html"/>
         <link rel="next" title="MAVROS Basics" href="mavros-basics.html"/>
@@ -109,7 +106,7 @@
 <li class="toctree-l3"><a class="reference internal" href="gapter-brain-software-suite.html">Gapter Brain Software Suite</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gapter-simulation.html">Simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gapter-ball-tracking.html">Ball Tracking</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">ROS Tutorials</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="">ROS Tutorials</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="mavros-basics.html">MAVROS Basics</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-ros-teleop.html">Teleoperation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gapter-ros-obstacle-avoidance.html">Obstacle Avoidance</a></li>
@@ -164,7 +161,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/gapter/gapter-ros-tutorials.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/gapter/gapter-ros-tutorials.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -190,13 +187,13 @@
 <ul class="simple">
 <li>Open the terminal in your desktop and install the following</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>user $: sudo apt-get install python-catkin-tools python-rosinstall-generator
+<div class="highlight-bash"><div class="highlight"><pre>user $: sudo apt-get install python-catkin-tools python-rosinstall-generator
 </pre></div>
 </div>
 <ul class="simple">
 <li>Create a workspace</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>user $: mkdir -p ~/catkin_ws/src
+<div class="highlight-bash"><div class="highlight"><pre>user $: mkdir -p ~/catkin_ws/src
 user $: <span class="nb">cd</span> ~/catkin_ws
 /catkin_ws $: catkin init
 /catkin_ws $: wstool init src
@@ -205,13 +202,13 @@ user $: <span class="nb">cd</span> ~/catkin_ws
 <ul class="simple">
 <li>Get source (upstream – released)</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>/catkin_ws $: rosinstall_generator --upstream-development mavros <span class="p">|</span> tee /tmp/mavros.rosinstall
+<div class="highlight-bash"><div class="highlight"><pre>/catkin_ws $: rosinstall_generator --upstream-development mavros <span class="p">|</span> tee /tmp/mavros.rosinstall
 </pre></div>
 </div>
 <ul class="simple">
 <li>install latest released mavlink package</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>/catkin_ws $: rosinstall_generator mavlink <span class="p">|</span> tee -a /tmp/mavros.rosinstall workspace <span class="p">&amp;</span> deps
+<div class="highlight-bash"><div class="highlight"><pre>/catkin_ws $: rosinstall_generator mavlink <span class="p">|</span> tee -a /tmp/mavros.rosinstall workspace <span class="p">&amp;</span> deps
 /catkin_ws $: wstool merge -t src /tmp/mavros.rosinstall
 /catkin_ws $: wstool update -t src
 /catkin_ws $: rosdep install --from-paths src --ignore-src --rosdistro indigo -y finally – build
@@ -225,29 +222,29 @@ user $: <span class="nb">cd</span> ~/catkin_ws
 <ul class="simple">
 <li>Open bashrc in your desktop</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="m">1</span>. user $: sudo gedit ~/.bashrc
+<div class="highlight-bash"><div class="highlight"><pre>1. user $: sudo gedit ~/.bashrc
 </pre></div>
 </div>
 <ul class="simple">
 <li>Add these lines at the end</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="m">1</span>. <span class="nb">export</span> <span class="nv">ROS_HOSTNAME</span><span class="o">=</span><span class="m">192</span>.168.x.xxx
-<span class="m">2</span>. <span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://192.168.1.1:11311
+<div class="highlight-bash"><div class="highlight"><pre>1. <span class="nb">export</span> <span class="nv">ROS_HOSTNAME</span><span class="o">=</span>192.168.x.xxx
+2. <span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://192.168.1.1:11311
 </pre></div>
 </div>
-<p>where <code class="docutils literal"><span class="pre">192.168.x.xxx</span></code> is your desktop’s ip address and <code class="docutils literal"><span class="pre">192.168.1.1</span></code> is gapter’s ip address.</p>
-<p>For more comprehensive tutorial on Network Configuration on ROS, refer to <a class="reference internal" href="../turtlebot/network-config-doc.html#network-config-doc"><span class="std std-ref">Network Configuration</span></a></p>
+<p>where <code class="docutils literal"><span class="pre">192.168.x.xxx</span></code> is your desktop&#8217;s ip address and <code class="docutils literal"><span class="pre">192.168.1.1</span></code> is gapter&#8217;s ip address.</p>
+<p>For more comprehensive tutorial on Network Configuration on ROS, refer to <a class="reference internal" href="../turtlebot/network-config-doc.html#network-config-doc"><span>Network Configuration</span></a></p>
 </div>
 <div class="section" id="controling-gapter-using-mavros">
 <h3>Controling Gapter using MAVROS<a class="headerlink" href="#controling-gapter-using-mavros" title="Permalink to this headline">¶</a></h3>
 <p>In this tutorial, we will control Gapter using MAVROS.
-For this you don’t have to install MAVROS on your desktop, but rather on Gapter, because we control Gapter via ssh with Gapter’s onboard computer (Odroid XU4).</p>
+For this you don&#8217;t have to install MAVROS on your desktop, but rather on Gapter, because we control Gapter via ssh with Gapter&#8217;s onboard computer (Odroid XU4).</p>
 <p>Follow these steps:</p>
 <ul class="simple">
 <li>First, connect to the WiFi <code class="docutils literal"><span class="pre">gapternet</span></code> from your desktop which will be shown in Wi-Fi list. If prompt for password type <code class="docutils literal"><span class="pre">gapteredu</span></code></li>
-<li>Open the terminal and connect to Gapter’s computer by typing following</li>
+<li>Open the terminal and connect to Gapter&#8217;s computer by typing following</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>user $: ssh gapter@192.168.1.1
+<div class="highlight-bash"><div class="highlight"><pre>user $: ssh gapter@192.168.1.1
 </pre></div>
 </div>
 <p>If prompts for password, type <code class="docutils literal"><span class="pre">gapteredu</span></code></p>
@@ -258,27 +255,27 @@ For this you don’t have to install MAVROS on your desktop, but rather on Gapte
 <ul class="simple">
 <li>Now in the same terminal type following to start mavproxy ground station:</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>odroid $: mavproxy.py --master<span class="o">=</span>/dev/ttyUSB0 --baudrate <span class="m">57600</span> --out <span class="m">192</span>.168.x.xx:5000  --aircraft MyCopter
+<div class="highlight-bash"><div class="highlight"><pre>odroid $: mavproxy.py --master<span class="o">=</span>/dev/ttyUSB0 --baudrate <span class="m">57600</span> --out 192.168.x.xx:5000  --aircraft MyCopter
 </pre></div>
 </div>
-<p>You must enter your desktop’s IP address in place of <code class="docutils literal"><span class="pre">192.168.x.xx</span></code></p>
+<p>You must enter your desktop&#8217;s IP address in place of <code class="docutils literal"><span class="pre">192.168.x.xx</span></code></p>
 <ul class="simple">
 <li>You can notice heartbeat form Gapter which shows mavlink has been connected</li>
 <li>Type these lines in the same terminal where you can see <code class="docutils literal"><span class="pre">MAV&gt;</span></code> tab on left side</li>
 </ul>
 <p><em>For outdoor operation</em></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>MAV&gt; load param /home/gapter/gapter_param/outdoor.param
+<div class="highlight-bash"><div class="highlight"><pre>MAV&gt; load param /home/gapter/gapter_param/outdoor.param
 </pre></div>
 </div>
 <p><em>For indoor operation</em></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>MAV&gt; load param /home/gapter/gapter_param/indoor.param
+<div class="highlight-bash"><div class="highlight"><pre>MAV&gt; load param /home/gapter/gapter_param/indoor.param
 </pre></div>
 </div>
 <ul class="simple">
 <li>Once parameters loaded you can stop mavlink by pressing <code class="docutils literal"><span class="pre">ctrl+c</span></code></li>
 <li>In the same terminal launch mavros to connect Gapter using mavros</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>gapter $ : roslaunch ros_gapter bringup_minimal.launch
+<div class="highlight-bash"><div class="highlight"><pre>gapter $ : roslaunch ros_gapter bringup_minimal.launch
 </pre></div>
 </div>
 <p>Type your desktop ip address in place of <code class="docutils literal"><span class="pre">192.168.x.xxx</span></code></p>
@@ -299,10 +296,10 @@ For this you don’t have to install MAVROS on your desktop, but rather on Gapte
 </ul>
 </li>
 </ul>
-<p>You can see Gapter’s propellers are rotating</p>
+<p>You can see Gapter&#8217;s propellers are rotating</p>
 <blockquote>
 <div><ul>
-<li><p class="first">Change Gapter’s mode to GUIDED mode</p>
+<li><p class="first">Change Gapter&#8217;s mode to GUIDED mode</p>
 <blockquote>
 <div><ul class="simple">
 <li><code class="docutils literal"><span class="pre">gapter</span> <span class="pre">$:</span> <span class="pre">rosrun</span> <span class="pre">mavros</span> <span class="pre">mavsys</span> <span class="pre">mode</span> <span class="pre">-c</span> <span class="pre">GUIDED</span></code></li>

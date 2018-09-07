@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
         <link rel="next" title="Building a Map with a Turtlebot" href="create-map-kenict.html"/>
@@ -100,7 +97,7 @@
 <li class="toctree-l2"><a class="reference internal" href="teleop-doc.html">Keyboard Teleop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="turtlebot-simulators.html">Turtlebot Simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Setting-up 3D Sensor for the Turtlebot</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Setting-up 3D Sensor for the Turtlebot</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#asus-xtion-pro-live-3d-sensor">Asus Xtion Pro Live 3D Sensor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#installing-the-openni-package">Installing the Openni Package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#explanning-the-3dsensor-launch-file">Explanning the 3dsensor.launch File</a></li>
@@ -165,7 +162,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/openKinect-turtlebot.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/openKinect-turtlebot.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -201,19 +198,19 @@ In this tutorial, we will introduce how to set-up and test both sensors for ROS 
 <p>The default sensor that is used with ROS Indigo is the Asus Xtion Pro Live 3D sensor. The image below is for the Asus sensor.</p>
 <img alt="../_images/asus_camera.png" class="align-center" src="../_images/asus_camera.png" />
 <p>If Asus is not your default 3Dsensor, then, to use this sensor with the turtlebot robot you will have to add the following lines in the <code class="docutils literal"><span class="pre">.bashrc</span></code> script file:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">TURTLEBOT_3D_SENSOR</span><span class="o">=</span>asus_xtion_pro
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">export</span> <span class="nv">TURTLEBOT_3D_SENSOR</span><span class="o">=</span>asus_xtion_pro
 </pre></div>
 </div>
 <p>Remember that if you work with ROS Indigo and later version, you do not need to make the above command, as it is the default 3D sensor, unless you already changed it to another setting.</p>
 <div class="section" id="installing-the-openni-package">
 <h3>Installing the Openni Package<a class="headerlink" href="#installing-the-openni-package" title="Permalink to this headline">¶</a></h3>
 <p>If you are going to use the Asus sensor then you will need to install the <code class="docutils literal"><span class="pre">openni</span></code> package, so run the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-indigo-openni-* ros-indigo-openni2-*
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install ros-indigo-openni-* ros-indigo-openni2-*
 </pre></div>
 </div>
 <p>Both the packages will be installed in the same folder and you can find this file in the following path <code class="docutils literal"><span class="pre">/opt/ros/indigo/share/openni2_camera</span></code> and <code class="docutils literal"><span class="pre">/opt/ros/indigo/share/openni_camera</span></code>. You will find more <code class="docutils literal"><span class="pre">oppeni</span></code> folders which also belongs to the same package.
 Note that this is the package that is responsible for running the 3D sensor. Prio to ROS Indigo, this ROS package was configured to start Kinect 3D sensor by default. However, for ROS Indigo and later versions, it was configured to run Asus Live Pro 3D sensor by defaut.
-If you want to use Kinect 3D sensor with your Turtlebot on ROS Indigo and later version, refer to the next section <a class="reference internal" href="#kinect3d"><span class="std std-ref">Kinect 3D Sensor</span></a>.</p>
+If you want to use Kinect 3D sensor with your Turtlebot on ROS Indigo and later version, refer to the next section <a class="reference internal" href="#kinect3d"><span>Kinect 3D Sensor</span></a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>For more details about openni on ROS, please refer to the following ROS documentation pages:</p>
@@ -229,13 +226,13 @@ If you want to use Kinect 3D sensor with your Turtlebot on ROS Indigo and later 
 <div class="section" id="explanning-the-3dsensor-launch-file">
 <h3>Explanning the 3dsensor.launch File<a class="headerlink" href="#explanning-the-3dsensor-launch-file" title="Permalink to this headline">¶</a></h3>
 <p>You will find the file by typing the following commands:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roscd turtlebot_bringup/launch/
+<div class="highlight-bash"><div class="highlight"><pre>roscd turtlebot_bringup/launch/
 sudo gedit 3dsensor.launch
 </pre></div>
 </div>
 <p>The code is well explained but we will have a look at the following point in the code.
 In line number 21 :</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;3d_sensor&quot;</span>   <span class="na">default=</span><span class="s">&quot;$(env TURTLEBOT_3D_SENSOR)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- kinect, asus_xtion_pro --&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;3d_sensor&quot;</span>   <span class="na">default=</span><span class="s">&quot;$(env TURTLEBOT_3D_SENSOR)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- kinect, asus_xtion_pro --&gt;</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">TURTLEBOT_3D_SENSOR</span></code> environment variable is set in the previous steps in the <code class="docutils literal"><span class="pre">.bashrc</span></code> file according to your sensor type.
@@ -244,14 +241,14 @@ Note that the value of this variable will affect more setting parameters for the
 <div class="section" id="testing-the-asus-sensor">
 <h3>Testing the Asus Sensor<a class="headerlink" href="#testing-the-asus-sensor" title="Permalink to this headline">¶</a></h3>
 <p>After all the installation steps you can test your environment by typing the following commands:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_bringup 3dsensor.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch turtlebot_bringup 3dsensor.launch
 roslaunch turtlebot_rviz_launchers view_robot.launch
 </pre></div>
 </div>
 <p>After launching the <code class="docutils literal"><span class="pre">RViz</span></code> simulator (<code class="docutils literal"><span class="pre">rosrun</span> <span class="pre">rviz</span> <span class="pre">rviz</span></code>) press on the <code class="docutils literal"><span class="pre">Image</span></code> icon on the left list and you would be able to see something like this:</p>
 <img alt="../_images/rviz_camera.png" class="align-center" src="../_images/rviz_camera.png" />
 <p>You can also launch the <code class="docutils literal"><span class="pre">image_view</span></code> program to vizualize the video streams:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun image_view image_view image:<span class="o">=</span>/camera/rgb/image_raw
+<div class="highlight-bash"><div class="highlight"><pre>rosrun image_view image_view image:<span class="o">=</span>/camera/rgb/image_raw
 </pre></div>
 </div>
 </div>
@@ -265,7 +262,7 @@ The following image is for the <code class="docutils literal"><span class="pre">
 <div class="section" id="kinect-3d-sensor-configuration">
 <h3>Kinect 3D sensor configuration<a class="headerlink" href="#kinect-3d-sensor-configuration" title="Permalink to this headline">¶</a></h3>
 <p>In order to connect the <code class="docutils literal"><span class="pre">Kinect</span></code> sensor with the ROS Indigo environment, you can type the following three commands in your <code class="docutils literal"><span class="pre">.bashrc</span></code> file:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">TURTLEBOT_3D_SENSOR</span><span class="o">=</span>kinect
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">export</span> <span class="nv">TURTLEBOT_3D_SENSOR</span><span class="o">=</span>kinect
 </pre></div>
 </div>
 <p>Then save, exit and close the terminal. Open a new terminal.</p>
@@ -273,23 +270,23 @@ The following image is for the <code class="docutils literal"><span class="pre">
 <div class="section" id="installing-ros-openni-and-openkinect-drivers">
 <h3>Installing ROS OpenNI and OpenKinect Drivers<a class="headerlink" href="#installing-ros-openni-and-openkinect-drivers" title="Permalink to this headline">¶</a></h3>
 <p>First, you need to download the ROS OpenNI and OpenKinect (freenect) drivers by running the following commands:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install ros-indigo-openni-* ros-indigo-openni2-* <span class="se">\ </span>ros-indigo-freenect-*
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install ros-indigo-openni-* ros-indigo-openni2-* <span class="se">\ </span>ros-indigo-freenect-*
 rospack profile
 </pre></div>
 </div>
 <p>Now you can test your camera. Type the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch freenect_launch freenect.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch freenect_launch freenect.launch
 </pre></div>
 </div>
 <p>You should see these lines in the terminal:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>process<span class="o">[</span>camera/camera_nodelet_manager-1<span class="o">]</span>: started with pid <span class="o">[</span><span class="m">18070</span><span class="o">]</span>
-<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span><span class="m">1420555647</span>.969035762<span class="o">]</span>: Initializing nodelet with <span class="m">4</span> worker
+<div class="highlight-bash"><div class="highlight"><pre>process<span class="o">[</span>camera/camera_nodelet_manager-1<span class="o">]</span>: started with pid <span class="o">[</span>18070<span class="o">]</span>
+<span class="o">[</span>INFO<span class="o">]</span> <span class="o">[</span>1420555647.969035762<span class="o">]</span>: Initializing nodelet with <span class="m">4</span> worker
 threads.
-process<span class="o">[</span>camera/driver-2<span class="o">]</span>: started with pid <span class="o">[</span><span class="m">18078</span><span class="o">]</span>
+process<span class="o">[</span>camera/driver-2<span class="o">]</span>: started with pid <span class="o">[</span>18078<span class="o">]</span>
 Warning: USB events thread - failed to <span class="nb">set</span> priority. This might cause
 loss of data...
-process<span class="o">[</span>camera/rectify_color-3<span class="o">]</span>: started with pid <span class="o">[</span><span class="m">18112</span><span class="o">]</span>
-process<span class="o">[</span>camera/depth_rectify_depth-4<span class="o">]</span>: started with pid <span class="o">[</span><span class="m">18126</span><span class="o">]</span>
+process<span class="o">[</span>camera/rectify_color-3<span class="o">]</span>: started with pid <span class="o">[</span>18112<span class="o">]</span>
+process<span class="o">[</span>camera/depth_rectify_depth-4<span class="o">]</span>: started with pid <span class="o">[</span>18126<span class="o">]</span>
 etc.
 </pre></div>
 </div>
@@ -313,7 +310,7 @@ etc.
 <div class="section" id="testing-your-3d-sensor-valid-for-both-asus-and-kinect">
 <h2>Testing Your 3D Sensor (Valid for Both Asus and Kinect)<a class="headerlink" href="#testing-your-3d-sensor-valid-for-both-asus-and-kinect" title="Permalink to this headline">¶</a></h2>
 <p>After running the previous command, you can now run the following command to know all the topics published by the camera:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rostopic list
+<div class="highlight-bash"><div class="highlight"><pre>rostopic list
 </pre></div>
 </div>
 <p>The following examples are to demonstrate the difference between a couple of topics:</p>
@@ -322,7 +319,7 @@ etc.
 <div><ul class="simple">
 <li>To test the RGB image from camera type the following command:</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun image_view image_view image:<span class="o">=</span>/camera/rgb/image_raw
+<div class="highlight-bash"><div class="highlight"><pre>rosrun image_view image_view image:<span class="o">=</span>/camera/rgb/image_raw
 </pre></div>
 </div>
 <p>You will see something like this:</p>
@@ -330,7 +327,7 @@ etc.
 <ul class="simple">
 <li>To test the Mono image from camera type the following command:</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun image_view image_view image:<span class="o">=</span>/camera/rgb/image_rect_mono
+<div class="highlight-bash"><div class="highlight"><pre>rosrun image_view image_view image:<span class="o">=</span>/camera/rgb/image_rect_mono
 </pre></div>
 </div>
 <p>You will see something like this:</p>
@@ -338,7 +335,7 @@ etc.
 <ul class="simple">
 <li>To test the depth image from camera type the following command:</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun image_view image_view image:<span class="o">=</span>/camera/depth/image_rect
+<div class="highlight-bash"><div class="highlight"><pre>rosrun image_view image_view image:<span class="o">=</span>/camera/depth/image_rect
 </pre></div>
 </div>
 <p>You will see something like this:</p>

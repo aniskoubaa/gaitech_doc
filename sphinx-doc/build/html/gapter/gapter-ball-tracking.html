@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="GAPTER: Software Tutorials" href="software-tutorials.html"/>
         <link rel="next" title="GAPTER: ROS Tutorials" href="gapter-ros-tutorials.html"/>
@@ -108,7 +105,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="software-tutorials.html">Software Tutorials</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="gapter-brain-software-suite.html">Gapter Brain Software Suite</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gapter-simulation.html">Simulation</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Ball Tracking</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Ball Tracking</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#prerequisite">Prerequisite</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#get-ball-tracking-code">Get ball tracking code</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#run-the-code">Run the code</a></li>
@@ -162,7 +159,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/gapter/gapter-ball-tracking.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/gapter/gapter-ball-tracking.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -198,27 +195,27 @@
 <div class="section" id="run-the-code">
 <h2>Run the code<a class="headerlink" href="#run-the-code" title="Permalink to this headline">¶</a></h2>
 <p>After running the Gapter Simulator, in a new terminal run following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python ball_tracking.py
+<div class="highlight-bash"><div class="highlight"><pre>$ python ball_tracking.py
 </pre></div>
 </div>
 <p>You will see the following screen:</p>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="../_images/ball-tracking-frame.png"><img alt="../_images/ball-tracking-frame.png" src="../_images/ball-tracking-frame.png" style="width: 400pt;" /></a>
 </div>
-<p>It will run with default camera of computer, can be easily changed for other camera. If ball is green press ‘c’ on image window, or place the ball inside the rectanglar region and press ‘a’, press ‘n’ to re-calibrate and space-bar for pause, ‘q’ for quiting. If you have a green ball, you can hold it in as in the following screen:</p>
+<p>It will run with default camera of computer, can be easily changed for other camera. If ball is green press &#8216;c&#8217; on image window, or place the ball inside the rectanglar region and press &#8216;a&#8217;, press &#8216;n&#8217; to re-calibrate and space-bar for pause, &#8216;q&#8217; for quiting. If you have a green ball, you can hold it in as in the following screen:</p>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="../_images/ball-tracking-frame-with-ball.png"><img alt="../_images/ball-tracking-frame-with-ball.png" src="../_images/ball-tracking-frame-with-ball.png" style="width: 400pt;" /></a>
 </div>
-<p>After presing ‘c’, another window with a mask will appear:</p>
+<p>After presing &#8216;c&#8217;, another window with a mask will appear:</p>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="../_images/ball-tracking-mask.png"><img alt="../_images/ball-tracking-mask.png" src="../_images/ball-tracking-mask.png" style="width: 400pt;" /></a>
 </div>
 <p>Now in a new terminal run:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python pid_control.py
+<div class="highlight-bash"><div class="highlight"><pre>$ python pid_control.py
 </pre></div>
 </div>
 <p>You can now move the ball, and see your Gapter following it. You can use rqt_plot to visualize current position using following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$  rqt_plot /mavros/setpoint_velocity/cmd_vel/twist/linear/x:y:z
+<div class="highlight-bash"><div class="highlight"><pre>$  rqt_plot /mavros/setpoint_velocity/cmd_vel/twist/linear/x:y:z
 </pre></div>
 </div>
 <div class="figure align-center">
@@ -228,8 +225,7 @@
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
-<iframe src="http://www.youtube.com/embed/f8y7W9EQw8k" style="border: 0; height: 345px; width: 560px">
-</iframe></div>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/f8y7W9EQw8k" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
 </div>
 
 

@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/> 
 
   
@@ -132,7 +129,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/send-goals-nav-stack.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/send-goals-nav-stack.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -144,7 +141,7 @@
             
   <div class="section" id="sending-goals-to-the-navigation-stack">
 <span id="send-goals-nav-stack"></span><h1>Sending Goals to the Navigation Stack<a class="headerlink" href="#sending-goals-to-the-navigation-stack" title="Permalink to this headline">¶</a></h1>
-<p>In this tutorial you will learn how to send destination goals to your robot through the navigation stack without crashing in any obstacle that maybe in the robot’s world. We will use the RViz as a simulator to test our programs first. The user will have the option either to set the goal by clicking on the location on the map and the robot has to deal with the rest or by setting the goal by writing a code for the robot which is the aim of this tutorial.</p>
+<p>In this tutorial you will learn how to send destination goals to your robot through the navigation stack without crashing in any obstacle that maybe in the robot&#8217;s world. We will use the RViz as a simulator to test our programs first. The user will have the option either to set the goal by clicking on the location on the map and the robot has to deal with the rest or by setting the goal by writing a code for the robot which is the aim of this tutorial.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">Make sure that you completed installing all the required packages in the previous tutorials, your network set-up is working fine between the ROS Master node and the host node and your navigation stack is working properly.</p>
@@ -152,7 +149,7 @@
 <div class="section" id="create-a-package">
 <h2>Create a Package<a class="headerlink" href="#create-a-package" title="Permalink to this headline">¶</a></h2>
 <p>You need to create a file for the program in the following directory <code class="docutils literal"><span class="pre">src/turtlebot/navigation/map_navigation/map_navigation.cpp</span></code> (src/turtlebot/navigation/map_navigation/scripts/map_navigation.py in Python) and write the following. The code is well commented so no need for furthur explanation:</p>
-<div class="highlight-c"><div class="highlight"><pre><span></span>     <span class="c1">//inspired by markwsilliman/turtlebot repository</span>
+<div class="highlight-c"><div class="highlight"><pre>     <span class="c1">//inspired by markwsilliman/turtlebot repository</span>
 
      <span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
 
@@ -206,21 +203,21 @@
 <div class="section" id="build-the-package-and-run-it">
 <h2>Build the package and Run it<a class="headerlink" href="#build-the-package-and-run-it" title="Permalink to this headline">¶</a></h2>
 <p>In order to build up your file you just created need to edit your <code class="docutils literal"><span class="pre">CMakeLists.txt</span></code> file. Open the file and add the following lines to the bottom of the file.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>add_executable(map_navigation src/turtlebot/navigation/map_navigation/map_navigation.cpp)
+<div class="highlight-python"><div class="highlight"><pre>add_executable(map_navigation src/turtlebot/navigation/map_navigation/map_navigation.cpp)
 target_link_libraries(map_navigation ${catkin_LIBRARIES})
 </pre></div>
 </div>
 <p>Build your workspace:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>catkin_make
+<div class="highlight-bash"><div class="highlight"><pre>catkin_make
 </pre></div>
 </div>
 <p>After that you need to start your Navigation Stack and check that the name of the action is similar to what we wrote in the program above or not:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rostopic list <span class="p">|</span> grep move_base/goal
+<div class="highlight-bash"><div class="highlight"><pre>rostopic list <span class="p">|</span> grep move_base/goal
 </pre></div>
 </div>
 <p>If you saw some results then you have no errors otherwise just change the name of the action in the <code class="docutils literal"><span class="pre">map_navigation.cpp</span></code> file to match the one in the robot navigation stack.</p>
 <p>Then run the executable file you created before:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun gaitech_edu map_navigation
+<div class="highlight-bash"><div class="highlight"><pre>rosrun gaitech_edu map_navigation
 </pre></div>
 </div>
 <p>And you will notice your robot moving forward for 1 meter.</p>

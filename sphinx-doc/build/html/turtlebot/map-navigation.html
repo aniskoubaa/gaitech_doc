@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Gaitech EDU 2.5 documentation" href="../index.html"/>
         <link rel="up" title="Turtlebot Quick Start Tutorials" href="turtlebot-tutorials.html"/>
         <link rel="next" title="Turtlebot Free Space Navigation" href="free-space-navigation.html"/>
@@ -102,7 +99,7 @@
 <li class="toctree-l2"><a class="reference internal" href="speech-doc.html">Voice Teleoperation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="openKinect-turtlebot.html">Setting-up 3D Sensor for the Turtlebot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="create-map-kenict.html">Building a Map with a Turtlebot</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Map Navigation</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Map Navigation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#background">Background</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tutorial-files">Tutorial Files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#finding-the-coordinates-for-locations-of-interest">Finding the Coordinates for Locations of Interest</a></li>
@@ -167,7 +164,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/turtlebot/map-navigation.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/turtlebot/map-navigation.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -192,10 +189,17 @@ You will also learn how to configure <code class="docutils literal"><span class=
 <li>Use <code class="docutils literal"><span class="pre">sound_play</span></code> ROS package to play sound in a ROS application.</li>
 </ul>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Learn ROS and get your ROS certificate by enrolling in the Udemy course
+<a class="reference external" href="https://www.udemy.com/ros-essentials/?couponCode=ROS1GAITECHEDU">ROS for Beginners: Basics, Motion and OpenCV.</a></p>
+<p class="last">Learn about ROS2: ROS Next Generation by enrolling in the Udemy course
+<a class="reference external" href="https://www.udemy.com/ros2-how-to/?couponCode=ROS2GAITECHEDU">ROS2 How To: Discover Next Generation ROS</a></p>
+</div>
 <div class="section" id="background">
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
 <p>The objective of this tutorial is to use a map of interest and request the robot to go to certain locations on that map.
-In the previous tutorial <a class="reference internal" href="create-map-kenict.html#create-map"><span class="std std-ref">Building a Map with a Turtlebot</span></a>, you already learned how to build a map with the Turtlebot. You will learn how to use such a map to program navigation missions for the robot.
+In the previous tutorial <a class="reference internal" href="create-map-kenict.html#create-map"><span>Building a Map with a Turtlebot</span></a>, you already learned how to build a map with the Turtlebot. You will learn how to use such a map to program navigation missions for the robot.
 Remember that a map in ROS consists of two files, namely a <code class="docutils literal"><span class="pre">.yaml</span></code> file that contains information about the map, and a <code class="docutils literal"><span class="pre">.pgm</span></code> file that contains the map itself.
 In this tutorial, we are going to consider the following University floor map to develop our navigation example</p>
 <div class="figure align-center">
@@ -205,8 +209,8 @@ In this tutorial, we are going to consider the following University floor map to
 <p>Later on, as an exercise, you will use your own map to develop a navigation mission for your Turtlebot.</p>
 <p>In the map of Figure 1, we identify four locations of interests namely, the Cafe area, Office1, Office2 and Office3. Other locations can also be defined, but we just used these representative four locations for illustration purposes.
 If we want to develop a ROS program that allow the robot to navigate to those locations, we first need to know what are the <code class="docutils literal"><span class="pre">(x,y)</span></code> coordinate of these locations onto the map. This is what will be explained later.
-Then, we use these coordinates to define a navigation mission that we submit to the robot’s navigation stack to execute it.
-Remember that any robot on ROS runs the <code class="docutils literal"><span class="pre">move_base</span></code> navigation stack which allow the robot to find a path towards a goal and execute the path following while avoiding obstacles. Refer to <a class="reference internal" href="navigation-stack.html#navigation-stack"><span class="std std-ref">Navigation Stack Review</span></a> for a refresher.</p>
+Then, we use these coordinates to define a navigation mission that we submit to the robot&#8217;s navigation stack to execute it.
+Remember that any robot on ROS runs the <code class="docutils literal"><span class="pre">move_base</span></code> navigation stack which allow the robot to find a path towards a goal and execute the path following while avoiding obstacles. Refer to <a class="reference internal" href="navigation-stack.html#navigation-stack"><span>Navigation Stack Review</span></a> for a refresher.</p>
 </div>
 <div class="section" id="tutorial-files">
 <h2>Tutorial Files<a class="headerlink" href="#tutorial-files" title="Permalink to this headline">¶</a></h2>
@@ -214,7 +218,7 @@ Remember that any robot on ROS runs the <code class="docutils literal"><span cla
 They are located in <code class="docutils literal"><span class="pre">src/turtlebot/navigation/map_navigation</span></code> folder.
 In particular, we will use the launch file <code class="docutils literal"><span class="pre">map_navigation_psu.launch</span></code> that contains all the needed ROS nodes for this tutorial.
 Here is the content of the <code class="docutils literal"><span class="pre">map_navigation_psu.launch</span></code> file.</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;launch&gt;</span>
       <span class="nt">&lt;include</span> <span class="na">file=</span><span class="s">&quot;$(find gaitech_edu)/src/turtlebot/navigation/map_navigation/launch/turtlebot_stage_psu.launch&quot;</span><span class="nt">/&gt;</span>
      <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;map_navigation&quot;</span> <span class="na">pkg=</span><span class="s">&quot;gaitech_edu&quot;</span> <span class="na">type=</span><span class="s">&quot;map_navigation_node&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
      <span class="nt">&lt;/node&gt;</span>
@@ -229,7 +233,7 @@ Here is the content of the <code class="docutils literal"><span class="pre">map_
 <li>The first one includes the <code class="docutils literal"><span class="pre">turtlebot_stage_psu.launch</span></code> file, which starts-up the Turtlebot simulated robots in the stage simulator. This file initialize several parameters related to the inital position of the robot and the maps that will be used. Here is a partial snapshot of this file:</li>
 </ul>
 </div></blockquote>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;launch&gt;</span>
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;base&quot;</span>       <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_BASE kobuki)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- create, rhoomba --&gt;</span>
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;stacks&quot;</span>     <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_STACKS hexagons)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- circles, hexagons --&gt;</span>
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;3d_sensor&quot;</span>  <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_3D_SENSOR kinect)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- kinect, asus_xtion_pro --&gt;</span>
@@ -261,7 +265,7 @@ How to determine this initale location and locations of interest will be describ
 These locations depends on the map size and resolutions.
 The easiest way to do so is to use <code class="docutils literal"><span class="pre">rviz</span></code> to visualize the map and then getting the coordinate using the <code class="docutils literal"><span class="pre">2D</span> <span class="pre">Pose</span> <span class="pre">Estimate</span></code> button.
 Let us start the Turtlebot simulator with the University floor map as follow:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_edu map_navigation_stage_psu.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch gaitech_edu map_navigation_stage_psu.launch
 </pre></div>
 </div>
 <p>The simulator will open. Try to arrange the <code class="docutils literal"><span class="pre">stage</span></code> simulation, <code class="docutils literal"><span class="pre">rviz</span></code> and the command terminal as in the following picture for better visibility:</p>
@@ -270,7 +274,7 @@ Let us start the Turtlebot simulator with the University floor map as follow:</p
 </div>
 <p><strong>Figure 2: Turtlebot Simulation Environment</strong></p>
 <p>Now, you want to find the coordinate of any location of interest. open another terminal and write</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rostopic <span class="nb">echo</span> /amcl_pose
+<div class="highlight-bash"><div class="highlight"><pre>rostopic <span class="nb">echo</span> /amcl_pose
 </pre></div>
 </div>
 <p>This command will display any new <code class="docutils literal"><span class="pre">/amcl_pose</span></code>, which is the ROS topic represents the location of the robot on the map.
@@ -281,15 +285,14 @@ Go back to the terminal where wrote <code class="docutils literal"><span class="
 </div>
 <p><strong>Figure 3: Finding the Location of Interest</strong></p>
 <p>Take note of the <code class="docutils literal"><span class="pre">(x,y)</span></code> coordinates for the Cafe and the three offices. They should be close to these values:</p>
-<div class="highlight-c"><div class="highlight"><pre><span></span><span class="n">Cafe</span> <span class="p">(</span><span class="mf">15.50</span><span class="p">,</span> <span class="mf">10.20</span><span class="p">)</span>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">Cafe</span> <span class="p">(</span><span class="mf">15.50</span><span class="p">,</span> <span class="mf">10.20</span><span class="p">)</span>
 <span class="n">Office1</span> <span class="p">(</span><span class="mf">27.70</span><span class="p">,</span><span class="mf">12.50</span><span class="p">)</span>
 <span class="n">Office2</span> <span class="p">(</span><span class="mf">30.44</span><span class="p">,</span><span class="mf">12.50</span><span class="p">)</span>
 <span class="n">Office3</span> <span class="p">(</span><span class="mf">35.20</span><span class="p">,</span><span class="mf">12.50</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The following video demonstrates the whole process.</p>
-<iframe src="http://www.youtube.com/embed/sWFDk1BxsyA" style="border: 0; height: 345px; width: 560px">
-</iframe></div>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/sWFDk1BxsyA" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
 <div class="section" id="writing-the-navigation-program">
 <h2>Writing the navigation program<a class="headerlink" href="#writing-the-navigation-program" title="Permalink to this headline">¶</a></h2>
 <p>Now, we are ready to write a program that allows the robot to navigate to the goal location.
@@ -349,7 +352,7 @@ Here is the snapshot of the code in C++:</p>
 53
 54
 55
-56</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
+56</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;move_base_msgs/MoveBaseAction.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;actionlib/client/simple_action_client.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&quot;sound_play/sound_play.h&quot;</span><span class="cp"></span>
@@ -410,7 +413,7 @@ Here is the snapshot of the code in C++:</p>
 <p>The program structure is very simple.
 The user is requested to press a key, and based on his selection, the defined method <code class="docutils literal"><span class="pre">moveToGoal(x,y)</span></code> will be executed,
 where <code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">y</span></code> define the coordinates of the locations of interest.
-Lines 13-20 define the location of points of interest that we determined in the last section <a class="reference internal" href="#find-locations"><span class="std std-ref">Finding the Coordinates for Locations of Interest</span></a>.
+Lines 13-20 define the location of points of interest that we determined in the last section <a class="reference internal" href="#find-locations"><span>Finding the Coordinates for Locations of Interest</span></a>.
 Then, from lines 42-51, if the goal is successully reached, the program will display <code class="docutils literal"><span class="pre">congratulations</span></code> text message and will plan a <code class="docutils literal"><span class="pre">ship_bell</span></code> sound.
 Otherwise, it will display <code class="docutils literal"><span class="pre">hard</span> <span class="pre">luck</span></code> message and will play the <code class="docutils literal"><span class="pre">short</span> <span class="pre">buzzer</span></code> sound.</p>
 <p>Now, let us focus more on how the method  <code class="docutils literal"><span class="pre">moveToGoal(x,y)</span></code> is implemented. Here is the code.</p>
@@ -454,7 +457,7 @@ Otherwise, it will display <code class="docutils literal"><span class="pre">hard
 38
 39
 40
-41</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="nf">moveToGoal</span><span class="p">(</span><span class="kt">double</span> <span class="n">xGoal</span><span class="p">,</span> <span class="kt">double</span> <span class="n">yGoal</span><span class="p">){</span>
+41</pre></div></td><td class="code"><div class="highlight"><pre><span class="kt">bool</span> <span class="nf">moveToGoal</span><span class="p">(</span><span class="kt">double</span> <span class="n">xGoal</span><span class="p">,</span> <span class="kt">double</span> <span class="n">yGoal</span><span class="p">){</span>
 
    <span class="c1">//define a client for to send goal requests to the move_base server through a SimpleActionClient</span>
    <span class="n">actionlib</span><span class="o">::</span><span class="n">SimpleActionClient</span><span class="o">&lt;</span><span class="n">move_base_msgs</span><span class="o">::</span><span class="n">MoveBaseAction</span><span class="o">&gt;</span> <span class="n">ac</span><span class="p">(</span><span class="s">&quot;move_base&quot;</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
@@ -514,7 +517,7 @@ In fact, in this case the coordinate will represent the <code class="docutils li
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>For example, if we consider the following piece of code for the goal location (changes are highlighted):</p>
-<div class="highlight-c"><div class="highlight"><pre><span></span>   <span class="n">move_base_msgs</span><span class="o">::</span><span class="n">MoveBaseGoal</span> <span class="n">goal</span><span class="p">;</span>
+<div class="highlight-c"><div class="highlight"><pre>   <span class="n">move_base_msgs</span><span class="o">::</span><span class="n">MoveBaseGoal</span> <span class="n">goal</span><span class="p">;</span>
 
    <span class="c1">//set up the frame parameters</span>
 <span class="hll">   <span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">&quot;base_link&quot;</span><span class="p">;</span> <span class="c1">//or &quot;base_footprint&quot;</span>
@@ -537,7 +540,7 @@ This is because the goal location is one meter in the x-axis (that is the front 
 <p>Line 28 sends the goal location request to the <code class="docutils literal"><span class="pre">move_base</span></code> action server, and wait for its execution as shown in line 31 (<code class="docutils literal"><span class="pre">ac.waitForResult()</span></code>).
 Note that this request is <strong>sychrounous</strong>, which means it will block until the result is sent back to the requesting client object. After it finishes, we can check if the goal succeded or failed and output a message to the user accordingly.</p>
 <p>In what follow, we present the equivalent code in Python, which does exactly the same thing:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">linenos</span><span class="p">:</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">:</span><span class="n">linenos</span><span class="p">:</span>
 
 <span class="kn">import</span> <span class="nn">rospy</span>
 <span class="kn">import</span> <span class="nn">actionlib</span>
@@ -565,7 +568,7 @@ Note that this request is <strong>sychrounous</strong>, which means it will bloc
     <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">choice</span>
 
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
     <span class="n">sc</span> <span class="o">=</span> <span class="n">SoundClient</span><span class="p">()</span>
     <span class="n">path_to_sounds</span> <span class="o">=</span> <span class="s2">&quot;/home/ros/catkin_ws/src/gaitech_edu/src/sounds/&quot;</span>
@@ -686,7 +689,7 @@ Note that this request is <strong>sychrounous</strong>, which means it will bloc
               <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;The robot failed to reach the destination&quot;</span><span class="p">)</span>
               <span class="k">return</span> <span class="bp">False</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
 
         <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;You have reached the destination&quot;</span><span class="p">)</span>
@@ -709,33 +712,32 @@ Furthermore, to be able to play sounds, it is necessary to start the ROS node, w
 <div class="section" id="testing-the-code">
 <h2>Testing the code<a class="headerlink" href="#testing-the-code" title="Permalink to this headline">¶</a></h2>
 <p>To test the above example, you simply need to execute the command</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_edu map_navigation_stage_psu.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch gaitech_edu map_navigation_stage_psu.launch
 </pre></div>
 </div>
 <p>Then, on the terminal command, you enter the location of your choice based on the selection menu and observe how the robot navigates to the goal location.</p>
 <p>OR</p>
 <p>You can run the nodes separately as follows:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch gaitech_edu turtlebot_stage_psu.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch gaitech_edu turtlebot_stage_psu.launch
 rosrun sound_play soundplay_node.py
 </pre></div>
 </div>
 <p>Then for <code class="docutils literal"><span class="pre">C++</span></code> run the following:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun gaitech_edu map_navigation_node
+<div class="highlight-bash"><div class="highlight"><pre>rosrun gaitech_edu map_navigation_node
 </pre></div>
 </div>
 <p>For <code class="docutils literal"><span class="pre">Python</span></code> run the following:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_path/gaitech_edu/src/turtlebot/navigation/map_navigation/scripts/map_navigation.py
+<div class="highlight-bash"><div class="highlight"><pre>python your_path/gaitech_edu/src/turtlebot/navigation/map_navigation/scripts/map_navigation.py
 </pre></div>
 </div>
 <p>Congratulation! You now know how to program navigation mission for your simulated Turtlebot.</p>
 <p>For a live explanation and testing of the code, watch the following video</p>
-<iframe src="http://www.youtube.com/embed/r5kK9pIOcNQ" style="border: 0; height: 345px; width: 560px">
-</iframe></div>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/r5kK9pIOcNQ" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
 <div class="section" id="testing-with-your-own-map-on-simulation-and-real-robot">
 <h2>Testing with Your Own Map on Simulation and Real Robot<a class="headerlink" href="#testing-with-your-own-map-on-simulation-and-real-robot" title="Permalink to this headline">¶</a></h2>
 <p>It is easy to apply the navigation code on a real robot.
 However, you should deploy it using the map of the environment where you are going to run the experiments.</p>
-<p>First, using the instructions of the <a class="reference internal" href="create-map-kenict.html#create-map"><span class="std std-ref">Building a Map with a Turtlebot</span></a> tutorial, create the map of your experimental environment.</p>
+<p>First, using the instructions of the <a class="reference internal" href="create-map-kenict.html#create-map"><span>Building a Map with a Turtlebot</span></a> tutorial, create the map of your experimental environment.</p>
 <p>Now, you need to make changes to the launch and world files to consider the information of the map of your environment. Follow these steps:</p>
 <blockquote>
 <div><ul class="simple">
@@ -753,7 +755,7 @@ However, you should deploy it using the map of the environment where you are goi
 6
 7
 8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span>
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;launch&gt;</span>
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;base&quot;</span>       <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_BASE kobuki)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- create, rhoomba --&gt;</span>
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;stacks&quot;</span>     <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_STACKS hexagons)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- circles, hexagons --&gt;</span>
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;3d_sensor&quot;</span>  <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_3D_SENSOR kinect)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- kinect, asus_xtion_pro --&gt;</span>
@@ -783,7 +785,7 @@ However, you should deploy it using the map of the environment where you are goi
 14
 15
 16
-17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nn">...</span>
+17</pre></div></td><td class="code"><div class="highlight"><pre><span class="nn">...</span>
 <span class="l l-Scalar l-Scalar-Plain">floorplan</span>
 <span class="l l-Scalar l-Scalar-Plain">(</span>
 <span class="hll">  <span class="l l-Scalar l-Scalar-Plain">name &quot;mymap&quot;</span>
@@ -822,7 +824,7 @@ Then you set the initial position of the robot of your choice. For this, you can
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;launch&gt;</span>
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;base&quot;</span>       <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_BASE kobuki)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- create, rhoomba --&gt;</span>
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;stacks&quot;</span>     <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_STACKS hexagons)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- circles, hexagons --&gt;</span>
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;3d_sensor&quot;</span>  <span class="na">default=</span><span class="s">&quot;$(optenv TURTLEBOT_3D_SENSOR kinect)&quot;</span><span class="nt">/&gt;</span>  <span class="c">&lt;!-- kinect, asus_xtion_pro --&gt;</span>
@@ -838,10 +840,10 @@ Then you set the initial position of the robot of your choice. For this, you can
 <p>Now, you should be able to run the simulator with your own map.</p>
 <div class="section" id="running-on-a-real-robot">
 <h3>Running on a real robot<a class="headerlink" href="#running-on-a-real-robot" title="Permalink to this headline">¶</a></h3>
-<p>To deploy on a real robot, you simply need to build a map as mentioned in the <a class="reference internal" href="create-map-kenict.html#create-map"><span class="std std-ref">Building a Map with a Turtlebot</span></a> tutorial and after saving the map on your Turtlebot’s PC bring-up your turtlebot robot, and then follow the previous steps to save some locations of interest. After that execute the following commands:</p>
+<p>To deploy on a real robot, you simply need to build a map as mentioned in the <a class="reference internal" href="create-map-kenict.html#create-map"><span>Building a Map with a Turtlebot</span></a> tutorial and after saving the map on your Turtlebot&#8217;s PC bring-up your turtlebot robot, and then follow the previous steps to save some locations of interest. After that execute the following commands:</p>
 <div class="section" id="on-your-turtlebot-s-pc">
-<h4>On your Turtlebot’s PC<a class="headerlink" href="#on-your-turtlebot-s-pc" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roscore
+<h4>On your Turtlebot&#8217;s PC<a class="headerlink" href="#on-your-turtlebot-s-pc" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash"><div class="highlight"><pre>roscore
 roslaunch turtlebot_bringup minimal.launch
 roslaunch turtlebot_navigation amcl_demo.launch map_file:<span class="o">=</span>/your_path/your_map.yaml
 </pre></div>
@@ -849,19 +851,19 @@ roslaunch turtlebot_navigation amcl_demo.launch map_file:<span class="o">=</span
 </div>
 <div class="section" id="on-your-workstation">
 <h4>On your Workstation<a class="headerlink" href="#on-your-workstation" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roslaunch turtlebot_rviz_launchers view_navigation.launch
+<div class="highlight-bash"><div class="highlight"><pre>roslaunch turtlebot_rviz_launchers view_navigation.launch
 rosrun sound_play soundplay_node.py
 </pre></div>
 </div>
 <p>For <code class="docutils literal"><span class="pre">Python</span></code> run:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_path/gaitech_edu/src/turtlebot/navigation/map_navigation/scripts/map_navigation.py
+<div class="highlight-bash"><div class="highlight"><pre>python your_path/gaitech_edu/src/turtlebot/navigation/map_navigation/scripts/map_navigation.py
 </pre></div>
 </div>
 <p>For <code class="docutils literal"><span class="pre">C++</span></code> run:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rosrun gaitech_edu map_navigation_node
+<div class="highlight-bash"><div class="highlight"><pre>rosrun gaitech_edu map_navigation_node
 </pre></div>
 </div>
-<p>In the latter case, You must make sure to have correctly configured your network settings as explained in the <a class="reference internal" href="network-config-doc.html#network-config-doc"><span class="std std-ref">Network Configuration</span></a> tutorial.</p>
+<p>In the latter case, You must make sure to have correctly configured your network settings as explained in the <a class="reference internal" href="network-config-doc.html#network-config-doc"><span>Network Configuration</span></a> tutorial.</p>
 </div>
 </div>
 </div>
@@ -888,7 +890,7 @@ rosrun sound_play soundplay_node.py
 </ul>
 </div></blockquote>
 <p><strong>Code 1</strong></p>
-<div class="highlight-c"><div class="highlight"><pre><span></span><span class="n">move_base_msgs</span><span class="o">::</span><span class="n">MoveBaseGoal</span> <span class="n">goal</span><span class="p">;</span>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">move_base_msgs</span><span class="o">::</span><span class="n">MoveBaseGoal</span> <span class="n">goal</span><span class="p">;</span>
 <span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">&quot;base_footprint&quot;</span><span class="p">;</span>
 <span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
 <span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span>  <span class="mf">2.0</span><span class="p">;</span>
@@ -901,7 +903,7 @@ rosrun sound_play soundplay_node.py
 </pre></div>
 </div>
 <p><strong>Code 2</strong></p>
-<div class="highlight-c"><div class="highlight"><pre><span></span><span class="n">move_base_msgs</span><span class="o">::</span><span class="n">MoveBaseGoal</span> <span class="n">goal</span><span class="p">;</span>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">move_base_msgs</span><span class="o">::</span><span class="n">MoveBaseGoal</span> <span class="n">goal</span><span class="p">;</span>
 <span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">&quot;map&quot;</span><span class="p">;</span>
 <span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
 <span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span>  <span class="mf">2.0</span><span class="p">;</span>
@@ -916,7 +918,7 @@ rosrun sound_play soundplay_node.py
 <ul class="simple">
 <li><strong>Question 3.</strong> Consider the following <code class="docutils literal"><span class="pre">yaml</span></code> for a map.</li>
 </ul>
-<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/my_map.pgm</span>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/my_map.pgm</span>
 <span class="l l-Scalar l-Scalar-Plain">resolution</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.050000</span>
 <span class="l l-Scalar l-Scalar-Plain">origin</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">0.00000</span><span class="p p-Indicator">,</span> <span class="nv">0.00000</span><span class="p p-Indicator">,</span> <span class="nv">0.000000</span><span class="p p-Indicator">]</span>
 <span class="l l-Scalar l-Scalar-Plain">negate</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
@@ -925,13 +927,6 @@ rosrun sound_play soundplay_node.py
 </pre></div>
 </div>
 <p>Given that <code class="docutils literal"><span class="pre">my_map.pgm</span></code> has the size 540x680 pixels, what is the size in meters for the environment?</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>Learn ROS and get your ROS certificate by enrolling in the Udemy course
-<a class="reference external" href="https://www.udemy.com/ros-essentials/?couponCode=ROS1GAITECHEDU">ROS for Beginners: Basics, Motion and OpenCV.</a></p>
-<p class="last">Learn about ROS2: ROS Next Generation by enrolling in the Udemy course
-<a class="reference external" href="https://www.udemy.com/ros2-how-to/?couponCode=ROS2GAITECHEDU">ROS2 How To: Discover Next Generation ROS</a></p>
-</div>
 </div>
 </div>
 
